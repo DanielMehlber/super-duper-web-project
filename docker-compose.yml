@@ -17,18 +17,22 @@ services:
     #ports:
       #- "3305:3306"
     volumes:
-      - ./src/main/resources/setup.sql:/docker-entrypoint-initdb.d/setup.sql
-    command: --init-file /docker-entrypoint-initdb.d/setup.sql
+      - ./src/main/resources/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    command: --init-file /docker-entrypoint-initdb.d/schema.sql
     healthcheck:
-      test: [ "CMD", "mysql", "--user=mysql-user, "--password=Password123!?", "--execute=SELECT 1" ]
+      test: [ "CMD", "mysql", "--user=mysql-user", "--password=Password123!?", "--execute=SELECT 1" ]
       interval: 1s
       timeout: 10s
       retries: 20
 
   web:
     build: .
+    environment:
+      WILDFLY_USERNAME: admin
+      WILDFLY_PASSWORD: admin
     ports:
       - "8080:8080"
+      - "9990:9990"
     links:
       - db
     depends_on:

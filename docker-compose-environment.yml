@@ -23,7 +23,7 @@ services:
       - ./src/main/resources/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     command: --init-file /docker-entrypoint-initdb.d/schema.sql
     healthcheck:
-      test: [ "CMD", "mysql", "--user=mysql-user, "--password=Password123!?", "--execute=SELECT 1" ]
+      test: [ "CMD", "mysql", "--user=mysql-user", "--password=Password123!?", "--execute=SELECT 1" ]
       interval: 1s
       timeout: 10s
       retries: 20

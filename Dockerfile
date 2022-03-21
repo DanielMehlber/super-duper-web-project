@@ -5,7 +5,7 @@
 #######################################################################
 
 # 1) Pull wildfly server
-FROM jboss/wildfly
+FROM quay.io/wildfly/wildfly
 
 # 2) Copy generated war file into deployment directory of wildfly
 COPY target/*.war /opt/jboss/wildfly/standalone/deployments/ROOT.war
@@ -14,7 +14,10 @@ COPY target/*.war /opt/jboss/wildfly/standalone/deployments/ROOT.war
 EXPOSE 8080
 
 # 4) Admin interface
-# EXPOSE 9990
+EXPOSE 9990
+
+# 5) Add admin user
+RUN /opt/jboss/wildfly/bin/add-user.sh admin admin --silent
 
 # Run wildfly server
 CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
