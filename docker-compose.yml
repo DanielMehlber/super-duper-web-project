@@ -1,0 +1,40 @@
+#################################################################
+# This file is used to start the entire system
+#
+# Authors: Daniel Mehlber
+#################################################################
+
+version: "3.9"
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_USER: mysql-user
+      MYSQL_PASSWORD: Password123!?
+      MYSQL_DATABASE: db
+      MYSQL_ROOT_PASSWORD: Password123!?
+    #ports:
+      #- "3305:3306"
+    volumes:
+      - ./src/main/resources/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    command: --init-file /docker-entrypoint-initdb.d/schema.sql
+    healthcheck:
+      test: [ "CMD", "mysql", "--user=mysql-user", "--password=Password123!?", "--execute=SELECT 1" ]
+      interval: 1s
+      timeout: 10s
+      retries: 20
+
+  web:
+    build: .
+    environment:
+      WILDFLY_USERNAME: admin
+      WILDFLY_PASSWORD: admin
+    ports:
+      - "8080:8080"
+      - "9990:9990"
+    links:
+      - db
+    depends_on:
+      db:
+        condition: service_healthy

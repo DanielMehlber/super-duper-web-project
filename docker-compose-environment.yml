@@ -1,0 +1,29 @@
+#################################################################
+# THIS IS USED FOR INTEGRATION TESTING
+#
+# this file is used to set up the whole environment in order to
+# run unit and integration tests.
+#
+# Authors: Daniel Mehlber
+#################################################################
+
+version: "3.9"
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_USER: mysql-user
+      MYSQL_PASSWORD: Password123!?
+      MYSQL_DATABASE: db
+      MYSQL_ROOT_PASSWORD: Password123!?
+    ports:
+      - "3305:3306" # this can be accessed at localhost:3305
+    volumes:
+      - ./src/main/resources/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    command: --init-file /docker-entrypoint-initdb.d/schema.sql
+    healthcheck:
+      test: [ "CMD", "mysql", "--user=mysql-user", "--password=Password123!?", "--execute=SELECT 1" ]
+      interval: 1s
+      timeout: 10s
+      retries: 20
