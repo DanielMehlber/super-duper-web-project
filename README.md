@@ -7,6 +7,32 @@ This is our super-duper-web-project we're going to develop for our university ta
 
 ## Using Docker (recommended, fast lane)
 
+### What is Docker?
+**Docker** is a tool used to create and run containers (isolated and easy-to-manage boxes
+containing a software/service/server). Containers are running in their own virtual machine
+and therefore each container has
+* its own file system
+* its own processes
+* its own ports
+* its own environment variables
+* and more
+
+In a nutshell: They don't "touch" your private system and allow a "clean" and convenient 
+solution for quick startup, deployment, shutdown. More advantages are:
+* higher security (e.g. ports must be exposed by developer)
+* comfortability for developers (e.g. single command start, stop, install, delete, ...)
+* better "waste management": containers can be discarded/uninstalled easily
+* containers can be orchestrated (connected and managed as a collective)
+
+BUT: Docker can only manage 1 Container at once. If you want to manage an entire system
+of containers (e.g. application server + application + database) you'll need **docker-compose**
+
+Docker Compose is used to fire-up or shut-down multiple containers at once in order to 
+"unfold" an entire interconnected system of containers with a single command.
+
+In our project it is used for deployment (starting a fresh server and database with a single command)
+and testing purposes.
+
 ### Requirements
 
 You will need
@@ -25,10 +51,13 @@ sudo apt install maven docker docker-compose openjdk-11-jdk
 ### Deployment
 
 ```shell
-# 1) build and package .war files
+# 0) make sure you are in the project root folder
+cd [...]/super-duper-web-development
+
+# 1) compile, build and package .war file
 mvn package
 
-# 2) build docker container (containing .war file deployed to wildfly)
+# 2) build docker containers (containing .war file deployed in wildfly)
 docker-compose build
 
 # 3) fire up containers (including database and database setup)
