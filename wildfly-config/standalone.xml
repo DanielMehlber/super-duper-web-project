@@ -1,5 +1,7 @@
 <?xml version="1.0" ?>
 
+<!-- Authors: Developers of wildfly, extended by Daniel Mehlber -->
+
 <server xmlns="urn:jboss:domain:19.0">
     <extensions>
         <extension module="org.jboss.as.clustering.infinispan"/>

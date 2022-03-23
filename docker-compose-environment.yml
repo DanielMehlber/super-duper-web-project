@@ -4,7 +4,7 @@
 # this file is used to set up the whole environment in order to
 # run unit and integration tests.
 #
-# Authors: Daniel Mehlber
+# Authors: Daniel Mehlber,
 #################################################################
 
 version: "3.9"

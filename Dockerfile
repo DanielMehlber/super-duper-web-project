@@ -1,7 +1,7 @@
 #######################################################################
 # this file creates a container running the application inside wildfly
 #
-# Authors: Daniel Mehlber
+# Authors: Daniel Mehlber,
 #######################################################################
 
 # 1) Pull wildfly server
