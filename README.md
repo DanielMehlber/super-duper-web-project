@@ -94,3 +94,34 @@ The output's war-file will be located in the `target` directory.
 
 ### 3. Deploy war file
 Rename the war file to `ROOT.war` and place it into `{wildfly-location}/standalone/deployments/ROOT.war`.
+
+# Testing (Unit & Integration)
+## How it normally works
+In order to test our functionality we have to use unit testing:
+```shell
+# this command runs all unit tests of this project using maven
+mvn test
+```
+
+**BUT**: We are working with databases and we need them in order to test the functionality.
+
+**PROBLEM**: How do we setup our databases not just locally, but also on our remote repository on 
+GitHub (for CI/CD) in an automated and convenient manner?
+
+## The solution we use
+In order to test our processes, we need our environment containers (databases, etc) up and running.
+For this purpose there is a separate `docker-compose-environment.yml`.
+
+The `docker-compose-environment.yml` sets up all environment containers 
+(the `docker-compose.yml` file sets up everything).
+
+```shell
+# 1) start test database and setup schema
+docker-compose -f docker-compose-environment.yml up -d
+
+# 2) run all unit tests of this project
+mvn test 
+
+# 3) shut down test database
+docker-compose -f docker-compose-environment.yml down
+```
