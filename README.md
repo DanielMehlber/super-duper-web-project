@@ -108,6 +108,11 @@ mvn test
 **PROBLEM**: How do we setup our databases not just locally, but also on our remote repository on 
 GitHub (for CI/CD) in an automated and convenient manner?
 
+There are multiple solutions to this problem (we only use one of them):
+1) ~~Install database locally~~ (manual solution without unified database configuration)
+2) ~~Mock database and its data~~, a.k.a _not using a database at all_ (requires more testing-logic, quick and dirty)
+3) **Start containerized database with automatic configuration and setup** (clean and automated solution)
+
 ## The solution we use
 In order to test our processes, we need our environment containers (databases, etc) up and running.
 For this purpose there is a separate `docker-compose-environment.yml`.
@@ -125,3 +130,9 @@ mvn test
 # 3) shut down test database
 docker-compose -f docker-compose-environment.yml down
 ```
+
+# Configuration
+## Wildfly configuration
+In order to configure wildfly you can edit `wildfly-config/standalone.xml` (e.g. datasources).
+
+This configuration file will replace the default configuration file of wildfly in the docker container.
