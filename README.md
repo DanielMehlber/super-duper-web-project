@@ -2,6 +2,7 @@
 
 # Project Description
 This is our super-duper-web-project we're going to develop for our university task.
+**Main Goal** Outmatch Matthias Raimann and his team by any means
 
 # Installation
 
