@@ -1,0 +1,96 @@
+*{
+    background-color: 1D274C;
+    font-family: 'Inter';
+    
+}
+
+/*Text Elements*/
+.txt{
+    font-size: 20px;
+    color: #FFFFFF;
+    border-color: #2B92D5;
+    border-radius: 10px;            /*With border-radius you can defines the radius of an element*/
+    border-width: 3px;
+    font-size: 20px;
+    font-weight: 700; 
+    /*line-height: 24px;
+    display: flex;
+    align-items: center;*/
+}
+.txt:focus{
+    box-shadow: 0px 0px 21px 2px rgba(0, 255, 255, 0.8);    
+    /*Attaches shadow to an element: horizontal offset | vertical offset | blur-radius | spread-radius | color*/  
+    outline: none !important;
+}
+.txt:invalid{
+    border-color: #D52B2B;
+    outline: none !important;
+}
+
+/*Button Elements*/
+.button{
+    font-size: 20px;
+    color: #FFFFFF;
+    background: #2B92D5;
+    border: 3px solid #2B92D5;
+    border-radius: 8px;             /*With border-radius you can defines the radius of an element*/
+}
+.button:hover{
+    background: #37A7F0;
+
+}
+.button:active{
+    background-color: #2B92D5;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
+}
+
+/*Alternative Button*/
+.button_alt{
+    font-size: 20px;
+    color: #2B92D5;
+    border: 3px solid #2B92D5;
+    border-radius: 8px;             /*With border-radius you can defines the radius of an element*/
+}
+.button_alt:hover{
+    color: #FFFFFF;
+    background: #2B92D5;
+}
+.button_alt:active{
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
+}
+
+/*---Test Elements---*/
+#txt01{
+    width: 359px;
+    height: 48px;
+    left: 45px;
+    top: 52px;
+    position: absolute;
+    /*line-height: 24px;
+    display: flex;
+    align-items: center;*/
+}
+#txt02{
+    width: 359px;
+    height: 48px;
+    left: 45px;
+    top: 128px;
+    position: absolute;
+}
+
+#button1{
+    width: 196px;
+    height: 48px;
+    left: 39px;
+    top: 443px;
+    position: absolute;
+}
+#button_alt1{
+    width: 196px;
+    height: 48px;
+    left: 266px;
+    top: 444px;
+    position: absolute;
+}
