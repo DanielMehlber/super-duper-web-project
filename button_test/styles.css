@@ -14,12 +14,12 @@ input{
 input:focus{
     box-shadow: 0px 0px 21px 2px rgba(0, 255, 255, 0.8);    
     /*Attaches shadow to an element: horizontal offset | vertical offset | blur-radius | spread-radius | color*/ 
-    outline: none !important;
+    outline: none;
     color: #FFFFFF;
 }
 input:invalid{
     border-color: #D52B2B;
-    outline: none !important;
+    outline: none;
 }
 
 /*Button Elements*/
