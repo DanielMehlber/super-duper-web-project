@@ -1,21 +1,26 @@
 *{
-    background-color: #1D274C;
+    background-color: #0E0F21;
     font-family: 'Inter';
 }
 /*Text Elements*/
 input{
     font-size: 20px;
-    color: #989898;
+    color: #FFFFFF;
+    background-color: transparent;
     border: 3px solid #2B92D5;
     border-radius: 10px;            /*With border-radius you can defines the radius of an element*/
     font-size: 20px;
     font-weight: 700; 
+    padding-left: 16px;
+    padding-right: 16px;
+    width: 359px;
+    height: 48px;
+    transition: 0.5s;
 }
 input:focus{
     box-shadow: 0px 0px 15px 2px rgba(0, 255, 255, 0.8);    
     /*Attaches shadow to an element: horizontal offset | vertical offset | blur-radius | spread-radius | color*/ 
     outline: none;
-    color: #FFFFFF;
     transition: 0.5s;
 }
 input:invalid{
@@ -26,10 +31,14 @@ input:invalid{
 /*Button Elements*/
 button{
     font-size: 20px;
+    text-transform: uppercase;
+    width: 161px;
+    height: 48px;
     color: #FFFFFF;
     background: #2B92D5;
     border: 3px solid #2B92D5;
     border-radius: 8px;             /*With border-radius you can defines the radius of an element*/
+    transition: 0.5s; 
 }
 button:hover{
     background: #37A7F0;
@@ -43,26 +52,48 @@ button:active{
 }
 
 /*Alternative Button*/
-button.button_alt{
+button.cancelButton{
     font-size: 20px;
+    text-transform: uppercase;
     color: #2B92D5;
-    background-color: #1D274C;
+    background-color: transparent;
     border: 3px solid #2B92D5;
-    border-radius: 8px;             /*With border-radius you can defines the radius of an element*/
-    transition: 0.5s;
 }
-button.button_alt:hover{
+button.cancelButton:hover{
     color: #FFFFFF;
     background: #2B92D5;
     transition: 0.5s;
 }
-button.button_alt:active{
+button.cancelButton:active{
     box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.25);
     transition: 0.5s;
     /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
 }
 
+/*---Login---*/
+.rectangle{
+    border-radius: 10px;
+    background-color: #1d274c;
+    width: 530px;
+    height: 648px;
+}
+text{
+    background-color: #1d274c;
+    width: 359px;
+    height: 48px;  
+    left: 540px;
+    top: 512px;
+}
+password{
+    background-color: #1d274c;
+    width: 359px;
+    height: 48px;
+    left: 540px;
+    top: 594px;
+}
+
 /*---Test Elements---*/
+/*
 #txt01{
     width: 359px;
     height: 48px;
@@ -93,3 +124,4 @@ button.button_alt:active{
     top: 444px;
     position: absolute;
 }
+*/
