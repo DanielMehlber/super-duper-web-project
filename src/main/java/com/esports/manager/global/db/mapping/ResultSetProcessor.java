@@ -21,24 +21,39 @@ import java.util.stream.Collectors;
  */
 public class ResultSetProcessor {
 
+    /**
+     * Convert an instance of {@link ResultSet} to a List of objects using the {@link ResultSetMapping} annotation.
+     *
+     * @param targetClass class in which the resultSet will be converted
+     * @param resultSet resultSet that must contain all columns that are required by annotations
+     * @return list of targetClass instances
+     * @param <T> the expected type of list
+     * @throws InternalErrorException conversion error, maybe required columns are missing in the resultSet.
+     * @author Daniel Mehlber
+     * @see ResultSetMapping
+     */
     public static <T> List<T> convert(final Class<T> targetClass, ResultSet resultSet) throws InternalErrorException {
         // collect all fields with this annotation inside target class
         final List<Field> fields = Arrays.stream(targetClass.getDeclaredFields())
                 .filter(x -> x.isAnnotationPresent(ResultSetMapping.class))
                 .collect(Collectors.toList());
 
-        final List<T> entities = new LinkedList<T>();
+        final List<T> entities = new LinkedList<>();
 
         try {
+            // iterate over rows of ResultSet
             while(resultSet.next()) {
+                // create new entity of target class with default constructor
                 T entity = targetClass.getDeclaredConstructor().newInstance();
                 for (Field field : fields) {
+                    // get required column name in result set from annotation
                     String columnName = field.getAnnotation(ResultSetMapping.class).value();
                     // will throw SQLException if the column does not exist
                     int index = resultSet.findColumn(columnName);
 
                     /*
-                     * check for type of field and set value accordingly (if supported)
+                     * check for type of field and set value accordingly (if supported).
+                     * If the annotations' field type is not supported an error is thrown.
                      */
                     Class<?> type = field.getType();
                     if(type == Integer.class) {
@@ -56,7 +71,7 @@ public class ResultSetProcessor {
                     } else if (type == Date.class) {
                         field.set(entity, resultSet.getDate(index));
                     } else {
-                        throw new IllegalAccessException(String.format("field '%s' with type %s of class %s is not supported", field.getName(), type.getName(), targetClass.getName()));
+                        throw new IllegalAccessException(String.format("field '%s' of type %s of class %s is not supported", field.getName(), type.getName(), targetClass.getName()));
                     }
                 }
 
