@@ -1,6 +1,7 @@
 *{
     background-color: #0E0F21;
     font-family: 'Inter';
+    font-weight: 700; 
 }
 /*Text Elements*/
 input{
@@ -10,7 +11,6 @@ input{
     border: 3px solid #2B92D5;
     border-radius: 10px;            /*With border-radius you can defines the radius of an element*/
     font-size: 20px;
-    font-weight: 700; 
     padding-left: 16px;
     padding-right: 16px;
     width: 359px;
@@ -76,16 +76,18 @@ button.cancelButton:active{
     background-color: #1d274c;
     width: 530px;
     height: 648px;
+    left: 455px;
+    top: 188px;
+    position: absolute;
+    box-shadow: 0px 0px 37px 3px rgba(0, 255, 255, 0.36);
 }
 text{
-    background-color: #1d274c;
     width: 359px;
     height: 48px;  
     left: 540px;
     top: 512px;
 }
 password{
-    background-color: #1d274c;
     width: 359px;
     height: 48px;
     left: 540px;
