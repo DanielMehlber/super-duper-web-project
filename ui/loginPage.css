@@ -1,13 +1,22 @@
 /*---Login---*/
 
+*{
+    display: grid;
+    justify-content: center;
+}
+
 .rectangle{
     border-radius: 10px;
     background-color: #1d274c;
     width: 530px;
     height: 648px;
-    position: absolute;
     box-shadow: 0px 0px 37px 3px rgba(0, 255, 255, 0.36);
     display: grid;
+    justify-items: center;
+}
+.img{
+    width: 150px;
+    height: 150px;
 }
 .text{
     width: 359px;
