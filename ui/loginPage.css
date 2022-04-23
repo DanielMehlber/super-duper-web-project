@@ -1,23 +1,50 @@
 /*---Login---*/
 
-*{
-    display: grid;
+main {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
-.rectangle{
+.loginCard{
     border-radius: 10px;
     background-color: #1d274c;
     width: 530px;
     height: 648px;
     box-shadow: 0px 0px 37px 3px rgba(0, 255, 255, 0.36);
     display: grid;
+    justify-content: center;
+    align-items: center;
     justify-items: center;
+
+    /* defines colums and rows as areas of the grid (set area using grid-area) */
+    grid-template-areas: 
+                    "logo logo"
+                    "username username"
+                    "password password"
+                    "cancel continue";
+                    
+    grid-template-rows: auto min-content min-content auto;
 }
+
+input.password {
+    grid-area: password;
+}
+
+input.username {
+    grid-area: username;
+}
+
 .img{
     width: 150px;
     height: 150px;
 }
+
+.logo {
+    grid-area: logo;
+}
+
 .text{
     width: 359px;
     height: 48px;  
@@ -30,9 +57,11 @@
 .enterButton{
     width: 161px;
     height: 48px;
+    grid-area: continue;
 }
 
 .cancelButton{
     width: 161px;
     height: 48px;
+    grid-area: cancel;
 }
