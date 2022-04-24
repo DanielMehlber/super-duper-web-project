@@ -1,13 +1,13 @@
-/*---Login---*/
+/*---Registration---*/
 
-main {
+main{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
 
-.loginCard{
+.registrationCard{
     border-radius: 10px;
     background-color: #1d274c;
     width: 530px;
@@ -17,33 +17,37 @@ main {
     justify-content: center;
     align-items: center;
     justify-items: center;
-
-    /* defines colums and rows as areas of the grid (set area using grid-area) */
+    
+/* defines colums and rows as areas of the grid (set area using grid-area) */
     grid-template-areas: 
-                    "logo logo"
-                    "username username"
-                    "password password"
-                    "cancel continue";
-    grid-template-rows: auto min-content min-content auto;
+                "logo logo"
+                "email email"
+                "username username"
+                "password password"
+                "cancel continue";
+    grid-template-rows: auto min-content min-content min-content auto;
 }
 
-input.password {
+input.password{
     grid-area: password;
 }
-
-input.username {
+input.username{
     grid-area: username;
 }
-
+input.email{
+    grid-area: email;
+}
 .img{
     width: 150px;
     height: 150px;
 }
-
 .logo {
     grid-area: logo;
 }
-
+.email{
+    width: 359px;
+    height: 48px;  
+}
 .text{
     width: 359px;
     height: 48px;  
@@ -52,13 +56,11 @@ input.username {
     width: 359px;
     height: 48px;
 }
-
 .enterButton{
     width: 161px;
     height: 48px;
     grid-area: continue;
 }
-
 .cancelButton{
     width: 161px;
     height: 48px;
