@@ -56,18 +56,18 @@ button:active{
 }
 
 /*Alternative Button*/
-.cancelButton{
+.cancel-button{
     font-size: 20px;
     text-transform: uppercase;
     color: var(--main-fg-color);
     background-color: transparent;
     border: 3px solid #2B92D5;
 }
-.cancelButton:hover{
+.cancel-button:hover{
     color: #FFFFFF;
     background: var(--main-fg-color);
 }
-.cancelButton:active{
+.cancel-button:active{
     box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.25);
     /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
 }

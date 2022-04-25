@@ -7,7 +7,7 @@ main{
     height: 100%;
 }
 
-.registrationCard{
+.registration-card{
     border-radius: 10px;
     background-color: #1d274c;
     width: 530px;
@@ -25,11 +25,11 @@ main{
                 "password password"
                 "cancel continue";
     grid-template-rows: auto min-content min-content min-content auto;
-    transition: all 0.5s;
+    transition: all 1s;
 }
 
-.registrationCard:hover {
-    box-shadow: 0px 0px 37px 3px rgba(0, 255, 255, 0.36);
+.registration-card:hover {
+    box-shadow: rgb(0 255 255 / 36%) 0px 0px 15px 3px;
 }
 
 input.password{
@@ -67,12 +67,12 @@ input.email{
     width: 359px;
     height: 48px;
 }
-.enterButton{
+.enter-button{
     width: 161px;
     height: 48px;
     grid-area: continue;
 }
-.cancelButton{
+.cancel-button{
     width: 161px;
     height: 48px;
     grid-area: cancel;
