@@ -45,10 +45,16 @@ input.email{
     width: 150px;
     height: 150px;
 }
+
 .logo {
+    transition: all 0.5s;
     grid-area: logo;
-    animation: float 4s ease-in-out infinite;
 }
+
+.logo:hover {
+    transform: translateY(-5px);
+}
+
 .email{
     width: 359px;
     height: 48px;  
