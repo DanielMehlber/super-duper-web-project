@@ -2,7 +2,7 @@ html {
     background-color: var(--main-bg-color);
 }
 
-*{
+* {
     --main-bg-color: #0E0F21;
     --main-fg-color: #2B92D5;
     font-family: 'Inter';
@@ -28,11 +28,11 @@ input:focus{
     box-shadow: 0px 0px 15px 2px var(--main-fg-color);    
     /*Attaches shadow to an element: horizontal offset | vertical offset | blur-radius | spread-radius | color*/ 
     outline: none;
-    transition: 0.5s;
 }
 input:invalid{
     border-color: #D52B2B;
     outline: none;
+    box-shadow: 0px 0px 15px 2px #D52B2B;
 }
 
 /*Button Elements*/
@@ -47,12 +47,11 @@ button{
 }
 button:hover{
     background: #37A7F0;
-    transition: 0.5s;
+    transform: translateY(-5px);
 }
 button:active{
     background-color: var(--main-fg-color);
     box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.25);
-    transition: 0.5s;
     /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
 }
 
@@ -67,10 +66,20 @@ button:active{
 .cancelButton:hover{
     color: #FFFFFF;
     background: var(--main-fg-color);
-    transition: 0.5s;
 }
 .cancelButton:active{
     box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.25);
-    transition: 0.5s;
     /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
+}
+
+@keyframes float {
+	0% {
+		transform: translatey(5px);
+	}
+	50% {
+		transform: translatey(-5px);
+	}
+	100% {
+		transform: translatey(5px);
+	}
 }
