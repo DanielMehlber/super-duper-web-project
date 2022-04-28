@@ -1,0 +1,23 @@
+<Configuration status="warn">
+    <Appenders>
+        <!-- Console appender configuration -->
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%-6p %d{DEFAULT} [%t] in %c{1}: %m %n%exception" />
+        </Console>
+        <File name="core-log-file" fileName="logs/core.test.log">
+            <PatternLayout>
+                <Pattern>%-6p %d{DEFAULT} [%t] in %c{1}: %m %n%exception</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <!-- log everything in package org.connectme.core in DEBUG -->
+        <Logger name="org.connectme.core" level="DEBUG">
+            <AppenderRef ref="core-log-file"/>
+        </Logger>
+        <!-- Log everything else (e.g. Spring Boot Logs) in INFO -->
+        <Root level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+        </Root>
+    </Loggers>
+</Configuration>
