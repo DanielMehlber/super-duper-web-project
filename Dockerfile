@@ -8,7 +8,7 @@
 FROM quay.io/wildfly/wildfly
 
 # 2) Copy generated war file into deployment directory of wildfly
-COPY target/*.war /opt/jboss/wildfly/standalone/deployments/ROOT.
+COPY target/*.war /opt/jboss/wildfly/standalone/deployments/ROOT.war
 
 # 3) Copy custom configuration into wildfly
 COPY wildfly-config/*.xml /opt/jboss/wildfly/standalone/configuration/

@@ -1,0 +1,23 @@
+<Configuration status="warn">
+    <Appenders>
+        <!-- Console appender configuration -->
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%-6p %d{DEFAULT} [%t] in %c{1}: %m %n%exception" />
+        </Console>
+        <File name="core-log-file" fileName="logs/core.log">
+            <PatternLayout>
+                <Pattern>%-6p %d{DEFAULT} [%t] in %c{1}: %m %n%exception</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <!-- Root logger referring to console appender -->
+        <Root level="info" additivity="false">
+            <AppenderRef ref="console" />
+        </Root>
+
+        <Logger level="warn" name="com.esports.manager">
+            <AppenderRef ref="core-log-file"/>
+        </Logger>
+    </Loggers>
+</Configuration>

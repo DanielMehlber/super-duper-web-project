@@ -9,4 +9,8 @@ public class InternalErrorException extends Exception {
         super(String.format("an internal error occurred: %s", message), cause);
     }
 
+    public InternalErrorException(String message) {
+        super(String.format("an internal error occurred: %s", message));
+    }
+
 }
