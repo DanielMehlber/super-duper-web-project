@@ -20,7 +20,7 @@ import com.esports.manager.userManagement.beans.RegistrationBean;
  *
  * @author Maximilian Rublik
  */
-@WebServlet("/registrationservlet")
+@WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
     // TODO: finish lookup for ds
     private DataSource ds;
