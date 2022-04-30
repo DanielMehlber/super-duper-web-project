@@ -2,7 +2,7 @@ package com.esports.manager.userManagement.beans;
 
 import java.io.Serializable;
 
-public class LoginBean implements Serializable {
+public class LoginData implements Serializable {
     private static final long servialVersionUID = 1L;
     
     private Long id;

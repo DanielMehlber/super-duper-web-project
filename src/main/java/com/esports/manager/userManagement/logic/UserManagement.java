@@ -1,5 +1,8 @@
 package com.esports.manager.userManagement.logic;
 
+import java.io.IOException;
+import java.sql.SQLInput;
+
 import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
@@ -48,5 +51,24 @@ public class UserManagement {
         User user = UserRepository.getByUsername(username);
         return user;
     }
-
+    /* TODO
+     * Checks if username and password (from html form) align with those in database
+     * 
+     * @author Philipp Phan
+    */
+    public static void login(String username, String password){
+        try{
+            User user = UserRepository.getByUsername(username);
+            if(username.equals(user.getUsername()) && password.equals(user.getPasswordHash())){
+                log.debug("Login succcessfull");
+            }
+            else{
+                log.debug("LOGIN NOT SUCCESSFULL !!!!111!!!elf & Matze ist ein arschl0ch");
+            }
+        } catch (InternalErrorException e){
+            log.debug("Cannot fetch from database");
+    } catch (NoSuchUserException e){
+        log.debug("No such user found in database");
+    }
+}
 }

@@ -7,10 +7,18 @@ import java.rmi.server.ServerCloneException;
 
 import javax.sql.rowset.serial.SerialException;
 
+import com.esports.manager.userManagement.beans.LoginData;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+/*
+ *Login Servlet
+ * 
+ * @author Philipp Phan
+ */
 
 public class LoginServlet extends HttpServlet{
    @Override 
@@ -25,14 +33,11 @@ public class LoginServlet extends HttpServlet{
         */
         //User username = getByUsername(username);
         //String userpassword = username.getPassword();
-        if(password.equals("userpassword") && username.equals("username")){
             RequestDispatcher rd = request.getRequestDispatcher(path);
+            //Bean creation
+            LoginData form = new LoginData();
+            form.setUsername(request.getParameter("username"));
+            form.setPassword(request.getParameter("password"));
             rd.forward(request, response);
-        }
-        else{
-            out.println("Username or Password incorrect");
-            RequestDispatcher rd = request.getRequestDispatcher("../ui/LoginPage.html");
-            rd.include(request, response);
-        }
    }
 }
