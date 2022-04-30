@@ -23,4 +23,8 @@ public class UserRepository {
         log.debug("creating new user entity in database...");
     }
 
+    public static boolean isUniqueUsername(final String username) {
+        log.debug("checking for already existing username in database");
+        return false;
+    }
 }
