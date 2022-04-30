@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet{
         //User username = getByUsername(username);
         //String userpassword = username.getPassword();
         if(password.equals("userpassword") && username.equals("username")){
-            RequestDispatcher rd = request.getRequestDispatcher("");
+            RequestDispatcher rd = request.getRequestDispatcher(path);
             rd.forward(request, response);
         }
         else{
