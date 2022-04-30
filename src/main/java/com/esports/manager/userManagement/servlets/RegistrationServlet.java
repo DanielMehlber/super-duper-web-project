@@ -2,6 +2,7 @@ package com.esports.manager.userManagement.servlets;
 
 import java.io.IOException;
 
+import com.esports.manager.userManagement.logic.UserManagement;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -29,13 +30,15 @@ public class RegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
 
-        // Bean-Creation
-        RegistrationBean form = new RegistrationBean();
-        form.setUsername(req.getParameter("username"));
-        form.setPassword(req.getParameter("password"));
-        form.setEmail(req.getParameter("email"));
-
-        // TODO: Send bean to user management class
+        try {
+            UserManagement.registerUser(
+                    req.getParameter("username"),
+                    req.getParameter("password"),
+                    req.getParameter("email"));
+        } catch(Exception ex) {
+            // redirect to invalid input .jsp
+            resp.sendRedirect("");
+        }
 
         // redirect to JSP
         // TODO: Add file to where we want to redirect
