@@ -9,8 +9,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import com.esports.manager.userManagement.beans.RegistrationBean;
-
 /**
  * We receive data from the registration form, put it in a bean and send it away.
  * Later we redirect the response, since we won't allow any double push problems.
