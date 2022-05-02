@@ -62,7 +62,6 @@ public class UserManagement {
         return user;
     }
 
-
     public static void registerUser(String username, String password, String email) throws InvalidInputException, InternalErrorException, UsernameAlreadyTakenException, NoSuchAlgorithmException {
         if (checkUserInput(username, password, email)) {
             // TODO: Create a new user element and persist it to the db
@@ -130,7 +129,7 @@ public class UserManagement {
         } catch (AddressException ex) {
             result = false;
         }
+
         return result;
     }
-
 }
