@@ -104,16 +104,15 @@ public class UserManagement {
         return password.length() > 5 && letters.matcher(password).find() && special.matcher(password).find();
     }
 
-    private static String hashPassword (String password) throws NoSuchAlgorithmException {
+    private static String hashPassword (String password) throws NoSuchAlgorithmException, InternalErrorException {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
             return hash.toString();
         } catch (NoSuchAlgorithmException ex) {
-
+            throw new InternalErrorException("there was a problem hashing the password");
         }
     }
-
 
     /**
      * copied from <a href="https://stackoverflow.com/questions/624581/what-is-the-best-java-email-address-validation-">stackoverflow</a>
