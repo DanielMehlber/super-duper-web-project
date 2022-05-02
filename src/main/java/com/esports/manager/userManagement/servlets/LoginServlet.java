@@ -9,6 +9,8 @@ import java.rmi.server.ServerCloneException;
 import javax.sql.rowset.serial.SerialException;
 
 import com.esports.manager.userManagement.beans.LoginData;
+import com.esports.manager.userManagement.entities.User;
+import com.esports.manager.userManagement.logic.UserManagement;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -16,7 +18,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/*
+/*TODO
  *Login Servlet
  * 
  * @author Philipp Phan
@@ -30,20 +32,23 @@ public class LoginServlet extends HttpServlet{
     final String password = request.getParameter("password");
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
-        /*Compares Username and passwort of user (Should this be implemented somewhere else?)
-        Needs fetchUser() to retrieve user from Database
-        */
-        //User username = getByUsername(username);
-        //String userpassword = username.getPassword();
+        /*
+         *Get username and password
+         *
+         */
             RequestDispatcher rd = request.getRequestDispatcher("path");
             //Bean creation
             LoginData form = new LoginData();
             form.setUsername(request.getParameter("username"));
             form.setPassword(request.getParameter("password"));
+            
+            //Forward username and passwortd to usermanagement
+            UserManagement.performLogin(username, password);
+
             try{
               rd.forward(request, response);  
             } catch (ServletException e){
-               
+               e.getCause();
             }
             
    }

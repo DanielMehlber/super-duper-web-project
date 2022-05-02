@@ -56,7 +56,7 @@ public class UserManagement {
      * 
      * @author Philipp Phan
     */
-    public static void login(String username, String password){
+    public static void performLogin(String username, String password){
         try{
             User user = UserRepository.getByUsername(username);
             if(username.equals(user.getUsername()) && password.equals(user.getPasswordHash())){
