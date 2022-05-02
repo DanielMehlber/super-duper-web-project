@@ -44,6 +44,7 @@ public class ResultSetProcessor {
             // iterate over rows of ResultSet
             while(resultSet.next()) {
                 // create new entity of target class with default constructor
+                targetClass.getDeclaredConstructor().setAccessible(true);
                 T entity = targetClass.getDeclaredConstructor().newInstance();
                 for (Field field : fields) {
                     // get required column name in result set from annotation
@@ -56,6 +57,7 @@ public class ResultSetProcessor {
                      * If the annotations' field type is not supported an error is thrown.
                      */
                     Class<?> type = field.getType();
+                    if(!field.trySetAccessible()) throw new InternalErrorException("cannot make field accessible");
                     if(type == Integer.class) {
                         field.setInt(entity, resultSet.getInt(index));
                     } else if (type == String.class) {

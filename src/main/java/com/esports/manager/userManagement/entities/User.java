@@ -24,6 +24,7 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
+
     public String getUsername() {
         return username;
     }

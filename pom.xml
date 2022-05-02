@@ -21,7 +21,6 @@
                 <version>3.3.2</version>
                 <configuration>
                     <attachClasses>true</attachClasses>
-                    <webXml>src/webapp/WEB-INF/web.xml</webXml>
                     <webResources>
                         <resource>
                             <directory>src/webapp</directory>
@@ -29,6 +28,11 @@
                         </resource>
                     </webResources>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
             </plugin>
         </plugins>
     </build>
@@ -42,6 +46,17 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Jakarta Annotations (e.g. @Resource)-->
+        <!-- https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api -->
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>2.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <!-- The MySQL Java Connector -->
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
@@ -49,10 +64,36 @@
             <version>8.0.28</version>
         </dependency>
 
+        <!-- Used for logging -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.17.2</version>
+        </dependency>
+
+        <!-- Used for Unit Testing and asserting -->
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Implementation for DataSource ONLY USED IN UNIT TESTING, when resource injection is not possible -->
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>2.9.0</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/jakarta.mail/jakarta.mail-api -->
