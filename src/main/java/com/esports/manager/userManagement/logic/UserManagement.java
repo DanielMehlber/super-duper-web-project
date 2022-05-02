@@ -1,13 +1,19 @@
 package com.esports.manager.userManagement.logic;
 
+import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.userManagement.db.UserRepository;
+import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.InvalidInputException;
+import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
 import jakarta.mail.internet.AddressException;
 import jakarta.mail.internet.InternetAddress;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.regex.Pattern;
 
 /**
@@ -19,10 +25,16 @@ public class UserManagement {
 
     private static Logger log = LogManager.getLogger(UserManagement.class);
 
-    public static void registerUser(String username, String password, String email) throws InvalidInputException {
+    public static void registerUser(String username, String password, String email) throws InvalidInputException, InternalErrorException, UsernameAlreadyTakenException, NoSuchAlgorithmException {
         if (checkUserInput(username, password, email)) {
             // TODO: Create a new user element and persist it to the db
-            // UserRepository.createNewUser();
+            User newUser = new User();
+            try {
+                UserRepository.createNewUser(new User(username, email, hashPassword(password)));
+            } catch (NoSuchAlgorithmException ex){
+                log.error("There was a problem hashing the password");
+                throw new NoSuchAlgorithmException("there was a problem hashing the password");
+            }
         }
         else {
             throw new InvalidInputException("registerUser: Invalid Input");
@@ -52,6 +64,16 @@ public class UserManagement {
 
         // We want the password to be at least 6 characters long + match the patterns above
         return password.length() > 5 && letters.matcher(password).find() && special.matcher(password).find();
+    }
+
+    private static String hashPassword (String password) throws NoSuchAlgorithmException {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+            return hash.toString();
+        } catch (NoSuchAlgorithmException ex) {
+
+        }
     }
 
 
