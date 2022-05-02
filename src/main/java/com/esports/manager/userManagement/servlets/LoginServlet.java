@@ -17,39 +17,37 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 /*TODO
  *Login Servlet
  * 
  * @author Philipp Phan
  */
-
-public class LoginServlet extends HttpServlet{
-   @Override 
-   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-   throws ServerException, IOException{
+public class LoginServlet extends HttpServlet {
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServerException, IOException {
     final String username = request.getParameter("username");
     final String password = request.getParameter("password");
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
-        /*
-         *Get username and password
-         *
-         */
-            RequestDispatcher rd = request.getRequestDispatcher("path");
-            //Bean creation
-            LoginData form = new LoginData();
-            form.setUsername(request.getParameter("username"));
-            form.setPassword(request.getParameter("password"));
-            
-            //Forward username and passwortd to usermanagement
-            UserManagement.performLogin(username, password);
+    /*
+     * Get username and password
+     *
+     */
+    RequestDispatcher rd = request.getRequestDispatcher("path");
+    /*
+     * //Bean creation
+     * LoginData form = new LoginData();
+     * form.setUsername(request.getParameter("username"));
+     * form.setPassword(request.getParameter("password"));
+     */
+    // Forward username and passwortd to usermanagement
+    UserManagement.performLogin(username, password);
+    try {
+      rd.forward(request, response);
+    } catch (ServletException e) {
+      e.getCause();
+    }
 
-            try{
-              rd.forward(request, response);  
-            } catch (ServletException e){
-               e.getCause();
-            }
-            
-   }
+  }
 }
