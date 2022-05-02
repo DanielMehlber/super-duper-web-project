@@ -14,6 +14,7 @@ import com.esports.manager.userManagement.logic.UserManagement;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * 
  * @author Philipp Phan
  */
+@WebServlet
 public class LoginServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)

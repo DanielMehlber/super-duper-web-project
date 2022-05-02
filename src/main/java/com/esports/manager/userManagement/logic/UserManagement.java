@@ -60,7 +60,7 @@ public class UserManagement {
         try{
             User user = UserRepository.getByUsername(username);
             if(username.equals(user.getUsername()) && password.equals(user.getPasswordHash())){
-                log.debug("Login succcessfull");
+                log.debug("Login succcessfull. Welcome");
             }
             else{
                 log.debug("LOGIN NOT SUCCESSFULL !!!!111!!!elf & Matze ist ein arschl0ch");
