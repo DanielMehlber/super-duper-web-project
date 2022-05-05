@@ -75,16 +75,16 @@ public class UserManagement {
             if (username.equals(user.getUsername()) && password.equals(user.getPasswordHash())) {
                 //TODO: Add user-object to active session
             
-                log.debug("Login succcessfull. Welcome");
+                log.info("Login succcessfull. Welcome");
             } else {
-                log.debug("LOGIN NOT SUCCESSFULL !!!!111!!!elf & Matze ist kleine eine B1tch");
+                log.warn("LOGIN NOT SUCCESSFULL !!!!111!!!elf & Matze ist kleine eine B1tch");
             }
         } catch (InternalErrorException e) {
-            log.debug("Internal Error");
-            throw new InternalErrorException("Internal Error");
+            log.error("Internal Error", e);
+            throw e;
         } catch (NoSuchUserException e) {
-            log.debug("No user with username found");
-            throw new NoSuchUserException(username);
+            log.error("No user with username found", e);
+            throw e;
         }
     }
 }

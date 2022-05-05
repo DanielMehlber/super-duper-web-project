@@ -21,6 +21,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 /*TODO
  *Login Servlet
@@ -29,6 +32,8 @@ import jakarta.servlet.http.HttpSession;
  */
 @WebServlet
 public class LoginServlet extends HttpServlet {
+
+  private static Logger log = LogManager.getLogger(LoginServlet.class);
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServerException, IOException {
@@ -41,13 +46,13 @@ public class LoginServlet extends HttpServlet {
      *
      */
     RequestDispatcher rd = request.getRequestDispatcher("path");
-
     try {
       UserManagement.performLogin(username, password);
     } catch (InternalErrorException e) {
-      System.out.println("Internal error found: " + e.getMessage()); 
+      log.fatal("Internal error found");
+      response.getStatus();
     } catch (NoSuchUserException e) {
-      System.out.println("No user with this username found: " + e.getMessage());
+      log.warn("No user with name:" + username + " found");
     }
 
     //Create new Session
@@ -56,7 +61,7 @@ public class LoginServlet extends HttpServlet {
     try {
       rd.forward(request, response);
     } catch (ServletException e) {
-      System.out.println("Exception in Servlet found: " + e.getMessage());
+      log.fatal("Servlet exception found");
     }
   }
 }
