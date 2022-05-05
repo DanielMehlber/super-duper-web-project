@@ -24,7 +24,6 @@ import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 /*TODO
  *Login Servlet
  * 
@@ -32,7 +31,6 @@ import org.apache.logging.log4j.Logger;
  */
 @WebServlet
 public class LoginServlet extends HttpServlet {
-
   private static Logger log = LogManager.getLogger(LoginServlet.class);
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -42,10 +40,7 @@ public class LoginServlet extends HttpServlet {
     final String email = request.getParameter("email");
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
-    /*
-     * Get username and password
-     *
-     */
+
     RequestDispatcher rd = request.getRequestDispatcher("path");
     try {
       UserManagement.performLogin(username, password);
@@ -58,6 +53,7 @@ public class LoginServlet extends HttpServlet {
     }
     //Create new Session
     HttpSession session = request.getSession();
+    //Store user information inside session object
     session.setAttribute("username", username);
     session.setAttribute("password", password);
     session.setAttribute("emailID", email);
