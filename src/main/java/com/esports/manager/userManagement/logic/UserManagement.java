@@ -62,7 +62,7 @@ public class UserManagement {
     public static void performLogout(){
 
     }
-    /*
+    /**
      * TODO
      * Checks if username and password (from html form) align with those in database
      * 
