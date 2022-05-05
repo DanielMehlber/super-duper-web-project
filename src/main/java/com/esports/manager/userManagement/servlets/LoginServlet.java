@@ -39,6 +39,7 @@ public class LoginServlet extends HttpServlet {
       throws ServerException, IOException {
     final String username = request.getParameter("username");
     final String password = request.getParameter("password");
+    final String email = request.getParameter("email");
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     /*
@@ -49,19 +50,22 @@ public class LoginServlet extends HttpServlet {
     try {
       UserManagement.performLogin(username, password);
     } catch (InternalErrorException e) {
+      e.getMessage();
       log.fatal("Internal error found");
       response.getStatus();
     } catch (NoSuchUserException e) {
       log.warn("No user with name:" + username + " found");
     }
-
     //Create new Session
     HttpSession session = request.getSession();
-
+    session.setAttribute("username", username);
+    session.setAttribute("password", password);
+    session.setAttribute("emailID", email);
     try {
       rd.forward(request, response);
     } catch (ServletException e) {
       log.fatal("Servlet exception found");
+      e.getMessage();
     }
   }
 }

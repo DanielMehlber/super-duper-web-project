@@ -74,7 +74,6 @@ public class UserManagement {
             User user = UserRepository.getByUsername(username);
             if (username.equals(user.getUsername()) && password.equals(user.getPasswordHash())) {
                 //TODO: Add user-object to active session
-            
                 log.info("Login succcessfull. Welcome");
             } else {
                 log.warn("LOGIN NOT SUCCESSFULL !!!!111!!!elf & Matze ist kleine eine B1tch");
