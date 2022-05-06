@@ -39,22 +39,24 @@ public class LoginServlet extends HttpServlet {
     final String password = request.getParameter("password");
     final String email = request.getParameter("email");
     response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
 
     RequestDispatcher rd = request.getRequestDispatcher("path");
     try {
       UserManagement.performLogin(username, password);
     } catch (InternalErrorException e) {
       e.getMessage();
-      log.fatal("Internal error found");
+      log.fatal("Internal error found while logging in user");
       response.getStatus();
     } catch (NoSuchUserException e) {
       log.warn("No user with name:" + username + " found");
     }
     //Create new Session
     HttpSession session = request.getSession();
+    User user = new User();
+    LoginData ld = new LoginData();
+
     //Store user information inside session object
-    session.setAttribute("username", username);
+    session.setAttribute("user", user);
     session.setAttribute("password", password);
     session.setAttribute("emailID", email);
     try {
