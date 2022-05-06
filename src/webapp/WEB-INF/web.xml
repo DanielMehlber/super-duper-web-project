@@ -6,14 +6,8 @@
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <!--
-    <servlet>
-        <servlet-name>index</servlet-name>
-        <servlet-class>Index</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>index</servlet-name>
-        <url-pattern>/index</url-pattern>
-    </servlet-mapping>
-    -->
+    <!-- Entry point of web application -->
+    <welcome-file-list>
+        <welcome-file>/index</welcome-file>
+    </welcome-file-list>
 </web-app>
