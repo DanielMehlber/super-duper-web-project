@@ -38,7 +38,7 @@ public class LandingPageServlet extends HttpServlet {
 
         if(loggedInUser == null) {
             // case: no user is logged in. Login/Registration options have to be presented
-            // TODO: forward to landing page
+            request.getRequestDispatcher("/jsp/welcome.jsp").forward(request, response);
         } else {
             // case: a user is already logged in. User can be forwarded to dashboard
             // TODO: forward to dashboard
