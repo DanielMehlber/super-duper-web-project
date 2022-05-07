@@ -1,18 +1,11 @@
 package com.esports.manager.userManagement.logic;
 
-import java.io.IOException;
-import java.sql.SQLInput;
-
 import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
-import com.mysql.cj.Session;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import jakarta.servlet.http.HttpSession;
 
 /**
  * collection of methods that will be used in user management
@@ -58,10 +51,11 @@ public class UserManagement {
         return user;
     }
 
-    //TODO: Log user out of active session
-    public static void performLogout(){
+    // TODO: Log user out of active session
+    public static void performLogout() {
 
     }
+
     /**
      * TODO
      * Checks if username and password (from html form) align with those in database
@@ -73,13 +67,13 @@ public class UserManagement {
         try {
             User user = UserRepository.getByUsername(username);
             if (username.equals(user.getUsername()) && password.equals(user.getPasswordHash())) {
-                //TODO: Add user-object to active session
+                // TODO: Add user-object to active session
                 log.info("Login succcessfull. Welcome");
             } else {
-                log.warn("LOGIN NOT SUCCESSFULL !!!!111!!!elf & Matze ist kleine eine B1tch");
+                log.warn("LOGIN NOT SUCCESSFULL !");
             }
         } catch (InternalErrorException e) {
-            log.error("Internal Error", e);
+            log.error("Internal Error occured while login", e);
             throw e;
         } catch (NoSuchUserException e) {
             log.error("No user with username found", e);
