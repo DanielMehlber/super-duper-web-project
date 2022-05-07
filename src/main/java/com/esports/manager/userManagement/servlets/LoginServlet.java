@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import java.rmi.ServerException;
 import com.esports.manager.global.exceptions.InternalErrorException;
-import com.esports.manager.userManagement.beans.SessionBean;
-import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 import com.esports.manager.userManagement.logic.UserManagement;
 import jakarta.servlet.RequestDispatcher;
@@ -38,8 +36,10 @@ public class LoginServlet extends HttpServlet {
     // Dsipatch to JSP
     // TODO Still needs Path
     RequestDispatcher rd = request.getRequestDispatcher("path");
+    // Create new Session
+    HttpSession session = request.getSession();
     try {
-      UserManagement.performLogin(username, password);
+      UserManagement.performLogin(username, password, session);
     } catch (InternalErrorException e) {
       e.getMessage();
       log.fatal("Internal error found while logging in user");
@@ -47,23 +47,7 @@ public class LoginServlet extends HttpServlet {
     } catch (NoSuchUserException e) {
       log.fatal("No user with name:" + username + " found");
     }
-    // Create new Session
-    HttpSession session = request.getSession();
-    // Create sessionBean
-    SessionBean sessionBean = new SessionBean();
-    // Insert user object inside sessionBean
-    try {
-      sessionBean.setUser(UserRepository.getByUsername(username));
-    } catch (InternalErrorException e) {
-      log.fatal("Internal Error occured while setting user to sessionBean");
-    } catch (NoSuchUserException e) {
-      log.fatal("No user with name:" + username + " found");
-    }
-    // Insert sessionBean in HttpSession
-    session.setAttribute("sessionBean", sessionBean);
-    /**
-     * sessionBean.setDateTime();
-     */
+
     try {
       rd.forward(request, response);
     } catch (ServletException e) {

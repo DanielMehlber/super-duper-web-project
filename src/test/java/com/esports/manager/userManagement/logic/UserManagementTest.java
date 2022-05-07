@@ -40,4 +40,9 @@ public class UserManagementTest {
         // Assertions.assertEquals(user.getUsername(), "username");
     }
 
+    @Test
+    public void loginTest() throws NoSuchUserException, InternalErrorException{
+        //UserManagement.performLogin("testUser", "abcdefgh", );
+    }
+
 }

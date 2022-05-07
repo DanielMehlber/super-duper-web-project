@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import com.esports.manager.userManagement.entities.User;
 
-public class SessionBean implements Serializable {
+public class LoginSessionBean implements Serializable {
     private static final long servialVersionUID = 1L;
     
     private User user;

@@ -1,11 +1,15 @@
 package com.esports.manager.userManagement.logic;
 
 import com.esports.manager.global.exceptions.InternalErrorException;
+import com.esports.manager.userManagement.beans.LoginSessionBean;
 import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import jakarta.servlet.http.HttpSession;
 
 /**
  * collection of methods that will be used in user management
@@ -62,12 +66,21 @@ public class UserManagement {
      * 
      * @author Philipp Phan
      */
-    public static void performLogin(String username, String password)
+    public static void performLogin(String username, String password, HttpSession session)
             throws InternalErrorException, NoSuchUserException {
         try {
             User user = UserRepository.getByUsername(username);
             if (username.equals(user.getUsername()) && password.equals(user.getPasswordHash())) {
                 // TODO: Add user-object to active session
+
+                // Create sessionBean
+                LoginSessionBean loginSessionBean = new LoginSessionBean();
+
+                // Insert user object inside sessionBean
+                loginSessionBean.setUser(UserRepository.getByUsername(username));
+
+                // Insert sessionBean in HttpSession
+                session.setAttribute("loginSessionBean", loginSessionBean);
                 log.info("Login succcessfull. Welcome");
             } else {
                 log.warn("LOGIN NOT SUCCESSFULL !");
