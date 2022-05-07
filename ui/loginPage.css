@@ -22,15 +22,24 @@ main {
                     "logo logo"
                     "username username"
                     "password password"
-                    "cancel continue";
-    grid-template-rows: auto min-content min-content auto;
-
+                    "cancel continue"
+                    "link link";
+    grid-template-rows: auto min-content min-content auto auto;
     transition: all 1s;
+}
+
+.linkRegistration{
+    grid-area: link;
+}
+
+.forgotLink{
+    grid-area: forgotLink;
 }
 
 .login-card:hover {
     box-shadow: rgb(0 255 255 / 36%) 0px 0px 15px 3px;
 }
+
 
 input.password {
     grid-area: password;
@@ -46,7 +55,12 @@ input.username {
 }
 
 .logo {
+    transition: all 0.5s;
     grid-area: logo;
+}
+
+.logo:hover {
+    transform: translateY(-5px);
 }
 
 .text{
