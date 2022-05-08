@@ -1,11 +1,15 @@
 package com.esports.manager.userManagement.logic;
 
 import com.esports.manager.global.exceptions.InternalErrorException;
+import com.esports.manager.userManagement.beans.LoginSessionBean;
 import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
 
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 
+
+
+import jakarta.servlet.http.HttpSession;
 import com.esports.manager.userManagement.exceptions.InvalidInputException;
 import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
 import jakarta.mail.internet.AddressException;
@@ -27,26 +31,28 @@ import java.util.regex.Pattern;
  */
 public class UserManagement {
 
-    private static Logger log = LogManager.getLogger(UserManagement.class);
+    private static final Logger log = LogManager.getLogger(UserManagement.class);
 
     /**
-     * Checks if the passed username is available. In order to do so, it attempts to fetch a user with this
+     * Checks if the passed username is available. In order to do so, it attempts to
+     * fetch a user with this
      * username and checks if the operation was successful.
      * 
      * @param username username to check
      * @return true if the username is available
-     * @throws InternalErrorException some unexpected and fatal internal error occurred
+     * @throws InternalErrorException some unexpected and fatal internal error
+     *                                occurred
      * @author Daniel Mehlber
-     * @see UserManagement#fetchUserByUsername(String) 
+     * @see UserManagement#fetchUserByUsername(String)
      */
     public static boolean isUsernameAvailable(final String username) throws InternalErrorException {
         log.debug("checking if username is available...");
         try {
             // attempt to fetch user with this username
             fetchUserByUsername(username);
-            
+
             log.debug("username check complete: username is already taken and unavailable");
-            
+
             // user fetched successfully, so the username is already taken
             return false;
         } catch (NoSuchUserException e) {
@@ -61,6 +67,51 @@ public class UserManagement {
         User user = UserRepository.getByUsername(username);
         return user;
     }
+
+
+    // TODO: Log user out of active session
+    public static void performLogout() {
+
+    }
+
+    /**
+     * Checks if username and password (from html form) align with those in database
+     *
+     * @param username passed username by unauthenticated user
+     * @param password passed password by unauthenticated user.
+     * @param session session in which the user will be logged in if username and password are correct
+     * @throws InternalErrorException an unexpected and fatal internal error occurred
+     * @throws NoSuchUserException a user with passed username was not found in database
+     * @author Philipp Phan
+     */
+    public static void performLogin(String username, String password, HttpSession session)
+            throws InternalErrorException, NoSuchUserException {
+        try {
+            User user = UserRepository.getByUsername(username);
+            if (username.equals(user.getUsername()) && password.equals(user.getPasswordHash())) {
+                // TODO: Add user-object to active session
+
+                // Create sessionBean
+                LoginSessionBean loginSessionBean = new LoginSessionBean();
+
+                // Insert user object inside sessionBean
+                loginSessionBean.setUser(UserRepository.getByUsername(username));
+
+                // Insert sessionBean in HttpSession
+                session.setAttribute("loginSessionBean", loginSessionBean);
+                log.info("Login succcessfull. Welcome");
+            } else {
+                log.warn("LOGIN NOT SUCCESSFULL !");
+            }
+        } catch (InternalErrorException e) {
+            log.error("Internal Error occured while login", e);
+            throw e;
+        } catch (NoSuchUserException e) {
+            log.error("No user with username found", e);
+            throw e;
+        }
+    }
+
 
     public static void registerUser(String username, String password, String email) throws InvalidInputException, InternalErrorException, UsernameAlreadyTakenException, NoSuchAlgorithmException {
         if (checkUserInput(username, password, email)) {

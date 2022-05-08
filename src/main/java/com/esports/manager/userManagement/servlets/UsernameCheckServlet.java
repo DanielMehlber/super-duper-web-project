@@ -13,12 +13,13 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 
 /**
- * This servlet handles requests for username check by the user UI
+ * This servlet handles requests for username check by the user UI.
+ * @author Daniel Mehlber
  */
-// @WebServlet(name="UsernameCheckServlet", urlPatterns="/users/username/check")
+@WebServlet("/users/username/check")
 public class UsernameCheckServlet extends HttpServlet {
 
-    private Logger log = LogManager.getLogger(UsernameCheckServlet.class);
+    private final Logger log = LogManager.getLogger(UsernameCheckServlet.class);
 
     /**
      * Requests the availability of a username. The following parameters are required for this endpoint to work:
@@ -29,8 +30,10 @@ public class UsernameCheckServlet extends HttpServlet {
      * @param req an {@link HttpServletRequest} object that contains the request the client has made of the servlet
      * @param resp an {@link HttpServletResponse} object that contains the response the servlet sends to the client
      *
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException an internal error occurred
+     * @throws IOException an IO-Error occurred
+     *
+     * @author Daniel Mehlber
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

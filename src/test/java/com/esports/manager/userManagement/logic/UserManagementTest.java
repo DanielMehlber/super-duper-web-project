@@ -2,12 +2,10 @@ package com.esports.manager.userManagement.logic;
 
 import com.esports.manager.global.db.queries.QueryHandler;
 import com.esports.manager.global.exceptions.InternalErrorException;
-import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 import com.esports.manager.util.DataSourceCreator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +14,6 @@ import java.sql.SQLException;
 
 public class UserManagementTest {
 
-    private Logger log = LogManager.getLogger(UserManagementTest.class);
 
     /**
      * Unfortunately resource injection using the @{@link jakarta.annotation.Resource} annotation is not possible
@@ -40,4 +37,29 @@ public class UserManagementTest {
         // Assertions.assertEquals(user.getUsername(), "username");
     }
 
+    @Test
+    public void createNewUser() {
+        // create user with method
+        // fetch user by this username in order to assert that it was created
+    }
+
+    @Test
+    public void loginUser() {
+        // create user
+        // login user using method in UserManagement
+        // check if user is logged in
+    }
+
+    @Test
+    public void registerUser() {
+        // register user using method in UserManagement
+        // fetch user with this username in order to assert that he was registered
+    }
+
+    @Test
+    public void isUserLoggedIn() {
+        // create user
+        // login user
+        // assert that user is logged in using the method in UserRegistration
+    }
 }

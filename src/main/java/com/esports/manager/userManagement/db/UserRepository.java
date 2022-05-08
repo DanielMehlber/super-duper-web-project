@@ -24,6 +24,14 @@ public class UserRepository {
 
     private static final Logger log = LogManager.getLogger(UserRepository.class);
 
+    /**
+     * fetch user with username from database
+     * @param username of user
+     * @return user instance fetched from database
+     * @throws InternalErrorException an unexpected internal error occurred
+     * @throws NoSuchUserException no such user with passed username
+     * @author Daniel Mehlber
+     */
     public static User getByUsername(final String username) throws InternalErrorException, NoSuchUserException {
         log.debug("fetching user entity by username from database...");
 
