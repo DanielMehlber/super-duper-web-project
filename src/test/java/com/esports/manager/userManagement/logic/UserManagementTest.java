@@ -37,7 +37,6 @@ public class UserManagementTest {
         // Assertions.assertEquals(user.getUsername(), "username");
     }
 
-
     @Test
     public void createNewUser() {
         // create user with method
