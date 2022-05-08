@@ -84,8 +84,11 @@ public class UserManagement {
     }
 
     private static boolean isValidUsername(String username) {
-        if (username.toLowerCase().contains("susi") || username.toLowerCase().contains("habicht")){
-            return false;
+        // we restrict the username to be 100 char at max in the db
+        if (username.length() >= 100) {
+            if (username.toLowerCase().contains("susi") || username.toLowerCase().contains("habicht")){
+                return false;
+            }
         }
 
         // check whether the username already exists in the database
@@ -118,10 +121,17 @@ public class UserManagement {
      * since we don't want to implement our own check whether an email is correct, nor use some alien like regex
      * language. So we take what the java god gave us
      *
+     * Part for length check is own
+     *
      * @param email
-     * @return boolean whether the email address is vaild in its format-
+     * @return boolean whether the email address is vaild in its format- and not longer than 100 chars
      */
     private static boolean isValidEmailAddress(String email) {
+        if (email.length() >= 100) {
+            // email longer than db says its possible
+            return false;
+        }
+
         boolean result = true;
         try {
             InternetAddress emailAddr = new InternetAddress(email);
