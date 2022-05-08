@@ -89,8 +89,6 @@ public class UserManagement {
         try {
             User user = UserRepository.getByUsername(username);
             if (username.equals(user.getUsername()) && password.equals(user.getPasswordHash())) {
-                // TODO: Add user-object to active session
-
                 // Create sessionBean
                 LoginSessionBean loginSessionBean = new LoginSessionBean();
 
@@ -113,28 +111,48 @@ public class UserManagement {
     }
 
 
-    public static void registerUser(String username, String password, String email) throws InvalidInputException, InternalErrorException, UsernameAlreadyTakenException, NoSuchAlgorithmException {
-        if (checkUserInput(username, password, email)) {
-            // TODO: Create a new user element and persist it to the db
-            User newUser = new User();
-            try {
-                UserRepository.createNewUser(new User(username, email, hashPassword(password)));
-            } catch (NoSuchAlgorithmException ex){
-                log.error("There was a problem hashing the password");
-                throw new NoSuchAlgorithmException("there was a problem hashing the password");
-            }
+    /**
+     * Perform registration with passed user data after it has been checked and verified.
+     * @param username requested username for registration (must be available)
+     * @param password requested password for registration (must meet certain criteria)
+     * @param email requested email for registration (must be unique in database)
+     * @throws InvalidInputException the passed input is syntactically invalid or not allowed
+     * @throws InternalErrorException an unexpected internal error occurred
+     * @throws UsernameAlreadyTakenException the requested username is not available
+     * @author Maximilian Rublik
+     */
+    public static void registerUser(String username, String password, String email) throws InvalidInputException, InternalErrorException, UsernameAlreadyTakenException {
+        if (checkPassedUserData(username, password, email)) {
+            // create and persist new user
+            User newUser = new User(username, email, hashPassword(password));
+            UserRepository.createNewUser(newUser);
         }
         else {
             throw new InvalidInputException("registerUser: Invalid Input");
         }
     }
 
-    private static boolean checkUserInput(String username, String password, String email) {
-        // TODO: Check for username correctness
+    /**
+     * Checks received user data for syntactical validity
+     * @param username passed username
+     * @param password passed password
+     * @param email passed email address
+     * @return true, if all user data is valid
+     * @throws InternalErrorException username uniqueness check failed due to an internal error
+     * @author Maximilian Rublik
+     */
+    private static boolean checkPassedUserData(String username, String password, String email) throws InternalErrorException {
         return isValidUsername(username) && isValidPassword(password) && isValidEmailAddress(email);
     }
 
-    private static boolean isValidUsername(String username) {
+    /**
+     * Checks received username for syntactical validity and uniqueness
+     * @param username passed username
+     * @return true if username is valid and allowed
+     * @throws InternalErrorException uniqueness check failed due to an internal error
+     * @author Maximilian Rublik
+     */
+    private static boolean isValidUsername(String username) throws InternalErrorException {
         // we restrict the username to be 100 char at max in the db
         if (username.length() >= 100) {
             if (username.toLowerCase().contains("susi") || username.toLowerCase().contains("habicht")){
@@ -146,6 +164,12 @@ public class UserManagement {
         return UserRepository.isUniqueUsername(username);
     }
 
+    /**
+     * Checks received password for syntactical validity
+     * @param password passed username
+     * @return true if password is strong enough
+     * @author Maximilian Rublik
+     */
     private static boolean isValidPassword(String password) {
         // Check for use of letters
         Pattern letters = Pattern.compile("[a-zA-Z]]");
@@ -157,13 +181,20 @@ public class UserManagement {
         return password.length() > 5 && letters.matcher(password).find() && special.matcher(password).find();
     }
 
-    private static String hashPassword (String password) throws NoSuchAlgorithmException, InternalErrorException {
+    /**
+     * Hashed passed password string using SHA-256
+     * @param password string to hash
+     * @return SHA-256 hash of password
+     * @throws InternalErrorException hashing failed
+     * @author Maximilian Rublik
+     */
+    private static String hashPassword (String password) throws InternalErrorException {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-            return hash.toString();
+            return new String(hash);
         } catch (NoSuchAlgorithmException ex) {
-            throw new InternalErrorException("there was a problem hashing the password");
+            throw new InternalErrorException("there was a problem hashing the password", ex);
         }
     }
 
@@ -174,7 +205,7 @@ public class UserManagement {
      *
      * Part for length check is own
      *
-     * @param email
+     * @param email email address to check
      * @return boolean whether the email address is vaild in its format- and not longer than 100 chars
      */
     private static boolean isValidEmailAddress(String email) {
