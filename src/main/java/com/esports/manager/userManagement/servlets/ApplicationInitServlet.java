@@ -5,9 +5,12 @@ import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 
-import javax.management.Query;
 import javax.sql.DataSource;
 
+/**
+ * This servlet initializes the application by performing necessary operations
+ * @author Daniel Mehlber
+ */
 public class ApplicationInitServlet extends HttpServlet {
 
     @Resource(lookup = "java:jboss/datasources/eSportsDS")

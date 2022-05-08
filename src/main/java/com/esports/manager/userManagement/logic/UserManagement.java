@@ -31,7 +31,7 @@ import java.util.regex.Pattern;
  */
 public class UserManagement {
 
-    private static Logger log = LogManager.getLogger(UserManagement.class);
+    private static final Logger log = LogManager.getLogger(UserManagement.class);
 
     /**
      * Checks if the passed username is available. In order to do so, it attempts to
@@ -75,9 +75,13 @@ public class UserManagement {
     }
 
     /**
-     * TODO
      * Checks if username and password (from html form) align with those in database
-     * 
+     *
+     * @param username passed username by unauthenticated user
+     * @param password passed password by unauthenticated user.
+     * @param session session in which the user will be logged in if username and password are correct
+     * @throws InternalErrorException an unexpected and fatal internal error occurred
+     * @throws NoSuchUserException a user with passed username was not found in database
      * @author Philipp Phan
      */
     public static void performLogin(String username, String password, HttpSession session)

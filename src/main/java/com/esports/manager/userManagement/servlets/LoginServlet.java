@@ -17,14 +17,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * TODO
- * Login Servlet
- * 
+ * This servlet performs the login for unauthenticated users
  * @author Philipp Phan
  */
 @WebServlet
 public class LoginServlet extends HttpServlet {
-  private static Logger log = LogManager.getLogger(LoginServlet.class);
+  private static final Logger log = LogManager.getLogger(LoginServlet.class);
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)

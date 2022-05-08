@@ -9,7 +9,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -20,7 +19,7 @@ import java.util.Map;
  */
 public class QueryHandler {
 
-    private static Logger log = LogManager.getLogger(QueryHandler.class);
+    private static final Logger log = LogManager.getLogger(QueryHandler.class);
 
     /**
      * Caches already loaded prepared statements. Why? Look at the documentation of {@link PreparedStatement}:
@@ -28,7 +27,7 @@ public class QueryHandler {
      * PreparedStatement object. This object can then be used to <b>efficiently execute this statement multiple times</b></i>
      * (=re-usability).
      */
-    private static Map<String, PreparedStatement> cache = new HashMap<>();
+    private static final Map<String, PreparedStatement> cache = new HashMap<>();
 
     /**
      * This datasource will be injected by the {@link com.esports.manager.userManagement.servlets.ApplicationInitServlet}
@@ -79,6 +78,7 @@ public class QueryHandler {
      * @param resourcePath path to the .sql resource (located in the classpath)
      * @return source of file as String
      * @throws IOException cannot load or find file in resourcePath
+     * @author Daniel Mehlber
      */
     private static String loadSource(final String resourcePath) throws IOException {
         /*

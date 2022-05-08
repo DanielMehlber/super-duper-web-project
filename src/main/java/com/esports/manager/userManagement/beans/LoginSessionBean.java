@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import com.esports.manager.userManagement.entities.User;
 
+/**
+ * This session bean stores login data used for authentication in session.
+ * @author Philipp Phan
+ */
 public class LoginSessionBean implements Serializable {
     private static final long servialVersionUID = 1L;
     
