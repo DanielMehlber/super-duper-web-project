@@ -135,8 +135,11 @@ public class UserManagement {
     }
 
     private static boolean isValidUsername(String username) {
-        if (username.toLowerCase().contains("susi") || username.toLowerCase().contains("habicht")){
-            return false;
+        // we restrict the username to be 100 char at max in the db
+        if (username.length() >= 100) {
+            if (username.toLowerCase().contains("susi") || username.toLowerCase().contains("habicht")){
+                return false;
+            }
         }
 
         // check whether the username already exists in the database
@@ -154,26 +157,32 @@ public class UserManagement {
         return password.length() > 5 && letters.matcher(password).find() && special.matcher(password).find();
     }
 
-    private static String hashPassword (String password) throws NoSuchAlgorithmException {
+    private static String hashPassword (String password) throws NoSuchAlgorithmException, InternalErrorException {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
             return hash.toString();
         } catch (NoSuchAlgorithmException ex) {
-
+            throw new InternalErrorException("there was a problem hashing the password");
         }
     }
-
 
     /**
      * copied from <a href="https://stackoverflow.com/questions/624581/what-is-the-best-java-email-address-validation-">stackoverflow</a>
      * since we don't want to implement our own check whether an email is correct, nor use some alien like regex
      * language. So we take what the java god gave us
      *
+     * Part for length check is own
+     *
      * @param email
-     * @return boolean whether the email address is vaild in its format-
+     * @return boolean whether the email address is vaild in its format- and not longer than 100 chars
      */
     private static boolean isValidEmailAddress(String email) {
+        if (email.length() >= 100) {
+            // email longer than db says its possible
+            return false;
+        }
+
         boolean result = true;
         try {
             InternetAddress emailAddr = new InternetAddress(email);
@@ -181,7 +190,7 @@ public class UserManagement {
         } catch (AddressException ex) {
             result = false;
         }
+
         return result;
     }
-
 }
