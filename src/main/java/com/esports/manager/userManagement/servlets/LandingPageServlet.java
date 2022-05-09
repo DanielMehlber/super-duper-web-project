@@ -1,8 +1,7 @@
 package com.esports.manager.userManagement.servlets;
 
 
-import com.esports.manager.userManagement.beans.LoginSessionBean;
-import com.esports.manager.userManagement.entities.User;
+import com.esports.manager.userManagement.beans.UserSesssionBean;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -35,9 +34,9 @@ public class LandingPageServlet extends HttpServlet {
         final HttpSession currentSession = request.getSession();
 
         // check if there is a logged-in user in session
-        final LoginSessionBean loginSessionBean = (LoginSessionBean) currentSession.getAttribute("loginSessionBean");
+        final UserSesssionBean userSesssionBean = (UserSesssionBean) currentSession.getAttribute("loginSessionBean");
 
-        if(loginSessionBean == null || loginSessionBean.getUser() == null) {
+        if(userSesssionBean == null || userSesssionBean.getUser() == null) {
             // case: no user is logged in. Login/Registration options have to be presented
             request.getRequestDispatcher("/jsp/welcome.jsp").forward(request, response);
         } else {

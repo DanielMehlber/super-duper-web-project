@@ -1,7 +1,7 @@
 package com.esports.manager.userManagement.logic;
 
 import com.esports.manager.global.exceptions.InternalErrorException;
-import com.esports.manager.userManagement.beans.LoginSessionBean;
+import com.esports.manager.userManagement.beans.UserSesssionBean;
 import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
 
@@ -90,13 +90,13 @@ public class UserManagement {
             User user = UserRepository.getByUsername(username);
             if (username.equals(user.getUsername()) && password.equals(user.getPasswordHash())) {
                 // Create sessionBean
-                LoginSessionBean loginSessionBean = new LoginSessionBean();
+                UserSesssionBean userSesssionBean = new UserSesssionBean();
 
                 // Insert user object inside sessionBean
-                loginSessionBean.setUser(UserRepository.getByUsername(username));
+                userSesssionBean.setUser(UserRepository.getByUsername(username));
 
                 // Insert sessionBean in HttpSession
-                session.setAttribute("loginSessionBean", loginSessionBean);
+                session.setAttribute("userSessionBean", userSesssionBean);
                 log.info("Login succcessfull. Welcome");
             } else {
                 log.warn("LOGIN NOT SUCCESSFULL !");
