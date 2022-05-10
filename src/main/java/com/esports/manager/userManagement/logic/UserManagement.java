@@ -153,7 +153,7 @@ public class UserManagement {
      * @author Maximilian Rublik
      */
     private static boolean isValidUsername(String username) throws InternalErrorException {
-		if (username.length() >= 100) {
+		if (username.length() >= 30) {
         	// we restrict the username to be 100 char at max in the db
             return false;            
         }
@@ -201,7 +201,7 @@ public class UserManagement {
      * @return boolean whether the email address is vaild in its format- and not longer than 100 chars
      */
     private static boolean isValidEmailAddress(String email) {
-        if (email.length() >= 100) {
+        if (email.length() >= 40) {
             // email longer than db says its possible
             return false;
         }

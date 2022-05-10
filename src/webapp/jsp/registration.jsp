@@ -14,8 +14,8 @@
         <main>
         	<form class="registration-card" method="POST" action="../registration">
                 <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Logo" class="logo img">
-                <input type="email" name="email" class="email" placeholder="Choose E-Mail" maxlength="100">
-                <input type="text" name="username" class="username" placeholder="Choose Username" maxlength="100">
+                <input type="email" name="email" class="email" placeholder="Choose E-Mail" maxlength="40">
+                <input type="text" name="username" class="username" placeholder="Choose Username" maxlength="30">
                 <input type="password" name="password" class="password" minlength="8" placeholder="Choose Password">
                 
                 <button class="cancel-button" onclick="history.back()">Back</button>
