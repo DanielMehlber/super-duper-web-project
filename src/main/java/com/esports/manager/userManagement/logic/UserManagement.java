@@ -153,11 +153,9 @@ public class UserManagement {
      * @author Maximilian Rublik
      */
     private static boolean isValidUsername(String username) throws InternalErrorException {
-        // we restrict the username to be 100 char at max in the db
-        if (username.length() >= 100) {
-            if (username.toLowerCase().contains("susi") || username.toLowerCase().contains("habicht")){
-                return false;
-            }
+		if (username.length() >= 100) {
+        	// we restrict the username to be 100 char at max in the db
+            return false;            
         }
 
         // check whether the username already exists in the database
@@ -171,14 +169,8 @@ public class UserManagement {
      * @author Maximilian Rublik
      */
     private static boolean isValidPassword(String password) {
-        // Check for use of letters
-        Pattern letters = Pattern.compile("[a-zA-Z]]");
-
-        // Check for user of special characters, which are = {!, ?, #, %, @}
-        Pattern special = Pattern.compile("[!?#&%@]]");
-
-        // We want the password to be at least 6 characters long + match the patterns above
-        return password.length() > 5 && letters.matcher(password).find() && special.matcher(password).find();
+    	// length is at least 8 chars long
+    	return password.length() > 7;    			
     }
 
     /**
