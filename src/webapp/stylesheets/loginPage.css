@@ -22,8 +22,9 @@ main {
                     "logo logo"
                     "username username"
                     "password password"
+                    "error-text error-text"
                     "cancel continue";
-    grid-template-rows: auto min-content min-content auto;
+    grid-template-rows: auto min-content min-content min-content auto;
     transition: all 1s;
 }
 
@@ -73,4 +74,10 @@ input.username {
     width: 161px;
     height: 48px;
     grid-area: cancel;
+}
+
+.error-text{
+    color: #D52B2B;
+    font-size: 15px;
+    grid-area: error-text;
 }

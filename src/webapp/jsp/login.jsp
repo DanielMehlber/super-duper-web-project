@@ -20,18 +20,17 @@
 <body>
     <main>
 
-        <div class="login-card">
+        <form class="login-card" action="../userManagement/servlets/LoginServlet.java" method="post">
             <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Logo" class="logo img">
-            <form action="../userManagement/servlets/LoginServlet.java" method="post">
-                <input type="text" placeholder="Username" class="username-text">${pageScope.user.username}
+                <input type="text" placeholder="Username" class="username">${pageScope.user.username}
                 <input type="password" placeholder="Password" class="password">${pageScope.user.password}
+                <!--Get error Message from LoginBean-->
+                <a type="text" class="error-text"></a>${sessionScope.loginBean.errorMessage}
                 <button formaction="../ui/servlets/LoginServlet" formmethod="post" class="enter-button">Login</button>
-            </form>
             <button class="cancel-button">Back</button>
             <!--<a href="../ui/RegistrationPage.html" class="linkRegistration">Not a user? Sign up!</a>-->
-            <!--Get error Message from LoginBean-->
-            <a type="text"></a>${sessionScope.loginBean.errorMessage}
-        </div>
+
+        </form>
     </main>
 </body>
 </html>
