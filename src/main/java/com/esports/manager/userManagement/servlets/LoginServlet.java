@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 
     // Dsipatch to JSP
     // TODO Still needs Path
-    RequestDispatcher rd = request.getRequestDispatcher("path");
+    RequestDispatcher rd = request.getRequestDispatcher("../servlets/loginServlet.java");
     // Create new Session
     HttpSession session = request.getSession();
     try {
