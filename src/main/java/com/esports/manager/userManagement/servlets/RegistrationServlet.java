@@ -2,6 +2,9 @@ package com.esports.manager.userManagement.servlets;
 
 import java.io.IOException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.esports.manager.userManagement.logic.UserManagement;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,10 +21,12 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
 
+	private final Logger log = LogManager.getLogger(RegistrationServlet.class);
+	
     @java.lang.Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // TODO: Block doGet since we won't allow any form actions to do get calls
-        super.doGet(req, resp);
+        doPost(req, resp);
     }
 
     @java.lang.Override
@@ -34,12 +39,14 @@ public class RegistrationServlet extends HttpServlet {
                     req.getParameter("password"),
                     req.getParameter("email"));
         } catch(Exception ex) {
+        	log.fatal(String.format("cannot perform user registration because of an internal error: %s", ex.getMessage()), ex);
             // redirect to invalid input .jsp
-            resp.sendRedirect("");
+        	// TODO: Redirect to a useful error page
+            resp.sendRedirect("www.google.com");
         }
 
         // redirect to JSP
-        // TODO: Add file to where we want to redirect
-        resp.sendRedirect("");
+        // TODO: Add a useful file to where we want to redirect
+        resp.sendRedirect("www.facebook.com");
     }
 }
