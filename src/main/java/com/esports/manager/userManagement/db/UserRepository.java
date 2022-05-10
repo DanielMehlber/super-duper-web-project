@@ -7,14 +7,20 @@ import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
+
+import jakarta.annotation.Resource;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import javax.sql.DataSource;
 
 
 /**
@@ -57,12 +63,14 @@ public class UserRepository {
 
         return users.get(0);
     }
-
+    
     public static void createNewUser(final User userData) throws InternalErrorException, UsernameAlreadyTakenException {
         log.debug("creating new user entity in database...");
 
+
         try {
-            PreparedStatement pstmt = QueryHandler.loadStatement("");
+        	PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/createUser.sql");
+        	
             pstmt.setString(1, userData.getUsername());
             pstmt.setString(2, userData.getEmail());
             pstmt.setString(3, userData.getPasswordHash());
