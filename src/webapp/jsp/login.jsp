@@ -20,16 +20,17 @@
 <body>
     <main>
 
-        <form class="login-card" action="../login" method="post">
+        <form class="login-card" action="../jsp/login.jsp" method="post">
             <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Logo" class="logo img">
-                <input type="text" placeholder="Username" class="username">${pageScope.user.username}
-                <input type="password" placeholder="Password" class="password">${pageScope.user.password}
+                <input type="text" placeholder="Username" class="username" required>${pageScope.user.username}
+                <input type="password" placeholder="Password" class="password" required>${pageScope.user.password}
                 <!--Get error Message from LoginBean-->
-                <a type="text" class="error-text"></a>${sessionScope.loginBean.errorMessage}
-                <button formmethod="post" class="enter-button">Login</button>
+                <jsp:useBean class="com.esports.manager.userManagement.beans.LoginBean" id="LoginBean" scope="page">
+                    <jsp:getProperty name="LoginBean" property="errorMessage"/>
+                </jsp:useBean>
+            <button class="enter-button">Login</button>
             <button class="cancel-button">Back</button>
             <!--<a href="../ui/RegistrationPage.html" class="linkRegistration">Not a user? Sign up!</a>-->
-
         </form>
     </main>
 </body>

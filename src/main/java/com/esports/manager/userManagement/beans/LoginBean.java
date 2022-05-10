@@ -8,7 +8,7 @@ public class LoginBean implements Serializable {
     private static final long servialVersionUID = 1L;
     private String username;
     private String password;
-    private String errorMessage;
+    private String errorMessage="Hallo";
 
     public String getUsername(){
         return username;

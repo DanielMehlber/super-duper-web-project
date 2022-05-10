@@ -8,7 +8,7 @@ import com.esports.manager.userManagement.entities.User;
  * This session bean stores login data used for authentication in session.
  * @author Philipp Phan
  */
-public class UserSesssionBean implements Serializable {
+public class UserSessionBean implements Serializable {
     private static final long servialVersionUID = 1L;
     
     private User user;

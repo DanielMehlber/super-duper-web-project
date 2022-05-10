@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 
     // Dsipatch to JSP
     // TODO Still needs Path
-    RequestDispatcher rd = request.getRequestDispatcher("../jsp/login");
+    RequestDispatcher rd = request.getRequestDispatcher("/jsp/login.jsp");
     // Create new Session
     HttpSession session = request.getSession();
     try {
@@ -53,6 +53,5 @@ public class LoginServlet extends HttpServlet {
       log.fatal("Had difficulties while forwarding");
       e.getMessage();
     }
-
   }
 }
