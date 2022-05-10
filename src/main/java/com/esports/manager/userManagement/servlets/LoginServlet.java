@@ -20,7 +20,7 @@ import org.apache.logging.log4j.Logger;
  * This servlet performs the login for unauthenticated users
  * @author Philipp Phan
  */
-@WebServlet
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
   private static final Logger log = LogManager.getLogger(LoginServlet.class);
 
@@ -33,17 +33,18 @@ public class LoginServlet extends HttpServlet {
 
     // Dsipatch to JSP
     // TODO Still needs Path
-    RequestDispatcher rd = request.getRequestDispatcher("../servlets/loginServlet.java");
+    RequestDispatcher rd = request.getRequestDispatcher("../jsp/login");
     // Create new Session
     HttpSession session = request.getSession();
     try {
       UserManagement.performLogin(username, password, session);
+      response.sendRedirect("../jsp/welcome.jsp");
     } catch (InternalErrorException e) {
       e.getMessage();
-      log.fatal("Internal error found while logging in user");
+      log.error("Internal error found while logging in user");
       response.getStatus();
     } catch (NoSuchUserException e) {
-      log.fatal("No user with name:" + username + " found");
+      log.error("No user with name:" + username + " found");
     }
 
     try {
@@ -52,5 +53,6 @@ public class LoginServlet extends HttpServlet {
       log.fatal("Had difficulties while forwarding");
       e.getMessage();
     }
+
   }
 }
