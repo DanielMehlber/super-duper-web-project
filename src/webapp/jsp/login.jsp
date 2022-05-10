@@ -11,26 +11,24 @@
 <head>
     <title>Login</title>
     <meta charset="UTF-8">
+    <base href="${pageContext.request.requestURI}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../stylesheets/elements.css">
     <link rel="stylesheet" href="../stylesheets/loginPage.css">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-    <base href="${pageContext.request.requestURI}"/>
 </head>
 <body>
     <main>
-
-        <form class="login-card" action="../jsp/login.jsp" method="post">
+        <form class="login-card" action="../login" method="POST">
             <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Logo" class="logo img">
-                <input type="text" placeholder="Username" class="username" required>${pageScope.user.username}
-                <input type="password" placeholder="Password" class="password" required>${pageScope.user.password}
+                <input name="username" type="text" placeholder="Username" class="username" required>${requestScope.username}
+                <input name="password" type="password" placeholder="Password" class="password" required>${requestScope.password}
                 <!--Get error Message from LoginBean-->
-                <jsp:useBean class="com.esports.manager.userManagement.beans.LoginBean" id="LoginBean" scope="page">
-                    <jsp:getProperty name="LoginBean" property="errorMessage"/>
-                </jsp:useBean>
+                <c:if test="${not empty requestScope.errorMessage}">    
+                	<em>${errorMessage}</em>
+               	</c:if>
             <button class="enter-button">Login</button>
             <button class="cancel-button">Back</button>
-            <!--<a href="../ui/RegistrationPage.html" class="linkRegistration">Not a user? Sign up!</a>-->
         </form>
     </main>
 </body>
