@@ -112,7 +112,7 @@ public class UserManagement {
             log.error("Internal Error occured while login", e);
             throw e;
         } catch (NoSuchUserException e) {
-            log.error("No user with username found", e);
+            session.setAttribute("NoSuchUserException", e);
             throw e;
         }
     }
