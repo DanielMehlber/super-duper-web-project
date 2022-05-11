@@ -3,6 +3,7 @@ package com.esports.manager.userManagement.servlets;
 import com.esports.manager.global.db.queries.QueryHandler;
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 
 import javax.sql.DataSource;
@@ -11,6 +12,7 @@ import javax.sql.DataSource;
  * This servlet initializes the application by performing necessary operations
  * @author Daniel Mehlber
  */
+@WebServlet(loadOnStartup=1)
 public class ApplicationInitServlet extends HttpServlet {
 
     @Resource(lookup = "java:jboss/datasources/eSportsDS")
