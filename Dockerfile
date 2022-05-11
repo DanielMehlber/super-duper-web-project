@@ -4,8 +4,20 @@
 # Authors: Daniel Mehlber,
 #######################################################################
 
-# 1) Pull wildfly server
-FROM quay.io/wildfly/wildfly
+# Unfortunately, there is no wildfly image using jakarta, so I have to build one myself
+
+# 1) Pull openjdk and install wget for wildfly download
+FROM openjdk:11
+RUN apt update
+RUN apt install -y wget
+
+# 1.1) download wildfly server (jakarta version)
+RUN wget https://github.com/wildfly/wildfly/releases/download/26.1.0.Final/wildfly-preview-26.1.0.Final.tar.gz
+
+# 1.2) Extract and install wildfly server
+RUN mkdir /opt/jboss
+RUN tar -xf *.tar.gz -C /opt/jboss/
+RUN mv /opt/jboss/wildfly-preview-26.1.0.Final /opt/jboss/wildfly
 
 # 2) Copy generated war file into deployment directory of wildfly
 COPY target/*.war /opt/jboss/wildfly/standalone/deployments/ROOT.war
