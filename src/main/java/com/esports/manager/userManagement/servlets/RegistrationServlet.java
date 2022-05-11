@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.esports.manager.global.exceptions.InternalErrorException;
+import com.esports.manager.userManagement.exceptions.InvalidInputException;
 import com.esports.manager.userManagement.exceptions.UserAlreadyExistingException;
 import com.esports.manager.userManagement.logic.UserManagement;
 
@@ -46,8 +48,20 @@ public class RegistrationServlet extends HttpServlet {
         	
         	RequestDispatcher rd = req.getRequestDispatcher("/jsp/registration.jsp");
         	rd.forward(req, resp);
-        } catch(Exception ex) {
+        } catch (InvalidInputException ex) {
+        	log.fatal(String.format("cannot perform user registration because of an invalid user input: %s", ex.getMessage()), ex);
+
+        	// TODO: Redirect to a useful error page
+            resp.sendRedirect("www.google.com");
+        
+        } catch (InternalErrorException ex) {
         	log.fatal(String.format("cannot perform user registration because of an internal error: %s", ex.getMessage()), ex);
+
+        	// TODO: Redirect to a useful error page
+            resp.sendRedirect("www.google.com");
+        
+        } catch(Exception ex) {
+        	log.fatal(String.format("Something unusual has happened here", ex.getMessage()), ex);
             // redirect to invalid input .jsp
         	// TODO: Redirect to a useful error page
             resp.sendRedirect("www.google.com");
