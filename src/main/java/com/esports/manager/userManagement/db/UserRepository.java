@@ -1,7 +1,6 @@
 package com.esports.manager.userManagement.db;
 
 import com.esports.manager.global.db.mapping.ResultSetProcessor;
-
 import com.esports.manager.global.db.queries.QueryHandler;
 import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.userManagement.entities.User;
@@ -9,20 +8,14 @@ import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 import com.esports.manager.userManagement.exceptions.UserAlreadyExistingException;
 import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
 
-import jakarta.annotation.Resource;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
-import javax.sql.DataSource;
-
 
 /**
  * Database interactions with user entities.
