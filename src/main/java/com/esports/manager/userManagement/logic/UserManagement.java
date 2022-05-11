@@ -87,7 +87,7 @@ public class UserManagement {
             throws InternalErrorException, NoSuchUserException {
         try {
             User user = UserRepository.getByUsername(username);
-            if (username.equals(user.getUsername()) && password.equals(user.getPasswordHash())) {
+            if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
                 // Create sessionBean
                 LoginSessionBean loginSessionBean = new LoginSessionBean();
 
