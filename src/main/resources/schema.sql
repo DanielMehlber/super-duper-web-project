@@ -1,3 +1,4 @@
+
 -- Authors:
 
 -- CREATE SCHEMA `eSportDS`;
@@ -9,4 +10,4 @@ CREATE TABLE `user` (
   `email` varchar(40) NOT NULL,
   `logo` blob,
   `passwordHash` varchar(64) NOT NULL,
-)
+);
