@@ -19,6 +19,12 @@ RUN mkdir /opt/jboss
 RUN tar -xf *.tar.gz -C /opt/jboss/
 RUN mv /opt/jboss/wildfly-preview-26.1.0.Final /opt/jboss/wildfly
 
+# 1.3) Download MySQL Java Connector and install on server
+RUN wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.29.tar.gz
+RUN tar -xf mysql-connector-java-8.0.29.tar.gz -C /
+RUN ls
+RUN mv mysql-connector-java-8.0.29/mysql-connector-java-8.0.29.jar /opt/jboss/wildfly/standalone/deployments/
+
 # 2) Copy generated war file into deployment directory of wildfly
 COPY target/*.war /opt/jboss/wildfly/standalone/deployments/ROOT.war
 

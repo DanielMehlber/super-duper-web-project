@@ -6,7 +6,8 @@ html {
     --main-bg-color: #0E0F21;
     --main-fg-color: #2B92D5;
     font-family: 'Inter';
-    font-weight: 700; 
+    font-weight: 700;
+    height: 100%;
 }
 
 /*Text Elements*/
