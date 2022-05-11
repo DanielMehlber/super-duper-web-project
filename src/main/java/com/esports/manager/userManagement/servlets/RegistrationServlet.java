@@ -5,7 +5,10 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.esports.manager.userManagement.exceptions.UserAlreadyExistingException;
 import com.esports.manager.userManagement.logic.UserManagement;
+
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -38,6 +41,11 @@ public class RegistrationServlet extends HttpServlet {
                     req.getParameter("username"),
                     req.getParameter("password"),
                     req.getParameter("email"));
+        } catch(UserAlreadyExistingException ex) {
+        	req.setAttribute("errorMessage", "Username already used");
+        	
+        	RequestDispatcher rd = req.getRequestDispatcher("/jsp/registration.jsp");
+        	rd.forward(req, resp);
         } catch(Exception ex) {
         	log.fatal(String.format("cannot perform user registration because of an internal error: %s", ex.getMessage()), ex);
             // redirect to invalid input .jsp

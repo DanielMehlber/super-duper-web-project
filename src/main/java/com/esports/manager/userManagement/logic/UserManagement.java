@@ -6,8 +6,7 @@ import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
 
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
-
-
+import com.esports.manager.userManagement.exceptions.UserAlreadyExistingException;
 
 import jakarta.servlet.http.HttpSession;
 import com.esports.manager.userManagement.exceptions.InvalidInputException;
@@ -153,10 +152,11 @@ public class UserManagement {
      * @return true if username is valid and allowed
      * @throws InternalErrorException uniqueness check failed due to an internal error
      * @author Maximilian Rublik
+     * @throws UserAlreadyExistingException 
      */
-    private static boolean isValidUsername(String username) throws InternalErrorException {
+    private static boolean isValidUsername(String username) throws InternalErrorException, UserAlreadyExistingException {
 		if (username.length() >= 30) {
-        	// we restrict the username to be 100 char at max in the db
+        	// we restrict the username to be 30 char at max in the db
             return false;            
         }
 
