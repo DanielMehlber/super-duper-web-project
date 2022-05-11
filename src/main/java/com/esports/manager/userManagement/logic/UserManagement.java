@@ -120,8 +120,9 @@ public class UserManagement {
      * @throws InternalErrorException an unexpected internal error occurred
      * @throws UsernameAlreadyTakenException the requested username is not available
      * @author Maximilian Rublik
+     * @throws UserAlreadyExistingException 
      */
-    public static void registerUser(String username, String password, String email) throws InvalidInputException, InternalErrorException, UsernameAlreadyTakenException {
+    public static void registerUser(String username, String password, String email) throws InvalidInputException, InternalErrorException, UsernameAlreadyTakenException, UserAlreadyExistingException {
         if (checkPassedUserData(username, password, email)) {
             // create and persist new user
             User newUser = new User(username, email, hashPassword(password));
@@ -140,8 +141,9 @@ public class UserManagement {
      * @return true, if all user data is valid
      * @throws InternalErrorException username uniqueness check failed due to an internal error
      * @author Maximilian Rublik
+     * @throws UserAlreadyExistingException 
      */
-    private static boolean checkPassedUserData(String username, String password, String email) throws InternalErrorException {
+    private static boolean checkPassedUserData(String username, String password, String email) throws InternalErrorException, UserAlreadyExistingException {
         return isValidUsername(username) && isValidPassword(password) && isValidEmailAddress(email);
     }
 

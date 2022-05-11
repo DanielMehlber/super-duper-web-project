@@ -1,12 +1,17 @@
+<%--
+  Author: Maximilian Rublik
+  Date: 10.05.2022
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" errorPage=""%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Registration</title>
-        <link rel="stylesheet" href="../stylesheets/Elements.css">
+        <meta charset="UTF-8">
+    	<base href="${pageContext.request.requestURI}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../stylesheets/elements.css">
         <link rel="stylesheet" href="../stylesheets/RegistrationPage.css">
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     </head>
