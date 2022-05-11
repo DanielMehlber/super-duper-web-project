@@ -49,10 +49,11 @@ public class LoginServlet extends HttpServlet {
             rd.forward(request, response);
             log.error("No user with name:" + request.getParameter("username") + " found");
         } catch (InternalErrorException e) {
-            // TODO: Do something smart for internal errors, maybe an Exception page or smthing.
             log.fatal("Internal error found while logging in user");
             e.printStackTrace();
+            // TODO: Redirect to error page
             response.sendRedirect("www.facebook.com");
+            throw new IOException(e);
         }
     }
 }
