@@ -1,4 +1,13 @@
-CREATE TABLE users (
-    username VARCHAR(30) PRIMARY KEY,
-    passwordHash VARCHAR(64) NOT NULL
+
+-- Authors:
+
+-- CREATE SCHEMA `eSportDS`;
+-- USE `eSportDS`;
+
+CREATE TABLE `user` (
+   `id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `username` varchar(30) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `logo` blob,
+  `passwordHash` varchar(64) NOT NULL,
 );
