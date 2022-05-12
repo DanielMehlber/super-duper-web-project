@@ -2,7 +2,16 @@ package com.esports.manager.userManagement.servlets;
 
 import java.io.IOException;
 
+import com.esports.manager.userManagement.beans.RegistrationViewSessionBean;
+import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.esports.manager.global.exceptions.InternalErrorException;
+import com.esports.manager.userManagement.exceptions.InvalidInputException;
 import com.esports.manager.userManagement.logic.UserManagement;
+
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,28 +27,52 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
 
+	private final Logger log = LogManager.getLogger(RegistrationServlet.class);
+	
     @java.lang.Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // TODO: Block doGet since we won't allow any form actions to do get calls
-        super.doGet(req, resp);
+        doPost(req, resp);
     }
 
     @java.lang.Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
 
+        // session bean for view generation
+        RegistrationViewSessionBean registrationViewSessionBean = new RegistrationViewSessionBean();
+
         try {
             UserManagement.registerUser(
                     req.getParameter("username"),
                     req.getParameter("password"),
                     req.getParameter("email"));
-        } catch(Exception ex) {
-            // redirect to invalid input .jsp
-            resp.sendRedirect("");
+        } catch(UsernameAlreadyTakenException ex) {
+            // error messages
+            log.warn("cannot perform user registration because username is already taken: " + ex.getMessage());
+        	registrationViewSessionBean.setErrorMessage("username already in use");
+            // place bean in request scope (forwarding)
+            req.setAttribute("registrationBean", registrationViewSessionBean);
+            // forward back to registration jsp
+        	RequestDispatcher rd = req.getRequestDispatcher("/jsp/registration.jsp");
+        	rd.forward(req, resp);
+        } catch (InvalidInputException ex) {
+            // error messages
+        	log.warn(String.format("cannot perform user registration because of an invalid user input: %s", ex.getMessage()), ex);
+            registrationViewSessionBean.setErrorMessage("your input was not valid");
+            // place bean in request scope (forwarding)
+            req.setAttribute("registrationBean", registrationViewSessionBean);
+            // forward back to registration jsp
+            RequestDispatcher rd = req.getRequestDispatcher("/jsp/registration.jsp");
+            rd.forward(req, resp);
+        } catch (InternalErrorException ex) {
+        	log.fatal(String.format("cannot perform user registration because of an internal error: %s", ex.getMessage()), ex);
+            // throw servlet exception and redirect to error page
+        	throw ex;
         }
 
         // redirect to JSP
-        // TODO: Add file to where we want to redirect
-        resp.sendRedirect("");
+        // TODO: Add a useful file to where we want to redirect
+        resp.sendRedirect("www.facebook.com");
     }
 }

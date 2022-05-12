@@ -1,1 +1,1 @@
-INSERT INTO user (username, email, password) VALUES ( ?, ?, ?);
+INSERT INTO user (username, email, passwordHash) VALUES ( ?, ?, ?);

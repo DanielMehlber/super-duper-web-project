@@ -11,7 +11,7 @@ public class User {
     @ResultSetMapping("username")
     private String username;
 
-    @ResultSetMapping("username")
+    @ResultSetMapping("email")
     private String email;
 
     @ResultSetMapping("Password")

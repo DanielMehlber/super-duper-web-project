@@ -1,7 +1,7 @@
 package com.esports.manager.userManagement.servlets;
 
-
 import com.esports.manager.userManagement.beans.UserSessionBean;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

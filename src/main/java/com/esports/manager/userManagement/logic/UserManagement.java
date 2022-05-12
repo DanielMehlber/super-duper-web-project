@@ -5,9 +5,8 @@ import com.esports.manager.userManagement.beans.LoginBean;
 import com.esports.manager.userManagement.beans.UserSessionBean;
 import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
-
-
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
+
 import jakarta.servlet.http.HttpSession;
 import com.esports.manager.userManagement.exceptions.InvalidInputException;
 import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
@@ -21,7 +20,6 @@ import org.apache.logging.log4j.Logger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.regex.Pattern;
 
 /**
  * collection of methods that will be used in user management
@@ -128,6 +126,12 @@ public class UserManagement {
      */
     public static void registerUser(String username, String password, String email) throws InvalidInputException, InternalErrorException, UsernameAlreadyTakenException {
         if (checkPassedUserData(username, password, email)) {
+
+            // check if username is available
+            if(!UserManagement.isUsernameAvailable(username)) {
+                throw new UsernameAlreadyTakenException();
+            }
+
             // create and persist new user
             User newUser = new User(username, email, hashPassword(password));
             UserRepository.createNewUser(newUser);
@@ -146,7 +150,7 @@ public class UserManagement {
      * @throws InternalErrorException username uniqueness check failed due to an internal error
      * @author Maximilian Rublik
      */
-    private static boolean checkPassedUserData(String username, String password, String email) throws InternalErrorException {
+    private static boolean checkPassedUserData(String username, String password, String email) {
         return isValidUsername(username) && isValidPassword(password) && isValidEmailAddress(email);
     }
 
@@ -157,16 +161,9 @@ public class UserManagement {
      * @throws InternalErrorException uniqueness check failed due to an internal error
      * @author Maximilian Rublik
      */
-    private static boolean isValidUsername(String username) throws InternalErrorException {
-        // we restrict the username to be 100 char at max in the db
-        if (username.length() >= 100) {
-            if (username.toLowerCase().contains("susi") || username.toLowerCase().contains("habicht")){
-                return false;
-            }
-        }
-
-        // check whether the username already exists in the database
-        return UserRepository.isUniqueUsername(username);
+    private static boolean isValidUsername(String username) {
+        // we restrict the username to be 30 char at max in the db
+        return username.length() < 30;
     }
 
     /**
@@ -176,14 +173,8 @@ public class UserManagement {
      * @author Maximilian Rublik
      */
     private static boolean isValidPassword(String password) {
-        // Check for use of letters
-        Pattern letters = Pattern.compile("[a-zA-Z]]");
-
-        // Check for user of special characters, which are = {!, ?, #, %, @}
-        Pattern special = Pattern.compile("[!?#&%@]]");
-
-        // We want the password to be at least 6 characters long + match the patterns above
-        return password.length() > 5 && letters.matcher(password).find() && special.matcher(password).find();
+    	// length is at least 8 chars long
+    	return password.length() > 7;    			
     }
 
     /**
@@ -193,7 +184,7 @@ public class UserManagement {
      * @throws InternalErrorException hashing failed
      * @author Maximilian Rublik
      */
-    private static String hashPassword (String password) throws InternalErrorException {
+    public static String hashPassword (String password) throws InternalErrorException {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
@@ -214,7 +205,7 @@ public class UserManagement {
      * @return boolean whether the email address is vaild in its format- and not longer than 100 chars
      */
     private static boolean isValidEmailAddress(String email) {
-        if (email.length() >= 100) {
+        if (email.length() >= 40) {
             // email longer than db says its possible
             return false;
         }
