@@ -1,10 +1,10 @@
 package com.esports.manager.userManagement.logic;
 
 import com.esports.manager.global.exceptions.InternalErrorException;
-import com.esports.manager.userManagement.beans.LoginSessionBean;
+import com.esports.manager.userManagement.beans.LoginBean;
+import com.esports.manager.userManagement.beans.UserSessionBean;
 import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
-
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 
 import jakarta.servlet.http.HttpSession;
@@ -85,24 +85,30 @@ public class UserManagement {
             throws InternalErrorException, NoSuchUserException {
         try {
             User user = UserRepository.getByUsername(username);
-            if (username.equals(user.getUsername()) && password.equals(user.getPasswordHash())) {
+            if (username.equals(user.getUsername()) && hashPassword(password).equals(user.getPassword())) {
                 // Create sessionBean
-                LoginSessionBean loginSessionBean = new LoginSessionBean();
+                UserSessionBean userSessionBean = new UserSessionBean();
 
                 // Insert user object inside sessionBean
-                loginSessionBean.setUser(UserRepository.getByUsername(username));
+                userSessionBean.setUser(UserRepository.getByUsername(username));
 
                 // Insert sessionBean in HttpSession
-                session.setAttribute("loginSessionBean", loginSessionBean);
+                session.setAttribute("userSessionBean", userSessionBean);
                 log.info("Login succcessfull. Welcome");
             } else {
                 log.warn("LOGIN NOT SUCCESSFULL !");
+                //Create LoginBean
+                LoginBean loginBean = new LoginBean();
+                //Creates Error Message and inserts into loginBean
+                loginBean.setErrorMessage("Incorrect Username or Password");
+                //Insert loginBean inside HttpSession
+                session.setAttribute("loginBean", loginBean);
             }
         } catch (InternalErrorException e) {
             log.error("Internal Error occured while login", e);
             throw e;
         } catch (NoSuchUserException e) {
-            log.error("No user with username found", e);
+            session.setAttribute("NoSuchUserException", e);
             throw e;
         }
     }
