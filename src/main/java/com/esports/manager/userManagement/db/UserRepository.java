@@ -65,7 +65,7 @@ public class UserRepository {
             PreparedStatement pstmt = QueryHandler.loadStatement("");
             pstmt.setString(1, userData.getUsername());
             pstmt.setString(2, userData.getEmail());
-            pstmt.setString(3, userData.getPasswordHash());
+            pstmt.setString(3, userData.getPassword());
 
             pstmt.executeUpdate();
         } catch (IOException | SQLException e) {

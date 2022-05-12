@@ -6,10 +6,8 @@ import com.esports.manager.userManagement.beans.UserSessionBean;
 import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
 
+
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
-
-
-
 import jakarta.servlet.http.HttpSession;
 import com.esports.manager.userManagement.exceptions.InvalidInputException;
 import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
@@ -89,7 +87,7 @@ public class UserManagement {
             throws InternalErrorException, NoSuchUserException {
         try {
             User user = UserRepository.getByUsername(username);
-            if (username.equals(user.getUsername()) && hashPassword(password).equals(user.getPasswordHash())) {
+            if (username.equals(user.getUsername()) && hashPassword(password).equals(user.getPassword())) {
                 // Create sessionBean
                 UserSessionBean userSessionBean = new UserSessionBean();
 
