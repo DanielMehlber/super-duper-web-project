@@ -23,8 +23,8 @@
                 <input type="text" name="username" class="username" placeholder="Choose Username" maxlength="30">
                 <input type="password" name="password" class="password" minlength="8" placeholder="Choose Password">
                 
-                <c:if test="${not empty requestScope.errorMessage}">    
-                	<p>${errorMessage}</p>
+                <c:if test="${not empty requestScope.registrationBean.errorMessage}">
+                	<div class="error-message-text">${requestScope.registrationBean.errorMessage}</div>
                	</c:if>
                 
                 <button class="cancel-button" onclick="history.back()">Back</button>

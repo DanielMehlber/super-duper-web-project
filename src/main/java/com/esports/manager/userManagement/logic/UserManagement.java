@@ -6,7 +6,6 @@ import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
 
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
-import com.esports.manager.userManagement.exceptions.UserAlreadyExistingException;
 
 import jakarta.servlet.http.HttpSession;
 import com.esports.manager.userManagement.exceptions.InvalidInputException;
@@ -21,7 +20,6 @@ import org.apache.logging.log4j.Logger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.regex.Pattern;
 
 /**
  * collection of methods that will be used in user management
@@ -87,7 +85,7 @@ public class UserManagement {
             throws InternalErrorException, NoSuchUserException {
         try {
             User user = UserRepository.getByUsername(username);
-            if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
+            if (username.equals(user.getUsername()) && password.equals(user.getPasswordHash())) {
                 // Create sessionBean
                 LoginSessionBean loginSessionBean = new LoginSessionBean();
 
@@ -119,10 +117,15 @@ public class UserManagement {
      * @throws InternalErrorException an unexpected internal error occurred
      * @throws UsernameAlreadyTakenException the requested username is not available
      * @author Maximilian Rublik
-     * @throws UserAlreadyExistingException 
      */
-    public static void registerUser(String username, String password, String email) throws InvalidInputException, InternalErrorException, UsernameAlreadyTakenException, UserAlreadyExistingException {
+    public static void registerUser(String username, String password, String email) throws InvalidInputException, InternalErrorException, UsernameAlreadyTakenException {
         if (checkPassedUserData(username, password, email)) {
+
+            // check if username is available
+            if(!UserManagement.isUsernameAvailable(username)) {
+                throw new UsernameAlreadyTakenException();
+            }
+
             // create and persist new user
             User newUser = new User(username, email, hashPassword(password));
             UserRepository.createNewUser(newUser);
@@ -140,9 +143,8 @@ public class UserManagement {
      * @return true, if all user data is valid
      * @throws InternalErrorException username uniqueness check failed due to an internal error
      * @author Maximilian Rublik
-     * @throws UserAlreadyExistingException 
      */
-    private static boolean checkPassedUserData(String username, String password, String email) throws InternalErrorException, UserAlreadyExistingException {
+    private static boolean checkPassedUserData(String username, String password, String email) {
         return isValidUsername(username) && isValidPassword(password) && isValidEmailAddress(email);
     }
 
@@ -152,16 +154,10 @@ public class UserManagement {
      * @return true if username is valid and allowed
      * @throws InternalErrorException uniqueness check failed due to an internal error
      * @author Maximilian Rublik
-     * @throws UserAlreadyExistingException 
      */
-    private static boolean isValidUsername(String username) throws InternalErrorException, UserAlreadyExistingException {
-		if (username.length() >= 30) {
-        	// we restrict the username to be 30 char at max in the db
-            return false;            
-        }
-
-        // check whether the username already exists in the database
-        return UserRepository.isUniqueUsername(username);
+    private static boolean isValidUsername(String username) {
+        // we restrict the username to be 30 char at max in the db
+        return username.length() < 30;
     }
 
     /**
@@ -182,7 +178,7 @@ public class UserManagement {
      * @throws InternalErrorException hashing failed
      * @author Maximilian Rublik
      */
-    private static String hashPassword (String password) throws InternalErrorException {
+    public static String hashPassword (String password) throws InternalErrorException {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));

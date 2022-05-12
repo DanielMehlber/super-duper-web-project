@@ -2,14 +2,21 @@ package com.esports.manager.userManagement.logic;
 
 import com.esports.manager.global.db.queries.QueryHandler;
 import com.esports.manager.global.exceptions.InternalErrorException;
+import com.esports.manager.userManagement.db.UserRepository;
+import com.esports.manager.userManagement.entities.User;
+import com.esports.manager.userManagement.exceptions.InvalidInputException;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
+import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
 import com.esports.manager.util.DataSourceCreator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class UserManagementTest {
@@ -28,38 +35,44 @@ public class UserManagementTest {
         QueryHandler.setDataSource(dataSource);
     }
 
+    @BeforeEach
+    public void prepare() throws Exception {
+        // clear table of users
+        PreparedStatement statement = QueryHandler.loadStatement("/sql/user-management/delete-all-users.sql");
+        statement.executeUpdate();
+    }
+
 
     @Test
-    public void fetchByUserName_userExists() throws NoSuchUserException, InternalErrorException {
-        // TODO: add user with username automatically
+    public void registerUser_usernameAlreadyTaken() throws InternalErrorException, UsernameAlreadyTakenException {
+        // -- arrange --
+        // create user in database
+        User createdUser = new User("username", "username@username.com", UserManagement.hashPassword("password123"));
+        UserRepository.createNewUser(createdUser);
 
-        // User user = UserManagement.fetchUserByUsername("username");
-        // Assertions.assertEquals(user.getUsername(), "username");
+        // -- act and assert --
+        // try to register user with same username. Expect throw of UsernameAlreadyTakenException
+        Assertions.assertThrows(UsernameAlreadyTakenException.class, () -> UserManagement.registerUser(createdUser.getUsername(), "password123", createdUser.getEmail()));
     }
 
     @Test
-    public void createNewUser() {
-        // create user with method
-        // fetch user by this username in order to assert that it was created
-    }
+    public void registerUser_happyPath() throws InternalErrorException, UsernameAlreadyTakenException, InvalidInputException, NoSuchUserException {
+        // -- arrange --
+        String username = "username";
+        String password = "password123";
+        String email = "username@username.com";
 
-    @Test
-    public void loginUser() {
-        // create user
-        // login user using method in UserManagement
-        // check if user is logged in
-    }
+        // -- act --
+        // register user
+        UserManagement.registerUser(username, password, email);
 
-    @Test
-    public void registerUser() {
-        // register user using method in UserManagement
-        // fetch user with this username in order to assert that he was registered
-    }
-
-    @Test
-    public void isUserLoggedIn() {
-        // create user
-        // login user
-        // assert that user is logged in using the method in UserRegistration
+        // -- assert --
+        // check if user is in database
+        User fetchedUser = UserManagement.fetchUserByUsername(username);
+        Assertions.assertNotNull(fetchedUser);
+        // check that values that have been stored in database are correct
+        Assertions.assertEquals(username, fetchedUser.getUsername());
+        Assertions.assertEquals(email, fetchedUser.getEmail());
+        Assertions.assertEquals(UserManagement.hashPassword(password), fetchedUser.getPasswordHash());
     }
 }

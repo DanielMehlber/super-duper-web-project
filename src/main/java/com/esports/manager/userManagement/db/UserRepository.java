@@ -5,7 +5,6 @@ import com.esports.manager.global.db.queries.QueryHandler;
 import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
-import com.esports.manager.userManagement.exceptions.UserAlreadyExistingException;
 import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
 
 import org.apache.logging.log4j.LogManager;
@@ -58,7 +57,7 @@ public class UserRepository {
         return users.get(0);
     }
     
-    public static void createNewUser(final User userData) throws InternalErrorException, UsernameAlreadyTakenException {
+    public static void createNewUser(final User userData) throws InternalErrorException {
         log.debug("creating new user entity in database...");
 
         try {
@@ -66,7 +65,7 @@ public class UserRepository {
         	
             pstmt.setString(1, userData.getUsername());
             pstmt.setString(2, userData.getEmail());
-            pstmt.setString(3, userData.getPassword());
+            pstmt.setString(3, userData.getPasswordHash());
 
             pstmt.executeUpdate();
         } catch (IOException | SQLException e) {
@@ -77,14 +76,13 @@ public class UserRepository {
         log.debug("created user to database");
     }
 
-    public static boolean isUniqueUsername(final String username) throws InternalErrorException, UserAlreadyExistingException {
+    public static boolean isUniqueUsername(final String username) throws InternalErrorException {
         log.debug("checking for already existing username in database");
 
         // try to fetch user with username
         boolean isUsernameUnique = false;
         try {
             getByUsername(username);
-            throw new UserAlreadyExistingException(username);
         } catch (NoSuchUserException e) {
             isUsernameUnique = true;
         }
