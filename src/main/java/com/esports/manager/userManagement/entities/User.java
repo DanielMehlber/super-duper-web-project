@@ -14,15 +14,15 @@ public class User {
     @ResultSetMapping("email")
     private String email;
 
-    @ResultSetMapping("Password")
-    private String password;
+    @ResultSetMapping("passwordHash")
+    private String passwordHash;
 
     public User() {}
 
-    public User (String username, String email, String password){
+    public User (String username, String email, String passwordHash){
         this.username = username;
         this.email = email;
-        this.password = password;
+        this.passwordHash = passwordHash;
     }
 
 
@@ -42,11 +42,11 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 }

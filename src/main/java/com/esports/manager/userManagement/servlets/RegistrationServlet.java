@@ -2,7 +2,7 @@ package com.esports.manager.userManagement.servlets;
 
 import java.io.IOException;
 
-import com.esports.manager.userManagement.beans.RegistrationViewSessionBean;
+import com.esports.manager.userManagement.beans.RegistrationViewBean;
 import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,7 +40,7 @@ public class RegistrationServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
 
         // session bean for view generation
-        RegistrationViewSessionBean registrationViewSessionBean = new RegistrationViewSessionBean();
+        RegistrationViewBean registrationViewSessionBean = new RegistrationViewBean();
 
         try {
             UserManagement.registerUser(

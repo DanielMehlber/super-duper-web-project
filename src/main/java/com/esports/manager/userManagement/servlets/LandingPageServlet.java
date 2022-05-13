@@ -1,7 +1,7 @@
 package com.esports.manager.userManagement.servlets;
 
-import com.esports.manager.userManagement.beans.UserSessionBean;
-
+import com.esports.manager.userManagement.exceptions.UnauthorizedException;
+import com.esports.manager.userManagement.logic.UserManagement;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -33,15 +33,22 @@ public class LandingPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final HttpSession currentSession = request.getSession();
 
-        // check if there is a logged-in user in session
-        final UserSessionBean userSessionBean = (UserSessionBean) currentSession.getAttribute("loginSessionBean");
+        // check if user is logged in
+        boolean loggedIn = true;
+        try {
+            UserManagement.getAuthorizedUser(currentSession);
+        } catch (UnauthorizedException e) {
+            // there is no authorized user
+            loggedIn = false;
+        }
 
-        if(userSessionBean == null || userSessionBean.getUser() == null) {
-            // case: no user is logged in. Login/Registration options have to be presented
-            request.getRequestDispatcher("/jsp/welcome.jsp").forward(request, response);
+        // redirect accordingly
+        if(loggedIn) {
+            // redirect to dashboard
+            response.sendRedirect("/dashboard");
         } else {
-            // case: a user is already logged in. User can be forwarded to dashboard
-            // TODO: forward to dashboard
+            // redirect to login
+            response.sendRedirect("/jsp/login.jsp");
         }
 
     }

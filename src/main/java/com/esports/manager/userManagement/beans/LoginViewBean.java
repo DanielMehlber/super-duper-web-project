@@ -1,14 +1,16 @@
 package com.esports.manager.userManagement.beans;
 
-import com.esports.manager.userManagement.entities.User;
-
 import java.io.Serializable;
 
-public class LoginBean implements Serializable {
+/**
+ * Represents data that will be used by the login jsp
+ * @author Phlipp Phan
+ */
+public class LoginViewBean implements Serializable {
     private static final long servialVersionUID = 1L;
     private String username;
     private String password;
-    private String errorMessage = "Hallo";
+    private String errorMessage;
 
     public String getUsername() {
         return username;

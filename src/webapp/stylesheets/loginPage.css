@@ -24,7 +24,7 @@ main {
                     "password password"
                     "error-text error-text"
                     "cancel continue";
-    grid-template-rows: auto min-content min-content min-content auto;
+    grid-template-rows: auto min-content min-content 20px auto;
     transition: all 1s;
 }
 

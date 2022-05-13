@@ -22,12 +22,12 @@
     <form class="login-card" action="../login" method="POST">
         <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Logo"
              class="logo img">
-        <input name="username" type="text" placeholder="Username" class="username" required>${requestScope.username}
-        <input name="password" type="password" placeholder="Password" class="password" required>${requestScope.password}
+        <input name="username" type="text" placeholder="Username" class="username" required>${requestScope.loginBean.username}
+        <input name="password" type="password" placeholder="Password" class="password" required>${requestScope.loginBean.password}
         <!--Get error Message from LoginBean-->
         <p class="error-text">
-            <c:if test="${not empty requestScope.errorMessage}">
-                ${errorMessage}
+            <c:if test="${not empty requestScope.loginBean.errorMessage}">
+                ${requestScope.loginBean.errorMessage}
             </c:if>
         </p>
         <button class="enter-button">Login</button>

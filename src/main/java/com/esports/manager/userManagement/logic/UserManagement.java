@@ -1,15 +1,12 @@
 package com.esports.manager.userManagement.logic;
 
 import com.esports.manager.global.exceptions.InternalErrorException;
-import com.esports.manager.userManagement.beans.LoginBean;
 import com.esports.manager.userManagement.beans.UserSessionBean;
 import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
-import com.esports.manager.userManagement.exceptions.NoSuchUserException;
+import com.esports.manager.userManagement.exceptions.*;
 
 import jakarta.servlet.http.HttpSession;
-import com.esports.manager.userManagement.exceptions.InvalidInputException;
-import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
 import jakarta.mail.internet.AddressException;
 import jakarta.mail.internet.InternetAddress;
 
@@ -24,7 +21,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * collection of methods that will be used in user management
  *
- * @author Daniel Mehlber,
+ * @author Daniel Mehlber, Maximilian Rublik, Philipp Phan
  */
 public class UserManagement {
 
@@ -82,10 +79,10 @@ public class UserManagement {
      * @author Philipp Phan
      */
     public static void performLogin(String username, String password, HttpSession session)
-            throws InternalErrorException, NoSuchUserException {
+            throws InternalErrorException, NoSuchUserException, WrongCredentialsException {
         try {
             User user = UserRepository.getByUsername(username);
-            if (username.equals(user.getUsername()) && hashPassword(password).equals(user.getPassword())) {
+            if (username.equals(user.getUsername()) && hashPassword(password).equals(user.getPasswordHash())) {
                 // Create sessionBean
                 UserSessionBean userSessionBean = new UserSessionBean();
 
@@ -94,21 +91,16 @@ public class UserManagement {
 
                 // Insert sessionBean in HttpSession
                 session.setAttribute("userSessionBean", userSessionBean);
-                log.info("Login succcessfull. Welcome");
+                log.info("Login successful. Welcome");
             } else {
-                log.warn("LOGIN NOT SUCCESSFULL !");
-                //Create LoginBean
-                LoginBean loginBean = new LoginBean();
-                //Creates Error Message and inserts into loginBean
-                loginBean.setErrorMessage("Incorrect Username or Password");
-                //Insert loginBean inside HttpSession
-                session.setAttribute("loginBean", loginBean);
+                log.warn("login not successful");
+                throw new WrongCredentialsException();
             }
         } catch (InternalErrorException e) {
-            log.error("Internal Error occured while login", e);
+            log.error("Internal Error occurred while login: " + e.getMessage(), e);
             throw e;
         } catch (NoSuchUserException e) {
-            session.setAttribute("NoSuchUserException", e);
+            log.warn("cannot perform login because there is no user with passed username");
             throw e;
         }
     }
@@ -147,7 +139,6 @@ public class UserManagement {
      * @param password passed password
      * @param email passed email address
      * @return true, if all user data is valid
-     * @throws InternalErrorException username uniqueness check failed due to an internal error
      * @author Maximilian Rublik
      */
     private static boolean checkPassedUserData(String username, String password, String email) {
@@ -158,10 +149,10 @@ public class UserManagement {
      * Checks received username for syntactical validity and uniqueness
      * @param username passed username
      * @return true if username is valid and allowed
-     * @throws InternalErrorException uniqueness check failed due to an internal error
      * @author Maximilian Rublik
      */
     private static boolean isValidUsername(String username) {
+        if(username == null || username.isBlank()) return false;
         // we restrict the username to be 30 char at max in the db
         return username.length() < 30;
     }
@@ -173,6 +164,7 @@ public class UserManagement {
      * @author Maximilian Rublik
      */
     private static boolean isValidPassword(String password) {
+        if(password == null || password.isBlank()) return false;
     	// length is at least 8 chars long
     	return password.length() > 7;    			
     }
@@ -203,8 +195,11 @@ public class UserManagement {
      *
      * @param email email address to check
      * @return boolean whether the email address is vaild in its format- and not longer than 100 chars
+     * @author Maximilian Rublik
      */
     private static boolean isValidEmailAddress(String email) {
+        if(email == null || email.isBlank()) return false;
+
         if (email.length() >= 40) {
             // email longer than db says its possible
             return false;
@@ -219,5 +214,19 @@ public class UserManagement {
         }
 
         return result;
+    }
+
+    /**
+     * Checks if there is a logged in user in session
+     * @param session http session
+     * @return logged in user
+     * @throws UnauthorizedException there is no authorized user stored in session
+     * @author Maxmilian Rublik
+     */
+    public static User getAuthorizedUser(final HttpSession session) throws UnauthorizedException {
+        UserSessionBean userSessionBean = (UserSessionBean) session.getAttribute("userSessionBean");
+        if(userSessionBean == null || userSessionBean.getUser() == null)
+            throw new UnauthorizedException();
+        return userSessionBean.getUser();
     }
 }

@@ -4,11 +4,11 @@ package com.esports.manager.userManagement.beans;
  * Registration bean stored in session and used to generate view (jsp)
  * @author Maximilian Rublik
  */
-public class RegistrationViewSessionBean {
+public class RegistrationViewBean {
 
     private String errorMessage;
 
-    public RegistrationViewSessionBean() {}
+    public RegistrationViewBean() {}
 
     public String getErrorMessage() {
         return errorMessage;

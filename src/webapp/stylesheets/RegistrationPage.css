@@ -24,8 +24,9 @@ main{
                 "email email"
                 "username username"
                 "password password"
+                "error-text error-text"
                 "cancel continue";
-    grid-template-rows: auto min-content min-content min-content auto;
+    grid-template-rows: auto min-content min-content min-content 20px auto;
     transition: all 1s;
 }
 
@@ -77,4 +78,8 @@ input.email{
     width: 161px;
     height: 48px;
     grid-area: cancel;
+}
+
+.error-message-text {
+    grid-area: error-text;
 }
