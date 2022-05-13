@@ -8,6 +8,7 @@ import java.io.Serializable;
  */
 public class LoginViewBean implements Serializable {
     private static final long servialVersionUID = 1L;
+    private LoginViewBean(){}
     private String username;
     private String password;
     private String errorMessage;

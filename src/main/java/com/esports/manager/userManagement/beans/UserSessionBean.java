@@ -12,6 +12,7 @@ import com.esports.manager.userManagement.entities.User;
  */
 public class UserSessionBean implements Serializable {
     private static final long servialVersionUID = 1L;
+    public UserSessionBean(){}
 
     private User user;
     //To track the login time of the user
