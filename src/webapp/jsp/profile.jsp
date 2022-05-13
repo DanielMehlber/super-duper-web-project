@@ -20,27 +20,28 @@
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
-    <p>Player profile</p>
+    <form class="profile-card" action="../profile" method="post">
+        <p>Player profile</p>
 
-    <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Profile picture"
-    class="profile_picture">
-    <!--get Username user-->
-    <label>@</label>
+        <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Profile picture"
+             class="profile_picture">
+        <!--get Username user-->
+        <label>@</label>
 
-    <!-- get E-Mail from user-->
-    <p></p>
+        <!-- get E-Mail from user-->
+        <p></p>
 
-    <!-- get team name from user-->
-    <p>THeSports Red-White</p>
+        <!-- get team name from user-->
+        <p>THeSports Red-White</p>
 
-    <!-- get game from user-->
-    <p>League of Legends</p>
+        <!-- get game from user-->
+        <p>League of Legends</p>
 
-    <!--role-->
-    <p>Top-Laner</p>
+        <!--role-->
+        <p>Top-Laner</p>
 
-    <!--add to team-->
-    <button>Follow</button>
-
+        <!--add to team-->
+        <button>Follow</button>
+    </form>
 </body>
 </html>

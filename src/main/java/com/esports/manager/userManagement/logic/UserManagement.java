@@ -14,6 +14,7 @@ import jakarta.mail.internet.InternetAddress;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.awt.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -229,4 +230,14 @@ public class UserManagement {
             throw new UnauthorizedException();
         return userSessionBean.getUser();
     }
+
+
+    /**
+     * Changes profile picture of user
+     * @author Philipp Phan
+     * */
+    public static void changeProfilePicture(Image image){
+
+    }
+
 }

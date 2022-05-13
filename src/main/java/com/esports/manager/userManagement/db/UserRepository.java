@@ -6,6 +6,8 @@ import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 
+import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
+import com.esports.manager.userManagement.logic.UserManagement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -101,5 +103,27 @@ public class UserRepository {
         }
 
         return isUsernameUnique;
+    }
+
+
+    /**
+     * Changes the username of a user
+     * @author Philipp Phan
+     * */
+    public static void changeUsername(String username_new) throws InternalErrorException, UsernameAlreadyTakenException, IOException, SQLException, NoSuchUserException {
+        // check if username is available
+        if(!UserManagement.isUsernameAvailable(username_new)) {
+            throw new UsernameAlreadyTakenException();
+        }
+        try{
+            PreparedStatement pstmt = QueryHandler.loadStatement("sql/user-management/changeUsername.sql");
+            //pstmt.setString(1, "");
+            pstmt.executeUpdate();
+        }catch (IOException e){
+            throw e;
+        } catch (SQLException e) {
+            throw e;
+        }
+
     }
 }
