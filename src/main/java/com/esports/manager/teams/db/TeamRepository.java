@@ -1,11 +1,10 @@
-package com.esports.manager.memberArea.db;
+package com.esports.manager.teams.db;
 
 import com.esports.manager.global.db.mapping.ResultSetProcessor;
 import com.esports.manager.global.db.queries.QueryHandler;
 import com.esports.manager.global.exceptions.InternalErrorException;
-import com.esports.manager.memberArea.entities.Team;
-import com.esports.manager.memberArea.exceptions.NoTeamsFoundException;
-import com.esports.manager.userManagement.db.UserRepository;
+import com.esports.manager.teams.entities.Team;
+import com.esports.manager.teams.exceptions.NoTeamsFoundException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

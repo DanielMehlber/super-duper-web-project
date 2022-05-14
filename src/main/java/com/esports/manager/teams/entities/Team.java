@@ -1,4 +1,4 @@
-package com.esports.manager.memberArea.entities;
+package com.esports.manager.teams.entities;
 
 import com.esports.manager.global.db.mapping.ResultSetMapping;
 

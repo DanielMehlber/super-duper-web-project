@@ -1,4 +1,4 @@
-package com.esports.manager.memberArea.exceptions;
+package com.esports.manager.teams.exceptions;
 
 public class NoTeamsFoundException extends Exception {
 

@@ -1,9 +1,9 @@
-package com.esports.manager.memberArea.logic;
+package com.esports.manager.teams.logic;
 
 import com.esports.manager.global.exceptions.InternalErrorException;
-import com.esports.manager.memberArea.db.TeamRepository;
-import com.esports.manager.memberArea.entities.Team;
-import com.esports.manager.memberArea.exceptions.NoTeamsFoundException;
+import com.esports.manager.teams.db.TeamRepository;
+import com.esports.manager.teams.entities.Team;
+import com.esports.manager.teams.exceptions.NoTeamsFoundException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,9 +15,9 @@ import java.util.List;
  *
  * @author Maximilian Rublik
  */
-public class MemberArea {
+public class Teams {
 
-    private static final Logger log = LogManager.getLogger(MemberArea.class);
+    private static final Logger log = LogManager.getLogger(Teams.class);
 
     /**
      * Fetch all teams from database, unordered
