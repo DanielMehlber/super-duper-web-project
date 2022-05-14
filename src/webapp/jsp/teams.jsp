@@ -24,11 +24,12 @@
             </div>
 
             <c:forEach items="${teamsBean.teams}" var="team">
-                <img class="team-logo" src="${team.profilePicture}" />
-                <h2 class="team-title">${team.name}</h2>
-                <p class="tags">${team.tags}</p>
-                <p class="player-count">${team.playercount}</p>
-                ${team.name}
+                <div id="team-container">
+                    <img class="team-logo" src="${team.profilePicture}" />
+                    <h2 class="team-title">${team.name}</h2>
+                    <p class="tags">${team.tags}</p>
+                    <p class="player-count">${team.playercount}</p>
+                </div>
             </c:forEach>
         </main>
     </body>
