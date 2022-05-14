@@ -35,7 +35,7 @@ public class TeamRepository {
 
         ResultSet resultSet;
         try {
-            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/memberArea/fetchAlluser.sql");
+            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/memberArea/fetchAllTeams.sql");
             resultSet = pstmt.executeQuery();
         } catch (IOException | SQLException e) {
             log.error("cannot fetch teams from database because of an unexpected and fatal error:" + e.getMessage());
@@ -50,5 +50,30 @@ public class TeamRepository {
         }
 
         return teams;
+    }
+
+    /**
+     * Creates new team to database
+     * @param team team data to persist
+     * @throws SQLException | IOException an undexpected SQL / IO Exception occured
+     * @author Maximilian Rublik
+     */
+    public static void createTeam(Team team) throws InternalErrorException{
+        log.debug("add team to database");
+
+        try {
+            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/createTeam.sql");
+
+            // TODO: set strings accordingly to datasource
+            pstmt.setString(1, team.getName());
+            pstmt.setString(2, team.getProfilePicture());
+
+            pstmt.executeUpdate();
+        } catch (SQLException | IOException e) {
+            log.error("cannot create team to database because of an unexpected sql error" + e.getMessage());
+            throw new InternalErrorException("cannot create team", e);
+        }
+
+        log.debug("created team to database");
     }
 }
