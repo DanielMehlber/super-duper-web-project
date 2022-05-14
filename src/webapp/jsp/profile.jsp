@@ -1,3 +1,4 @@
+<jsp:useBean id="profileBean" scope="page" type="com.esports.manager.userManagement.entities.User"/>
 <%--
   Created by IntelliJ IDEA.
   User: Philipp
@@ -20,28 +21,30 @@
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
-    <form class="profile-card" action="../profile" method="post">
-        <p>Player profile</p>
+<form class="profile-card" action="../profile" method="post">
+    <p>Player profile</p>
 
-        <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Profile picture"
-             class="profile_picture">
-        <!--get Username user-->
-        <label>@</label>
+    <img src="<c:/>" class="title-picture"/>
 
-        <!-- get E-Mail from user-->
-        <p></p>
+    <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Profile picture"
+         class="profile_picture"/>
+    <!--get Username user-->
+    <p class="username">@${profileBean.username}</p>
 
-        <!-- get team name from user-->
-        <p>THeSports Red-White</p>
+    <!-- get E-Mail from user-->
+    <p class="email">${profileBean.username}</p>
 
-        <!-- get game from user-->
-        <p>League of Legends</p>
+    <!-- get team name from user-->
+    <p class="team">THeSports Red-White</p>
 
-        <!--role-->
-        <p>Top-Laner</p>
+    <!-- get game from user-->
+    <p class="game">League of Legends</p>
 
-        <!--add to team-->
-        <button>Follow</button>
-    </form>
+    <!--role-->
+    <p class="game-role">Top-Laner</p>
+
+    <!--add to team-->
+    <button>Test</button>
+</form>
 </body>
 </html>

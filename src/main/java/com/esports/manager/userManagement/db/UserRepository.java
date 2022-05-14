@@ -11,6 +11,7 @@ import com.esports.manager.userManagement.logic.UserManagement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.awt.*;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -104,26 +105,31 @@ public class UserRepository {
 
         return isUsernameUnique;
     }
-
-
     /**
      * Changes the username of a user
      * @author Philipp Phan
+     * TODO: not the highest priority
      * */
-    public static void changeUsername(String username_new) throws InternalErrorException, UsernameAlreadyTakenException, IOException, SQLException, NoSuchUserException {
+    public static void changeUsername(String username_new) throws InternalErrorException, UsernameAlreadyTakenException{
         // check if username is available
         if(!UserManagement.isUsernameAvailable(username_new)) {
             throw new UsernameAlreadyTakenException();
         }
-        try{
-            PreparedStatement pstmt = QueryHandler.loadStatement("sql/user-management/changeUsername.sql");
-            //pstmt.setString(1, "");
-            pstmt.executeUpdate();
-        }catch (IOException e){
-            throw e;
-        } catch (SQLException e) {
-            throw e;
-        }
+    }
+    /**
+     * Changes profile picture of user
+     * @author Philipp Phan
+     * */
+    public static void postProfilePicture(Image image){
 
     }
+
+    /**
+     * Changes the Background Picture of the user's profile
+     * @author Philipp Phan
+     * */
+    public static void changeBackgroundPicture(Image image){
+        ResultSet resultSet;
+    }
+
 }

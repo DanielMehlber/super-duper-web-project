@@ -5,13 +5,14 @@ import java.io.Serializable;
 public class ProfileViewBean implements Serializable {
     public ProfileViewBean(){}
 
+    //TODO Change all attributes to User Object
     private String username;
     private String email;
     private String team;
     private String game;
     private String role;
-
     private String errorMessage;
+    private Long points;
 
     public String getUsername() {
         return username;
@@ -59,5 +60,13 @@ public class ProfileViewBean implements Serializable {
 
     public void setErrorMessage(String errorMessage){
         this.errorMessage = errorMessage;
+    }
+
+    public Long getPoints(){
+        return points;
+    }
+
+    public void setPoints(Long points) {
+        this.points = points;
     }
 }
