@@ -1,0 +1,77 @@
+*{
+    color: white;
+    background-color: black;
+}
+
+.profile-picture{
+    border-radius: 50%;
+    border: 3px solid white;
+    height: 150px;
+    width: 150px;
+}
+
+.player-info{
+    border-radius: 10px;
+    background-color: #1d274c;
+    border-color: #1d274c;
+    height: 200px;
+    width: 250px;
+
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-areas:
+    "username"
+    "email";
+    grid-template-columns: auto auto;
+}
+
+.username{
+    grid-area: username;
+    font-size: 25px;
+}
+.email{
+    grid-area: email;
+    font-size: 20px;
+}
+
+
+.team-container{
+    border-radius: 10px;
+    background-color: #1d274c;
+    border-color: #1d274c;
+    height: 200px;
+    width: 500px;
+
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-areas:
+    "team-picture team-name game-name"
+    "team-picture tags game-role";
+    grid-template-rows: auto auto auto;
+}
+
+.team{
+    grid-area: team-name;
+}
+
+.team-image{
+    grid-area: team-picture;
+    height: 50px;
+    width: 50px;
+}
+
+.tags{
+    grid-area: tags;
+}
+
+.game{
+    grid-area: game-name;
+}
+
+.game-role{
+    grid-area: game-role;
+}

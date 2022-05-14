@@ -1,4 +1,3 @@
-<jsp:useBean id="profileBean" scope="page" type="com.esports.manager.userManagement.entities.User"/>
 <%--
   Created by IntelliJ IDEA.
   User: Philipp
@@ -14,34 +13,38 @@
     <meta charset="UTF-8">
     <base href="${pageContext.request.requestURI}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--
-    <link rel="stylesheet" href="../stylesheets/elements.css">
-    <link rel="stylesheet" href="../stylesheets/profilePage.css">
-    -->
+    <link rel="stylesheet" href="../stylesheets/Elements.css">
+    <link rel="stylesheet" href="../stylesheets/ProfilePage.css">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
 <form class="profile-card" action="../profile" method="post">
-    <p>Player profile</p>
-
-    <img src="<c:/>" class="title-picture"/>
-
+    <p class="player-text">Player profile</p>
+    <!--
+    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/edcb0e23689279.578bd6af7dffb.png" alt="Profile Banner" class="profile-banner"/>
+    -->
     <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Profile picture"
-         class="profile_picture"/>
-    <!--get Username user-->
-    <p class="username">@${profileBean.username}</p>
+         class="profile-picture"/>
 
-    <!-- get E-Mail from user-->
-    <p class="email">${profileBean.username}</p>
+    <div class="player-info">
+        <!--get Username user-->
+        <p class="username">@ManielDehlber29${profileBean.username}</p>
+        <!-- get E-Mail from user-->
+        <p class="email">manield@pwc.com${profileBean.username}</p>
+    </div>
 
-    <!-- get team name from user-->
-    <p class="team">THeSports Red-White</p>
-
-    <!-- get game from user-->
-    <p class="game">League of Legends</p>
-
-    <!--role-->
-    <p class="game-role">Top-Laner</p>
+    <div class="team-container">
+        <!-- get team name from user-->
+        <p class="team">THeSports Red-White</p>
+        <!--team-image-->
+        <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="team-picture"
+             class="team-image"/>
+        <p class="tags">${team.tags}</p>
+        <!-- get game from user-->
+        <p class="game">CSGO</p>
+        <!--role-->
+        <p class="game-role">Entry-Fragger</p>
+    </div>
 
     <!--add to team-->
     <button>Test</button>
