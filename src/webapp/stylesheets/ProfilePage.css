@@ -6,31 +6,37 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-evenly;
+    align-items: flex-start;
     align-content: center;
 }
 
 .profile-card {
-    border: #FFFFFF;
     height: 100%;
     display: grid;
+    width: 950px;
+    background-color: #1d274c;
+    border: 3px solid #1d274c;
+    position: fixed;
 
-    color: #1d274c;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
 
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 15px 0px;
     grid-template-areas:
     "player-info"
+    "team-container"
+    "activity-container";
     "."
-    "team-container";
-"."
 }
 
 .player-info {
     border-radius: 10px;
     background-color: #1d274c;
-    height: 200px;
+    height: 250px;
     width: 900px;
 
     border: 3px solid #1d274c;
@@ -50,59 +56,67 @@
 
     grid-area: player-info;
 }
-
 .profile-picture {
     border-radius: 50%;
-    border: 3px solid white;
+    border: 3px solid #2B92D5;
     height: 150px;
     width: 150px;
+
     grid-area: image;
 }
-
 .username {
     grid-area: username;
     font-size: 25px;
 }
-
 .email {
     grid-area: email;
     font-size: 20px;
 }
 
-
 .team-container {
     border-radius: 10px;
     background-color: #1d274c;
-
-    height: 200px;
+    filter: brightness(85%);
+    font-size: 20px;
+    height: 250px;
     width: 900px;
-
     border: 3px solid #1d274c;
 
     display: grid;
     justify-content: center;
-    justify-items: center;
     align-items: center;
+    justify-items: center;
+
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
     grid-template-areas:
-    "team-picture team-name game-name"
-    "team-picture tags game-role";
-    grid-template-rows: auto auto auto;
+    "title . . . "
+    "team-picture team-name . ."
+    "team-picture members  game-name game-role"
+    ". . . . ";
 
     grid-area: team-container;
+}
+.title{
+    grid-area: title;
 }
 
 .team {
     grid-area: team-name;
+    text-decoration-line: underline;
 }
 
 .team-image {
     grid-area: team-picture;
     height: 150px;
     width: 150px;
+    border: 3px solid #2B92D5;
+    border-radius: 50%;
 }
 
-.tags {
-    grid-area: tags;
+.members {
+    grid-area: members;
 }
 
 .game {
@@ -111,4 +125,16 @@
 
 .game-role {
     grid-area: game-role;
+}
+
+.activity-container{
+    border-radius: 10px;
+    background-color: #1d274c;
+    filter: brightness(85%);
+    font-size: 20px;
+    height: 250px;
+    width: 900px;
+    border: 3px solid #1d274c;
+
+    grid-area: activity-container;
 }
