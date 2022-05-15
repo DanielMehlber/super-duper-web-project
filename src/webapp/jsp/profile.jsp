@@ -18,36 +18,41 @@
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
-<form class="profile-card" action="../profile" method="post">
-    <p class="player-text">Player profile</p>
-    <!--
-    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/edcb0e23689279.578bd6af7dffb.png" alt="Profile Banner" class="profile-banner"/>
-    -->
-    <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Profile picture"
-         class="profile-picture"/>
+<div class="flex-container">
+    <div class="empty1"></div>
+    <form class="profile-card" action="../profile" method="post">
 
-    <div class="player-info">
-        <!--get Username user-->
-        <p class="username">@ManielDehlber29${profileBean.username}</p>
-        <!-- get E-Mail from user-->
-        <p class="email">manield@pwc.com${profileBean.username}</p>
-    </div>
+        <!--
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/edcb0e23689279.578bd6af7dffb.png" alt="Profile Banner" class="profile-banner"/>
+        -->
+        <div class="player-info">
+            <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png"
+                 alt="Profile picture"
+                 class="profile-picture"/>
+            <!--get Username user-->
+            <p class="username">@ManielDehlber29${profileBean.username}</p>
+            <!-- get E-Mail from user-->
+            <p class="email">manield@pwc.com${profileBean.username}</p>
+        </div>
 
-    <div class="team-container">
-        <!-- get team name from user-->
-        <p class="team">THeSports Red-White</p>
-        <!--team-image-->
-        <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="team-picture"
-             class="team-image"/>
-        <p class="tags">${team.tags}</p>
-        <!-- get game from user-->
-        <p class="game">CSGO</p>
-        <!--role-->
-        <p class="game-role">Entry-Fragger</p>
-    </div>
+        <div class="team-container">
+            <!-- get team name from user-->
+            <p class="team">THeSports Red-White</p>
+            <!--team-image-->
+            <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png"
+                 alt="team-picture"
+                 class="team-image"/>
+            <p class="tags">${team.tags}</p>
+            <!-- get game from user-->
+            <p class="game">CSGO</p>
+            <!--role-->
+            <p class="game-role">Entry-Fragger</p>
+        </div>
 
-    <!--add to team-->
-    <button>Test</button>
-</form>
+        <!--add to team-->
+        <!--<button>Test</button>-->
+    </form>
+    <div class="empty2"></div>
+</div>
 </body>
 </html>

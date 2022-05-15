@@ -1,48 +1,83 @@
-*{
+* {
     color: white;
-    background-color: black;
 }
 
-.profile-picture{
-    border-radius: 50%;
-    border: 3px solid white;
-    height: 150px;
-    width: 150px;
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
 }
 
-.player-info{
+.profile-card {
+    border: #FFFFFF;
+    height: 100%;
+    display: grid;
+
+    color: #1d274c;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "player-info"
+    "."
+    "team-container";
+"."
+}
+
+.player-info {
     border-radius: 10px;
     background-color: #1d274c;
-    border-color: #1d274c;
     height: 200px;
-    width: 250px;
+    width: 900px;
+
+    border: 3px solid #1d274c;
 
     display: grid;
     justify-content: center;
     justify-items: center;
     align-items: center;
+
+    grid-template-columns:  1fr 0.5fr 1.5fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-areas:
-    "username"
-    "email";
-    grid-template-columns: auto auto;
+    ". . ."
+    "image username ."
+    "image email ."
+    ". . .";
+
+    grid-area: player-info;
 }
 
-.username{
+.profile-picture {
+    border-radius: 50%;
+    border: 3px solid white;
+    height: 150px;
+    width: 150px;
+    grid-area: image;
+}
+
+.username {
     grid-area: username;
     font-size: 25px;
 }
-.email{
+
+.email {
     grid-area: email;
     font-size: 20px;
 }
 
 
-.team-container{
+.team-container {
     border-radius: 10px;
     background-color: #1d274c;
-    border-color: #1d274c;
+
     height: 200px;
-    width: 500px;
+    width: 900px;
+
+    border: 3px solid #1d274c;
 
     display: grid;
     justify-content: center;
@@ -52,26 +87,28 @@
     "team-picture team-name game-name"
     "team-picture tags game-role";
     grid-template-rows: auto auto auto;
+
+    grid-area: team-container;
 }
 
-.team{
+.team {
     grid-area: team-name;
 }
 
-.team-image{
+.team-image {
     grid-area: team-picture;
-    height: 50px;
-    width: 50px;
+    height: 150px;
+    width: 150px;
 }
 
-.tags{
+.tags {
     grid-area: tags;
 }
 
-.game{
+.game {
     grid-area: game-name;
 }
 
-.game-role{
+.game-role {
     grid-area: game-role;
 }
