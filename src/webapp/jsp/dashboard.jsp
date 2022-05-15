@@ -1,3 +1,9 @@
+<%--
+  Author: Daniel Mehlber
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,19 +11,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link href="Elements.css" rel="stylesheet"/>
-    <link href="dashboard.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
-    <script src="dashboard.js" defer></script>
+    <script src="${pageContext.request.contextPath}/js/dashboard.js" defer></script>
     <nav>
         <div class="profile-container">
             <a class="profile-image" href="/">
-                <img src="" width="100px" height="100px"/>
-            </a> 
+                <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${requestScope.dashboardBean.username}" width="100px" height="100px"/>
+            </a>
             <div class="player-username">
-                @playerxyz
+                ${requestScope.dashboardBean.username}
             </div>
         </div>
         <ul class="navigation-options-container">

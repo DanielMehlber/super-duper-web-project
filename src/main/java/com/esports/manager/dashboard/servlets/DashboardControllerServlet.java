@@ -19,9 +19,9 @@ import java.io.IOException;
  * @author Daniel Mehlber
  */
 @WebServlet("/dashboard")
-public class DashboardController extends HttpServlet {
+public class DashboardControllerServlet extends HttpServlet {
 
-    private final Logger log = LogManager.getLogger(DashboardController.class);
+    private final Logger log = LogManager.getLogger(DashboardControllerServlet.class);
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User currentUser = UserManagement.getAuthorizedUser(request.getSession());
