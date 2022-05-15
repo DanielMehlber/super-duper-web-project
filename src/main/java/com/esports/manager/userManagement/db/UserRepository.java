@@ -4,6 +4,7 @@ import com.esports.manager.global.db.mapping.ResultSetProcessor;
 import com.esports.manager.global.db.queries.QueryHandler;
 import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.userManagement.entities.User;
+import com.esports.manager.userManagement.exceptions.NoImageFoundException;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 
 import org.apache.logging.log4j.LogManager;
@@ -102,4 +103,129 @@ public class UserRepository {
 
         return isUsernameUnique;
     }
+
+    /**
+     * Loads profile image of user with username
+     * @param username username of user
+     * @return bytes of image
+     * @throws InternalErrorException cannot fetch from database; connection error; sql error
+     * @throws NoImageFoundException there is no profile picture for this username
+     * @author Daniel Mehlber
+     */
+    public static byte[] loadProfileImage(final String username) throws InternalErrorException, NoImageFoundException {
+        log.debug("loading profile image");
+
+        byte[] image;
+        try {
+            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/fetchUserProfileImage.sql");
+            pstmt.setString(1, username);
+            ResultSet result = pstmt.executeQuery();
+
+            // check if a image for this username has been found
+            if(result.next()) {
+                image = result.getBytes(1);
+            } else {
+                log.warn("no profile picture found for username");
+                throw new NoImageFoundException(username, "profile");
+            }
+        } catch (IOException | SQLException e) {
+            log.error("cannot fetch profile picture because of an unexpected sql error: " + e.getMessage());
+            throw new InternalErrorException("cannot fetch profile image", e);
+        } catch (RuntimeException e) {
+            log.error("cannot fetch profile picture because of an unexpected internal error: " + e.getMessage());
+            throw new InternalErrorException("cannot fetch profile image", e);
+        }
+
+        if(image == null) {
+            log.warn("user " + username + " has no profile image");
+            throw new NoImageFoundException(username, "profile");
+        }
+
+        return image;
+    }
+
+    /**
+     * Loads background image of user with username
+     * @param username username of user
+     * @return bytes of image
+     * @throws InternalErrorException cannot fetch from database; connection error; sql error
+     * @throws NoImageFoundException there is no background picture for this username
+     * @author Daniel Mehlber
+     */
+    public static byte[] loadBackgroundImage(final String username) throws InternalErrorException, NoImageFoundException {
+        log.debug("loading background image");
+
+        byte[] image;
+        try {
+            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/fetchUserBackgroundImage.sql");
+            pstmt.setString(1, username);
+            ResultSet result = pstmt.executeQuery();
+
+            // check if a image for this username has been found
+            if(result.next()) {
+                image = result.getBytes(1);
+            } else {
+                log.warn("no background picture found for username");
+                throw new NoImageFoundException(username, "background");
+            }
+        } catch (IOException | SQLException e) {
+            log.error("cannot fetch background picture because of an unexpected sql error: " + e.getMessage());
+            throw new InternalErrorException("cannot fetch background image", e);
+        } catch (RuntimeException e) {
+            log.error("cannot fetch background picture because of an unexpected internal error: " + e.getMessage());
+            throw new InternalErrorException("cannot fetch background image", e);
+        }
+
+        if(image == null) {
+            log.warn("user '" + username + "' has no background image");
+            throw new NoImageFoundException(username, "background");
+        }
+
+        return image;
+    }
+
+    /**
+     * Sets background image of user
+     * @param image image data as byte array
+     * @param user images will belong to this user
+     * @throws InternalErrorException cannot write to database
+     * @author Daniel Mehlber
+     */
+    public static void setBackgroundImage(final byte[] image, User user) throws InternalErrorException {
+        try {
+            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/setUserBackgroundImage.sql");
+            pstmt.setBytes(1, image);
+            pstmt.setString(2, user.getUsername());
+            pstmt.executeUpdate();
+        } catch (IOException | SQLException e) {
+            log.error("cannot set background picture because of an unexpected sql error: " + e.getMessage());
+            throw new InternalErrorException("cannot set background image", e);
+        } catch (RuntimeException e) {
+            log.error("cannot set background picture because of an unexpected internal error: " + e.getMessage());
+            throw new InternalErrorException("cannot set background image", e);
+        }
+    }
+
+    /**
+     * Sets profile image of user
+     * @param image image data as byte array
+     * @param user images will belong to this user
+     * @throws InternalErrorException cannot write to database
+     * @author Daniel Mehlber
+     */
+    public static void setProfileImage(final byte[] image, User user) throws InternalErrorException {
+        try {
+            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/setUserProfileImage.sql");
+            pstmt.setBytes(1, image);
+            pstmt.setString(2, user.getUsername());
+            pstmt.executeUpdate();
+        } catch (IOException | SQLException e) {
+            log.error("cannot set profile picture because of an unexpected sql error: " + e.getMessage());
+            throw new InternalErrorException("cannot set profile image", e);
+        } catch (RuntimeException e) {
+            log.error("cannot set profile picture because of an unexpected internal error: " + e.getMessage());
+            throw new InternalErrorException("cannot set profile image", e);
+        }
+    }
+
 }

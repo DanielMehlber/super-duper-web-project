@@ -1,0 +1,1 @@
+UPDATE user SET profile_picture=? WHERE username=?;
