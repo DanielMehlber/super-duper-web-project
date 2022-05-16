@@ -1,16 +1,22 @@
 package com.esports.manager.userManagement.beans;
 
 import java.io.Serializable;
+import java.sql.Blob;
 
 public class ProfileViewBean implements Serializable {
-    public ProfileViewBean(){}
+    public ProfileViewBean() {
+    }
 
     //TODO Change all attributes to User Object
+
+    private int id;
     private String username;
     private String email;
-    private String team;
-    private String game;
-    private String role;
+
+    private Blob profile_picture;
+
+    private Blob background_picture;
+
     private String errorMessage;
     private Long points;
 
@@ -30,39 +36,39 @@ public class ProfileViewBean implements Serializable {
         this.email = email;
     }
 
-    public String getTeam() {
-        return team;
+    public int getId() {
+        return id;
     }
 
-    public void setTeam(String team) {
-        this.team = team;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getGame() {
-        return game;
+    public Blob getProfile_picture() {
+        return profile_picture;
     }
 
-    public void setGame(String game) {
-        this.game = game;
+    public void setProfile_picture(Blob profile_picture) {
+        this.profile_picture = profile_picture;
     }
 
-    public String getRole() {
-        return role;
+    public Blob getBackground_picture() {
+        return background_picture;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setBackground_picture(Blob background_picture) {
+        this.background_picture = background_picture;
     }
 
-    public String getErrorMessage(){
+    public String getErrorMessage() {
         return errorMessage;
     }
 
-    public void setErrorMessage(String errorMessage){
+    public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 
-    public Long getPoints(){
+    public Long getPoints() {
         return points;
     }
 

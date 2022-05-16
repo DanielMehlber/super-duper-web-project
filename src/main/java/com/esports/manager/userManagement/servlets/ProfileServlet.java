@@ -1,7 +1,10 @@
 package com.esports.manager.userManagement.servlets;
 
 import com.esports.manager.userManagement.beans.ProfileViewBean;
+import com.esports.manager.userManagement.beans.UserSessionBean;
+import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
+import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 import com.esports.manager.userManagement.exceptions.UnauthorizedException;
 import com.esports.manager.userManagement.logic.UserManagement;
 import jakarta.servlet.ServletException;
@@ -13,10 +16,12 @@ import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.awt.*;
 import java.io.IOException;
+import java.sql.Blob;
 
 /**
- * We receive a request of a user to view a profile of a user (other user or only himself?)
+ * Servlet setting up the profile of the user, in order to display the JSP
  *
  * @author Philipp Phan
  */
@@ -28,7 +33,8 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession currentSession = request.getSession();
-        //ProfileViewBean profileViewBean = new ProfileViewBean();
+        User currentUser = UserManagement.getAuthorizedUser(request.getSession());
+        ProfileViewBean profileViewBean = new ProfileViewBean();
 
         //Check if user is logged in
         boolean loggedIn = true;
@@ -37,23 +43,40 @@ public class ProfileServlet extends HttpServlet {
         } catch (UnauthorizedException e) {
             // there is no authorized user
             loggedIn = false;
+            log.warn("Login to view Profile");
+            profileViewBean.setErrorMessage("Unauthorized user");
+
         }
         // redirect accordingly
         if (loggedIn) {
+            try {
+                //Get current user from current HttpSession
+                currentUser = UserManagement.fetchUserByUsername(currentUser.getUsername());
+            } catch (NoSuchUserException e) {
+                log.warn("No such user found");
+                profileViewBean.setErrorMessage("No such user found");
+                response.sendRedirect("jsp/login.jsp");
+            }
+            //Set Attributes of user inside of profileViewBean
+            profileViewBean.setUsername(currentUser.getUsername());
+            profileViewBean.setEmail(currentUser.getEmail());
+            //profileViewBean.setProfile_picture(currentUser.getProfile_picture);
+            //profileViewBean.setBackground_picture(currentUser.getBackground_picture);
+
             // redirect to dashboard
+            request.setAttribute("profileViewBean", profileViewBean);
             response.sendRedirect("/profile (USER ID) .jsp");
         } else {
             // redirect to login
             response.sendRedirect("/jsp/login.jsp");
         }
-
+        request.setAttribute("viewBean", profileViewBean);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //Method to change username -> check if new username is available
-
         //Method to post / change profile picture
+
     }
 
 }
