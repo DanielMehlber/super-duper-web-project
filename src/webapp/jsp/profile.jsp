@@ -1,11 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Philipp
+  User: Philipp Phan
   Date: 13.05.2022
   Time: 16:03
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -29,11 +29,11 @@
         <div class="player-info">
             <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png"
                  alt="Profile picture"
-                 class="profile-picture"/>
+                 class="profile-picture" ${requestScope.profileBean.profile_picture}/>
             <!--get Username user-->
-            <p class="username">@ManielDehlber29${profileBean.username}</p>
+            <p class="username">@ManielDehlber29${requestScope.profileBean.username}</p>
             <!-- get E-Mail from user-->
-            <p class="email">manield@pwc.com${profileBean.username}</p>
+            <p class="email">manield@pwc.com${requestScope.profileBean.email}</p>
         </div>
 
        <!-- <p class="title">Active Team</p>-->
