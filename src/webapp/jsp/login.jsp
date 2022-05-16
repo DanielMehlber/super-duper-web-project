@@ -13,8 +13,8 @@
     <meta charset="UTF-8">
     <base href="${pageContext.request.requestURI}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../stylesheets/elements.css">
-    <link rel="stylesheet" href="../stylesheets/loginPage.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/Elements.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/loginPage.css">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
@@ -22,8 +22,8 @@
     <form class="login-card" action="../login" method="POST">
         <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Logo"
              class="logo img">
-        <input name="username" type="text" placeholder="Username" class="username" required>${requestScope.loginBean.username}
-        <input name="password" type="password" placeholder="Password" class="password" required>${requestScope.loginBean.password}
+        <input name="username" type="text" placeholder="Username" class="username" value="${requestScope.loginBean.username}" required/>
+        <input name="password" type="password" placeholder="Password" class="password" value="${requestScope.loginBean.password}" required/>
         <!--Get error Message from LoginBean-->
         <p class="error-text">
             <c:if test="${not empty requestScope.loginBean.errorMessage}">
@@ -32,6 +32,7 @@
         </p>
         <button class="enter-button">Login</button>
         <button class="cancel-button">Back</button>
+        <a class="registration-redirect" href="${pageContext.request.contextPath}/registration">Not a member yet?</a>
     </form>
 </main>
 </body>

@@ -23,8 +23,9 @@ main {
                     "username username"
                     "password password"
                     "error-text error-text"
-                    "cancel continue";
-    grid-template-rows: auto min-content min-content 20px auto;
+                    "cancel continue"
+                    "registration-redirect registration-redirect";
+    grid-template-rows: auto min-content min-content 20px auto min-content;
     transition: all 1s;
 }
 
@@ -55,14 +56,6 @@ input.username {
     transform: translateY(-5px);
 }
 
-.text{
-    width: 359px;
-    height: 48px;
-}
-.password{
-    width: 359px;
-    height: 48px;
-}
 
 .enter-button{
     width: 161px;
@@ -80,4 +73,11 @@ input.username {
     color: #D52B2B;
     font-size: 15px;
     grid-area: error-text;
+}
+
+.registration-redirect {
+    grid-area: registration-redirect;
+    margin-bottom: 30px;
+    color: var(--main-fg-color);
+    text-decoration: none;
 }

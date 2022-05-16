@@ -3,7 +3,9 @@ package com.esports.manager.userManagement.servlets;
 import java.io.IOException;
 
 import com.esports.manager.userManagement.beans.RegistrationViewBean;
+import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
+import com.esports.manager.userManagement.exceptions.WrongCredentialsException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,8 +33,7 @@ public class RegistrationServlet extends HttpServlet {
 	
     @java.lang.Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO: Block doGet since we won't allow any form actions to do get calls
-        doPost(req, resp);
+        req.getRequestDispatcher("/jsp/registration.jsp").forward(req, resp);
     }
 
     @java.lang.Override
@@ -42,11 +43,15 @@ public class RegistrationServlet extends HttpServlet {
         // session bean for view generation
         RegistrationViewBean registrationViewSessionBean = new RegistrationViewBean();
 
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        String email = req.getParameter("email");
+
         try {
             UserManagement.registerUser(
-                    req.getParameter("username"),
-                    req.getParameter("password"),
-                    req.getParameter("email"));
+                    username,
+                    password,
+                    email);
         } catch(UsernameAlreadyTakenException ex) {
             // error messages
             log.warn("cannot perform user registration because username is already taken: " + ex.getMessage());
@@ -71,8 +76,15 @@ public class RegistrationServlet extends HttpServlet {
         	throw ex;
         }
 
-        // redirect to JSP
-        // TODO: Add a useful file to where we want to redirect
-        resp.sendRedirect("www.facebook.com");
+        // perform login with created user
+        try {
+            UserManagement.performLogin(username, password, req.getSession());
+        } catch (NoSuchUserException | WrongCredentialsException e) {
+            log.fatal("cannot login user in registration process because of unexpected internal error: " + e.getMessage(), e);
+            throw new InternalErrorException("cannot login user in registration process", e);
+        }
+
+        // redirect JSP
+        resp.sendRedirect(getServletContext().getContextPath() + "/dashboard");
     }
 }
