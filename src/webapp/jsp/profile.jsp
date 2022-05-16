@@ -36,19 +36,19 @@
             <p class="email">manield@pwc.com${profileBean.username}</p>
         </div>
 
+       <!-- <p class="title">Active Team</p>-->
         <div class="team-container">
-            <p class="title">Active Team</p>
                 <!-- get team name from user-->
                 <p class="team">THeSports Red-White</p>
                 <!--team-image-->
                 <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png"
                      alt="team-picture"
                      class="team-image"/>
-                <p class="members">Members: 5${team.tags}</p>
+                <p class="members">32 Members${team.members}</p>
                 <!-- get game from user-->
-                <p class="game">Main Game: CSGO</p>
+                <p class="member-images">member-images</p>
                 <!--role-->
-                <p class="game-role">Entry-Fragger</p>
+                <p class="team-tags">#CSGO #Money #B1tchez #MatzeF1ck3n${team.tags}</p>
         </div>
 
         <div class="activity-container">
