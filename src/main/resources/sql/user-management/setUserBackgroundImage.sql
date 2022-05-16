@@ -1,0 +1,1 @@
+UPDATE user SET background_picture=? WHERE username=?;

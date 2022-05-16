@@ -1,0 +1,1 @@
+SELECT background_picture FROM user WHERE username = ?;

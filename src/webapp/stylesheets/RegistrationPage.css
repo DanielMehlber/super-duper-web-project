@@ -1,0 +1,82 @@
+/*---Registration---*/
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.registration-card{
+    border-radius: 10px;
+    background-color: #1d274c;
+    width: 530px;
+    height: 648px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+   	vertical-align: middle;
+    justify-items: center;
+    
+/* defines colums and rows as areas of the grid (set area using grid-area) */
+    grid-template-areas: 
+                "logo logo"
+                "email email"
+                "username username"
+                "password password"
+                "error-text error-text"
+                "cancel continue"
+                "login-redirect login-redirect";
+    grid-template-rows: auto min-content min-content min-content 20px auto min-content;
+    transition: all 1s;
+}
+
+.registration-card:hover {
+    box-shadow: rgb(0 255 255 / 36%) 0px 0px 15px 3px;
+}
+
+input.password{
+    grid-area: password;
+}
+input.username{
+    grid-area: username;
+}
+input.email{
+    grid-area: email;
+}
+
+.img{
+    width: 150px;
+    height: 150px;
+}
+
+.logo {
+    transition: all 0.5s;
+    grid-area: logo;
+}
+
+.logo:hover {
+    transform: translateY(-5px);
+}
+
+.enter-button{
+    width: 161px;
+    height: 48px;
+    grid-area: continue;
+}
+.cancel-button{
+    width: 161px;
+    height: 48px;
+    grid-area: cancel;
+}
+
+.error-message-text {
+    grid-area: error-text;
+}
+
+.login-redirect {
+    grid-area: login-redirect;
+    margin-bottom: 30px;
+    color: var(--main-fg-color);
+    text-decoration: none;
+}
