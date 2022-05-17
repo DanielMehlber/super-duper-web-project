@@ -228,4 +228,36 @@ public class UserRepository {
         }
     }
 
+    /**
+     * Fetches user entities with regex pattern matching username
+     * @param pattern regex pattern
+     * @return list of users with username matching regex pattern
+     * @throws InternalErrorException an unexpected internal error occurred
+     * @author Daniel Mehlber
+     */
+    public static List<User> fetchAllUserWithUsernamePattern(final String pattern) throws InternalErrorException {
+        log.debug("loading background image");
+
+        List<User> users;
+
+        byte[] image;
+        try {
+            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/fetchUserByUsernamePattern.sql");
+            pstmt.setString(1, pattern);
+            ResultSet result = pstmt.executeQuery();
+
+            // convert resultset into users
+            users = ResultSetProcessor.convert(User.class, result);
+        } catch (IOException | SQLException e) {
+            log.error("cannot fetch users with username pattern because of an unexpected sql error: " + e.getMessage());
+            throw new InternalErrorException("cannot fetch users with username pattern", e);
+        } catch (RuntimeException e) {
+            log.error("cannot fetch users with username pattern because of an unexpected internal error: " + e.getMessage());
+            throw new InternalErrorException("cannot fetch users with username pattern", e);
+        }
+
+
+        return users;
+    }
+
 }

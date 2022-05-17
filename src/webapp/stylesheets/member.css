@@ -1,0 +1,91 @@
+.member-card {
+    width: 330px;
+    height: 400px;
+    box-shadow: rgb(0 255 255 / 36%) 0px 0px 15px 3px;
+    border-radius: 10px;
+    display: flex;
+    background: linear-gradient(0deg, #1d274cf0 40%, transparent 100%);
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.member-card > .member-data {
+    z-index: 2;
+    position:absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.member-data > .profile-image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+.member-data > .profile-image > img {
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: var(--main-fg-color);
+    border-width: 4px;
+}
+
+.member-handle {
+    font-weight: bolder;
+    color: white;
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+.member-handle > .member-username {
+    text-decoration: underline;
+}
+
+.member-data > .member-teams {
+    display: inline-flex;
+    height: max-content;
+    width: max-content;
+    margin-bottom: 5px;
+    margin-top: auto;
+    width: 100%;
+    justify-content: center;
+}
+
+.team-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: var(--main-fg-color);
+    margin-right: -7px;
+    margin-left: -7px;
+}
+
+.member-data > button.view-member-button {
+    margin-top: auto;
+    margin-bottom: 30px;
+    width: 150px;
+    height: 50px;
+}
+
+.member-data > .member-nickname {
+    font-size: 1.1em;
+    color: rgb(209, 209, 209);
+    margin-bottom: 20px;
+}
+
+.member-card > .member-bg-image {
+    object-fit: cover;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    z-index: -2;
+}

@@ -61,21 +61,31 @@ public class UserImageServlet extends HttpServlet {
         }
 
         byte[] image;
-        try {
-            if (type.toLowerCase().equals("profile")) {
+
+        if (type.toLowerCase().equals("profile")) {
+            try {
                 image = UserRepository.loadProfileImage(username);
-            } else if (type.toLowerCase().equals("background")) {
-                image = UserRepository.loadBackgroundImage(username);
-            } else {
-                log.warn("cannot fetch image because of unknown type");
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "unknown user image type");
+            } catch (NoImageFoundException e) {
+                // no profile image was found in database for user, send default one
+                log.debug(String.format("no profile picture found for user %s, redirecting to default image", user.getUsername()));
+                response.sendRedirect(getServletContext().getContextPath() + "/img/default-pb.jpg");
                 return;
             }
-        } catch (NoImageFoundException e) {
-            log.warn("No image was found");
-            response.sendError(HttpServletResponse.SC_NO_CONTENT, "no image found");
+        } else if (type.toLowerCase().equals("background")) {
+            try {
+                image = UserRepository.loadBackgroundImage(username);
+            } catch (NoImageFoundException e) {
+                // no background image was found in database for user, send default one
+                log.debug(String.format("no background picture found for user %s, redirecting to default image", user.getUsername()));
+                response.sendRedirect(getServletContext().getContextPath() + "/img/default-bg.jpg");
+                return;
+            }
+        } else {
+            log.warn("cannot fetch image because of unknown type");
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "unknown user image type");
             return;
         }
+
 
         response.setContentType("image/png");
         response.getOutputStream().write(image);
