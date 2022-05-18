@@ -25,7 +25,7 @@
         <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
         <section class="players-area">
             <h1>Players Area</h1>
-            <input id="player-searchbar" type="text" placeholder="Search..." onkeypress="executePlayerSearch()"/>
+            <input id="player-searchbar" type="text" placeholder="Search..." onkeydown="executePlayerSearch()"/>
             <div id="player-list"></div>
         </section>
     </main>

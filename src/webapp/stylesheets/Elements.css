@@ -23,7 +23,6 @@ input{
     background-color: transparent;
     border: 3px solid var(--main-fg-color);
     border-radius: 10px;            /*With border-radius you can defines the radius of an element*/
-    font-size: 20px;
     padding-left: 16px;
     padding-right: 16px;
     width: 359px;

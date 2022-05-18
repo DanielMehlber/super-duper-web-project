@@ -40,7 +40,7 @@ public class UserRepository {
         // execute query and attempt to fetch user from database
         ResultSet resultSet;
         try(PreparedStatement statement = QueryHandler.loadStatement("/sql/user-management/fetchUserByUsername.sql");
-            Connection connection = statement.getConnection();) {
+            Connection connection = statement.getConnection()) {
             statement.setString(1, username);
             resultSet = statement.executeQuery();
             // convert ResultSet into user entity
@@ -70,7 +70,7 @@ public class UserRepository {
         log.debug("creating new user entity in database...");
 
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/createUser.sql");
-             Connection connection = pstmt.getConnection();) {
+             Connection connection = pstmt.getConnection()) {
             pstmt.setString(1, userData.getUsername());
             pstmt.setString(2, userData.getEmail());
             pstmt.setString(3, userData.getPasswordHash());
@@ -118,7 +118,7 @@ public class UserRepository {
 
         byte[] image;
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/fetchUserProfileImage.sql");
-             Connection connection = pstmt.getConnection();) {
+             Connection connection = pstmt.getConnection()) {
             pstmt.setString(1, username);
             ResultSet result = pstmt.executeQuery();
 
@@ -158,7 +158,7 @@ public class UserRepository {
 
         byte[] image;
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/fetchUserBackgroundImage.sql");
-             Connection connection = pstmt.getConnection();) {
+             Connection connection = pstmt.getConnection()) {
             pstmt.setString(1, username);
             ResultSet result = pstmt.executeQuery();
 
@@ -194,7 +194,7 @@ public class UserRepository {
      */
     public static void setBackgroundImage(final byte[] image, User user) throws InternalErrorException {
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/setUserBackgroundImage.sql");
-             Connection connection = pstmt.getConnection();) {
+             Connection connection = pstmt.getConnection()) {
             pstmt.setBytes(1, image);
             pstmt.setString(2, user.getUsername());
             pstmt.executeUpdate();
@@ -216,7 +216,7 @@ public class UserRepository {
      */
     public static void setProfileImage(final byte[] image, User user) throws InternalErrorException {
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/setUserProfileImage.sql");
-             Connection connection = pstmt.getConnection();) {
+             Connection connection = pstmt.getConnection()) {
             pstmt.setBytes(1, image);
             pstmt.setString(2, user.getUsername());
             pstmt.executeUpdate();
@@ -240,10 +240,8 @@ public class UserRepository {
         log.debug("loading background image");
 
         List<User> users;
-
-        byte[] image;
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/fetchUserByUsernamePattern.sql");
-             Connection connection = pstmt.getConnection();) {
+             Connection connection = pstmt.getConnection()) {
             pstmt.setString(1, pattern);
             ResultSet result = pstmt.executeQuery();
 

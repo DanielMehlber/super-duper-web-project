@@ -28,7 +28,7 @@ public class UserRepositoryTest {
      * @author Daniel Mehlber
      */
     @BeforeAll
-    public static void injectDataSource() throws SQLException {
+    public static void injectDataSource() {
         // create datasource and inject it into the QueryHandler
         DataSource dataSource = DataSourceCreator.createNewDataSource();
         QueryHandler.setGlobalDataSource(dataSource);
@@ -39,6 +39,7 @@ public class UserRepositoryTest {
         // clear table of users
         PreparedStatement statement = QueryHandler.loadStatement("/sql/user-management/delete-all-users.sql");
         statement.executeUpdate();
+        statement.close();
     }
 
     @Test

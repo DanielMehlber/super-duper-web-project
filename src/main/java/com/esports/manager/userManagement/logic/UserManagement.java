@@ -59,8 +59,7 @@ public class UserManagement {
 
     public static User fetchUserByUsername(final String username) throws NoSuchUserException, InternalErrorException {
         log.debug("fetching user by username...");
-        User user = UserRepository.getByUsername(username);
-        return user;
+        return UserRepository.getByUsername(username);
     }
 
 

@@ -18,11 +18,12 @@ import java.util.Vector;
  * <p>Warning: Not all methods are implemented. If a method is not implemented it will throw a {@link NotImplementedException}</p>
  *
  */
+@SuppressWarnings("deprecation")
 public class MockHttpSession implements HttpSession {
 
     private LocalDateTime lastAccessed;
 
-    private Map<String, Object> attributes;
+    private final Map<String, Object> attributes;
 
     public MockHttpSession() {
         attributes = new HashMap<>();

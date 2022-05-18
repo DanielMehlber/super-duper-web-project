@@ -7,8 +7,8 @@
  * @param user.teamIds list of team ids the user is member of
  */
 function generateUserCardHtml(user) {
-    var html = 
-    `<div class="member-card">
+    let html =
+        `<div class="member-card">
     <img class="member-bg-image" src="users/images?user=${user.username}&type=background" alt="background"/>
     <div class="member-data">
         <div class="profile-image">
@@ -20,9 +20,9 @@ function generateUserCardHtml(user) {
         <div class="member-nickname">
             ${user.nickname}
         </div>
-        <div class="member-teams">`
+        <div class="member-teams">`;
 
-        user.teamIds.forEach(teamId => {
+    user.teamIds.forEach(teamId => {
             html += 
             `
                 <a href="/teams?id=${teamId}">
@@ -47,7 +47,7 @@ function executePlayerSearch() {
     const playersList = document.getElementById("player-list")
     playersList.innerHTML = ""
 
-    const players = fetch("users/search?un="+searchTerm)
+    fetch("users/search?un="+searchTerm)
         .then(response => response.json())
         .then(usersJson => {
             usersJson.forEach(userJson => {

@@ -1,11 +1,12 @@
 <script src="${pageContext.request.contextPath}/js/sidebar.js" defer></script>
 <nav>
     <div class="profile-container">
-        <a class="profile-image" href="/">
-            <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${requestScope.dashboardBean.username}" width="100px" height="100px"/>
+        <a class="profile-image" href="${pageContext.request.contextPath}/profile?username=${sessionScope.userSessionBean.user.username}">
+            <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${sessionScope.userSessionBean.user.username}" width="100px" height="100px"
+            alt="profile image of user ${sessionScope.userSessionBean.user.username}"/>
         </a>
         <div class="player-username">
-            ${requestScope.dashboardBean.username}
+            @${sessionScope.userSessionBean.user.username}
         </div>
     </div>
     <ul class="navigation-options-container">

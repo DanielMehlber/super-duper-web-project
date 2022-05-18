@@ -62,7 +62,7 @@ public class UserImageServlet extends HttpServlet {
 
         byte[] image;
 
-        if (type.toLowerCase().equals("profile")) {
+        if (type.equalsIgnoreCase("profile")) {
             try {
                 image = UserRepository.loadProfileImage(username);
             } catch (NoImageFoundException e) {
@@ -71,7 +71,7 @@ public class UserImageServlet extends HttpServlet {
                 response.sendRedirect(getServletContext().getContextPath() + "/img/default-pb.jpg");
                 return;
             }
-        } else if (type.toLowerCase().equals("background")) {
+        } else if (type.equalsIgnoreCase("background")) {
             try {
                 image = UserRepository.loadBackgroundImage(username);
             } catch (NoImageFoundException e) {
@@ -125,9 +125,9 @@ public class UserImageServlet extends HttpServlet {
 
         byte[] image = buffer.toByteArray();
 
-        if(type.toLowerCase().equals("profile")) {
+        if(type.equalsIgnoreCase("profile")) {
             UserRepository.setProfileImage(image, user);
-        } else if (type.toLowerCase().equals("background")) {
+        } else if (type.equalsIgnoreCase("background")) {
             UserRepository.setBackgroundImage(image, user);
         } else {
             log.warn(String.format("user %s tried to upload data with unknown type '%s'", user.getUsername(), type));
