@@ -13,6 +13,7 @@ body {
     --main-fg-color: #2B92D5;
     font-family: 'Inter';
     font-weight: 700;
+    color: white;
 }
 
 /*Text Elements*/

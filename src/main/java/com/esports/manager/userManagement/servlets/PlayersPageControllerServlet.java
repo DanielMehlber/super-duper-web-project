@@ -15,7 +15,7 @@ import java.io.IOException;
  * @author Daniel Mehlber
  */
 @WebServlet("/users")
-public class UserPageControllerServlet extends HttpServlet {
+public class PlayersPageControllerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,6 +25,6 @@ public class UserPageControllerServlet extends HttpServlet {
         // put user object in session
         req.setAttribute("user", user);
 
-        req.getRequestDispatcher("/jsp/users.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/players.jsp").forward(req, resp);
     }
 }

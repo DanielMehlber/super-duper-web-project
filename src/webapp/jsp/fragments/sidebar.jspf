@@ -1,3 +1,4 @@
+<script src="${pageContext.request.contextPath}/js/sidebar.js" defer></script>
 <nav>
     <div class="profile-container">
         <a class="profile-image" href="/">
@@ -8,17 +9,20 @@
         </div>
     </div>
     <ul class="navigation-options-container">
-        <li class="selected nav-option">
-            <a href="/dashboard">Home</a>
+        <li class="unselected nav-option">
+            <a href="${pageContext.request.contextPath}/dashboard">Home</a>
         </li>
         <li class="unselected nav-option">
-            <a href="/clubs">Clubs</a>
+            <a href="${pageContext.request.contextPath}/clubs">Clubs</a>
         </li>
         <li class="unselected nav-option">
-            <a href="/games">Games</a>
+            <a href="${pageContext.request.contextPath}/games">Games</a>
         </li>
         <li class="unselected nav-option">
-            <a href="/settings">Settings</a>
+            <a href="${pageContext.request.contextPath}/users">Players</a>
+        </li>
+        <li class="unselected nav-option">
+            <a href="${pageContext.request.contextPath}/settings">Settings</a>
         </li>
     </ul>
 </nav>

@@ -32,7 +32,7 @@ public class UserManagementTest {
     public static void injectDataSource() throws SQLException {
         // create datasource and inject it into the QueryHandler
         DataSource dataSource = DataSourceCreator.createNewDataSource();
-        QueryHandler.setDataSource(dataSource);
+        QueryHandler.setGlobalDataSource(dataSource);
     }
 
     @BeforeEach

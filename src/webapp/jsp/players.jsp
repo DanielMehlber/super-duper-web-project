@@ -23,11 +23,11 @@
 
     <main id="main" onclick="hideNav()">
         <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
-        <div class="dashboard-header">
-            <h1>Welcome back</h1>
-        </div>
-        <input id="player-searchbar" type="text" placeholder="Search..." onkeypress="executePlayerSearch()"/>
-        <div id="player-list"></div>
+        <section class="players-area">
+            <h1>Players Area</h1>
+            <input id="player-searchbar" type="text" placeholder="Search..." onkeypress="executePlayerSearch()"/>
+            <div id="player-list"></div>
+        </section>
     </main>
 
     <footer></footer>

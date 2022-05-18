@@ -1,13 +1,25 @@
+/*
+Author: Daniel Mehlber
+ */
+
+.players-area {
+    padding: 40px;
+}
+
 .member-card {
     width: 330px;
     height: 400px;
-    box-shadow: rgb(0 255 255 / 36%) 0px 0px 15px 3px;
     border-radius: 10px;
     display: flex;
-    background: linear-gradient(0deg, #1d274cf0 40%, transparent 100%);
     flex-direction: column;
     align-items: center;
     margin: 20px;
+    background: linear-gradient(0deg, #1d274cf0 40%, transparent 100%);
+    transition: all 0.5s;
+}
+
+.member-card:hover {
+    box-shadow: rgb(0 255 255 / 36%) 0px 0px 15px 3px;
 }
 
 .member-card > .member-data {
@@ -88,4 +100,11 @@
     height: inherit;
     border-radius: inherit;
     z-index: -2;
+}
+
+#player-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }

@@ -16,8 +16,6 @@
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
-    <script src="${pageContext.request.contextPath}/js/dashboard.js" defer></script>
-
     <%@include file="fragments/sidebar.jspf" %>
 
     <main id="main" onclick="hideNav()">
