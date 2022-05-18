@@ -52,20 +52,22 @@ public class ProfileServlet extends HttpServlet {
             try {
                 //Get current user from current HttpSession
                 currentUser = UserManagement.fetchUserByUsername(currentUser.getUsername());
+
+                //Set Attributes of user inside of profileViewBean
+                profileViewBean.setUsername(currentUser.getUsername());
+                profileViewBean.setEmail(currentUser.getEmail());
+                //profileViewBean.setProfile_picture(UserRepository.loadProfileImage(username));
+                //profileViewBean.setBackground_picture(UserRepository.loadBackgroundImage(username));
+
+                // redirect to dashboard
+                request.setAttribute("profileViewBean", profileViewBean);
+                response.sendRedirect("/profile/username.jsp");
             } catch (NoSuchUserException e) {
                 log.warn("No such user found");
                 profileViewBean.setErrorMessage("No such user found");
                 response.sendRedirect("jsp/login.jsp");
             }
-            //Set Attributes of user inside of profileViewBean
-            profileViewBean.setUsername(currentUser.getUsername());
-            profileViewBean.setEmail(currentUser.getEmail());
-            //profileViewBean.setProfile_picture(currentUser.getProfile_picture);
-            //profileViewBean.setBackground_picture(currentUser.getBackground_picture);
 
-            // redirect to dashboard
-            request.setAttribute("profileViewBean", profileViewBean);
-            response.sendRedirect("/profile (USER ID) .jsp");
         } else {
             // redirect to login
             response.sendRedirect("/jsp/login.jsp");
@@ -77,6 +79,11 @@ public class ProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Method to post / change profile picture
 
+        //set user_image
+        //UserRepository.setProfileImage()
+
+        //set user_background_image
+        //UserRepository.setBackgroundImage()
     }
 
 }
