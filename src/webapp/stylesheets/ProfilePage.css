@@ -8,7 +8,7 @@ html {
 
 body {
     background: url("https://images3.alphacoders.com/910/910923.png");
-    background-size: 1920px 1080px;
+    background-size: cover;
     margin: 0px 0px 0px 0px;
 }
 
