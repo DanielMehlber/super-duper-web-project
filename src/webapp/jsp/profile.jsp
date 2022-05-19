@@ -19,8 +19,6 @@
 </head>
 <body>
 <div class="flex-container">
-    <div class="empty1"></div>
-
     <img src="${pageContext.request.contextPath}/users/images?type=background&username=[requestScope.ProfileViewBean.username]" class="background-image"/>
 
     <form class="profile-card" action="../profile" method="post">
@@ -36,6 +34,7 @@
             <p class="user_level">20</p>
         </div>
 
+        <h1 class="team-header">Active Teams</h1>
         <!-- <p class="title">Active Team</p>-->
         <div class="team-container">
             <!-- get team name from user-->
@@ -57,8 +56,6 @@
         <!--add to team-->
         <!--<button>Test</button>-->
     </form>
-
-    <div class="empty2"></div>
 </div>
 </body>
 </html>

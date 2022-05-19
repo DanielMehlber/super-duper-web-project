@@ -1,5 +1,8 @@
 * {
     color: white;
+    --main-color: #2B92D5;
+    --sec-color: #1d274c;
+
 }
 
 html {
@@ -19,7 +22,8 @@ body {
     align-content: center;
 
 }
-.background-image{
+
+.background-image {
     z-index: -1;
     margin: 0px 0px 0px 0px;
 }
@@ -29,7 +33,7 @@ body {
     width: 950px;
     background: rgba(29, 39, 76, 0.87);
     backdrop-filter: blur(20px);
-    border: 3px solid #1d274c;
+    border: 3px solid var(--sec-color);
     border-radius: 20px;
     margin-top: 1%;
 
@@ -39,11 +43,12 @@ body {
     justify-items: center;
 
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr min-content 1fr 1fr 1fr;
     gap: 15px 0px;
     grid-template-areas:
 
     "player-info"
+    "team-header"
     "team-container"
     "activity-container"
     ".";
@@ -78,7 +83,7 @@ body {
 
 .profile-image {
     border-radius: 50%;
-    border: 4px solid #2B92D5;
+    border: 4px solid var(--main-fg-color);
     height: 160px;
     width: 160px;
     margin-left: 30px;
@@ -105,18 +110,26 @@ body {
     font-size: 30px;
     font-weight: 500;
     padding: 3px 3px 3px 3px;
-    border: 3px solid #FD2C2C;
+    border: 3px solid #D52B2B;
     border-radius: 50%;
+}
+
+.team-header {
+    grid-area: team-header;
+    margin: 0px 0px 0px 0px;
+    justify-self: start;
+    padding-left: 50px;
 }
 
 .team-container {
     border-radius: 10px;
-    background-color: #1d274c;
+    background-color: var(--sec-color);
+    border: 3px solid var(--sec-color);
     filter: brightness(85%);
     font-size: 20px;
     height: 220px;
     width: 900px;
-    border: 3px solid #1d274c;
+
 
     justify-content: center;
     align-items: center;
@@ -144,7 +157,7 @@ body {
     grid-area: team-image;
     height: 160px;
     width: 160px;
-    border: 3px solid #2B92D5;
+    border: 3px solid var(--main-fg-color);
     border-radius: 50%;
     margin-left: 30px;
 }
@@ -171,12 +184,13 @@ body {
 
 .activity-container {
     border-radius: 10px;
-    background-color: #1d274c;
+    border: 3px solid var(--sec-color);
+    background-color: var(--sec-color);
     filter: brightness(85%);
     font-size: 20px;
     height: 220px;
     width: 900px;
-    border: 3px solid #1d274c;
+
 
     grid-area: activity-container;
 }

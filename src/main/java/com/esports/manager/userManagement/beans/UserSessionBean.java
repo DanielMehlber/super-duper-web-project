@@ -1,9 +1,9 @@
 package com.esports.manager.userManagement.beans;
 
+import com.esports.manager.userManagement.entities.User;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
-import com.esports.manager.userManagement.entities.User;
 
 /**
  * This session bean stores login data used for authentication in session.
