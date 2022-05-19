@@ -8,9 +8,8 @@ public class ProfileViewBean implements Serializable {
     }
 
     //TODO Change all attributes to User Object
-
-    private int id;
     private String username;
+
     private String email;
 
     private Blob profile_picture;
@@ -18,6 +17,7 @@ public class ProfileViewBean implements Serializable {
     private Blob background_picture;
 
     private String errorMessage;
+
     private Long points;
 
     public String getUsername() {
@@ -34,14 +34,6 @@ public class ProfileViewBean implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Blob getProfile_picture() {
@@ -63,7 +55,6 @@ public class ProfileViewBean implements Serializable {
     public String getErrorMessage() {
         return errorMessage;
     }
-
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }

@@ -21,18 +21,18 @@
 <div class="flex-container">
     <div class="empty1"></div>
 
+    <img src="${pageContext.request.contextPath}/users/images?type=background&username=[requestScope.ProfileViewBean.username]" class="background-image"/>
 
     <form class="profile-card" action="../profile" method="post">
         <!--
         <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/edcb0e23689279.578bd6af7dffb.png" alt="Profile Banner" class="profile-banner"/>
         -->
         <div class="player-info">
-            <img src="../img/profile_image.jpeg"
-                 class="profile-picture" ${requestScope.profileBean.profile_picture}/>
+            <img src="${pageContext.request.contextPath}/users/images?type=profile&username=[requestScope.ProfileViewBean.username]"  class="profile-image"/>
             <!--get Username user-->
-            <p class="username">@wandolf${requestScope.profileBean.username}</p>
+            <p class="username">${requestScope.profileBean.username}</p>
             <!-- get E-Mail from user-->
-            <p class="email">manield@pwc.com${requestScope.profileBean.email}</p>
+            <p class="email">${requestScope.profileBean.email}</p>
             <p class="user_level">20</p>
         </div>
 
@@ -46,7 +46,7 @@
                  class="team-image"/>
             <p class="members">32 Members${team.members}</p>
             <!-- get game from user-->
-            <p class="member-images">member-images</p>
+            <p class="member-images">member-images${team.members-imgage}<</p>
             <!--role-->
             <p class="team-tags">#CSGO #Competetive #NeverStopWinning #Money #B1tchez #MatzeF1ck3n${team.tags}</p>
         </div>
@@ -54,7 +54,6 @@
         <div class="activity-container">
 
         </div>
-
         <!--add to team-->
         <!--<button>Test</button>-->
     </form>
