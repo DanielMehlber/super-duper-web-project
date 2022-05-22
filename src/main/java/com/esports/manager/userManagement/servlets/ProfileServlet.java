@@ -34,15 +34,16 @@ public class ProfileServlet extends HttpServlet {
          */
         HttpSession currentSession = request.getSession();
         User currentUser = UserManagement.getAuthorizedUser(request.getSession());
+        User userOfPage = new User();
         ProfileViewBean profileViewBean = new ProfileViewBean();
 
         try {
             //Get current user from current HttpSession (in order to check if user still exists and to display his data)
             currentUser = UserManagement.fetchUserByUsername(currentUser.getUsername());
-
             // DONE: pack user entity into bean, not every single attribute
             //Set Attributes of user inside profileViewBean
             profileViewBean.setUser(currentUser);
+
 
             // redirect to dashboard
             request.setAttribute("profileViewBean", profileViewBean);
@@ -53,12 +54,17 @@ public class ProfileServlet extends HttpServlet {
             response.sendRedirect("jsp/login.jsp");
         }
 
-
         request.setAttribute("viewBean", profileViewBean);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        HttpSession currentSession = request.getSession();
+        User currentUser = UserManagement.getAuthorizedUser(request.getSession());
+        User userOfPage = new User();
+        ProfileViewBean profileViewBean = new ProfileViewBean();
+
         //Method to post / change profile picture
 
         //set user_image
