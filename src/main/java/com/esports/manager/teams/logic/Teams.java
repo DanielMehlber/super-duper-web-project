@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 /**
- * collection of methods that will be used in member area
+ * collection of methods that will be used in teams
  *
  * @author Maximilian Rublik
  */
@@ -33,5 +33,19 @@ public class Teams {
         log.debug("fetching all teams...");
         List<Team> teams = TeamRepository.getAllTeams();
         return teams;
+    }
+
+    /**
+     * Fetch single team by id
+     * @param id
+     * @return a single team
+     * @throws InternalErrorException some unexpected and fatal internal error occurred
+     *
+     * @author Maximilian Rublik
+     */
+    public static Team fetchTeamById(long id) throws InternalErrorException {
+        log.debug("fetch single team by id");
+        Team team = TeamRepository.getTeamById(id);
+        return team;
     }
 }
