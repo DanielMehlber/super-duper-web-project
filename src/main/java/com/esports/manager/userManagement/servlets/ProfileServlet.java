@@ -40,12 +40,9 @@ public class ProfileServlet extends HttpServlet {
             //Get current user from current HttpSession (in order to check if user still exists and to display his data)
             currentUser = UserManagement.fetchUserByUsername(currentUser.getUsername());
 
-            // TODO: pack user entity into bean, not every single attribute
-            //Set Attributes of user inside of profileViewBean
-            profileViewBean.setUsername(currentUser.getUsername());
-            profileViewBean.setEmail(currentUser.getEmail());
-            //profileViewBean.setProfile_picture(UserRepository.loadProfileImage(username));
-            //profileViewBean.setBackground_picture(UserRepository.loadBackgroundImage(username));
+            // DONE: pack user entity into bean, not every single attribute
+            //Set Attributes of user inside profileViewBean
+            profileViewBean.setUser(currentUser);
 
             // redirect to dashboard
             request.setAttribute("profileViewBean", profileViewBean);
