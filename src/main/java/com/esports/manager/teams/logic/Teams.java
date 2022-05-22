@@ -28,9 +28,7 @@ public class Teams {
      * @author Maximilian Rublik
      */
     public static List<Team> fetchAllTeams() throws NoTeamsFoundException, InternalErrorException {
-        // TODO: Add filter directly to this method?
-
-        log.debug("fetching all teams...");
+       log.debug("fetching all teams...");
         List<Team> teams = TeamRepository.getAllTeams();
         return teams;
     }
