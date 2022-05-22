@@ -3,6 +3,7 @@ package com.esports.manager.teams.logic;
 import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.teams.entities.Team;
+import com.esports.manager.teams.exceptions.NoSuchTeamException;
 import com.esports.manager.teams.exceptions.NoTeamsFoundException;
 
 import org.apache.logging.log4j.LogManager;
@@ -41,7 +42,7 @@ public class Teams {
      *
      * @author Maximilian Rublik
      */
-    public static Team fetchTeamById(long id) throws InternalErrorException {
+    public static Team fetchTeamById(long id) throws NoSuchTeamException, InternalErrorException {
         log.debug("fetch single team by id");
         Team team = TeamRepository.getTeamById(id);
         return team;
