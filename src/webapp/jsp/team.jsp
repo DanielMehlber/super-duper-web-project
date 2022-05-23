@@ -27,15 +27,16 @@
                 </div>
 
                 <table>
-                    <tr>
+                    <tr class="header-row">
                         <th>Playername</th>
                         <th>Since</th>
                         <th>Position</th>
+                        <th><a class="add-button" href="${pageContext.request.contextPath}/teams/addmember">+</a></th>
                     </tr>
                     <c:forEach items="${teamViewBean.members}" var="member">
                         <tr>
-                            <td style="background-color: #D52B2B">${member.username}</td>
-                            <td style="background-color: lightblue">${member.since}</td>
+                            <td>${member.username}</td>
+                            <td>${member.since}</td>
                             <td>${member.role}</td>
                         </tr>
                     </c:forEach>

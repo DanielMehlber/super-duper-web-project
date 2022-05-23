@@ -21,16 +21,14 @@
 				  	<option value="Counterstrike">Counterstrike</option>
 				</select>
         		<input class="search-input" placeholder="Search" />
-        		<button class="add-button">+</button>
+        		<a href="${pageContext.request.contextPath}/teams/addnewteam" class="add-button">+</a>
         	</div>
             <c:forEach items="${teamsBean.teams}" var="team">
-				<a href="${pageContext.request.contextPath}/teams/team?id=${team.id}">
-                	<div class="team-container">
-                    	<img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${team.id}" />
-                    	<h2 class="team-title">${team.name}</h2>
-                    	<p class="tags">${team.tags}</p>
-                	</div>
-               	</a>
+				<a class="team-container" href="${pageContext.request.contextPath}/teams/team?id=${team.getKey().id}">
+					<img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${team.getKey().id}" />
+					<h2 class="team-title">${team.getKey().name}</h2>
+					<p class="tags">${team.getKey().tags}</p>
+				</a>
             </c:forEach>
         </main>
     </body>
