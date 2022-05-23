@@ -1,0 +1,41 @@
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+th {
+    color: #FFFFFF;
+}
+
+.team-title {
+    float: left;
+    font-size: 50px;
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+.head-information {
+    margin-bottom: 20px;
+}
+
+.team-logo {
+    float: left;
+    border-radius: 50%;
+    border-color: #2B92D5;
+    border-width: 2px;
+    border-style: solid;
+    height: 196px;
+    width: 196px;
+    margin-right: 20px;
+}
+
+.info-area {
+    background-color: #1D274C;
+    border-radius: 4px;
+    display: grid;
+    width: 1050px;
+    align-content: center;
+    align-items: center;
+    padding: 50px;
+}
