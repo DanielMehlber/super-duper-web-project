@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -159,6 +160,49 @@ public class TeamRepository {
         return image;
     }
 
+    /**
+     * Sets profile image of team
+     * @param image image data as byte array
+     * @param team images will belong to this team
+     * @throws InternalErrorException cannot write to database
+     * @author Maximilian Rublik
+     */
+    public static void setProfileImage(final byte[] image, Team team) throws InternalErrorException, IOException {
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/setTeamProfileImage.sql");
+        Connection connection = pstmt.getConnection()) {
+            pstmt.setBytes(1, image);
+            pstmt.setLong(2, team.getId());
+            pstmt.executeUpdate();
+        } catch (IOException | SQLException e) {
+            log.error("cannot set profile picture for team because of an unexpected sql error: " + e.getMessage());
+            throw new InternalErrorException("cannot set team profile image", e);
+        } catch (RuntimeException e) {
+            log.error("cannot set team profile picture because of an unexpected internal error: " + e.getMessage());
+            throw new InternalErrorException("cannot set profile image", e);
+        }
+    }
+
+    /**
+     * Sets background image of team
+     * @param image image data as byte array
+     * @param team images will belong to this team
+     * @throws InternalErrorException cannot write to database
+     * @author Maximilian Rublik
+     */
+    public static void setBackgroundImage(final byte[] image, Team team) throws InternalErrorException {
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/setTeamBackgroundImage.sql");
+             Connection connection = pstmt.getConnection()) {
+            pstmt.setBytes(1, image);
+            pstmt.setLong(2, team.getId());
+            pstmt.executeUpdate();
+        } catch (IOException | SQLException e) {
+            log.error("cannot set team background picture because of an unexpected sql error: " + e.getMessage());
+            throw new InternalErrorException("cannot set background image", e);
+        } catch (RuntimeException e) {
+            log.error("cannot set team background picture because of an unexpected internal error: " + e.getMessage());
+            throw new InternalErrorException("cannot set background image", e);
+        }
+    }
     /**
      * Creates new team to database
      * @param team team data to persist
