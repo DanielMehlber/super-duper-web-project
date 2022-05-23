@@ -16,6 +16,10 @@
         <main>
         	<div class="head-information">
         		<h1 id="teams-title">Your Teams</h1>
+        		<select class="game-selection">
+					<option value="LeagueOfLegends">League of Legends</option>
+				  	<option value="Counterstrike">Counterstrike</option>
+				</select>
         		<input class="search-input" placeholder="Search" />
         		<button class="add-button">+</button>
         	</div>
