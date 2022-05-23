@@ -7,10 +7,30 @@ main {
 }
 
 #teams-title {
+	float: left;
     font-size: 50px;
     width: 300px;
     height: 67px;
     color: #FFFFFF;
+    flex-grow: 2;
+}
+
+.head-information {
+	height: auto;
+	display: flex;
+	align-items: center;
+}
+
+.add-button {
+	height: 48px;
+	width: 48px;
+	background-color: lime;
+	float:right;
+	border: none;
+}
+
+.search-input {
+	float:right;
 }
 
 .team-container {

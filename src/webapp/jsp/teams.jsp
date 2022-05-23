@@ -14,7 +14,11 @@
     </head>
     <body>
         <main>
-            <h1 id="teams-title">Your Teams</h1>
+        	<div class="head-information">
+        		<h1 id="teams-title">Your Teams</h1>
+        		<input class="search-input" placeholder="Search" />
+        		<button class="add-button">+</button>
+        	</div>
             <c:forEach items="${teamsBean.teams}" var="team">
 				<a href="${pageContext.request.contextPath}/teams/team?id=${team.id}">
                 	<div class="team-container">
