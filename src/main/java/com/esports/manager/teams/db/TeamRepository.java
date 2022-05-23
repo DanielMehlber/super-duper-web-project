@@ -67,8 +67,8 @@ public class TeamRepository {
         }
 
         // Since we give back a List of results and we expect only a single one, we take the first one
-        Team team = ResultSetProcessor.convert(Team.class, resultSet).get(0);
-        return team;
+        List<Team> team = ResultSetProcessor.convert(Team.class, resultSet);
+        return team.get(0);
     }
 
     public static List<Member> getMemberByTeamId(final long id) throws InternalErrorException {
@@ -169,11 +169,14 @@ public class TeamRepository {
         log.debug("add team to database");
 
         try {
-            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/createTeam.sql");
+            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/createTeam.sql");
 
             // TODO: set strings accordingly to datasource
             pstmt.setString(1, team.getName());
-            //pstmt.setString(2, team.getProfilePicture());
+            pstmt.setString(2, team.getSlogan());
+            pstmt.setString(3, "");
+            pstmt.setString(4, "");
+            pstmt.setString(5, team.getTags());
 
             pstmt.executeUpdate();
         } catch (SQLException | IOException e) {
