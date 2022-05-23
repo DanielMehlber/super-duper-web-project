@@ -3,7 +3,7 @@
 main {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    width: 90%;
 }
 
 #teams-title {
@@ -29,9 +29,17 @@ main {
 .add-button {
 	height: 48px;
 	width: 48px;
+    color: #FFFFFF;
+    font-size: 20px;
+    alignment: center;
 	background-color: lime;
+    text-decoration: none;
 	float:right;
-	border: none;
+    border-radius: 4px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .search-input {
@@ -39,9 +47,9 @@ main {
 }
 
 .team-container {
+    box-sizing: content-box;
     background-color: #1D274C;
     border-radius: 4px;
-    width: 1050px;
     height: 120px;
     padding: 50px;
     align-content: center;

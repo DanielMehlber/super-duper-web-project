@@ -1,11 +1,19 @@
 main {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: 100%;
 }
 
+table {
+    border-collapse: collapse;
+}
 th {
     color: #FFFFFF;
+    text-align: left;
+    border-bottom: 2px solid #000000;
+    border-collapse: collapse;
 }
 
 .team-title {
@@ -38,4 +46,32 @@ th {
     align-content: center;
     align-items: center;
     padding: 50px;
+}
+
+tr {
+    color: #FFFFFF;
+}
+
+.add-button {
+    height: 32px;
+    width: 32px;
+    color: #FFFFFF;
+    font-size: 20px;
+    alignment: center;
+    background-color: lime;
+    text-decoration: none;
+    float:right;
+    border-radius: 4px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-row {
+    border-bottom: solid 1px #000000;
+}
+
+h1, h2{
+    margin: 0px;
 }
