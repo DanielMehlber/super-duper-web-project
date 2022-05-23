@@ -7,6 +7,7 @@ import com.esports.manager.teams.entities.Team;
 import com.esports.manager.teams.exceptions.NoSuchTeamException;
 import com.esports.manager.teams.exceptions.NoTeamsFoundException;
 
+import com.esports.manager.userManagement.exceptions.InvalidInputException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -53,5 +54,10 @@ public class Teams {
         log.debug("fetch single team by id");
         Team team = TeamRepository.getTeamById(id);
         return team;
+    }
+
+    public static void createTeam (String name, String slogan, String tags, byte[] profile) throws InvalidInputException, InternalErrorException {
+        Team newTeam = new Team(name, slogan, "");
+        TeamRepository.createTeam(newTeam);
     }
 }
