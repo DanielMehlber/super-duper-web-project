@@ -14,7 +14,7 @@
     </head>
     <body>
         <main>
-            <h1 id="teams-title">Your Teams</h1><div onclick="" id="team-container">
+            <h1 id="teams-title">Your Teams</h1>
             <c:forEach items="${teamsBean.teams}" var="team">
 				<a href="${pageContext.request.contextPath}/teams/team?id=${team.id}">
                 	<div class="team-container">
