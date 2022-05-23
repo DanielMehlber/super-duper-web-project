@@ -3,6 +3,7 @@ package com.esports.manager.teams.db;
 import com.esports.manager.global.db.mapping.ResultSetProcessor;
 import com.esports.manager.global.db.queries.QueryHandler;
 import com.esports.manager.global.exceptions.InternalErrorException;
+import com.esports.manager.teams.entities.Member;
 import com.esports.manager.teams.entities.Team;
 import com.esports.manager.teams.exceptions.NoTeamsFoundException;
 
@@ -68,6 +69,22 @@ public class TeamRepository {
         // Since we give back a List of results and we expect only a single one, we take the first one
         Team team = ResultSetProcessor.convert(Team.class, resultSet).get(0);
         return team;
+    }
+
+    public static List<Member> getMemberByTeamId(final long id) throws InternalErrorException {
+        log.debug("fetch members by teamId");
+
+        ResultSet results;
+        try {
+            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchMembersByTeam.sql");
+            pstmt.setLong(1, id);
+            results = pstmt.executeQuery();
+        } catch (IOException | SQLException e) {
+            log.error("cannot fetch members by teamId");
+            throw new InternalErrorException("cannot fetch members by teamId from database");
+        }
+
+        return ResultSetProcessor.convert(Member.class, results);
     }
 
     /**
@@ -156,7 +173,7 @@ public class TeamRepository {
 
             // TODO: set strings accordingly to datasource
             pstmt.setString(1, team.getName());
-            pstmt.setString(2, team.getProfilePicture());
+            //pstmt.setString(2, team.getProfilePicture());
 
             pstmt.executeUpdate();
         } catch (SQLException | IOException e) {
