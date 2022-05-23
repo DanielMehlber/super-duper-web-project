@@ -23,6 +23,13 @@ import java.io.IOException;
 public class TeamServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(TeamsServlet.class);
 
+    /**
+     * Loads team by id which is given over the url, loads the team itself as its members
+     * @param request an {@link HttpServletRequest} object that contains the request the client has made of the servlet
+     * @param response an {@link HttpServletResponse} object that contains the response the servlet sends to the client
+     * @throws ServletException an internal error has occurred and will be displayed in an error page
+     * @throws IOException an IO error occurred and will be displayed in an error page
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
