@@ -14,13 +14,15 @@
     </head>
     <body>
         <main>
-            <h1 id="teams-title">Your Teams</h1>
+            <h1 id="teams-title">Your Teams</h1><div onclick="" id="team-container">
             <c:forEach items="${teamsBean.teams}" var="team">
-                <div onclick="" id="team-container">
-                    <img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${team.id}" />
-                    <h2 class="team-title">${team.name}</h2>
-                    <p class="tags">${team.tags}</p>
-                </div>
+				<a href="${pageContext.request.contextPath}/teams/team?id=${team.id}">
+                	<div class="team-container">
+                    	<img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${team.id}" />
+                    	<h2 class="team-title">${team.name}</h2>
+                    	<p class="tags">${team.tags}</p>
+                	</div>
+               	</a>
             </c:forEach>
         </main>
     </body>

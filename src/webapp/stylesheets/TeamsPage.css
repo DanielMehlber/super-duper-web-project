@@ -13,7 +13,7 @@ main {
     color: #FFFFFF;
 }
 
-#team-container {
+.team-container {
     background-color: #1D274C;
     border-radius: 4px;
     width: 1050px;
