@@ -84,11 +84,18 @@ body {
     width: 160px;
     margin-left: 30px;
     grid-area: image;
+    transition: 0.5s;
 }
 
+/*Input zum Bild hochladen*/
 .input-profile-image{
-    border-radius: 50%;
-    border: 3px solid var(--main-color);
+    display: none;
+}
+
+.profile-image:hover{
+    box-shadow: 0px 0px 15px 2px var(--main-fg-color);
+    outline: none;
+    transition: 0.5s;
 }
 
 .username {
