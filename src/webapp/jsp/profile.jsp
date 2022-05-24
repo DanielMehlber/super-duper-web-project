@@ -19,18 +19,23 @@
 </head>
 <body>
 <div class="flex-container">
-    <img src="${pageContext.request.contextPath}/users/images?type=background&username=[requestScope.ProfileViewBean.username]" class="background-image"/>
+    <img src="${pageContext.request.contextPath}/users/images?type=background&username=[requestScope.ProfileViewBean.username]"
+         class="background-image"/>
 
-    <form class="profile-card" action="../profile" method="post">
+    <div class="profile-card" action="../profile" method="post">
         <!--
         <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/edcb0e23689279.578bd6af7dffb.png" alt="Profile Banner" class="profile-banner"/>
         -->
         <div class="player-info">
-            <img src="${pageContext.request.contextPath}/users/images?type=profile&username=[requestScope.ProfileViewBean.username]"  class="profile-image"/>
+            <form class="profile-image" action="../profile" method="post">
+                <img src="${pageContext.request.contextPath}/users/images?type=profile&username=[requestScope.ProfileViewBean.username]"/>
+                <input class="input-profile-image" type="file" accept="image/*">
+            </form>
+
             <!--get Username user-->
-            <p class="username">${requestScope.profileBean.username}</p>
+            <p class="username">${requestScope.profileBean.user.username}</p>
             <!-- get E-Mail from user-->
-            <p class="email">${requestScope.profileBean.email}</p>
+            <p class="email">${requestScope.profileBean.user.email}</p>
             <p class="user_level">20</p>
         </div>
 
@@ -55,7 +60,7 @@
         </div>
         <!--add to team-->
         <!--<button>Test</button>-->
-    </form>
+    </div>
 </div>
 </body>
 </html>

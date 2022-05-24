@@ -68,8 +68,13 @@ public class ProfileServlet extends HttpServlet {
         //Method to post / change profile picture
 
         //set user_image
-        //UserRepository.setProfileImage()
 
+        try{
+            //profileViewBean.setUser(userOfPage.setProfileImage());
+            //UserRepository.setProfileImage(userOfPage.getProfileImage());
+        }catch (Exception e){
+
+        }
         //set user_background_image
         //UserRepository.setBackgroundImage()
     }
