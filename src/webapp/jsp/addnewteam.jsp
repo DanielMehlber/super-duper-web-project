@@ -13,7 +13,7 @@
     </head>
     <body>
         <main>
-            <form class="add-team-card" action="/teams/addnewteam" method="POST">
+            <form class="add-team-card" action="${pageContext.request.contextPath}/teams/addnewteam" method="POST">
                 <input name="name" class="name-input" type="text" placeholder="team name" required>
                 <input name="slogan" class="slogan-input" type="text" placeholder="slogan">
                 <input name="profile" class="profile-input" type="file" accept="/image"/>
