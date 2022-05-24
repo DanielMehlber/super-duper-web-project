@@ -1,10 +1,12 @@
 package com.esports.manager.userManagement.servlets;
 
+import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.userManagement.beans.ProfileViewBean;
 import com.esports.manager.userManagement.entities.User;
+import com.esports.manager.userManagement.exceptions.InvalidInputException;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
-import com.esports.manager.userManagement.exceptions.UnauthorizedException;
 import com.esports.manager.userManagement.logic.UserManagement;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,6 +16,7 @@ import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -56,7 +59,6 @@ public class ProfileServlet extends HttpServlet {
 
         request.setAttribute("viewBean", profileViewBean);
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -69,14 +71,45 @@ public class ProfileServlet extends HttpServlet {
 
         //set user_image
 
-        try{
-            //profileViewBean.setUser(userOfPage.setProfileImage());
-            //UserRepository.setProfileImage(userOfPage.getProfileImage());
-        }catch (Exception e){
+        try {
+            //Get Profile Image from JSP-Form
+            //UserRepository.setProfileImage(request.getParameter("profileImage"));
 
+            //Put Profile Image of user inside profileView Bean
+            //profileViewBean.setUser(currentUser.setProfileImage());
+
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/profile.jsp");
+            rd.forward(request, response);
+        } catch (FileNotFoundException e) {
+            log.warn(String.format("File was not found: %s"), e.getMessage(), e);
+            profileViewBean.setErrorMessage("Cannot upload image because file was not found");
+
+            //Place profileViewBean in request scope (forwarding)
+            request.setAttribute("profileViewBean", profileViewBean);
+        } catch (InternalErrorException e) {
+            log.fatal(String.format("Cannot upload image because of an internal error: %s"), e.getMessage(), e);
+            throw e;
         }
         //set user_background_image
         //UserRepository.setBackgroundImage()
-    }
+        try {
+            //Get Profile Image from JSP-Form
+            //UserRepository.setBackgroundImage(request.getParameter("backgroundImage"));
 
+            //Put Profile Image of user inside profileView Bean
+            //profileViewBean.setUser(currentUser.setBackgroundImage());
+
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/profile.jsp");
+            rd.forward(request, response);
+        } catch (FileNotFoundException e) {
+            log.warn(String.format("File was not found: %s"), e.getMessage(), e);
+            profileViewBean.setErrorMessage("Cannot upload image because file was not found");
+
+            //Place profileViewBean in request scope (forwarding)
+            request.setAttribute("profileViewBean", profileViewBean);
+        } catch (InternalErrorException e) {
+            log.fatal(String.format("Cannot upload image because of an internal error: %s"), e.getMessage(), e);
+            throw e;
+        }
+    }
 }
