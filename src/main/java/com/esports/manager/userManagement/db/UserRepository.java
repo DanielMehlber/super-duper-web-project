@@ -11,7 +11,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,22 +35,21 @@ public class UserRepository {
     public static User getByUsername(final String username) throws InternalErrorException, NoSuchUserException {
         log.debug("fetching user entity by username from database...");
 
-        List<User> users;
         // execute query and attempt to fetch user from database
         ResultSet resultSet;
-        try(PreparedStatement statement = QueryHandler.loadStatement("/sql/user-management/fetchUserByUsername.sql");
-            Connection connection = statement.getConnection()) {
+        try{
+            PreparedStatement statement = QueryHandler.loadStatement("/sql/user-management/fetchUserByUsername.sql");
+
             statement.setString(1, username);
             resultSet = statement.executeQuery();
-            // convert ResultSet into user entity
-            users = ResultSetProcessor.convert(User.class, resultSet);
         } catch (IOException | SQLException e) {
             log.error("cannot fetch user from database because of an unexpected an fatal error:" + e.getMessage());
             throw new InternalErrorException("cannot fetch user from database", e);
         }
         log.debug("fetched user from database");
 
-        // check if a user with username was found
+        // convert ResultSet into user entity
+        List<User> users = ResultSetProcessor.convert(User.class, resultSet);
         if (users.size() < 1) {
             log.warn("cannot fetch user from database: user with username not found");
             throw new NoSuchUserException(username);
@@ -69,8 +67,9 @@ public class UserRepository {
     public static void createNewUser(final User userData) throws InternalErrorException {
         log.debug("creating new user entity in database...");
 
-        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/createUser.sql");
-             Connection connection = pstmt.getConnection()) {
+        try {
+        	PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/createUser.sql");
+        	
             pstmt.setString(1, userData.getUsername());
             pstmt.setString(2, userData.getEmail());
             pstmt.setString(3, userData.getPasswordHash());
@@ -117,8 +116,8 @@ public class UserRepository {
         log.debug("loading profile image");
 
         byte[] image;
-        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/fetchUserProfileImage.sql");
-             Connection connection = pstmt.getConnection()) {
+        try {
+            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/fetchUserProfileImage.sql");
             pstmt.setString(1, username);
             ResultSet result = pstmt.executeQuery();
 
@@ -157,8 +156,8 @@ public class UserRepository {
         log.debug("loading background image");
 
         byte[] image;
-        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/fetchUserBackgroundImage.sql");
-             Connection connection = pstmt.getConnection()) {
+        try {
+            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/fetchUserBackgroundImage.sql");
             pstmt.setString(1, username);
             ResultSet result = pstmt.executeQuery();
 
@@ -193,8 +192,8 @@ public class UserRepository {
      * @author Daniel Mehlber
      */
     public static void setBackgroundImage(final byte[] image, User user) throws InternalErrorException {
-        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/setUserBackgroundImage.sql");
-             Connection connection = pstmt.getConnection()) {
+        try {
+            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/setUserBackgroundImage.sql");
             pstmt.setBytes(1, image);
             pstmt.setString(2, user.getUsername());
             pstmt.executeUpdate();
@@ -215,8 +214,8 @@ public class UserRepository {
      * @author Daniel Mehlber
      */
     public static void setProfileImage(final byte[] image, User user) throws InternalErrorException {
-        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/setUserProfileImage.sql");
-             Connection connection = pstmt.getConnection()) {
+        try {
+            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/setUserProfileImage.sql");
             pstmt.setBytes(1, image);
             pstmt.setString(2, user.getUsername());
             pstmt.executeUpdate();
@@ -227,36 +226,6 @@ public class UserRepository {
             log.error("cannot set profile picture because of an unexpected internal error: " + e.getMessage());
             throw new InternalErrorException("cannot set profile image", e);
         }
-    }
-
-    /**
-     * Fetches user entities with regex pattern matching username
-     * @param pattern regex pattern
-     * @return list of users with username matching regex pattern
-     * @throws InternalErrorException an unexpected internal error occurred
-     * @author Daniel Mehlber
-     */
-    public static List<User> fetchAllUserWithUsernamePattern(final String pattern) throws InternalErrorException {
-        log.debug("loading background image");
-
-        List<User> users;
-        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/fetchUserByUsernamePattern.sql");
-             Connection connection = pstmt.getConnection()) {
-            pstmt.setString(1, pattern);
-            ResultSet result = pstmt.executeQuery();
-
-            // convert resultset into users
-            users = ResultSetProcessor.convert(User.class, result);
-        } catch (IOException | SQLException e) {
-            log.error("cannot fetch users with username pattern because of an unexpected sql error: " + e.getMessage());
-            throw new InternalErrorException("cannot fetch users with username pattern", e);
-        } catch (RuntimeException e) {
-            log.error("cannot fetch users with username pattern because of an unexpected internal error: " + e.getMessage());
-            throw new InternalErrorException("cannot fetch users with username pattern", e);
-        }
-
-
-        return users;
     }
 
 }

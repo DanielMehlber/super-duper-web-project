@@ -10,10 +10,4 @@
     <welcome-file-list>
         <welcome-file>/index</welcome-file>
     </welcome-file-list>
-
-    <!-- Redirects to login if any action is unauthorized -->
-    <error-page>
-        <location>/index</location>
-        <exception-type>com.esports.manager.userManagement.exceptions.UnauthorizedException</exception-type>
-    </error-page>
 </web-app>

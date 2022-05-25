@@ -51,7 +51,10 @@ footer {
     background-color: #1d274c;
     width: 40px;
     height: 40px;
-    border-radius: 0px 10px 10px 0px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
     border-width: 0px;
     top: 10px;
     display: inline-block;
@@ -117,7 +120,8 @@ li.nav-option::before {
     display: inline-block;
     width: 5px;
     height: 100%;
-    margin: 0px 10px 0px 0px;
+    margin: 0px;
+    margin-right: 10px;
 }
 
 li.selected::before {

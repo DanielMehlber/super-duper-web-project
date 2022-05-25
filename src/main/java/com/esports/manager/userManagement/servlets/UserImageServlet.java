@@ -61,31 +61,21 @@ public class UserImageServlet extends HttpServlet {
         }
 
         byte[] image;
-
-        if (type.equalsIgnoreCase("profile")) {
-            try {
+        try {
+            if (type.toLowerCase().equals("profile")) {
                 image = UserRepository.loadProfileImage(username);
-            } catch (NoImageFoundException e) {
-                // no profile image was found in database for user, send default one
-                log.debug(String.format("no profile picture found for user %s, redirecting to default image", user.getUsername()));
-                response.sendRedirect(getServletContext().getContextPath() + "/img/default-pb.jpg");
-                return;
-            }
-        } else if (type.equalsIgnoreCase("background")) {
-            try {
+            } else if (type.toLowerCase().equals("background")) {
                 image = UserRepository.loadBackgroundImage(username);
-            } catch (NoImageFoundException e) {
-                // no background image was found in database for user, send default one
-                log.debug(String.format("no background picture found for user %s, redirecting to default image", user.getUsername()));
-                response.sendRedirect(getServletContext().getContextPath() + "/img/default-bg.jpg");
+            } else {
+                log.warn("cannot fetch image because of unknown type");
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "unknown user image type");
                 return;
             }
-        } else {
-            log.warn("cannot fetch image because of unknown type");
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "unknown user image type");
+        } catch (NoImageFoundException e) {
+            log.warn("No image was found");
+            response.sendError(HttpServletResponse.SC_NO_CONTENT, "no image found");
             return;
         }
-
 
         response.setContentType("image/png");
         response.getOutputStream().write(image);
@@ -125,9 +115,9 @@ public class UserImageServlet extends HttpServlet {
 
         byte[] image = buffer.toByteArray();
 
-        if(type.equalsIgnoreCase("profile")) {
+        if(type.toLowerCase().equals("profile")) {
             UserRepository.setProfileImage(image, user);
-        } else if (type.equalsIgnoreCase("background")) {
+        } else if (type.toLowerCase().equals("background")) {
             UserRepository.setBackgroundImage(image, user);
         } else {
             log.warn(String.format("user %s tried to upload data with unknown type '%s'", user.getUsername(), type));

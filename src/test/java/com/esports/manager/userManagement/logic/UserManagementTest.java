@@ -8,6 +8,8 @@ import com.esports.manager.userManagement.exceptions.*;
 import com.esports.manager.util.DataSourceCreator;
 import com.esports.manager.util.MockHttpSession;
 import jakarta.servlet.http.HttpSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,10 +29,10 @@ public class UserManagementTest {
      * @author Daniel Mehlber
      */
     @BeforeAll
-    public static void injectDataSource() {
+    public static void injectDataSource() throws SQLException {
         // create datasource and inject it into the QueryHandler
         DataSource dataSource = DataSourceCreator.createNewDataSource();
-        QueryHandler.setGlobalDataSource(dataSource);
+        QueryHandler.setDataSource(dataSource);
     }
 
     @BeforeEach
@@ -38,12 +40,11 @@ public class UserManagementTest {
         // clear table of users
         PreparedStatement statement = QueryHandler.loadStatement("/sql/user-management/delete-all-users.sql");
         statement.executeUpdate();
-        statement.close();
     }
 
 
     @Test
-    public void registerUser_usernameAlreadyTaken() throws InternalErrorException {
+    public void registerUser_usernameAlreadyTaken() throws InternalErrorException, UsernameAlreadyTakenException {
         // -- arrange --
         // create user in database
         User createdUser = new User("username", "username@username.com", UserManagement.hashPassword("password123"));

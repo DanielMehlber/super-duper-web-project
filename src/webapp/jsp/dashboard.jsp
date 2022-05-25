@@ -16,7 +16,31 @@
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
-    <%@include file="fragments/sidebar.jspf" %>
+    <script src="${pageContext.request.contextPath}/js/dashboard.js" defer></script>
+    <nav>
+        <div class="profile-container">
+            <a class="profile-image" href="/">
+                <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${requestScope.dashboardBean.username}" width="100px" height="100px"/>
+            </a>
+            <div class="player-username">
+                ${requestScope.dashboardBean.username}
+            </div>
+        </div>
+        <ul class="navigation-options-container">
+            <li class="selected nav-option">
+                <a href="/dashboard">Home</a>
+            </li>
+            <li class="unselected nav-option">
+                <a href="/clubs">Clubs</a>
+            </li>
+            <li class="unselected nav-option">
+                <a href="/games">Games</a>
+            </li>
+            <li class="unselected nav-option">
+                <a href="/settings">Settings</a>
+            </li>
+        </ul>
+    </nav>
 
     <main id="main" onclick="hideNav()">
         <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>

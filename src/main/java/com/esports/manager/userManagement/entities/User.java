@@ -17,9 +17,6 @@ public class User {
     @ResultSetMapping("passwordHash")
     private String passwordHash;
 
-    @ResultSetMapping("nickname")
-    private String nickname;
-
     public User() {}
 
     public User (String username, String email, String passwordHash){
@@ -51,13 +48,5 @@ public class User {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
     }
 }

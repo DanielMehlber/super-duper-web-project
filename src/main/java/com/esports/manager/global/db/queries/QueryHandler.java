@@ -1,9 +1,6 @@
 package com.esports.manager.global.db.queries;
 
 import com.esports.manager.global.exceptions.InternalErrorException;
-import jakarta.annotation.Resource;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,24 +17,25 @@ import java.util.Map;
 /**
  * Queries must be loaded from file and converted to statements. This class handles the query loading centrally.
  */
-@WebServlet(loadOnStartup=1)
-public class QueryHandler extends HttpServlet {
+public class QueryHandler {
 
     private static final Logger log = LogManager.getLogger(QueryHandler.class);
 
     /**
-     * Caches already loaded prepared statement sql sources.
+     * Caches already loaded prepared statements. Why? Look at the documentation of {@link PreparedStatement}:
+     * <p><i>An object that represents a precompiled SQL statement. A SQL statement is precompiled and stored in a
+     * PreparedStatement object. This object can then be used to <b>efficiently execute this statement multiple times</b></i>
+     * (=re-usability).
      */
-    private static final Map<String, String> cache = new HashMap<>();
+    private static final Map<String, PreparedStatement> cache = new HashMap<>();
 
+    /**
+     * This datasource will be injected by the {@link com.esports.manager.userManagement.servlets.ApplicationInitServlet}
+     * at application startup. Unfortunately the container only injects {@link DataSource} in registered servlets.
+     */
     private static DataSource dataSource;
 
-    @Resource(lookup = "java:jboss/datasources/eSportsDS")
-    public void setDataSource(final DataSource _dataSource) {
-        dataSource = _dataSource;
-    }
-
-    public static void setGlobalDataSource(final DataSource _dataSource) {
+    public static void setDataSource(final DataSource _dataSource) {
         dataSource = _dataSource;
     }
 
@@ -53,18 +51,21 @@ public class QueryHandler extends HttpServlet {
     public static PreparedStatement loadStatement(final String resourcePath) throws IOException, InternalErrorException {
         log.debug(String.format("loading prepared statement '%s'", resourcePath));
         try {
-            String source;
             // first check if statement has already been loaded and resides in cache
             if (cache.containsKey(resourcePath)) {
-                // source is in cache, load from there
-                source = cache.get(resourcePath);
-            } else {
-                // source is not in cache, load from file
-                source = loadSource(resourcePath);
+                PreparedStatement cached = cache.get(resourcePath);
+                // check if prepared statement can still be used (if it hasn't been closed)
+                if (!cached.isClosed()) return cached;
             }
 
+            // either the statement has not been loaded yet or is invalid/closed
+            // we have to load and create it again
+            String source = loadSource(resourcePath);
+            PreparedStatement newStatement = dataSource.getConnection().prepareStatement(source);
 
-            return dataSource.getConnection().prepareStatement(source);
+            // cache prepared statement
+            cache.put(resourcePath, newStatement);
+            return newStatement;
 
         } catch (final SQLException e) {
             log.error("cannot load and prepare statement due to an unexpected internal error: " + e.getMessage());

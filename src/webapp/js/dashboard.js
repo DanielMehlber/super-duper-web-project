@@ -9,7 +9,7 @@ function hideNav() {
 
 function toggleNav() {
     const nav = document.getElementById("main")
-    if(nav.style.left !== '0px') {
+    if(nav.style.left != '0px') {
         hideNav()
     } else {
         showNav()
