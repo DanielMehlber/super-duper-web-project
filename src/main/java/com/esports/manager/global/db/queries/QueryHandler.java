@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,9 +64,7 @@ public class QueryHandler extends HttpServlet {
                 source = loadSource(resourcePath);
             }
 
-
-            return dataSource.getConnection().prepareStatement(source);
-
+            return dataSource.getConnection().prepareStatement(source, Statement.RETURN_GENERATED_KEYS);
         } catch (final SQLException e) {
             log.error("cannot load and prepare statement due to an unexpected internal error: " + e.getMessage());
             throw new InternalErrorException("cannot load and prepare statement", e);
@@ -99,5 +98,4 @@ public class QueryHandler extends HttpServlet {
         }
         return sourceBuilder.toString();
     }
-
 }
