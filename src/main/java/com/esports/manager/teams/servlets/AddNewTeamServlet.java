@@ -2,8 +2,7 @@ package com.esports.manager.teams.servlets;
 
 import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.teams.entities.Team;
-import com.esports.manager.teams.logic.Teams;
-import com.esports.manager.userManagement.exceptions.InvalidInputException;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -12,6 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
