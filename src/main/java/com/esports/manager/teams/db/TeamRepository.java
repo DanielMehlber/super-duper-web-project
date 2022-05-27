@@ -35,17 +35,19 @@ public class TeamRepository {
     public static List<Team> getAllTeams() throws InternalErrorException, NoTeamsFoundException {
         log.debug("fetching all team entities from database...");
 
+        List<Team> teams;
         ResultSet resultSet;
-        try {
-            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchAllTeams.sql");
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchAllTeams.sql");
+                Connection connection = pstmt.getConnection()){
             resultSet = pstmt.executeQuery();
+
+            log.debug("fetched teams from database");
+            teams = ResultSetProcessor.convert(Team.class, resultSet);
         } catch (IOException | SQLException e) {
             log.error("cannot fetch teams from database because of an unexpected and fatal error:" + e.getMessage());
             throw new InternalErrorException("cannot fetch teams from database", e);
         }
 
-        log.debug("fetched teams from database");
-        List<Team> teams = ResultSetProcessor.convert(Team.class, resultSet);
         if (teams.size() < 1) {
             log.warn("cannot fetch teams from database: no teams found");
             throw new NoTeamsFoundException();
@@ -57,35 +59,44 @@ public class TeamRepository {
     public static Team getTeamById(final long id) throws InternalErrorException {
         log.debug("fetch single team entity by id from database...");
 
+        List<Team> team;
         ResultSet resultSet;
-        try {
-            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchTeamById.sql");
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchTeamById.sql");
+                Connection connection = pstmt.getConnection()) {
             pstmt.setLong(1, id);
             resultSet = pstmt.executeQuery();
+
+            // Since we give back a List of results, and we expect only a single one, we take the first one
+            team = ResultSetProcessor.convert(Team.class, resultSet);
         } catch (IOException | SQLException  e) {
             log.error("cannot fetch single team by Id from database");
             throw new InternalErrorException("cannot fetch Team by Id from database");
         }
 
-        // Since we give back a List of results and we expect only a single one, we take the first one
-        List<Team> team = ResultSetProcessor.convert(Team.class, resultSet);
         return team.get(0);
     }
 
     public static List<Member> getMemberByTeamId(final long id) throws InternalErrorException {
         log.debug("fetch members by teamId");
 
+        List<Member> members;
         ResultSet results;
-        try {
-            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchMembersByTeam.sql");
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchMembersByTeam.sql");
+                Connection connection = pstmt.getConnection()){
             pstmt.setLong(1, id);
             results = pstmt.executeQuery();
+            members = ResultSetProcessor.convert(Member.class, results);
         } catch (IOException | SQLException e) {
             log.error("cannot fetch members by teamId");
             throw new InternalErrorException("cannot fetch members by teamId from database");
         }
 
-        return ResultSetProcessor.convert(Member.class, results);
+        if (members.size() < 1) {
+            log.warn("no members found");
+
+        }
+
+        return members;
     }
 
     /**
@@ -99,11 +110,12 @@ public class TeamRepository {
         log.debug("loading team profile image");
 
         byte[] image;
-        try {
-            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchTeamProfileImage.sql");
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchTeamProfileImage.sql");
+                Connection connection = pstmt.getConnection()) {
             pstmt.setString(1, id.toString());
             ResultSet result = pstmt.executeQuery();
 
+            // check if an image for this team has been found
             if(result.next()) {
                 image = result.getBytes(1);
             } else {
@@ -118,7 +130,7 @@ public class TeamRepository {
         }
 
         if(image == null) {
-            log.warn("user " + id + " has no profile image");
+            log.warn("team " + id + " has no profile image");
             throw new NoImageFoundException(id.toString(), "profile");
         }
 
@@ -136,8 +148,8 @@ public class TeamRepository {
         log.debug("loading team background image");
 
         byte[] image;
-        try {
-            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchTeamBackgroundImage.sql");
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchTeamBackgroundImage.sql");
+                Connection connection = pstmt.getConnection()) {
             pstmt.setString(1, id.toString());
             ResultSet result = pstmt.executeQuery();
 
@@ -167,9 +179,9 @@ public class TeamRepository {
      * @throws InternalErrorException cannot write to database
      * @author Maximilian Rublik
      */
-    public static void setProfileImage(final byte[] image, Team team) throws InternalErrorException, IOException {
+    public static void setProfileImage(final byte[] image, Team team) throws InternalErrorException {
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/setTeamProfileImage.sql");
-        Connection connection = pstmt.getConnection()) {
+            Connection connection = pstmt.getConnection()) {
             pstmt.setBytes(1, image);
             pstmt.setLong(2, team.getId());
             pstmt.executeUpdate();
@@ -212,17 +224,18 @@ public class TeamRepository {
     public static void createTeam(Team team) throws InternalErrorException{
         log.debug("add team to database");
 
-        try {
-            PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/createTeam.sql");
-
-            // TODO: set strings accordingly to datasource
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/createTeam.sql");
+                Connection connection = pstmt.getConnection()){
             pstmt.setString(1, team.getName());
             pstmt.setString(2, team.getSlogan());
-            pstmt.setString(3, "");
-            pstmt.setString(4, "");
-            pstmt.setString(5, team.getTags());
-
+            pstmt.setString(3, team.getTags());
             pstmt.executeUpdate();
+
+            try (ResultSet rs = pstmt.getGeneratedKeys()){
+                while (rs.next()) {
+                    team.setId(rs.getLong(1));
+                }
+            }
         } catch (SQLException | IOException e) {
             log.error("cannot create team to database because of an unexpected sql error" + e.getMessage());
             throw new InternalErrorException("cannot create team", e);
