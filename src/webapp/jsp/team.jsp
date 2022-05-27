@@ -22,7 +22,7 @@
         <main>
             <div class="info-area">
                 <div class="head-information">
-                    <img class="team-logo" src="" alt="teamLogo"/>
+                    <img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${teamViewBean.getTeam().getId()}" alt="teamLogo"/>
                     <h1 class="team-title">${teamViewBean.team.name}</h1>
                 </div>
 
