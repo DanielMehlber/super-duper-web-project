@@ -56,20 +56,30 @@ public class TeamImageServlet extends HttpServlet {
         }
 
         byte[] image;
-        try {
-            if (type.toLowerCase().equals("profile")) {
+
+        if (type.equalsIgnoreCase("profile")) {
+            try {
                 image = TeamRepository.loadProfileImage(id);
-            } else if (type.toLowerCase().equals("background")){
-                image = TeamRepository.loadBackgroundImage(id);
-            } else {
-                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "unknown team image type");
+            } catch (NoImageFoundException e) {
+                // no team image was found in database for team, send default one
+                log.debug(String.format("no team picture found for team %s, redirecting to default image", team.getName()));
+                resp.sendRedirect(getServletContext().getContextPath() + "/img/default-pb.jpg");
                 return;
             }
-        } catch (NoImageFoundException e) {
-            resp.sendError(HttpServletResponse.SC_NO_CONTENT, "No image found");
+        } else if (type.equalsIgnoreCase("background")) {
+            try {
+                image = TeamRepository.loadBackgroundImage(team.getId());
+            } catch (NoImageFoundException e) {
+                // no background team image was found in database for team, send default one
+                log.debug(String.format("no background picture found for team %s, redirecting to default image", team.getName()));
+                resp.sendRedirect(getServletContext().getContextPath() + "/img/default-bg.jpg");
+                return;
+            }
+        } else {
+            log.warn("cannot fetch image because of unknown type");
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "unknown team image type");
             return;
         }
-
         resp.setContentType("image/png");
         resp.getOutputStream().write(image);
         resp.getOutputStream().flush();

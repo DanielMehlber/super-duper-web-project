@@ -1,19 +1,26 @@
 package com.esports.manager.teams.servlets;
 
+import com.esports.manager.teams.db.TeamRepository;
+import com.esports.manager.teams.entities.Team;
 import com.esports.manager.teams.logic.Teams;
 import com.esports.manager.userManagement.exceptions.InvalidInputException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 @WebServlet("/teams/addnewteam")
+@MultipartConfig(maxFileSize = 1024*1024*10) // 10mb at most
 public class AddNewTeamServlet extends HttpServlet {
     private final Logger log = LogManager.getLogger(AddNewTeamServlet.class);
 
@@ -26,22 +33,29 @@ public class AddNewTeamServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-
         //TODO save images to database
-
         String teamname = req.getParameter("name");
         String slogan = req.getParameter("slogan");
-        String profile = req.getParameter("profile");
-        String background = req.getParameter("background");
         String tags = req.getParameter("tags");
 
-        try {
-            Teams.createTeam(teamname, slogan, tags, null);
-            resp.sendRedirect(getServletContext().getContextPath() + "/teams");
-        } catch (InvalidInputException e) {
-            log.warn(String.format("cannot create team because of an invalid user input: %s", e.getMessage()), e);
-            // TODO newBean.setErrorMessage("your input was not valid");
-            throw new RuntimeException(e);
+        Part imagePart = req.getPart("profile");
+        InputStream is = imagePart.getInputStream();
+        //String background = req.getParameter("background");
+
+        // vvv Start Copy https://stackoverflow.com/a/1264737 vvv
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        int nRead;
+        byte[] data = new byte[1024];
+        while ((nRead = is.read(data, 0, data.length)) != -1) {
+            buffer.write(data, 0, nRead);
         }
+        // ^^^ End Copy ^^^
+        byte[] image = buffer.toByteArray();
+
+        Team newTeam = new Team(teamname, slogan, tags);
+
+        TeamRepository.createTeam(newTeam);
+        TeamRepository.setProfileImage(image, newTeam);
+        resp.sendRedirect(getServletContext().getContextPath() + "/teams");
     }
 }

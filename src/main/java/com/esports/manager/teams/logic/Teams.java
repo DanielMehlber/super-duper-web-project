@@ -56,8 +56,8 @@ public class Teams {
         return team;
     }
 
-    public static void createTeam (String name, String slogan, String tags, byte[] profile) throws InvalidInputException, InternalErrorException {
-        Team newTeam = new Team(name, slogan, "");
+    public static void createTeam (String name, String slogan, String tags) throws InvalidInputException, InternalErrorException {
+        Team newTeam = new Team(name, slogan, tags);
         TeamRepository.createTeam(newTeam);
     }
 }
