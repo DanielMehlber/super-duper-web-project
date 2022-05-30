@@ -1,6 +1,7 @@
 package com.esports.manager.userManagement.logic;
 
 import com.esports.manager.global.exceptions.InternalErrorException;
+import com.esports.manager.newsfeed.NewsfeedLogic;
 import com.esports.manager.userManagement.beans.UserSessionBean;
 import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
@@ -127,6 +128,9 @@ public class UserManagement {
             // create and persist new user
             User newUser = new User(username, email, hashPassword(password));
             UserRepository.createNewUser(newUser);
+
+            // add happy news of user registration to newsfeed
+            NewsfeedLogic.registerUserRegistration(newUser);
         }
         else {
             throw new InvalidInputException("registerUser: Invalid Input");

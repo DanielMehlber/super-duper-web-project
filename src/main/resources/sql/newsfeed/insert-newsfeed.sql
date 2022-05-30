@@ -1,0 +1,1 @@
+INSERT INTO newsfeed (date, player1, player2) VALUES (?, ?, ?);
