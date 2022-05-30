@@ -62,54 +62,5 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession currentSession = request.getSession();
-        User currentUser = UserManagement.getAuthorizedUser(request.getSession());
-        User userOfPage = new User();
-        ProfileViewBean profileViewBean = new ProfileViewBean();
-
-        //Method to post / change profile picture
-
-        //set user_image
-
-        try {
-            //Get Profile Image from JSP-Form
-            //UserRepository.setProfileImage(request.getParameter("profileImage"));
-            //Put Profile Image of user inside profileView Bean
-            //profileViewBean.setUser(currentUser.setProfileImage());
-
-            RequestDispatcher rd = request.getRequestDispatcher("/jsp/profile.jsp");
-            rd.forward(request, response);
-        } catch (FileNotFoundException e) {
-            log.warn(String.format("File was not found: %s"), e.getMessage(), e);
-            profileViewBean.setErrorMessage("Cannot upload image because file was not found");
-
-            //Place profileViewBean in request scope (forwarding)
-            request.setAttribute("profileViewBean", profileViewBean);
-        } catch (InternalErrorException e) {
-            log.fatal(String.format("Cannot upload image because of an internal error: %s"), e.getMessage(), e);
-            throw e;
-        }
-        //set user_background_image
-        //UserRepository.setBackgroundImage()
-        try {
-            //Get Profile Image from JSP-Form
-            //UserRepository.setBackgroundImage(request.getParameter("backgroundImage"));
-
-            //Put Profile Image of user inside profileView Bean
-            //profileViewBean.setUser(currentUser.setBackgroundImage());
-
-
-            RequestDispatcher rd = request.getRequestDispatcher("/jsp/profile.jsp");
-            rd.forward(request, response);
-        } catch (FileNotFoundException e) {
-            log.warn(String.format("File was not found: %s"), e.getMessage(), e);
-            profileViewBean.setErrorMessage("Cannot upload image because file was not found");
-
-            //Place profileViewBean in request scope (forwarding)
-            request.setAttribute("profileViewBean", profileViewBean);
-        } catch (InternalErrorException e) {
-            log.fatal(String.format("Cannot upload image because of an internal error: %s"), e.getMessage(), e);
-            throw e;
-        }
     }
 }
