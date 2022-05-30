@@ -74,7 +74,6 @@ public class ProfileServlet extends HttpServlet {
         try {
             //Get Profile Image from JSP-Form
             //UserRepository.setProfileImage(request.getParameter("profileImage"));
-
             //Put Profile Image of user inside profileView Bean
             //profileViewBean.setUser(currentUser.setProfileImage());
 
@@ -98,6 +97,7 @@ public class ProfileServlet extends HttpServlet {
 
             //Put Profile Image of user inside profileView Bean
             //profileViewBean.setUser(currentUser.setBackgroundImage());
+
 
             RequestDispatcher rd = request.getRequestDispatcher("/jsp/profile.jsp");
             rd.forward(request, response);
