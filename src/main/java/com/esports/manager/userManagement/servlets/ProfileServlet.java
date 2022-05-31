@@ -40,6 +40,12 @@ public class ProfileServlet extends HttpServlet {
         User userOfPage = new User();
         ProfileViewBean profileViewBean = new ProfileViewBean();
 
+        Boolean editPermission = false;
+
+        if (currentSession == userOfPage){
+            editPermission = true;
+        }
+
         try {
             //Get current user from current HttpSession (in order to check if user still exists and to display his data)
             currentUser = UserManagement.fetchUserByUsername(currentUser.getUsername());

@@ -21,7 +21,7 @@
 <div class="flex-container">
     <form class="background-image" action="../users/image" method="post" enctype="multipart/form-data">
         <img src="${pageContext.request.contextPath}/users/images?type=background&username=${requestScope.ProfileViewBean.username}"/>
-        <c:if test="${current == userOfPage}">
+        <c:if test="${editPermission == true}">
             <input class="input-background-image" type="file" accept="image/*">
         </c:if>
 
@@ -33,7 +33,7 @@
         <div class="player-info">
             <form class="profile-image" action="../users/image" method="post" enctype="multipart/form-data">
                 <img src="${pageContext.request.contextPath}/users/images?type=profile&username=${requestScope.ProfileViewBean.username}"/>
-                <c:if test="${currentUser == userOfPage}">
+                <c:if test="${editPermission == true}">
                     <input class="input-profile-image" type="file" accept="image/*">
                 </c:if>
             </form>
