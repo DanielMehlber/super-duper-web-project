@@ -100,7 +100,6 @@ public class UserManagementTest {
         User loggedIn = UserManagement.getAuthorizedUser(session);
         Assertions.assertEquals(loggedIn.getUsername(), createdUser.getUsername());
     }
-
     // TODO: test login with username that does not exist
     // TODO: test login with wrong password
 }

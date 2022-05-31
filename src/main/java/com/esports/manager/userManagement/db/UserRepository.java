@@ -6,10 +6,12 @@ import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoImageFoundException;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
-
+import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
+import com.esports.manager.userManagement.logic.UserManagement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.awt.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -104,6 +106,7 @@ public class UserRepository {
 
         return isUsernameUnique;
     }
+
 
     /**
      * Loads profile image of user with username
@@ -257,6 +260,33 @@ public class UserRepository {
 
 
         return users;
+
+    /**
+     * Changes the username of a user
+     * @author Philipp Phan
+     * TODO: not the highest priority
+     * */
+    public static void changeUsername(String username_new) throws InternalErrorException, UsernameAlreadyTakenException{
+        // check if username is available
+        if(!UserManagement.isUsernameAvailable(username_new)) {
+            throw new UsernameAlreadyTakenException();
+        }
+    }
+    /**
+     * Changes profile picture of user
+     * @author Philipp Phan
+     * */
+    public static void postProfilePicture(Image image){
+
+    }
+
+    /**
+     * Changes the Background Picture of the user's profile
+     * @author Philipp Phan
+     * */
+    public static void changeBackgroundPicture(Image image){
+        ResultSet resultSet;
+
     }
 
 }

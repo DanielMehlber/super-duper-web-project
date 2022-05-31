@@ -1,0 +1,203 @@
+* {
+    color: white;
+    --main-color: #2B92D5;
+    --sec-color: #1d274c;
+
+}
+
+html {
+
+}
+
+body {
+
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background-image {
+    z-index: -1;
+    margin: 0px 0px 0px 0px;
+}
+
+.profile-card {
+    display: grid;
+    width: 950px;
+    background: rgba(29, 39, 76, 0.87);
+    backdrop-filter: blur(20px);
+    border: 3px solid var(--sec-color);
+    border-radius: 20px;
+    margin-top: 1%;
+
+
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr min-content 1fr 1fr 1fr;
+    gap: 15px 0px;
+    grid-template-areas:
+
+    "player-info"
+    "team-header"
+    "team-container"
+    "activity-container"
+    ".";
+
+}
+
+.title {
+    font-size: 50px;
+}
+
+.player-info {
+    background-color: transparent;
+    border-radius: 10px;
+    height: 220px;
+    width: 900px;
+
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+
+    grid-template-rows: 50% 50%;
+    grid-template-columns:  min-content 1fr 0.5fr 0.5fr;
+    column-gap: 40px;
+
+    grid-template-areas:
+    "image username . level"
+    "image email . .";
+
+    grid-area: player-info;
+}
+
+.profile-image {
+    border-radius: 50%;
+    border: 4px solid var(--main-fg-color);
+    height: 160px;
+    width: 160px;
+    margin-left: 30px;
+    grid-area: image;
+    transition: 0.5s;
+}
+
+/*Input zum Bild hochladen*/
+.input-profile-image{
+
+}
+
+.profile-image:hover{
+    box-shadow: 0px 0px 15px 2px var(--main-fg-color);
+    outline: none;
+    transition: 0.5s;
+}
+
+.username {
+    grid-area: username;
+    font-size: 35px;
+    justify-self: start;
+}
+
+.email {
+    grid-area: email;
+    font-size: 18px;
+    color: darkgrey;
+    justify-self: start;
+    align-self: start;
+    margin: 0 0 0 0;
+}
+
+.user_level {
+    grid-area: level;
+    font-size: 30px;
+    font-weight: 500;
+    padding: 3px 3px 3px 3px;
+    border: 3px solid #D52B2B;
+    border-radius: 50%;
+}
+
+.team-header {
+    grid-area: team-header;
+    margin: 0px 0px 0px 0px;
+    justify-self: start;
+    padding-left: 50px;
+}
+
+.team-container {
+    border-radius: 10px;
+    background-color: var(--sec-color);
+    border: 3px solid var(--sec-color);
+    filter: brightness(85%);
+    font-size: 20px;
+    height: 220px;
+    width: 900px;
+
+
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+
+    display: grid;
+    grid-template-areas:
+    "team-image team-name . member-images"
+    "team-image team-tags . members";
+    grid-template-rows: 50% 50%;
+    grid-template-columns: min-content 1fr 0.2fr 0.8fr;
+    column-gap: 40px;
+
+    grid-area: team-container;
+}
+
+.team {
+    grid-area: team-name;
+    text-decoration-line: underline;
+    justify-self: start;
+
+}
+
+.team-image {
+    grid-area: team-image;
+    height: 160px;
+    width: 160px;
+    border: 3px solid var(--main-fg-color);
+    border-radius: 50%;
+    margin-left: 30px;
+}
+
+.team-tags {
+    grid-area: team-tags;
+    font-size: 15px;
+    margin: 0px 0px 0px 0px;
+    color: darkgrey;
+    justify-self: start;
+    align-self: start;
+}
+
+.member-images {
+    grid-area: member-images;
+}
+
+.members {
+    grid-area: members;
+    margin: 0px 0px 0px 0px;
+    align-self: baseline;
+}
+
+
+.activity-container {
+    border-radius: 10px;
+    border: 3px solid var(--sec-color);
+    background-color: var(--sec-color);
+    filter: brightness(85%);
+    font-size: 20px;
+    height: 220px;
+    width: 900px;
+
+    grid-area: activity-container;
+}

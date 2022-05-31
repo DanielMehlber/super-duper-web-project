@@ -5,12 +5,9 @@ import com.esports.manager.userManagement.beans.UserSessionBean;
 import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.*;
-
-import jakarta.servlet.http.HttpSession;
 import jakarta.mail.internet.AddressException;
 import jakarta.mail.internet.InternetAddress;
-
-
+import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,7 +29,7 @@ public class UserManagement {
      * Checks if the passed username is available. In order to do so, it attempts to
      * fetch a user with this
      * username and checks if the operation was successful.
-     * 
+     *
      * @param username username to check
      * @return true if the username is available
      * @throws InternalErrorException some unexpected and fatal internal error
@@ -73,9 +70,9 @@ public class UserManagement {
      *
      * @param username passed username by unauthenticated user
      * @param password passed password by unauthenticated user.
-     * @param session session in which the user will be logged in if username and password are correct
+     * @param session  session in which the user will be logged in if username and password are correct
      * @throws InternalErrorException an unexpected and fatal internal error occurred
-     * @throws NoSuchUserException a user with passed username was not found in database
+     * @throws NoSuchUserException    a user with passed username was not found in database
      * @author Philipp Phan
      */
     public static void performLogin(String username, String password, HttpSession session)
@@ -108,11 +105,12 @@ public class UserManagement {
 
     /**
      * Perform registration with passed user data after it has been checked and verified.
+     *
      * @param username requested username for registration (must be available)
      * @param password requested password for registration (must meet certain criteria)
-     * @param email requested email for registration (must be unique in database)
-     * @throws InvalidInputException the passed input is syntactically invalid or not allowed
-     * @throws InternalErrorException an unexpected internal error occurred
+     * @param email    requested email for registration (must be unique in database)
+     * @throws InvalidInputException         the passed input is syntactically invalid or not allowed
+     * @throws InternalErrorException        an unexpected internal error occurred
      * @throws UsernameAlreadyTakenException the requested username is not available
      * @author Maximilian Rublik
      */
@@ -120,24 +118,24 @@ public class UserManagement {
         if (checkPassedUserData(username, password, email)) {
 
             // check if username is available
-            if(!UserManagement.isUsernameAvailable(username)) {
+            if (!UserManagement.isUsernameAvailable(username)) {
                 throw new UsernameAlreadyTakenException();
             }
 
             // create and persist new user
             User newUser = new User(username, email, hashPassword(password));
             UserRepository.createNewUser(newUser);
-        }
-        else {
+        } else {
             throw new InvalidInputException("registerUser: Invalid Input");
         }
     }
 
     /**
      * Checks received user data for syntactical validity
+     *
      * @param username passed username
      * @param password passed password
-     * @param email passed email address
+     * @param email    passed email address
      * @return true, if all user data is valid
      * @author Maximilian Rublik
      */
@@ -147,36 +145,39 @@ public class UserManagement {
 
     /**
      * Checks received username for syntactical validity and uniqueness
+     *
      * @param username passed username
      * @return true if username is valid and allowed
      * @author Maximilian Rublik
      */
     private static boolean isValidUsername(String username) {
-        if(username == null || username.isBlank()) return false;
+        if (username == null || username.isBlank()) return false;
         // we restrict the username to be 30 char at max in the db
         return username.length() < 30;
     }
 
     /**
      * Checks received password for syntactical validity
+     *
      * @param password passed username
      * @return true if password is strong enough
      * @author Maximilian Rublik
      */
     private static boolean isValidPassword(String password) {
-        if(password == null || password.isBlank()) return false;
-    	// length is at least 8 chars long
-    	return password.length() > 7;    			
+        if (password == null || password.isBlank()) return false;
+        // length is at least 8 chars long
+        return password.length() > 7;
     }
 
     /**
      * Hashed passed password string using SHA-256
+     *
      * @param password string to hash
      * @return SHA-256 hash of password
      * @throws InternalErrorException hashing failed
      * @author Maximilian Rublik
      */
-    public static String hashPassword (String password) throws InternalErrorException {
+    public static String hashPassword(String password) throws InternalErrorException {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
@@ -190,7 +191,7 @@ public class UserManagement {
      * copied from <a href="https://stackoverflow.com/questions/624581/what-is-the-best-java-email-address-validation-">stackoverflow</a>
      * since we don't want to implement our own check whether an email is correct, nor use some alien like regex
      * language. So we take what the java god gave us
-     *
+     * <p>
      * Part for length check is own
      *
      * @param email email address to check
@@ -198,7 +199,7 @@ public class UserManagement {
      * @author Maximilian Rublik
      */
     private static boolean isValidEmailAddress(String email) {
-        if(email == null || email.isBlank()) return false;
+        if (email == null || email.isBlank()) return false;
 
         if (email.length() >= 40) {
             // email longer than db says its possible
@@ -218,6 +219,7 @@ public class UserManagement {
 
     /**
      * Checks if there is a logged in user in session
+     *
      * @param session http session
      * @return logged in user
      * @throws UnauthorizedException there is no authorized user stored in session
@@ -225,7 +227,7 @@ public class UserManagement {
      */
     public static User getAuthorizedUser(final HttpSession session) throws UnauthorizedException, InternalErrorException {
         UserSessionBean userSessionBean = (UserSessionBean) session.getAttribute("userSessionBean");
-        if(userSessionBean == null || userSessionBean.getUser() == null)
+        if (userSessionBean == null || userSessionBean.getUser() == null)
             throw new UnauthorizedException();
         User user =  userSessionBean.getUser();
         // check if user still exists

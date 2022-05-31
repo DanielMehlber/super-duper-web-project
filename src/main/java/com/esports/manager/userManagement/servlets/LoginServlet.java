@@ -1,14 +1,10 @@
 package com.esports.manager.userManagement.servlets;
 
-import java.io.IOException;
-import java.rmi.ServerException;
-
 import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.userManagement.beans.LoginViewBean;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 import com.esports.manager.userManagement.exceptions.WrongCredentialsException;
 import com.esports.manager.userManagement.logic.UserManagement;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,9 +12,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.io.IOException;
+import java.rmi.ServerException;
 
 /**
  * This servlet performs the login for unauthenticated users
