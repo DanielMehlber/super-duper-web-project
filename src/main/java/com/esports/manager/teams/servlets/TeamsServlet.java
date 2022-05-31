@@ -2,7 +2,7 @@ package com.esports.manager.teams.servlets;
 
 import com.esports.manager.teams.beans.TeamsViewBean;
 import com.esports.manager.teams.exceptions.NoTeamsFoundException;
-import com.esports.manager.teams.logic.Teams;
+import com.esports.manager.teams.logic.TeamManagement;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -32,7 +32,7 @@ public class TeamsServlet extends HttpServlet {
         TeamsViewBean teamsViewBean = new TeamsViewBean();
 
         try {
-            teamsViewBean.setTeams(Teams.fetchAllTeams());
+            teamsViewBean.setTeams(TeamManagement.fetchAllTeams());
         } catch (NoTeamsFoundException e) {
             teamsViewBean.setErrorMessage("No teams found");
             throw new RuntimeException(e);

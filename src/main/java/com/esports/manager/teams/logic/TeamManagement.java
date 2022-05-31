@@ -7,10 +7,12 @@ import com.esports.manager.teams.entities.Team;
 import com.esports.manager.teams.exceptions.NoSuchTeamException;
 import com.esports.manager.teams.exceptions.NoTeamsFoundException;
 
+import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.InvalidInputException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -18,9 +20,9 @@ import java.util.List;
  *
  * @author Maximilian Rublik
  */
-public class Teams {
+public class TeamManagement {
 
-    private static final Logger log = LogManager.getLogger(Teams.class);
+    private static final Logger log = LogManager.getLogger(TeamManagement.class);
 
     /**
      * Fetch all teams from database, unordered
@@ -56,8 +58,33 @@ public class Teams {
         return team;
     }
 
+    /**
+     *
+     * @param name
+     * @param slogan
+     * @param tags
+     * @throws InvalidInputException
+     * @throws InternalErrorException
+     *
+     * @author Maximilian Rublik
+     */
     public static void createTeam (String name, String slogan, String tags) throws InvalidInputException, InternalErrorException {
         Team newTeam = new Team(name, slogan, tags);
         TeamRepository.createTeam(newTeam);
     }
+
+    /**
+     *
+     * @param username
+     * @param teamid
+     * @param role
+     * @param since
+     * @throws InternalErrorException some unexpected and fatal internal error occurred
+     *
+     * @author Maximilian Rublik
+     */
+    public static void addUserToTeam (String username, Long teamid, String role, Date since) throws InternalErrorException {
+        TeamRepository.addUserToTeam(teamid, username, role, since);
+    }
+
 }

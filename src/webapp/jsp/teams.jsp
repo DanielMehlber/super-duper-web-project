@@ -36,6 +36,9 @@
 				<img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${team.getKey().id}" />
 				<h2 class="team-title">${team.getKey().name}</h2>
 				<p class="tags">${team.getKey().tags}</p>
+				<c:forEach items="${team.value}" var="entry">
+				<p>${entry.username}</p>
+			</c:forEach>
 			</a>
 		</c:forEach>
 	</main>

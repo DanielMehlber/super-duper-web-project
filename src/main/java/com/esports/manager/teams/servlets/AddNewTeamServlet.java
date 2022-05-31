@@ -26,7 +26,7 @@ public class AddNewTeamServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher rq = req.getRequestDispatcher("/jsp/addnewteam.jsp");
+        RequestDispatcher rq = req.getRequestDispatcher("/addnewteam.jsp");
         rq.forward(req, resp);
     }
 

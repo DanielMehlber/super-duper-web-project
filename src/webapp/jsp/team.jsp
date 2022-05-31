@@ -31,7 +31,7 @@
                         <th>Playername</th>
                         <th>Since</th>
                         <th>Position</th>
-                        <th><a class="add-button" href="${pageContext.request.contextPath}/teams/addmember">+</a></th>
+                        <th><a class="add-button" href="${pageContext.request.contextPath}/teams/addmember?teamid=${teamViewBean.getTeam().getId()}">+</a></th>
                     </tr>
                     <c:forEach items="${teamViewBean.members}" var="member">
                         <tr>

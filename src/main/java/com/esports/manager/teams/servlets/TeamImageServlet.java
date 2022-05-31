@@ -3,8 +3,7 @@ package com.esports.manager.teams.servlets;
 import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.teams.entities.Team;
 import com.esports.manager.teams.exceptions.NoSuchTeamException;
-import com.esports.manager.teams.exceptions.NoTeamsFoundException;
-import com.esports.manager.teams.logic.Teams;
+import com.esports.manager.teams.logic.TeamManagement;
 import com.esports.manager.userManagement.exceptions.NoImageFoundException;
 
 import jakarta.servlet.ServletException;
@@ -48,7 +47,7 @@ public class TeamImageServlet extends HttpServlet {
         // fetch team data
         Team team;
         try {
-            team = Teams.fetchTeamById(id);
+            team = TeamManagement.fetchTeamById(id);
         } catch (NoSuchTeamException e) {
             log.warn("image of non-existent team was requested");
             resp.sendError(HttpServletResponse.SC_NOT_FOUND, "no picture found");

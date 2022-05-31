@@ -14,7 +14,7 @@
             <a href="${pageContext.request.contextPath}/dashboard">Home</a>
         </li>
         <li class="unselected nav-option">
-            <a href="${pageContext.request.contextPath}/clubs">Clubs</a>
+            <a href="${pageContext.request.contextPath}/teams">Teams</a>
         </li>
         <li class="unselected nav-option">
             <a href="${pageContext.request.contextPath}/games">Games</a>

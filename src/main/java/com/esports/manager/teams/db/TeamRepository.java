@@ -6,16 +6,13 @@ import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.teams.entities.Member;
 import com.esports.manager.teams.entities.Team;
 import com.esports.manager.teams.exceptions.NoTeamsFoundException;
-
 import com.esports.manager.userManagement.exceptions.NoImageFoundException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 /**
@@ -221,7 +218,7 @@ public class TeamRepository {
      * @throws SQLException | IOException an undexpected SQL / IO Exception occured
      * @author Maximilian Rublik
      */
-    public static void createTeam(Team team) throws InternalErrorException{
+    public static void createTeam (Team team) throws InternalErrorException{
         log.debug("add team to database");
 
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/createTeam.sql");
@@ -242,5 +239,22 @@ public class TeamRepository {
         }
 
         log.debug("created team to database");
+    }
+
+    public static void addUserToTeam (Long teamid, String username, String role, Date since) throws InternalErrorException {
+        log.debug("add user to team");
+
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/addUserToTeam.sql");
+            Connection connection = pstmt.getConnection()) {
+            pstmt.setString(1, username);
+            pstmt.setLong(2, teamid);
+            pstmt.setString(3, role);
+            pstmt.setDate(4, since);
+            pstmt.executeUpdate();
+
+        } catch (SQLException | IOException e) {
+            log.error("cannot update team with User due to an sql error");
+            throw new InternalErrorException("cannot update Team with new user", e);
+        }
     }
 }
