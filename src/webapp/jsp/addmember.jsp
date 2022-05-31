@@ -27,7 +27,7 @@
                     </c:forEach>
                 </select>
                 <input type="hidden" name="teamId" value="${addMemberViewBean.teamId}">
-                <input name="position" placeholder="position" />
+                <input name="position" placeholder="position" autofocus="autofocus"/>
 
                 <button class="cancel-button">Cancel</button>
                 <button class="enter-button">Add</button>
