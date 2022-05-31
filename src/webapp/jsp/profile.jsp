@@ -20,8 +20,8 @@
 <body>
 <div class="flex-container">
     <form class="background-image" action="../users/image" method="post" enctype="multipart/form-data">
-        <img src="${pageContext.request.contextPath}/users/images?type=background&username=${requestScope.ProfileViewBean.username}"/>
-        <c:if test="${editPermission == true}">
+        <img src="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"/>
+        <c:if test="${requestScope.profileViewBean.editPermission == true}">
             <input class="input-background-image" type="file" accept="image/*">
         </c:if>
 
@@ -32,15 +32,15 @@
         -->
         <div class="player-info">
             <form class="profile-image" action="../users/image" method="post" enctype="multipart/form-data">
-                <img src="${pageContext.request.contextPath}/users/images?type=profile&username=${requestScope.ProfileViewBean.username}"/>
-                <c:if test="${editPermission == true}">
+                <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${requestScope.profileViewBean.user.username}"/>
+                <c:if test="${requestScope.profileViewBean.editPermission == true}">
                     <input class="input-profile-image" type="file" accept="image/*">
                 </c:if>
             </form>
             <!--get Username user-->
-            <p class="username">${requestScope.profileBean.user.username}</p>
+            <p class="username">${requestScope.profileViewBean.user.username}</p>
             <!-- get E-Mail from user-->
-            <p class="email">${requestScope.profileBean.user.email}</p>
+            <p class="email">${requestScope.profileViewBean.user.email}</p>
             <p class="user_level">20</p>
         </div>
 
@@ -53,11 +53,11 @@
             <img src="../img/technische_hochschule_ingolstadt_59242c91ab8b7.png"
                  alt="team-picture"
                  class="team-image"/>
-            <p class="members">32 Members${team.members}</p>
+            <p class="members">32 Members</p>
             <!-- get game from user-->
-            <p class="member-images">member-images${team.members-imgage}<</p>
+            <p class="member-images">member-images<</p>
             <!--role-->
-            <p class="team-tags">#CSGO #Competetive #NeverStopWinning #Money #B1tchez #MatzeF1ck3n${team.tags}</p>
+            <p class="team-tags">#CSGO #Competetive #NeverStopWinning #Money #B1tchez #MatzeF1ck3n</p>
         </div>
 
         <div class="activity-container">

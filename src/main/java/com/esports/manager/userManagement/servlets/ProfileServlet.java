@@ -36,8 +36,8 @@ public class ProfileServlet extends HttpServlet {
          *  - if user is not the logged in user: do not display edit options
          */
         HttpSession currentSession = request.getSession();
-        User currentUser = UserManagement.getAuthorizedUser(request.getSession());
-        User userOfPage = new User();
+
+
         ProfileViewBean profileViewBean = new ProfileViewBean();
 
         // "http://www.leckmichamarsch.de/page?username=daniel&someshit=shit"
@@ -47,30 +47,33 @@ public class ProfileServlet extends HttpServlet {
 
         Boolean editPermission = false;
 
-        // Compare usernames with equals, damit daniel mich nicht haut
-        if (currentUser.getUsername().equals(userOfPage.getUsername())){
-            editPermission = true;
-        }
-
         try {
-            //Get current user from current HttpSession (in order to check if user still exists and to display his data)
-            currentUser = UserManagement.fetchUserByUsername(currentUser.getUsername());
-            // DONE: pack user entity into bean, not every single attribute
-            //Set Attributes of user inside profileViewBean
-            profileViewBean.setUser(currentUser);
-            profileViewBean.setEditPermission(editPermission);
+            // 1) fetch currentUser from session
+            User currentUser = UserManagement.getAuthorizedUser(request.getSession());
+            // 2) fetch profilePageUser from database with username parameter
+            User userOfPage = UserManagement.fetchUserByUsername(request.getParameter("username"));
+            // 3) compare both to set permissions
+            // Compare usernames with equals, damit daniel mich nicht haut
+            if (currentUser.getUsername().equals(userOfPage.getUsername())) {
+                editPermission = true;
+            }
 
-            // redirect to dashboard
+            // 4) set profilePageUser in profile bean
+            profileViewBean.setUser(userOfPage);
+            // 5) set permission in profile bean
+            profileViewBean.setEditPermission(editPermission);
             request.setAttribute("profileViewBean", profileViewBean);
-            request.getRequestDispatcher("/jsp/profile.jsp");
+            RequestDispatcher rq = request.getRequestDispatcher("/jsp/profile.jsp");
+            rq.forward(request, response);
         } catch (NoSuchUserException e) {
             log.warn("cannot display profile page: logged in user not found");
             profileViewBean.setErrorMessage("No such user found");
             response.sendRedirect("/dashboard");
+            return;
         }
 
-        request.setAttribute("viewBean", profileViewBean);
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
