@@ -62,11 +62,11 @@ public class ProfileServlet extends HttpServlet {
 
             // redirect to dashboard
             request.setAttribute("profileViewBean", profileViewBean);
-            request.getRequestDispatcher("/profile/username.jsp");
+            request.getRequestDispatcher("/jsp/profile.jsp");
         } catch (NoSuchUserException e) {
             log.warn("cannot display profile page: logged in user not found");
             profileViewBean.setErrorMessage("No such user found");
-            response.sendRedirect("jsp/login.jsp");
+            response.sendRedirect("/dashboard");
         }
 
         request.setAttribute("viewBean", profileViewBean);
