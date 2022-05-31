@@ -40,9 +40,15 @@ public class ProfileServlet extends HttpServlet {
         User userOfPage = new User();
         ProfileViewBean profileViewBean = new ProfileViewBean();
 
+        // "http://www.leckmichamarsch.de/page?username=daniel&someshit=shit"
+        // in JSP: <a href="page?username=${requestScrope.userBean.username}">Hier klicken</a>
+        // String username = request.getParameter("username");
+        // String someshit = request.getParameter("someshit");
+
         Boolean editPermission = false;
 
-        if (currentSession == userOfPage){
+        // Compare usernames with equals, damit daniel mich nicht haut
+        if (currentUser.getUsername().equals(userOfPage.getUsername())){
             editPermission = true;
         }
 
@@ -52,7 +58,7 @@ public class ProfileServlet extends HttpServlet {
             // DONE: pack user entity into bean, not every single attribute
             //Set Attributes of user inside profileViewBean
             profileViewBean.setUser(currentUser);
-
+            profileViewBean.setEditPermission(editPermission);
 
             // redirect to dashboard
             request.setAttribute("profileViewBean", profileViewBean);

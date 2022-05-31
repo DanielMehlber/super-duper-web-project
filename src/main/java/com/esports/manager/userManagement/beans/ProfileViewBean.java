@@ -9,8 +9,8 @@ public class ProfileViewBean implements Serializable {
     public ProfileViewBean() {
     }
 
+    private Boolean editPermission;
     private User user;
-
     private String errorMessage;
 
     public String getErrorMessage() {
@@ -27,5 +27,13 @@ public class ProfileViewBean implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Boolean getEditPermission(){
+        return editPermission;
+    }
+
+    public void setEditPermission(Boolean editPermission){
+        this.editPermission = editPermission;
     }
 }
