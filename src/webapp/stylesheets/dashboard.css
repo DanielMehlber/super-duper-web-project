@@ -1,0 +1,140 @@
+
+* {
+    --nav-width: 200px;
+}
+
+html {
+    height: 100%;
+    margin: 0px;
+}
+
+body {
+    margin: 0px;;
+    display: grid;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+main {
+    grid-area: main-panel;
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-bg-color);
+    box-shadow: rgb(0 0 0 / 35%) -7px 0px 15px;
+    transition: left 0.5s;
+    transition-timing-function: cubic-bezier(0.47, 0.14, 0.48, 1.15);
+}
+
+nav {
+    background-color: #1d274c;
+    grid-area: nav-panel;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    width: var(--nav-width);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+}
+
+footer {
+    grid-area: footer-panel;
+}
+
+
+.nav-bar-button {
+    position: relative;
+    background-color: #1d274c;
+    width: 40px;
+    height: 40px;
+    border-radius: 0px 10px 10px 0px;
+    border-width: 0px;
+    top: 10px;
+    display: inline-block;
+    line-height: 100%;
+}
+
+.profile-container {
+    margin-top: 40px;
+}
+
+.profile-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-image > img {
+    border-radius: 50%;
+    border-width: 5px;
+    border-color: var(--main-fg-color);
+    border-style: solid;
+    transition: box-shadow 0.3s;
+}
+
+.profile-image > img:hover {
+    box-shadow: var(--main-fg-color) 0px 0px 15px;
+}
+
+.player-username {
+    color: white;
+    text-align-last: center;
+    margin: 20px;
+    text-align: center;
+}
+
+ul.navigation-options-container {
+    width: 100%;
+    list-style-type: none;
+    list-style-position: outside;
+    padding: 0px;
+}
+
+li.nav-option {
+    padding: 0px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+li.nav-option:hover {
+    background: var(--main-bg-color);
+}
+
+li.selected {
+    background: var(--main-bg-color);
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+li.nav-option::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 100%;
+    margin: 0px 10px 0px 0px;
+}
+
+li.selected::before {
+    background-color: var(--main-fg-color);
+}
+
+li.unselected::before {
+    background-color: transparent;
+}
+
+.dashboard-header {
+    padding: 20px 70px;
+    color: white;
+}
+
+
+.nav-option a {
+    color: white;
+    text-decoration: none;
+}

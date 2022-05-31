@@ -1,1 +1,1 @@
-SELECT * FROM user WHERE username=?;
+SELECT username, email, passwordHash, nickname FROM user WHERE username=?;

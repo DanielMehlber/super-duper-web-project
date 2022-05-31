@@ -1,4 +1,4 @@
-package com.esports.manager.userManagement.servlets;
+package com.esports.manager.global.servlets;
 
 import com.esports.manager.userManagement.exceptions.UnauthorizedException;
 import com.esports.manager.userManagement.logic.UserManagement;
@@ -45,10 +45,10 @@ public class LandingPageServlet extends HttpServlet {
         // redirect accordingly
         if(loggedIn) {
             // redirect to dashboard
-            response.sendRedirect("/dashboard");
+            response.sendRedirect(getServletContext().getContextPath() + "/dashboard");
         } else {
             // redirect to login
-            response.sendRedirect("/jsp/login.jsp");
+            response.sendRedirect(getServletContext().getContextPath() + "/login");
         }
 
     }

@@ -27,6 +27,12 @@ import java.rmi.ServerException;
 public class LoginServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(LoginServlet.class);
 
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/jsp/login.jsp").forward(req, resp);
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServerException, IOException, ServletException {
@@ -40,9 +46,6 @@ public class LoginServlet extends HttpServlet {
                     request.getParameter("username"),
                     request.getParameter("password"),
                     session);
-            // TODO: redirect accordingly to the logged in dashboard.
-            //Forward to welcome page
-            response.sendRedirect("www.google.com");
         } catch (NoSuchUserException ex) {
             // User couldn't be found.
             log.warn("Cannot perform login because of wrong username: " + ex.getMessage());
@@ -67,5 +70,7 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/jsp/login.jsp");
             rd.forward(request, response);
         }
+
+        response.sendRedirect(getServletContext().getContextPath() + "/dashboard");
     }
 }

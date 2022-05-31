@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 /**
  * collection of methods that will be used in user management
@@ -55,8 +56,7 @@ public class UserManagement {
 
     public static User fetchUserByUsername(final String username) throws NoSuchUserException, InternalErrorException {
         log.debug("fetching user by username...");
-        User user = UserRepository.getByUsername(username);
-        return user;
+        return UserRepository.getByUsername(username);
     }
 
 
@@ -225,10 +225,44 @@ public class UserManagement {
      * @throws UnauthorizedException there is no authorized user stored in session
      * @author Maxmilian Rublik
      */
-    public static User getAuthorizedUser(final HttpSession session) throws UnauthorizedException {
+    public static User getAuthorizedUser(final HttpSession session) throws UnauthorizedException, InternalErrorException {
         UserSessionBean userSessionBean = (UserSessionBean) session.getAttribute("userSessionBean");
         if (userSessionBean == null || userSessionBean.getUser() == null)
             throw new UnauthorizedException();
-        return userSessionBean.getUser();
+        User user =  userSessionBean.getUser();
+        // check if user still exists
+        try {
+            user = UserRepository.getByUsername(user.getUsername());
+        } catch (NoSuchUserException e) {
+            log.warn("user was in session but did not exist in database");
+            throw new UnauthorizedException();
+        }
+
+        return user;
+    }
+
+    /**
+     * Returns all users in database
+     * @return list of all users
+     * @throws InternalErrorException a database error occurred
+     * @author Daniel Mehlber
+     */
+    public static List<User> fetchAllUsers() throws InternalErrorException {
+        log.debug("fetching all users...");
+        List<User> foundUsers = UserRepository.fetchAllUserWithUsernamePattern(".*");
+        log.info("fetched all users from database");
+        return foundUsers;
+    }
+
+    /**
+     * Returns all users in database which usernames match the given pattern
+     * @param pattern regex pattern
+     * @return list of users which username matches regex pattern
+     * @throws InternalErrorException a database error occurred
+     * @author Daniel Mehlber
+     */
+    public static List<User> fetchUserByUsernamePattern(final String pattern) throws InternalErrorException {
+        log.debug(String.format("fetching users matching pattern '%s'...", pattern));
+        return UserRepository.fetchAllUserWithUsernamePattern(pattern);
     }
 }
