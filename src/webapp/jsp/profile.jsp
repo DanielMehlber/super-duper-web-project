@@ -19,12 +19,14 @@
 </head>
 <body>
 <div class="flex-container">
-    <form class="background-image">
-        <img src="${pageContext.request.contextPath}/users/images?type=background&username=${requestScope.ProfileViewBean.username}"
-             class="input-background-image"/>
-        <input class="input-background-image" type="file" accept="image/*">
+    <form class="background-image" action="../users/image" method="post" enctype="multipart/form-data">
+        <img src="${pageContext.request.contextPath}/users/images?type=background&username=${requestScope.ProfileViewBean.username}"/>
+        <c:if test="${current == userOfPage}">
+            <input class="input-background-image" type="file" accept="image/*">
+        </c:if>
+
     </form>
-    <div class="profile-card" action="../profile" method="post">
+    <div class="profile-card">
         <!--
         <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/edcb0e23689279.578bd6af7dffb.png" alt="Profile Banner" class="profile-banner"/>
         -->
@@ -35,7 +37,6 @@
                     <input class="input-profile-image" type="file" accept="image/*">
                 </c:if>
             </form>
-
             <!--get Username user-->
             <p class="username">${requestScope.profileBean.user.username}</p>
             <!-- get E-Mail from user-->
