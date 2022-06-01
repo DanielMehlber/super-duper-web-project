@@ -19,9 +19,19 @@ body {
     justify-content: center;
 }
 
+.background-image-upload
+
 .background-image {
     z-index: -1;
     margin: 0px 0px 0px 0px;
+}
+
+.background-image-input{
+
+}
+
+.accept-button-background{
+
 }
 
 .profile-card {
@@ -75,6 +85,8 @@ body {
     grid-area: player-info;
 }
 
+
+
 .profile-image {
     border-radius: 50%;
     border: 4px solid var(--main-fg-color);
@@ -86,7 +98,15 @@ body {
 }
 
 /*Input zum Bild hochladen*/
-.input-profile-image{
+.profile-image-input{
+
+}
+
+.profile-image-upload{
+
+}
+
+.accept-button-profile{
 
 }
 
