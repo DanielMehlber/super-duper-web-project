@@ -36,11 +36,12 @@
 				<img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${team.getKey().id}" />
 				<h2 class="team-title">${team.getKey().name}</h2>
 				<p class="tags">${team.getKey().tags}</p>
-				<div style="border: #D52B2B solid 1px">
-					<c:forEach items="${team.value}" var="user">
-						<img class="player-logo" src="${pageContext.request.contextPath}/users/images?type=profile&user=${user.username}" alt="player logo">
+				<div>
+					<c:forEach items="${team.value}" var="member">
+						<img class="player-logo" src="${pageContext.request.contextPath}/users/images?type=profile&user=${member.username}" alt="player logo">
 					</c:forEach>
 				</div>
+				<p class="member-count-paragraph">${team.value.size()} members</p>
 			</a>
 		</c:forEach>
 	</main>

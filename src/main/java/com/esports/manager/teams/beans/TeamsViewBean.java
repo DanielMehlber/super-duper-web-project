@@ -21,20 +21,11 @@ public class TeamsViewBean implements Serializable
 
     private List<User> users;
 
-    private int userCount;
-
     private String errorMessage;
 
     public TeamsViewBean() {
     }
 
-    public int getUserCount() {
-        return userCount;
-    }
-
-    public void setUserCount(int userCount) {
-        this.userCount = userCount;
-    }
     public Map<Team, List<Member>> getTeams() {
         if (this.teams == null) {
             this.teams = new HashMap<>();
