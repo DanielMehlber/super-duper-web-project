@@ -19,9 +19,8 @@
 </head>
 <body>
 <div class="flex-container">
-
+    <img src="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}" class="background-image"/>
     <form class="background-image-upload" action="../users/image" method="post" enctype="multipart/form-data">
-        <img src="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}" class="background-image"/>
         <c:if test="${requestScope.profileViewBean.editPermission == true}">
             <input class="background-image-input" type="file" accept="image/*">
             <button class="accept-button-background" type="submit">Accept</button>

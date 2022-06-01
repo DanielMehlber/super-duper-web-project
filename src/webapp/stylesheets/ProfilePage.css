@@ -19,11 +19,16 @@ body {
     justify-content: center;
 }
 
-.background-image-upload
+.background-image-upload{
+
+}
 
 .background-image {
     z-index: -1;
     margin: 0px 0px 0px 0px;
+    height: max-content;
+    width: max-content;
+    position: absolute;
 }
 
 .background-image-input{
@@ -79,7 +84,7 @@ body {
     column-gap: 40px;
 
     grid-template-areas:
-    "image username . level"
+    "image username . ."
     "image email . .";
 
     grid-area: player-info;
