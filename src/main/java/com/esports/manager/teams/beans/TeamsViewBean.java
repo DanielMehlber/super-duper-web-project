@@ -4,6 +4,7 @@ import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.teams.entities.Member;
 import com.esports.manager.teams.entities.Team;
+import com.esports.manager.userManagement.entities.User;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -18,11 +19,22 @@ public class TeamsViewBean implements Serializable
 {
     private Map<Team, List<Member>> teams;
 
+    private List<User> users;
+
+    private int userCount;
+
     private String errorMessage;
 
     public TeamsViewBean() {
     }
 
+    public int getUserCount() {
+        return userCount;
+    }
+
+    public void setUserCount(int userCount) {
+        this.userCount = userCount;
+    }
     public Map<Team, List<Member>> getTeams() {
         if (this.teams == null) {
             this.teams = new HashMap<>();
@@ -37,6 +49,14 @@ public class TeamsViewBean implements Serializable
         }
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
     public String getErrorMessage() {
         return errorMessage;
     }
@@ -44,5 +64,4 @@ public class TeamsViewBean implements Serializable
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
-
 }
