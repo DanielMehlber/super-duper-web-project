@@ -135,7 +135,7 @@ public class UserImageServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "user image type unknown");
             return;
         }
-
+        response.sendRedirect(getServletContext().getContextPath()+"/profile?username="+user.getUsername());
         log.info("user uploaded new "+type+" image");
     }
 }

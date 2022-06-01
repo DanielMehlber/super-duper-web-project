@@ -63,9 +63,9 @@ public class LoginServlet extends HttpServlet {
             // User entered wrong password
             log.warn("login was not successful: " + e.getMessage());
             // Create error messages
-            LoginViewBean viewBean = new LoginViewBean();
-            viewBean.setErrorMessage("Username or Password was not correct");
-            request.setAttribute("loginBean", viewBean);
+            LoginViewBean loginBean = new LoginViewBean();
+            loginBean.setErrorMessage("Username or Password was not correct");
+            request.setAttribute("loginBean", loginBean);
             // Forward back to login page
             RequestDispatcher rd = request.getRequestDispatcher("/jsp/login.jsp");
             rd.forward(request, response);

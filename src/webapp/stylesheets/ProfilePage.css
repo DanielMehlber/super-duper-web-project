@@ -19,6 +19,39 @@ body {
     justify-content: center;
 }
 
+.profile-card {
+    display: grid;
+    width: 950px;
+    background: rgba(29, 39, 76, 0.87);
+    backdrop-filter: blur(20px);
+    border: 3px solid var(--sec-color);
+    border-radius: 20px;
+    margin-top: 1%;
+
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr min-content 1fr;
+    gap: 15px 0px;
+    grid-template-areas:
+    "background-image"
+    "player-info"
+    ".";
+}
+
+.title {
+    font-size: 50px;
+}
+
+.background-image-container{
+    grid-area: background-container;
+    background: rgba(29, 39, 76, 0.87);
+    border: 3px solid var(--sec-color);
+    border-radius: 20px;
+
+}
 .background-image-upload{
 
 }
@@ -37,35 +70,6 @@ body {
 
 .accept-button-background{
 
-}
-
-.profile-card {
-    display: grid;
-    width: 950px;
-    background: rgba(29, 39, 76, 0.87);
-    backdrop-filter: blur(20px);
-    border: 3px solid var(--sec-color);
-    border-radius: 20px;
-    margin-top: 1%;
-
-
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr min-content 1fr;
-    gap: 15px 0px;
-    grid-template-areas:
-
-    "player-info"
-    "team-header"
-    ".";
-
-}
-
-.title {
-    font-size: 50px;
 }
 
 .player-info {

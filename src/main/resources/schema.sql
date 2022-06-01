@@ -2,8 +2,8 @@
 CREATE TABLE `user` (
   `username` varchar(30) NOT NULL,
   `email` varchar(40) NOT NULL,
-  `profile_picture` blob,
-  `background_picture` blob,
+  `profile_picture` MediumBlob,
+  `background_picture` MediumBlob,
   `passwordHash` varchar(64) NOT NULL,
   `nickname` varchar(20)
 );

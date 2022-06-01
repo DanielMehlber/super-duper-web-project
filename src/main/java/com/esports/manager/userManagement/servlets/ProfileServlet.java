@@ -51,7 +51,13 @@ public class ProfileServlet extends HttpServlet {
             // 1) fetch currentUser from session
             User currentUser = UserManagement.getAuthorizedUser(request.getSession());
             // 2) fetch profilePageUser from database with username parameter
-            User userOfPage = UserManagement.fetchUserByUsername(request.getParameter("username"));
+            String usernameParameter = request.getParameter("username");
+            if(usernameParameter == null || usernameParameter.isBlank()) {
+                // there is no username specified, redirect to dashboard
+                response.sendRedirect(getServletContext().getContextPath() + "/dashboard");
+                return;
+            }
+            User userOfPage = UserManagement.fetchUserByUsername(usernameParameter);
             // 3) compare both to set permissions
             // Compare usernames with equals, damit daniel mich nicht haut
             if (currentUser.getUsername().equals(userOfPage.getUsername())) {
