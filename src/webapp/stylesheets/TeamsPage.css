@@ -120,6 +120,15 @@ html {
     width: 116px;
 }
 
+.player-logo {
+    display:inline-block;
+    height: 40px;
+    width: 40px;
+    border: 2px #2B92D5 solid;
+    border-radius: 50%;
+    grid-column: 3;
+}
+
 .players {
     grid-column: 3;
 }
