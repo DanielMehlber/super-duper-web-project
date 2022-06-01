@@ -78,7 +78,7 @@ public class NewsfeedItem implements Serializable {
     }
 
     public String toJson() {
-        return String.format("{'type':'%s', 'date':'%s', 'player1': '%s', 'player2': '%s'}",
+        return String.format("{\"type\":\"%s\", \"date\":\"%s\", \"player1\": \"%s\", \"player2\": \"%s\"}",
                 type, date.toString(), player1Id, player2Id);
     }
 

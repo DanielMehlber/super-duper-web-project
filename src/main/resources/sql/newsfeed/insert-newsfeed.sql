@@ -1,1 +1,1 @@
-INSERT INTO newsfeed (date, player1, player2) VALUES (?, ?, ?);
+INSERT INTO newsfeed (type, date, player1, player2) VALUES (?, ?, ?, ?);

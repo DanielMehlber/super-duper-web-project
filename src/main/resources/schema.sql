@@ -10,7 +10,8 @@ CREATE TABLE `user` (
 
 CREATE TABLE `newsfeed` (
     `id` SERIAL PRIMARY KEY,
-    `date` DATETIME NOT NULL,
+    `date` TIMESTAMP(6) NOT NULL,
+    `type` VARCHAR(20) NOT NULL,
     `player1` varchar(30),
     `player2` varchar(30),
     CONSTRAINT `fk_player1` FOREIGN KEY (player1) REFERENCES user(username) ON DELETE SET NULL,

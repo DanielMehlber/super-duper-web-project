@@ -47,10 +47,12 @@ public class NewsfeedRepositoryTest {
         NewsfeedItem item = new NewsfeedItem(new Date(), "type", "player1", "player2");
         NewsfeedRepository.persistNewsfeedItem(item);
 
+        Thread.sleep(1000);
+
         // -- assert --
         NewsfeedItem fetchedItem = NewsfeedRepository.fetchNewsfeedItems(new Date(), 1).get(0);
         Assertions.assertEquals(item.getDate(), fetchedItem.getDate());
-        Assertions.assertEquals(item.getPlayer1Id(), fetchedItem.getPlayer2Id());
+        Assertions.assertEquals(item.getPlayer1Id(), fetchedItem.getPlayer1Id());
         Assertions.assertEquals(item.getPlayer2Id(), fetchedItem.getPlayer2Id());
         Assertions.assertEquals(item.getType(), fetchedItem.getType());
     }

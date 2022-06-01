@@ -59,19 +59,19 @@ public class ResultSetProcessor {
                     Class<?> type = field.getType();
                     if(!field.trySetAccessible()) throw new InternalErrorException("cannot make field accessible");
                     if(type == Integer.class) {
-                        field.setInt(entity, resultSet.getInt(index));
+                        field.set(entity, resultSet.getInt(index));
                     } else if (type == String.class) {
                         field.set(entity, resultSet.getString(index));
                     } else if (type == Long.class) {
-                        field.setLong(entity, resultSet.getLong(index));
+                        field.set(entity, resultSet.getLong(index));
                     } else if (type == Float.class) {
-                        field.setFloat(entity, resultSet.getFloat(index));
+                        field.set(entity, resultSet.getFloat(index));
                     } else if (type == Double.class) {
-                        field.setDouble(entity, resultSet.getDouble(index));
+                        field.set(entity, resultSet.getDouble(index));
                     } else if (type == Boolean.class) {
-                        field.setBoolean(entity, resultSet.getBoolean(index));
+                        field.set(entity, resultSet.getBoolean(index));
                     } else if (type == Date.class) {
-                        field.set(entity, resultSet.getDate(index));
+                        field.set(entity, resultSet.getTimestamp(index));
                     } else {
                         throw new IllegalAccessException(String.format("field '%s' of type %s of class %s is not supported", field.getName(), type.getName(), targetClass.getName()));
                     }

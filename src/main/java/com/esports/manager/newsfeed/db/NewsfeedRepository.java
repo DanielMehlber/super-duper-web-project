@@ -60,9 +60,10 @@ public class NewsfeedRepository {
         try(PreparedStatement statement = QueryHandler.loadStatement("/sql/newsfeed/insert-newsfeed.sql");
             Connection connection = statement.getConnection()) {
 
-            statement.setTimestamp(1, new Timestamp(item.getDate().getTime()));
-            statement.setString(2, item.getPlayer1Id());
-            statement.setString(3, item.getPlayer2Id());
+            statement.setString(1, item.getType());
+            statement.setTimestamp(2, new Timestamp(item.getDate().getTime()));
+            statement.setString(3, item.getPlayer1Id());
+            statement.setString(4, item.getPlayer2Id());
 
             statement.executeUpdate();
 

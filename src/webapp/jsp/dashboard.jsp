@@ -13,16 +13,26 @@
     <title>Dashboard</title>
     <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/stylesheets/newsfeed.css" rel="stylesheet"/>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
-<body>
+<body onload="loadMoreNewsfeedItems();">
+    <script src="${pageContext.request.contextPath}/js/newsfeed.js"></script>
+
     <%@include file="fragments/sidebar.jspf" %>
 
     <main id="main" onclick="hideNav()">
         <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
-        <div class="dashboard-header">
-            <h1>Welcome back</h1>
-        </div>
+        <section class="main-content-container">
+            <div class="dashboard-header">
+                <h1>Welcome back</h1>
+            </div>
+            <section class="newsfeed-container">
+                <h2>Newsfeed</h2>
+                <div id="newsfeed" class="newsfeed">
+                </div>
+            </section>
+        </section>
     </main>
 
     <footer></footer>

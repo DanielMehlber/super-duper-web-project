@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="" %>
 <script src="${pageContext.request.contextPath}/js/sidebar.js" defer></script>
 <nav>
     <div class="profile-container">

@@ -98,3 +98,8 @@ button:active{
 		transform: translatey(5px);
 	}
 }
+
+
+main > .main-content-container {
+    padding: 50px;
+}

@@ -58,6 +58,7 @@ public class LoginServlet extends HttpServlet {
             // forward back to login page
             RequestDispatcher rd = request.getRequestDispatcher("/jsp/login.jsp");
             rd.forward(request, response);
+            return;
         } catch (InternalErrorException e) {
             log.fatal("Internal error found while logging in user: " + e.getMessage());
             throw e;
@@ -71,6 +72,7 @@ public class LoginServlet extends HttpServlet {
             // Forward back to login page
             RequestDispatcher rd = request.getRequestDispatcher("/jsp/login.jsp");
             rd.forward(request, response);
+            return;
         }
 
         response.sendRedirect(getServletContext().getContextPath() + "/dashboard");

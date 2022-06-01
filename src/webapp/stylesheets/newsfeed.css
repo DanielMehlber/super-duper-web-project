@@ -1,0 +1,72 @@
+.newsfeed-container {
+    grid-area: newsfeed;
+    background-color: #1d274c;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 30px;
+}
+
+.newsfeed-container h2 {
+    color: white;
+    margin: 0px;
+    margin-bottom: 20px;
+}
+
+.newsfeed {
+    width: fit-content;
+    overflow-y: auto;
+    height: 300px;
+    padding-right: 20px;
+}
+
+.newsfeed-item {
+    height:  fit-content;
+    width: fit-content;
+    color: white;
+    display: grid;
+    grid-template-areas: 
+        "images description"
+        "images date";
+    grid-template-columns: 90px auto;
+    margin-bottom: 10px;
+}
+
+.newsfeed-item .newsfeed-images {
+    grid-area: images;
+    display: flex;
+    align-items: center;
+}
+
+.newsfeed-item .news-description {
+    grid-area: description;
+    align-self: center;
+    color: white;
+    font-size: 1.1em;
+    font-weight: normal;
+}
+
+.news-description .player-ref, .news-description .team-ref {
+    color: white;
+    font-weight: bolder;
+    text-decoration: underline;
+    font-size: inherit;
+}
+
+.newsfeed-item .news-time {
+    grid-area: date;
+    align-self: center;
+    color: gray;
+    font-size: 0.9em;
+}
+
+.newsfeed-item .newsfeed-images img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border-width: 3px;
+    border-style: solid;
+    border-color: var(--main-fg-color);
+    margin: 5px 0px;
+    margin-right: -15px;
+}
