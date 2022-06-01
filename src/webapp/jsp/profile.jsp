@@ -20,25 +20,26 @@
 <body>
 <div class="flex-container">
     <img src="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}" class="background-image"/>
-    <form class="background-image-upload" action="../users/images" method="POST" enctype="multipart/form-data">
-        <c:if test="${requestScope.profileViewBean.editPermission == true}">
+    <!--<form class="background-image-upload" action="../users/images" method="POST" enctype="multipart/form-data">
+        <c:if test="${requestScope.profileViewBean.editPermission}">
             <input class="background-image-input" type="file" name="profile" accept="/image">
             <button class="accept-button-background" type="submit">Accept</button>
         </c:if>
-    </form>
+    </form>-->
 
     <div class="profile-card">
         <!--
         <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/edcb0e23689279.578bd6af7dffb.png" alt="Profile Banner" class="profile-banner"/>
         -->
         <div class="player-info">
-            <form class="profile-image-upload" action="../users/images" method="post" enctype="multipart/form-data">
-                <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${requestScope.profileViewBean.user.username}" class="profile-image"/>
-                <c:if test="${requestScope.profileViewBean.editPermission == true}">
-                    <input class="profile-image-input" type="file" accept=".png, .jpg, .jpeg">
-                    <button class="accept-button-profile" type="submit">Accept</button>
-                </c:if>
-            </form>
+            <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${requestScope.profileViewBean.user.username}" class="profile-image"/>
+            <c:if test="${requestScope.profileViewBean.editPermission}">
+                <form class="profile-image-upload" action="${pageContext.request.contextPath}/users/images" method="POST" enctype="multipart/form-data">
+
+                    <input class="profile-image-input" type="file" name="profile" accept="</image>">
+                    <button class="accept-button-profile">Accept</button>
+                </form>
+            </c:if>
             <!--get Username user-->
             <p class="username">${requestScope.profileViewBean.user.username}</p>
             <!-- get E-Mail from user-->
