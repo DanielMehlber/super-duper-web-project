@@ -19,13 +19,15 @@
 </head>
 <body>
 <div class="flex-container">
-    <form class="background-image" action="../users/image" method="post" enctype="multipart/form-data">
+
+    <form class="background-image-upload" action="../users/image" method="post" enctype="multipart/form-data">
         <img src="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"/>
         <c:if test="${requestScope.profileViewBean.editPermission == true}">
-            <input class="input-background-image" type="file" accept="image/*">
+            <input class="background-image-input" type="file" accept="image/*">
+            <button class="accept-button" type="submit">Accept</button>
         </c:if>
-
     </form>
+
     <div class="profile-card">
         <!--
         <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/edcb0e23689279.578bd6af7dffb.png" alt="Profile Banner" class="profile-banner"/>
@@ -35,36 +37,15 @@
                 <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${requestScope.profileViewBean.user.username}"/>
                 <c:if test="${requestScope.profileViewBean.editPermission == true}">
                     <input class="input-profile-image" type="file" accept="image/*">
+                    <button class="accept-button" type="submit">Accept</button>
                 </c:if>
             </form>
             <!--get Username user-->
             <p class="username">${requestScope.profileViewBean.user.username}</p>
             <!-- get E-Mail from user-->
             <p class="email">${requestScope.profileViewBean.user.email}</p>
-            <p class="user_level">20</p>
         </div>
 
-        <h1 class="team-header">Active Teams</h1>
-        <!-- <p class="title">Active Team</p>-->
-        <div class="team-container">
-            <!-- get team name from user-->
-            <p class="team">THeSports</p>
-            <!--team-image-->
-            <img src="../img/technische_hochschule_ingolstadt_59242c91ab8b7.png"
-                 alt="team-picture"
-                 class="team-image"/>
-            <p class="members">32 Members</p>
-            <!-- get game from user-->
-            <p class="member-images">member-images<</p>
-            <!--role-->
-            <p class="team-tags">#CSGO #Competetive #NeverStopWinning #Money #B1tchez #MatzeF1ck3n</p>
-        </div>
-
-        <div class="activity-container">
-
-        </div>
-        <!--add to team-->
-        <!--<button>Test</button>-->
     </div>
 </div>
 </body>

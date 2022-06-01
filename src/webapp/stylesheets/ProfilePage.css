@@ -39,14 +39,12 @@ body {
     justify-items: center;
 
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr min-content 1fr 1fr 1fr;
+    grid-template-rows: 1fr min-content 1fr;
     gap: 15px 0px;
     grid-template-areas:
 
     "player-info"
     "team-header"
-    "team-container"
-    "activity-container"
     ".";
 
 }
@@ -113,15 +111,7 @@ body {
     margin: 0 0 0 0;
 }
 
-.user_level {
-    grid-area: level;
-    font-size: 30px;
-    font-weight: 500;
-    padding: 3px 3px 3px 3px;
-    border: 3px solid #D52B2B;
-    border-radius: 50%;
-}
-
+/**
 .team-header {
     grid-area: team-header;
     margin: 0px 0px 0px 0px;
@@ -201,3 +191,5 @@ body {
 
     grid-area: activity-container;
 }
+
+ */
