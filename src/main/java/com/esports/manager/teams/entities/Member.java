@@ -7,7 +7,7 @@ public class Member {
     private String username;
 
     @ResultSetMapping("teamId")
-    private String teamId;
+    private Long teamId;
 
     @ResultSetMapping("since")
     private String since;
@@ -23,11 +23,11 @@ public class Member {
         this.username = username;
     }
 
-    public String getTeamId() {
+    public Long getTeamId() {
         return teamId;
     }
 
-    public void setTeamId(String teamId) {
+    public void setTeamId(Long teamId) {
         this.teamId = teamId;
     }
 
