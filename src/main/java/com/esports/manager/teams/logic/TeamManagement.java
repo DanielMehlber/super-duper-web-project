@@ -87,4 +87,16 @@ public class TeamManagement {
         TeamRepository.addUserToTeam(teamid, username, role, since);
     }
 
+    /**
+     * @param username username from member to be removed
+     * @param teamId from team where to remove from
+     * @author Maximilian Rublik
+     */
+    public static void removeUserFromTeam (String username, Long teamId) {
+        try {
+            TeamRepository.removeUserFromTeam(username, teamId);
+        } catch (InternalErrorException ex) {
+            log.warn("");
+        }
+    }
 }

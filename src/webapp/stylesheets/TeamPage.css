@@ -68,6 +68,20 @@ tr {
     align-items: center;
 }
 
+.remove-button {
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+    alignment: center;
+    text-decoration: none;
+    background-color: #D52B2B;
+    border-radius: 4px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .header-row {
     border-bottom: solid 1px #000000;
 }

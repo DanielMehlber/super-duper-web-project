@@ -212,6 +212,7 @@ public class TeamRepository {
             throw new InternalErrorException("cannot set background image", e);
         }
     }
+
     /**
      * Creates new team to database
      * @param team team data to persist
@@ -255,6 +256,27 @@ public class TeamRepository {
         } catch (SQLException | IOException e) {
             log.error("cannot update team with User due to an sql error");
             throw new InternalErrorException("cannot update Team with new user", e);
+        }
+    }
+
+    /**
+     * Removes member from team
+     * @param username username from member to be remmoved
+     * @param teamId teamId from which the member shall be removed
+     * @author Maximilian Rublik
+     */
+    public static void removeUserFromTeam (String username, Long teamId) throws InternalErrorException {
+        log.debug("remove user from team");
+
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/removeUserFromTeam.sql");
+            Connection connection = pstmt.getConnection()) {
+            pstmt.setString(1, username);
+            pstmt.setLong(2, teamId);
+            pstmt.executeUpdate();
+
+        } catch (SQLException | IOException e) {
+            log.error("cannot remove user from team due to an sql error");
+            throw new InternalErrorException("cannot remove member from team", e);
         }
     }
 }

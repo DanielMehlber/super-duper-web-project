@@ -38,6 +38,7 @@
                             <td>${member.username}</td>
                             <td>${member.since}</td>
                             <td>${member.role}</td>
+                            <td><a class="remove-button" href="${pageContext.request.contextPath}/teams/removemember?teamid=${teamViewBean.getTeam().getId()}&username=${member.username}">-</a></td>
                         </tr>
                     </c:forEach>
                 </table>
