@@ -4,8 +4,10 @@ import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.teams.entities.Team;
 import com.esports.manager.teams.exceptions.NoSuchTeamException;
 import com.esports.manager.teams.logic.TeamManagement;
+import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoImageFoundException;
 
+import com.esports.manager.userManagement.logic.UserManagement;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -32,6 +34,7 @@ public class TeamImageServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User loggedinUser = UserManagement.getAuthorizedUser(req.getSession());
         Long id = null;
         try {
             id = Long.valueOf(req.getParameter("id"));

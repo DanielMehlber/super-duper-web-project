@@ -2,6 +2,7 @@ package com.esports.manager.teams.servlets;
 
 import com.esports.manager.teams.beans.AddMemberViewBean;
 import com.esports.manager.teams.logic.TeamManagement;
+import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.logic.UserManagement;
 
 import jakarta.servlet.RequestDispatcher;
@@ -27,6 +28,7 @@ public class AddMemberServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User loggedinUser = UserManagement.getAuthorizedUser(req.getSession());
         AddMemberViewBean addMemberViewBean = new AddMemberViewBean();
         Long teamId = Long.valueOf(req.getParameter("teamid"));
         addMemberViewBean.setUsers(UserManagement.fetchUserNotAlreadyMember(teamId));
@@ -39,6 +41,7 @@ public class AddMemberServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User loggedinUser = UserManagement.getAuthorizedUser(req.getSession());
         req.setCharacterEncoding("UTF-8");
 
         String username = req.getParameter("users");

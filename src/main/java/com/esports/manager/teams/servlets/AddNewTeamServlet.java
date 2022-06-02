@@ -3,6 +3,8 @@ package com.esports.manager.teams.servlets;
 import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.teams.entities.Team;
 
+import com.esports.manager.userManagement.entities.User;
+import com.esports.manager.userManagement.logic.UserManagement;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -26,14 +28,16 @@ public class AddNewTeamServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User loggedinUser = UserManagement.getAuthorizedUser(req.getSession());
         RequestDispatcher rq = req.getRequestDispatcher("/jsp/addnewteam.jsp");
         rq.forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User loggedinUser = UserManagement.getAuthorizedUser(req.getSession());
         req.setCharacterEncoding("UTF-8");
-        //TODO save images to database
+
         String teamname = req.getParameter("name");
         String slogan = req.getParameter("slogan");
         String tags = req.getParameter("tags");

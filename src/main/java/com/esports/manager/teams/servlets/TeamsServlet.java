@@ -4,6 +4,8 @@ import com.esports.manager.teams.beans.TeamsViewBean;
 import com.esports.manager.teams.exceptions.NoTeamsFoundException;
 import com.esports.manager.teams.logic.TeamManagement;
 
+import com.esports.manager.userManagement.entities.User;
+import com.esports.manager.userManagement.logic.UserManagement;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -29,6 +31,8 @@ public class TeamsServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User loggedinUser = UserManagement.getAuthorizedUser(req.getSession());
+
         TeamsViewBean teamsViewBean = new TeamsViewBean();
 
         try {

@@ -3,6 +3,8 @@ package com.esports.manager.teams.servlets;
 import com.esports.manager.teams.beans.TeamViewBean;
 import com.esports.manager.teams.db.TeamRepository;
 
+import com.esports.manager.userManagement.entities.User;
+import com.esports.manager.userManagement.logic.UserManagement;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -32,6 +34,7 @@ public class TeamServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User loggedinUser = UserManagement.getAuthorizedUser(req.getSession());
         resp.setContentType("text/html;charset=UTF-8");
         Long id;
 
