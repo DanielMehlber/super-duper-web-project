@@ -19,11 +19,22 @@ public class TeamsViewBean implements Serializable
 {
     private Map<Team, List<Member>> teams;
 
+
+    private String tags;
+
     private List<User> users;
 
     private String errorMessage;
 
     public TeamsViewBean() {
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 
     public Map<Team, List<Member>> getTeams() {

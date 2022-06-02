@@ -21,7 +21,7 @@
 	</nav>
 
 	<main id="main" onclick="hideNav()">
-		<button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
+		<button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
 		<div class="head-information">
 			<h1 id="teams-title">Your Teams</h1>
 			<select class="game-selection">

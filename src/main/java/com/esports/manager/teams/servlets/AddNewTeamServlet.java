@@ -38,24 +38,29 @@ public class AddNewTeamServlet extends HttpServlet {
         String slogan = req.getParameter("slogan");
         String tags = req.getParameter("tags");
 
-        Part imagePart = req.getPart("profile");
-        InputStream is = imagePart.getInputStream();
-        //String background = req.getParameter("background");
-
-        // vvv Start Copy https://stackoverflow.com/a/1264737 vvv
-        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        int nRead;
-        byte[] data = new byte[1024];
-        while ((nRead = is.read(data, 0, data.length)) != -1) {
-            buffer.write(data, 0, nRead);
-        }
-        // ^^^ End Copy ^^^
-        byte[] image = buffer.toByteArray();
+        Part profilePart = req.getPart("profile");
+        Part backgroundPart = req.getPart("background");
+        InputStream profileIS = profilePart.getInputStream();
+        InputStream backgroundIS = backgroundPart.getInputStream();
 
         Team newTeam = new Team(teamname, slogan, tags);
 
         TeamRepository.createTeam(newTeam);
-        TeamRepository.setProfileImage(image, newTeam);
+        TeamRepository.setProfileImage(bufferImage(profileIS), newTeam);
+        TeamRepository.setBackgroundImage(bufferImage(backgroundIS), newTeam);
+
         resp.sendRedirect(getServletContext().getContextPath() + "/teams");
+    }
+
+    private byte[] bufferImage (InputStream inputStream) throws IOException {
+        // vvv Start Copy https://stackoverflow.com/a/1264737 vvv
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        int nRead;
+        byte[] data = new byte[1024];
+        while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
+            buffer.write(data, 0, nRead);
+        }
+        // ^^^ End Copy ^^^
+        return buffer.toByteArray();
     }
 }
