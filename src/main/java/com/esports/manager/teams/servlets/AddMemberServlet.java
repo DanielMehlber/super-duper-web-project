@@ -47,6 +47,7 @@ public class AddMemberServlet extends HttpServlet {
         java.sql.Date since = new Date(System.currentTimeMillis());
 
         TeamManagement.addUserToTeam(username, teamId, role, since);
-        resp.sendRedirect(getServletContext().getContextPath() + "/teams");
+        RequestDispatcher rq = req.getRequestDispatcher(getServletContext().getContextPath() + "/teams/team?id="+ teamId);
+        resp.sendRedirect(getServletContext().getContextPath() + "/teams/team?id="+ teamId);
     }
 }
