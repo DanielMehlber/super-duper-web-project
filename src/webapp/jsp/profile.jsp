@@ -40,7 +40,7 @@
                 <button class="accept-button-profile" type="submit">Accept</button>
             </form>
         </c:if>
-        <div class="username">${requestScope.profileViewBean.user.username}</div>
+        <div class="username">@${requestScope.profileViewBean.user.username}</div>
         <!--Email noch in Nickname ändern-->
         <div class="nickname">${requestScope.profileViewBean.user.email}</div>
     </div>
