@@ -13,129 +13,93 @@ body {
 
 }
 
-.flex-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.background-image{
+    z-index: -1;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.profile-card {
-    display: grid;
-    width: 950px;
+main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
+    row-gap: 20px;
+    overflow-x: hidden;
+    min-height: 100%;
+}
+
+.background-image-container{
+    margin-top: 20px;
+    width: 900px;
     background: rgba(29, 39, 76, 0.87);
     backdrop-filter: blur(20px);
     border: 3px solid var(--sec-color);
     border-radius: 20px;
-    margin-top: 1%;
-
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr min-content 1fr;
-    gap: 15px 0px;
-    grid-template-areas:
-    "background-image"
-    "player-info"
-    ".";
 }
 
-.title {
-    font-size: 50px;
-}
 
-.background-image-container{
-    grid-area: background-container;
-    background: rgba(29, 39, 76, 0.87);
+.profile-card{
+    width: 900px;
+    height: 250px;
+    background: rgb(29 39 76 / 74%);
+    backdrop-filter: blur(4px);
     border: 3px solid var(--sec-color);
     border-radius: 20px;
-
-}
-.background-image-upload{
-
-}
-
-.background-image {
-    z-index: -1;
-    margin: 0px 0px 0px 0px;
-    height: max-content;
-    width: max-content;
-    position: absolute;
-}
-
-.background-image-input{
-
-}
-
-.accept-button-background{
-
-}
-
-.player-info {
-    background-color: transparent;
-    border-radius: 10px;
-    height: 220px;
-    width: 900px;
-
     display: grid;
     justify-content: center;
     justify-items: center;
     align-items: center;
-
-    grid-template-rows: 50% 50%;
-    grid-template-columns:  min-content 1fr 0.5fr 0.5fr;
-    column-gap: 40px;
-
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
-    "image username . ."
-    "image email . .";
-
-    grid-area: player-info;
+        "image username ."
+        "image nickname ."
+        "form form .";
 }
 
-
-
-.profile-image {
+.profile-image{
     border-radius: 50%;
     border: 4px solid var(--main-fg-color);
     height: 160px;
     width: 160px;
-    margin-left: 30px;
+    margin-top: 10px;
+
     grid-area: image;
-    transition: 0.5s;
-}
-
-/*Input zum Bild hochladen*/
-.profile-image-input{
-
-}
-
-.profile-image-upload{
-
-}
-
-.accept-button-profile{
-
-}
-
-.profile-image:hover{
-    box-shadow: 0px 0px 15px 2px var(--main-fg-color);
-    outline: none;
-    transition: 0.5s;
 }
 
 .username {
-    grid-area: username;
     font-size: 35px;
-    justify-self: start;
+    justify-self: baseline;
+    grid-area: username;
 }
 
-.email {
-    grid-area: email;
-    font-size: 18px;
-    color: darkgrey;
-    justify-self: start;
-    align-self: start;
-    margin: 0 0 0 0;
+.nickname {
+    font-size: 20px;
+    align-self: baseline;
+    justify-self: baseline;
+    grid-area: nickname;
+}
+
+
+.profile-image-form{
+    grid-area: form;
+}
+
+.profile-image-input {
+    grid-area: profile-image-input;
+    margin: 0;
+    height: 40px;
+    width: 300px;
+}
+
+.accept-button-profile {
+    grid-area: accept-button-profile;
+    height: 40px;
+    width: 100px;
 }

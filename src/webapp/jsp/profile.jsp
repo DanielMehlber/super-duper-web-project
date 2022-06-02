@@ -19,10 +19,10 @@
 </head>
 <body>
 <main class="flex-container">
+    <img src="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
+         class="background-image"/>
     <div class="background-image-container">
-        <img src="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
-             class="background-image"/>
-        <form class="background-image-upload" action="${pageContext.request.contextPath}" method="POST"
+        <form class="background-image-upload" action="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}" method="POST"
               enctype="multipart/form-data">
             <c:if test="${requestScope.profileViewBean.editPermission}">
                 <input class="background-image-input" type="file" name="profile" accept="/image/*">
@@ -31,19 +31,18 @@
         </form>
     </div>
     <div class="profile-card">
-        <div class="player-info">
-            <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${requestScope.profileViewBean.user.username}"
-                 class="profile-image"/>
-            <c:if test="${requestScope.profileViewBean.editPermission}">
-                <form class="profile-image-upload" action="${pageContext.request.contextPath}/users/images"
-                      method="POST" enctype="multipart/form-data">
-                    <input class="profile-image-input" type="file" name="profile" accept="image/*"/>
-                    <button class="accept-button-profile" type="submit">Accept</button>
-                </form>
-            </c:if>
-            <div class="username">${requestScope.profileViewBean.user.username}</div>
-            <div class="email">${requestScope.profileViewBean.user.email}</div>
-        </div>
+        <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${requestScope.profileViewBean.user.username}"
+             class="profile-image"/>
+        <c:if test="${requestScope.profileViewBean.editPermission}">
+            <form class="profile-image-form" action="${pageContext.request.contextPath}/users/images"
+                  method="POST" enctype="multipart/form-data">
+                <input class="profile-image-input" type="file" name="profile" accept="image/*"/>
+                <button class="accept-button-profile" type="submit">Accept</button>
+            </form>
+        </c:if>
+        <div class="username">${requestScope.profileViewBean.user.username}</div>
+        <!--Email noch in Nickname ändern-->
+        <div class="nickname">${requestScope.profileViewBean.user.email}</div>
     </div>
 </main>
 </body>
