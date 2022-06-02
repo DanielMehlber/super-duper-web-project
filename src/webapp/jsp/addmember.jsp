@@ -19,20 +19,18 @@
 
     </nav>
     <main>
-        <div class="main-container">
-            <form action="${pageContext.request.contextPath}/teams/addmember" method="POST">
-                <select name="users">
-                    <c:forEach items="${addMemberViewBean.users}" var="user">
-                        <option value="${user.username}">${user.username}</option>
-                    </c:forEach>
-                </select>
-                <input type="hidden" name="teamId" value="${addMemberViewBean.teamId}">
-                <input name="position" placeholder="position" autofocus="autofocus"/>
+        <form class="add-member-form" action="${pageContext.request.contextPath}/teams/addmember" method="POST">
+            <select class="user-selection" name="users">
+                <c:forEach items="${addMemberViewBean.users}" var="user">
+                    <option value="${user.username}">${user.username}</option>
+                </c:forEach>
+            </select>
+            <input type="hidden" name="teamId" value="${addMemberViewBean.teamId}">
+            <input class="position-field" name="position" placeholder="position" autofocus="autofocus"/>
 
-                <button class="cancel-button">Cancel</button>
-                <button class="enter-button">Add</button>
-            </form>
-        </div>
+            <button class="cancel-button" onclick="history.back()" type="reset">Cancel</button>
+            <button class="enter-button" type="submit">Add</button>
+        </form>
     </main>
 
     <footer>
