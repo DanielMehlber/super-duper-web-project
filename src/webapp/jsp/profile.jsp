@@ -18,54 +18,32 @@
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
-<div class="flex-container">
-    <form class="background-image" action="../users/image" method="post" enctype="multipart/form-data">
-        <img src="${pageContext.request.contextPath}/users/images?type=background&username=${requestScope.ProfileViewBean.username}"/>
-        <c:if test="${editPermission == true}">
-            <input class="input-background-image" type="file" accept="image/*">
-        </c:if>
-
-    </form>
-    <div class="profile-card">
-        <!--
-        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/edcb0e23689279.578bd6af7dffb.png" alt="Profile Banner" class="profile-banner"/>
-        -->
-        <div class="player-info">
-            <form class="profile-image" action="../users/image" method="post" enctype="multipart/form-data">
-                <img src="${pageContext.request.contextPath}/users/images?type=profile&username=${requestScope.ProfileViewBean.username}"/>
-                <c:if test="${editPermission == true}">
-                    <input class="input-profile-image" type="file" accept="image/*">
-                </c:if>
-            </form>
-            <!--get Username user-->
-            <p class="username">${requestScope.profileBean.user.username}</p>
-            <!-- get E-Mail from user-->
-            <p class="email">${requestScope.profileBean.user.email}</p>
-            <p class="user_level">20</p>
-        </div>
-
-        <h1 class="team-header">Active Teams</h1>
-        <!-- <p class="title">Active Team</p>-->
-        <div class="team-container">
-            <!-- get team name from user-->
-            <p class="team">THeSports</p>
-            <!--team-image-->
-            <img src="../img/technische_hochschule_ingolstadt_59242c91ab8b7.png"
-                 alt="team-picture"
-                 class="team-image"/>
-            <p class="members">32 Members${team.members}</p>
-            <!-- get game from user-->
-            <p class="member-images">member-images${team.members-imgage}<</p>
-            <!--role-->
-            <p class="team-tags">#CSGO #Competetive #NeverStopWinning #Money #B1tchez #MatzeF1ck3n${team.tags}</p>
-        </div>
-
-        <div class="activity-container">
-
-        </div>
-        <!--add to team-->
-        <!--<button>Test</button>-->
+<main class="flex-container">
+    <img src="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
+         class="background-image"/>
+    <div class="background-image-container">
+        <form class="background-image-upload" action="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}" method="POST"
+              enctype="multipart/form-data">
+            <c:if test="${requestScope.profileViewBean.editPermission}">
+                <input class="background-image-input" type="file" name="profile" accept="/image/*">
+                <button class="accept-button-background" type="submit">Accept</button>
+            </c:if>
+        </form>
     </div>
-</div>
+    <div class="profile-card">
+        <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${requestScope.profileViewBean.user.username}"
+             class="profile-image"/>
+        <c:if test="${requestScope.profileViewBean.editPermission}">
+            <form class="profile-image-form" action="${pageContext.request.contextPath}/users/images"
+                  method="POST" enctype="multipart/form-data">
+                <input class="profile-image-input" type="file" name="profile" accept="image/*"/>
+                <button class="accept-button-profile" type="submit">Accept</button>
+            </form>
+        </c:if>
+        <div class="username">@${requestScope.profileViewBean.user.username}</div>
+        <!--Email noch in Nickname ändern-->
+        <div class="nickname">${requestScope.profileViewBean.user.email}</div>
+    </div>
+</main>
 </body>
 </html>

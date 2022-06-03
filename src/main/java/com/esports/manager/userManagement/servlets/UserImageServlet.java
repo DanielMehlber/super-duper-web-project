@@ -103,6 +103,7 @@ public class UserImageServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      request.setCharacterEncoding("UTF-8");
         // check if user is logged in
         User user = UserManagement.getAuthorizedUser(request.getSession());
 
@@ -111,7 +112,7 @@ public class UserImageServlet extends HttpServlet {
         type = type == null ? "profile" : type;
 
         // read image as byte array from request
-        Part imagePart = request.getPart("image");
+        Part imagePart = request.getPart("profile");
         InputStream is = imagePart.getInputStream();
 
         // vvv Start Copy https://stackoverflow.com/a/1264737 vvv
@@ -134,7 +135,7 @@ public class UserImageServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "user image type unknown");
             return;
         }
-
+        response.sendRedirect(getServletContext().getContextPath()+"/profile?username="+user.getUsername());
         log.info("user uploaded new "+type+" image");
     }
 }

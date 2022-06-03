@@ -259,32 +259,5 @@ public class UserRepository {
         }
 
         return users;
-
-    /**
-     * Changes the username of a user
-     * @author Philipp Phan
-     * TODO: not the highest priority
-     * */
-    public static void changeUsername(String username_new) throws InternalErrorException, UsernameAlreadyTakenException{
-        // check if username is available
-        if(!UserManagement.isUsernameAvailable(username_new)) {
-            throw new UsernameAlreadyTakenException();
-        }
-    }
-    /**
-     * Changes profile picture of user
-     * @author Philipp Phan
-     * */
-    public static void postProfilePicture(Image image){
-
-    }
-
-    /**
-     * Changes the Background Picture of the user's profile
-     * @author Philipp Phan
-     * */
-    public static void changeBackgroundPicture(Image image){
-        ResultSet resultSet;
-
     }
 }
