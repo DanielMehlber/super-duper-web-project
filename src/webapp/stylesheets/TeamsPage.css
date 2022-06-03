@@ -1,0 +1,144 @@
+
+* {
+    --nav-width: 200px;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+}
+
+#nav-bar {
+    background-color: #1d274c;
+    grid-area: nav-panel;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    width: var(--nav-width);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+}
+
+.nav-bar-button {
+    position: relative;
+    background-color: #1d274c;
+    width: 40px;
+    height: 40px;
+    border-radius: 0px 10px 10px 0px;
+    border-width: 0px;
+    top: 10px;
+    display: inline-block;
+    line-height: 100%;
+}
+
+#main {
+    grid-area: main-panel;
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-bg-color);
+    box-shadow: rgb(0 0 0 / 35%) -7px 0px 15px;
+    transition: left 0.5s;
+    transition-timing-function: cubic-bezier(0.47, 0.14, 0.48, 1.15);
+}
+
+#teams-title {
+	float: left;
+    font-size: 50px;
+    width: 300px;
+    height: 67px;
+    color: #FFFFFF;
+    flex-grow: 2;
+}
+
+.game-selection {
+	float: right;
+	height: 50px;	
+}
+
+.head-information {
+	height: auto;
+	display: flex;
+	align-items: center;
+    width: 80%;
+    margin: auto;
+}
+
+.add-button {
+	height: 48px;
+	width: 48px;
+    color: #FFFFFF;
+    font-size: 20px;
+    alignment: center;
+	background-color: lime;
+    text-decoration: none;
+	float:right;
+    border-radius: 4px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-input {
+	float:right;
+}
+
+.team-container {
+    box-sizing: content-box;
+    background-color: #1D274C;
+    border-radius: 4px;
+    height: 120px;
+    padding: 50px;
+    margin: auto;
+    display: grid;
+    margin-bottom: 15px;
+    width: 80%;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 15px;
+    grid-template-rows: auto 1fr;
+}
+
+.team-title {
+    grid-column: 2; grid-row: 1;
+    color: #FFFFFF;
+    font-size: 30px;
+    text-decoration: underline;
+}
+
+.team-logo {
+    grid-column: 1; grid-row: 1 / span 2;
+    border-radius: 50%;
+    border-color: #2B92D5;
+    border-width: 2px;
+    border-style: solid;
+    height: 116px;
+    width: 116px;
+}
+
+.player-logo {
+    display:inline-block;
+    height: 40px;
+    width: 40px;
+    border: 2px #2B92D5 solid;
+    border-radius: 50%;
+    grid-column: 3;
+}
+
+.players {
+    grid-column: 3;
+}
+
+.tags {
+    grid-column: 2; grid-row: 2;
+    color: #989898;
+}
+
+h2 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}

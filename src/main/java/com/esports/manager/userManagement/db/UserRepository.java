@@ -258,7 +258,6 @@ public class UserRepository {
             throw new InternalErrorException("cannot fetch users with username pattern", e);
         }
 
-
         return users;
 
     /**
@@ -288,5 +287,4 @@ public class UserRepository {
         ResultSet resultSet;
 
     }
-
 }

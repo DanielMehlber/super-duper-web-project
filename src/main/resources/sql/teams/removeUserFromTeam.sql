@@ -1,0 +1,1 @@
+DELETE FROM member WHERE username = ? AND teamId = ?;

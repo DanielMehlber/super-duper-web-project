@@ -1,6 +1,8 @@
 package com.esports.manager.userManagement.logic;
 
 import com.esports.manager.global.exceptions.InternalErrorException;
+import com.esports.manager.teams.db.TeamRepository;
+import com.esports.manager.teams.entities.Member;
 import com.esports.manager.userManagement.beans.UserSessionBean;
 import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
@@ -14,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -264,5 +267,22 @@ public class UserManagement {
     public static List<User> fetchUserByUsernamePattern(final String pattern) throws InternalErrorException {
         log.debug(String.format("fetching users matching pattern '%s'...", pattern));
         return UserRepository.fetchAllUserWithUsernamePattern(pattern);
+    }
+
+    public static List<User> fetchUserNotAlreadyMember (Long teamId) throws InternalErrorException {
+        log.debug("fetching users not already members in team..");
+
+        List<User> users = fetchAllUsers();
+        List<Member> members = TeamRepository.getMemberByTeamId(teamId);
+        List<User> usersToRemove = new LinkedList<>();
+        for (User user : users) {
+            for (Member member : members) {
+                if (user.getUsername().equals(member.getUsername()) && member.getTeamId() == teamId) {
+                    usersToRemove.add(user);
+                }
+            }
+        }
+        users.removeAll(usersToRemove);
+        return users;
     }
 }
