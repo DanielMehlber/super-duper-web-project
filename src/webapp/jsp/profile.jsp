@@ -22,7 +22,9 @@
     <img src="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
          class="background-image"/>
     <div class="background-image-container">
-        <form class="background-image-upload" action="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}" method="POST"
+        <form class="background-image-upload"
+              action="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
+              method="POST"
               enctype="multipart/form-data">
             <c:if test="${requestScope.profileViewBean.editPermission}">
                 <input class="background-image-input" type="file" name="profile" accept="/image/*">
