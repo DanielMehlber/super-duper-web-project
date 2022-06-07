@@ -23,6 +23,8 @@ jobs:
         cache: maven
     - name: Startup test database using docker compose
       run: docker-compose -f docker-compose-environment.yml up -d
+    - name: wait for database
+      run: sleep 20
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: shutdown test database using docker compose
