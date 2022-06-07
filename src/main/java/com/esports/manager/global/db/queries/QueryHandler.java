@@ -65,7 +65,7 @@ public class QueryHandler extends HttpServlet {
             }
 
 
-            return dataSource.getConnection().prepareStatement(source);
+            return dataSource.getConnection().prepareStatement(source, Statement.RETURN_GENERATED_KEYS);
 
         } catch (final SQLException e) {
             log.error("cannot load and prepare statement due to an unexpected internal error: " + e.getMessage());

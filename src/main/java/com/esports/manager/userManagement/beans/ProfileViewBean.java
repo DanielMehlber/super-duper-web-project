@@ -3,7 +3,6 @@ package com.esports.manager.userManagement.beans;
 import com.esports.manager.userManagement.entities.User;
 
 import java.io.Serializable;
-import java.sql.Blob;
 
 public class ProfileViewBean implements Serializable {
     public ProfileViewBean() {

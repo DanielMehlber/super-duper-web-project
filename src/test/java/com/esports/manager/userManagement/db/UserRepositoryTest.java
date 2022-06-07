@@ -2,11 +2,11 @@ package com.esports.manager.userManagement.db;
 
 import com.esports.manager.global.db.queries.QueryHandler;
 import com.esports.manager.global.exceptions.InternalErrorException;
+import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoImageFoundException;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 import com.esports.manager.userManagement.exceptions.WrongCredentialsException;
-import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.util.DataSourceCreator;
 import com.esports.manager.util.MockHttpSession;
 import jakarta.servlet.http.HttpSession;

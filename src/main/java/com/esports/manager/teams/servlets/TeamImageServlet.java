@@ -1,13 +1,12 @@
 package com.esports.manager.teams.servlets;
 
+import com.esports.manager.teams.TeamManagement;
 import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.teams.entities.Team;
 import com.esports.manager.teams.exceptions.NoSuchTeamException;
-import com.esports.manager.teams.TeamManagement;
+import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoImageFoundException;
-
-import com.esports.manager.userManagement.UserManagement;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;

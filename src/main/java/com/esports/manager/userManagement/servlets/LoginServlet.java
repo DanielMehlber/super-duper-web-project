@@ -1,10 +1,10 @@
 package com.esports.manager.userManagement.servlets;
 
 import com.esports.manager.global.exceptions.InternalErrorException;
+import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.userManagement.beans.LoginViewBean;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 import com.esports.manager.userManagement.exceptions.WrongCredentialsException;
-import com.esports.manager.userManagement.UserManagement;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

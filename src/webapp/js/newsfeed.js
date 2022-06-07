@@ -27,7 +27,7 @@ function generatePlayerRegisteredNewsHTML(item) {
               <img src="users/images?user=${item.player1}"/>
          </div>
          <div class="news-description">
-             🎉 Player @<a href="/profile?username=${item.player1}" class="player-ref">${item.player1}</a> has joined the platform! 🎉
+             🎉 Player @<a href="profile?username=${item.player1}" class="player-ref">${item.player1}</a> has joined the platform! 🎉
          </div>
          <div class="news-time">
              ${formatDate(new Date(item.date))}

@@ -1,9 +1,9 @@
 package com.esports.manager.dashboard.servlets;
 
 import com.esports.manager.dashboard.beans.DashboardBean;
+import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
-import com.esports.manager.userManagement.UserManagement;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

@@ -1,25 +1,23 @@
 package com.esports.manager.userManagement.servlets;
 
 
-import java.io.IOException;
-
+import com.esports.manager.global.exceptions.InternalErrorException;
+import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.userManagement.beans.RegistrationViewBean;
+import com.esports.manager.userManagement.exceptions.InvalidInputException;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
 import com.esports.manager.userManagement.exceptions.WrongCredentialsException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-
-import com.esports.manager.global.exceptions.InternalErrorException;
-import com.esports.manager.userManagement.exceptions.InvalidInputException;
-import com.esports.manager.userManagement.UserManagement;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.IOException;
 
 /**
  * We receive data from the registration form, put it in a bean and send it away.

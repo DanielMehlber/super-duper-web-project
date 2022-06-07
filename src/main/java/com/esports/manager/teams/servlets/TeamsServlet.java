@@ -1,18 +1,16 @@
 package com.esports.manager.teams.servlets;
 
+import com.esports.manager.teams.TeamManagement;
 import com.esports.manager.teams.beans.TeamsViewBean;
 import com.esports.manager.teams.exceptions.NoTeamsFoundException;
-import com.esports.manager.teams.TeamManagement;
-
-import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.UserManagement;
+import com.esports.manager.userManagement.entities.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

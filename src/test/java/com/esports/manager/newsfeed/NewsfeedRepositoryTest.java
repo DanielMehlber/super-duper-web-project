@@ -3,7 +3,7 @@ package com.esports.manager.newsfeed;
 import com.esports.manager.global.db.queries.QueryHandler;
 import com.esports.manager.newsfeed.db.NewsfeedRepository;
 import com.esports.manager.newsfeed.entities.NewsfeedItem;
-import com.esports.manager.userManagement.logic.UserManagement;
+import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.util.DataSourceCreator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

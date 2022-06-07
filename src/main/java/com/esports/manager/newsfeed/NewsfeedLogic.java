@@ -4,7 +4,6 @@ import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.newsfeed.db.NewsfeedRepository;
 import com.esports.manager.newsfeed.entities.NewsfeedItem;
 import com.esports.manager.newsfeed.factory.NewsfeedFactory;
-import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

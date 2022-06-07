@@ -1,8 +1,8 @@
 package com.esports.manager.teams.servlets;
 
 import com.esports.manager.teams.TeamManagement;
-import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.UserManagement;
+import com.esports.manager.userManagement.entities.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

@@ -6,7 +6,6 @@ import com.esports.manager.teams.entities.Member;
 import com.esports.manager.teams.entities.Team;
 import com.esports.manager.teams.exceptions.NoSuchTeamException;
 import com.esports.manager.teams.exceptions.NoTeamsFoundException;
-
 import com.esports.manager.userManagement.exceptions.InvalidInputException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
