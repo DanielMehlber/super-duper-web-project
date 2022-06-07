@@ -27,3 +27,13 @@ CREATE TABLE `member` (
     CONSTRAINT FOREIGN KEY (`teamId`) REFERENCES `team` (`id`),
     CONSTRAINT FOREIGN KEY (`username`) REFERENCES `user` (`username`)
 );
+
+CREATE TABLE `newsfeed` (
+    `id` SERIAL PRIMARY KEY,
+    `date` TIMESTAMP(6) NOT NULL,
+    `type` VARCHAR(20) NOT NULL,
+    `player1` varchar(30),
+    `player2` varchar(30),
+    CONSTRAINT `fk_player1` FOREIGN KEY (player1) REFERENCES user(username) ON DELETE SET NULL,
+    CONSTRAINT `fk_player2` FOREIGN KEY (player2) REFERENCES user(username) ON DELETE SET NULL
+);

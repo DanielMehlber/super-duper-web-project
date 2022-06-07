@@ -63,7 +63,7 @@ public class ResultSetProcessor {
                     } else if (type == String.class) {
                         field.set(entity, resultSet.getString(index));
                     } else if (type == Long.class) {
-                        field.set(entity, Long.valueOf(resultSet.getLong(index)));
+                        field.set(entity, resultSet.getLong(index));
                     } else if (type == Float.class) {
                         field.set(entity, resultSet.getFloat(index));
                     } else if (type == Double.class) {
@@ -71,7 +71,7 @@ public class ResultSetProcessor {
                     } else if (type == Boolean.class) {
                         field.set(entity, resultSet.getBoolean(index));
                     } else if (type == Date.class) {
-                        field.set(entity, resultSet.getDate(index));
+                        field.set(entity, resultSet.getTimestamp(index));
                     } else {
                         throw new IllegalAccessException(String.format("field '%s' of type %s of class %s is not supported", field.getName(), type.getName(), targetClass.getName()));
                     }

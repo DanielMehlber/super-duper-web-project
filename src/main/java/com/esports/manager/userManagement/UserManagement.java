@@ -3,6 +3,7 @@ package com.esports.manager.userManagement;
 import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.teams.entities.Member;
+import com.esports.manager.newsfeed.NewsfeedLogic;
 import com.esports.manager.userManagement.beans.UserSessionBean;
 import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
@@ -128,6 +129,9 @@ public class UserManagement {
             // create and persist new user
             User newUser = new User(username, email, hashPassword(password));
             UserRepository.createNewUser(newUser);
+
+            // add happy news of user registration to newsfeed
+            NewsfeedLogic.registerUserRegistration(newUser);
         } else {
             throw new InvalidInputException("registerUser: Invalid Input");
         }
@@ -194,7 +198,7 @@ public class UserManagement {
      * copied from <a href="https://stackoverflow.com/questions/624581/what-is-the-best-java-email-address-validation-">stackoverflow</a>
      * since we don't want to implement our own check whether an email is correct, nor use some alien like regex
      * language. So we take what the java god gave us
-     * <p>
+     *
      * Part for length check is own
      *
      * @param email email address to check

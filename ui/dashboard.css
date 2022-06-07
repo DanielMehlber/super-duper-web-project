@@ -25,6 +25,10 @@ main {
     box-shadow: rgb(0 0 0 / 35%) -7px 0px 15px;
     transition: left 0.5s;
     transition-timing-function: cubic-bezier(0.47, 0.14, 0.48, 1.15);
+    display: grid;
+    grid-template-areas: 
+            "newsfeed ."
+            ". .";
 }
 
 nav {
