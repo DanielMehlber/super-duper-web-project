@@ -2,10 +2,10 @@ package com.esports.manager.teams.servlets;
 
 import com.esports.manager.teams.beans.TeamsViewBean;
 import com.esports.manager.teams.exceptions.NoTeamsFoundException;
-import com.esports.manager.teams.logic.TeamManagement;
+import com.esports.manager.teams.TeamManagement;
 
 import com.esports.manager.userManagement.entities.User;
-import com.esports.manager.userManagement.logic.UserManagement;
+import com.esports.manager.userManagement.UserManagement;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,6 +18,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
+/**
+ * @author Maximilian Rublik
+ */
 @WebServlet("/teams")
 public class TeamsServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(TeamsServlet.class);

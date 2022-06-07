@@ -13,13 +13,11 @@
 	<base href="${pageContext.request.requestURI}" />
 	<link rel="stylesheet" href="../stylesheets/Elements.css">
 	<link rel="stylesheet" href="../stylesheets/TeamsPage.css">
+	<link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
 	<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
-	<nav id="nav-bar">
-		<%@include file="fragments/sidebar.jspf" %>
-	</nav>
-
+<%@include file="fragments/sidebar.jspf" %>
 	<main id="main" onclick="hideNav()">
 		<button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
 		<div class="head-information">

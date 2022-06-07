@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../stylesheets/Elements.css">
     <link rel="stylesheet" href="../stylesheets/ProfilePage.css">
+    <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>

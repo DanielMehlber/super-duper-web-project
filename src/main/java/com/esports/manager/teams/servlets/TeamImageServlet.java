@@ -3,11 +3,11 @@ package com.esports.manager.teams.servlets;
 import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.teams.entities.Team;
 import com.esports.manager.teams.exceptions.NoSuchTeamException;
-import com.esports.manager.teams.logic.TeamManagement;
+import com.esports.manager.teams.TeamManagement;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoImageFoundException;
 
-import com.esports.manager.userManagement.logic.UserManagement;
+import com.esports.manager.userManagement.UserManagement;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,6 +19,10 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
+/**
+ * Servlet for loading team images
+ * @author Maximilian Rublik
+ */
 @WebServlet("/teams/images")
 @MultipartConfig(maxFileSize = 1024*1024*10) // 10mb max
 public class TeamImageServlet extends HttpServlet {

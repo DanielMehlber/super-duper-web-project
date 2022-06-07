@@ -1,4 +1,4 @@
-package com.esports.manager.userManagement.logic;
+package com.esports.manager.userManagement;
 
 import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.teams.db.TeamRepository;

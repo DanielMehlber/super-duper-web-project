@@ -6,12 +6,9 @@ import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoImageFoundException;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
-import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
-import com.esports.manager.userManagement.logic.UserManagement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.awt.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -259,5 +256,6 @@ public class UserRepository {
         }
 
         return users;
+
     }
 }

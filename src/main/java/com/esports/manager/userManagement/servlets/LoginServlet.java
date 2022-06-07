@@ -4,7 +4,7 @@ import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.userManagement.beans.LoginViewBean;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 import com.esports.manager.userManagement.exceptions.WrongCredentialsException;
-import com.esports.manager.userManagement.logic.UserManagement;
+import com.esports.manager.userManagement.UserManagement;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -38,24 +38,27 @@ public class LoginServlet extends HttpServlet {
             throws ServerException, IOException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
 
+        String enteredUsername = request.getParameter("username");
+        LoginViewBean loginViewBean = new LoginViewBean();
+        loginViewBean.setUsername(enteredUsername);
 
         HttpSession session = request.getSession();
         //Get username and password from JSP -> user performLogin method
         try {
             UserManagement.performLogin(
-                    request.getParameter("username"),
+                    enteredUsername,
                     request.getParameter("password"),
                     session);
         } catch (NoSuchUserException ex) {
             // User couldn't be found.
             log.warn("Cannot perform login because of wrong username: " + ex.getMessage());
             // create error messages and place them in request
-            LoginViewBean viewBean = new LoginViewBean();
-            viewBean.setErrorMessage("Username is not correct");
-            request.setAttribute("loginBean", viewBean);
+            loginViewBean.setErrorMessage("Username is not correct");
+            request.setAttribute("loginBean", loginViewBean);
             // forward back to login page
             RequestDispatcher rd = request.getRequestDispatcher("/jsp/login.jsp");
             rd.forward(request, response);
+            return;
         } catch (InternalErrorException e) {
             log.fatal("Internal error found while logging in user: " + e.getMessage());
             throw e;
@@ -63,12 +66,12 @@ public class LoginServlet extends HttpServlet {
             // User entered wrong password
             log.warn("login was not successful: " + e.getMessage());
             // Create error messages
-            LoginViewBean loginBean = new LoginViewBean();
-            loginBean.setErrorMessage("Username or Password was not correct");
-            request.setAttribute("loginBean", loginBean);
+            loginViewBean.setErrorMessage("Username or Password was not correct");
+            request.setAttribute("loginBean", loginViewBean);
             // Forward back to login page
             RequestDispatcher rd = request.getRequestDispatcher("/jsp/login.jsp");
             rd.forward(request, response);
+            return;
         }
 
         response.sendRedirect(getServletContext().getContextPath() + "/dashboard");

@@ -1,4 +1,4 @@
-package com.esports.manager.teams.logic;
+package com.esports.manager.teams;
 
 import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.teams.db.TeamRepository;
@@ -7,7 +7,6 @@ import com.esports.manager.teams.entities.Team;
 import com.esports.manager.teams.exceptions.NoSuchTeamException;
 import com.esports.manager.teams.exceptions.NoTeamsFoundException;
 
-import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.InvalidInputException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +16,6 @@ import java.util.List;
 
 /**
  * collection of methods that will be used in teams
- *
  * @author Maximilian Rublik
  */
 public class TeamManagement {

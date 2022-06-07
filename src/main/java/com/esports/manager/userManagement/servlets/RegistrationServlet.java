@@ -12,20 +12,14 @@ import org.apache.logging.log4j.Logger;
 
 
 import com.esports.manager.global.exceptions.InternalErrorException;
-import com.esports.manager.userManagement.beans.RegistrationViewBean;
 import com.esports.manager.userManagement.exceptions.InvalidInputException;
-import com.esports.manager.userManagement.exceptions.UsernameAlreadyTakenException;
-import com.esports.manager.userManagement.logic.UserManagement;
+import com.esports.manager.userManagement.UserManagement;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.io.IOException;
 
 /**
  * We receive data from the registration form, put it in a bean and send it away.
@@ -68,6 +62,7 @@ public class RegistrationServlet extends HttpServlet {
             // forward back to registration jsp
         	RequestDispatcher rd = req.getRequestDispatcher("/jsp/registration.jsp");
         	rd.forward(req, resp);
+            return;
         } catch (InvalidInputException ex) {
             // error messages
         	log.warn(String.format("cannot perform user registration because of an invalid user input: %s", ex.getMessage()), ex);
@@ -77,6 +72,7 @@ public class RegistrationServlet extends HttpServlet {
             // forward back to registration jsp
             RequestDispatcher rd = req.getRequestDispatcher("/jsp/registration.jsp");
             rd.forward(req, resp);
+            return;
         } catch (InternalErrorException ex) {
         	log.fatal(String.format("cannot perform user registration because of an internal error: %s", ex.getMessage()), ex);
             // throw servlet exception and redirect to error page

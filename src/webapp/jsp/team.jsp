@@ -12,13 +12,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet"/>
         <link href="${pageContext.request.contextPath}/stylesheets/TeamPage.css" rel="stylesheet"/>
+        <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
         <title>${teamViewBean.team.name}</title>
     </head>
     <body>
-        <nav>
-
-        </nav>
         <main>
             <div class="info-area">
                 <div class="head-information">

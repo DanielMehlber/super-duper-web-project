@@ -1,7 +1,7 @@
 package com.esports.manager.userManagement.servlets;
 
 import com.esports.manager.global.exceptions.InternalErrorException;
-import com.esports.manager.userManagement.logic.UserManagement;
+import com.esports.manager.userManagement.UserManagement;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

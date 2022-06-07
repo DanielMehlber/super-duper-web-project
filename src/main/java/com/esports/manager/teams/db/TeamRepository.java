@@ -45,11 +45,6 @@ public class TeamRepository {
             throw new InternalErrorException("cannot fetch teams from database", e);
         }
 
-        if (teams.size() < 1) {
-            log.warn("cannot fetch teams from database: no teams found");
-            throw new NoTeamsFoundException();
-        }
-
         return teams;
     }
 

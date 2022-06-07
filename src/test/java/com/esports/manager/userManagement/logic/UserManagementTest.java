@@ -2,6 +2,7 @@ package com.esports.manager.userManagement.logic;
 
 import com.esports.manager.global.db.queries.QueryHandler;
 import com.esports.manager.global.exceptions.InternalErrorException;
+import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.*;
@@ -15,7 +16,6 @@ import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 public class UserManagementTest {
 

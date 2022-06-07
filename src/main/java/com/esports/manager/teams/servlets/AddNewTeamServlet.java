@@ -4,7 +4,7 @@ import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.teams.entities.Team;
 
 import com.esports.manager.userManagement.entities.User;
-import com.esports.manager.userManagement.logic.UserManagement;
+import com.esports.manager.userManagement.UserManagement;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -21,6 +21,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * servlet for adding new teams to the system
+ * @author Maximilian Rublik
+ */
 @WebServlet("/teams/addnewteam")
 @MultipartConfig(maxFileSize = 1024*1024*10) // 10mb at most
 public class AddNewTeamServlet extends HttpServlet {

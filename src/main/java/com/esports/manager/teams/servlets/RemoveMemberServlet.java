@@ -1,9 +1,8 @@
 package com.esports.manager.teams.servlets;
 
-import com.esports.manager.teams.logic.TeamManagement;
+import com.esports.manager.teams.TeamManagement;
 import com.esports.manager.userManagement.entities.User;
-import com.esports.manager.userManagement.logic.UserManagement;
-import jakarta.servlet.RequestDispatcher;
+import com.esports.manager.userManagement.UserManagement;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,6 +13,10 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
+/**
+ * Servlet for removing members from the system
+ * @author Maximilian Rublik
+ */
 @WebServlet("teams/removemember")
 public class RemoveMemberServlet extends HttpServlet {
     private static final long serialVersionUID = 1;

@@ -11,14 +11,14 @@
     <base href="${pageContext.request.requestURI}" />
     <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/stylesheets/AddMember.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <noscript>JavaScript is deactivated!</noscript>
 </head>
 <body>
-    <nav>
-
-    </nav>
+<%@include file="fragments/sidebar.jspf" %>
     <main>
+        <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
         <form class="add-member-form" action="${pageContext.request.contextPath}/teams/addmember" method="POST">
             <select class="user-selection" name="users">
                 <c:forEach items="${addMemberViewBean.users}" var="user">

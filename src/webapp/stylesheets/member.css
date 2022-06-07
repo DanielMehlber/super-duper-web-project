@@ -80,11 +80,16 @@ Author: Daniel Mehlber
     margin-left: -7px;
 }
 
-.member-data > button.view-member-button {
+.member-data > .view-member-button {
+    display: flex;
     margin-top: auto;
     margin-bottom: 30px;
     width: 150px;
     height: 50px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 
 .member-data > .member-nickname {

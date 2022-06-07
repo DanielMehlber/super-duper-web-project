@@ -1,11 +1,9 @@
 package com.esports.manager.userManagement.servlets;
 
-import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.userManagement.beans.ProfileViewBean;
 import com.esports.manager.userManagement.entities.User;
-import com.esports.manager.userManagement.exceptions.InvalidInputException;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
-import com.esports.manager.userManagement.logic.UserManagement;
+import com.esports.manager.userManagement.UserManagement;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,7 +14,6 @@ import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**

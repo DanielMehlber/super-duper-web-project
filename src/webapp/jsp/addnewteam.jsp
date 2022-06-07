@@ -8,11 +8,14 @@
         <title>Add new team</title>
         <meta charset="UTF-8">
         <base href="${pageContext.request.requestURI}" />
-        <link rel="stylesheet" href="../stylesheets/Elements.css">
-        <link rel="stylesheet" href="../stylesheets/AddNewTeam.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/Elements.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/AddNewTeam.css">
+        <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
     </head>
     <body>
+    <%@include file="fragments/sidebar.jspf" %>
         <main>
+            <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
             <form class="add-team-card" action="${pageContext.request.contextPath}/teams/addnewteam" method="POST" enctype="multipart/form-data">
                 <input name="name" class="name-input" type="text" placeholder="team name" required autofocus="autofocus">
                 <input name="slogan" class="slogan-input" type="text" placeholder="slogan">

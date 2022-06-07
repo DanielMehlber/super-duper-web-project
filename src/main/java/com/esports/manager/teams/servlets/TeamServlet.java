@@ -4,7 +4,7 @@ import com.esports.manager.teams.beans.TeamViewBean;
 import com.esports.manager.teams.db.TeamRepository;
 
 import com.esports.manager.userManagement.entities.User;
-import com.esports.manager.userManagement.logic.UserManagement;
+import com.esports.manager.userManagement.UserManagement;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,7 +20,6 @@ import java.io.IOException;
 /**
  * @author Maximilian Rublik
  */
-
 @WebServlet("/teams/team")
 public class TeamServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(TeamsServlet.class);

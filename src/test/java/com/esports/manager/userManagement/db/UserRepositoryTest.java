@@ -6,7 +6,7 @@ import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoImageFoundException;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 import com.esports.manager.userManagement.exceptions.WrongCredentialsException;
-import com.esports.manager.userManagement.logic.UserManagement;
+import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.util.DataSourceCreator;
 import com.esports.manager.util.MockHttpSession;
 import jakarta.servlet.http.HttpSession;
@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 public class UserRepositoryTest {
 

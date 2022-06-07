@@ -33,7 +33,7 @@ function generateUserCardHtml(user) {
 
     html += `
     </div>
-    <button class="view-member-button secondary-button">View</button>
+    <a href="profile?username=${user.username}" class="view-member-button secondary-button button">View</a>
     </div>
     </div>`
 
@@ -56,3 +56,5 @@ function executePlayerSearch() {
             })
         })
 }
+
+executePlayerSearch()
