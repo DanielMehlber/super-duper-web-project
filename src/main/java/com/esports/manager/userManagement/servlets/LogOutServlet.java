@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,10 +33,12 @@ public class LogOutServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServerException, IOException, ServletException{
+        //Get current HttpSession
+        HttpSession session = request.getSession();
+
         //Get current user from session
         User user = UserManagement.getAuthorizedUser(request.getSession());
         UserSessionBean userSessionBean = new UserSessionBean();
-
     }
 
 }
