@@ -3,6 +3,8 @@ package com.esports.manager.newsfeed;
 import com.esports.manager.global.db.queries.QueryHandler;
 import com.esports.manager.newsfeed.db.NewsfeedRepository;
 import com.esports.manager.newsfeed.entities.NewsfeedItem;
+import com.esports.manager.teams.TeamManagement;
+import com.esports.manager.teams.entities.Team;
 import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.util.DataSourceCreator;
 import org.junit.jupiter.api.Assertions;
@@ -42,9 +44,11 @@ public class NewsfeedRepositoryTest {
         // create users to refer to in newsfeed item (necessary for foreign key constraint)
         UserManagement.registerUser("player1", "password", "player1@gmail.com");
         UserManagement.registerUser("player2", "password", "player2@gmail.com");
+        Team team1 = TeamManagement.createTeam("team1", "slogan", "abc");
+        Team team2 = TeamManagement.createTeam("team2", "slogan", "efg");
 
         // -- act --
-        NewsfeedItem item = new NewsfeedItem(new Date(), "type", "player1", "player2");
+        NewsfeedItem item = new NewsfeedItem(new Date(), "type", "player1", "player2", team1.getId(), team2.getId());
         NewsfeedRepository.persistNewsfeedItem(item);
 
         Thread.sleep(1000);
@@ -54,6 +58,8 @@ public class NewsfeedRepositoryTest {
         Assertions.assertEquals(item.getDate(), fetchedItem.getDate());
         Assertions.assertEquals(item.getPlayer1Id(), fetchedItem.getPlayer1Id());
         Assertions.assertEquals(item.getPlayer2Id(), fetchedItem.getPlayer2Id());
+        Assertions.assertEquals(item.getTeam1Id(), fetchedItem.getTeam1Id());
+        Assertions.assertEquals(item.getTeam2Id(), fetchedItem.getTeam2Id());
         Assertions.assertEquals(item.getType(), fetchedItem.getType());
     }
 
