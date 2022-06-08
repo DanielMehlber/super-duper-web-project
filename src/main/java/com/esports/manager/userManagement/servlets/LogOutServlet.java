@@ -44,12 +44,9 @@ public class LogOutServlet extends HttpServlet {
         //Get userSessionBean
         UserSessionBean userSessionBean = (UserSessionBean) session.getAttribute("userSessionBean");
 
-        //Remove user from session Bean
+        //Remove sessionBean from session
         //session.invalidate();
-        userSessionBean.setUser(null);
-
-        //Place userSessionBean in session
-        session.setAttribute("userSessionBean",userSessionBean);
+        session.removeAttribute("userSessionBean");
 
         // Forward back to login page
         RequestDispatcher rd = request.getRequestDispatcher("/jsp/login.jsp");
