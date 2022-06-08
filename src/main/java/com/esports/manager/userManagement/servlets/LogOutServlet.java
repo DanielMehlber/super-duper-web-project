@@ -4,6 +4,7 @@ import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.userManagement.beans.LoginViewBean;
 import com.esports.manager.userManagement.beans.UserSessionBean;
 import com.esports.manager.userManagement.entities.User;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -33,12 +34,26 @@ public class LogOutServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServerException, IOException, ServletException{
+        response.setContentType("text/html;charset=UTF-8");
+
         //Get current HttpSession
         HttpSession session = request.getSession();
 
         //Get current user from session
         User user = UserManagement.getAuthorizedUser(request.getSession());
-        UserSessionBean userSessionBean = new UserSessionBean();
+        //Get userSessionBean
+        UserSessionBean userSessionBean = (UserSessionBean) session.getAttribute("userSessionBean");
+
+        //Remove user from session Bean
+        //session.invalidate();
+        userSessionBean.setUser(null);
+
+        //Place userSessionBean in session
+        session.setAttribute("userSessionBean",userSessionBean);
+
+        // Forward back to login page
+        RequestDispatcher rd = request.getRequestDispatcher("/jsp/login.jsp");
+        rd.forward(request, response);
     }
 
 }
