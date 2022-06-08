@@ -12,6 +12,7 @@ import java.util.Date;
 public class NewsfeedItem implements Serializable {
 
     public static final String TYPE_PLAYER_JOIN = "player-join";
+    public static final String TYPE_TEAM_CREATED = "team-created";
 
     @ResultSetMapping("id")
     private Long id;
@@ -28,13 +29,21 @@ public class NewsfeedItem implements Serializable {
     @ResultSetMapping("player2")
     private String player2Id;
 
+    @ResultSetMapping("team1")
+    private Long team1Id;
+
+    @ResultSetMapping("team2")
+    private Long team2Id;
+
     public NewsfeedItem() {}
 
-    public NewsfeedItem(final Date date, final String type, final String player1Id, final String player2Id) {
+    public NewsfeedItem(final Date date, final String type, final String player1Id, final String player2Id, final Long team1Id, final Long team2Id) {
         setDate(date);
         setType(type);
         setPlayer1Id(player1Id);
         setPlayer2Id(player2Id);
+        setTeam1Id(team1Id);
+        setTeam2Id(team2Id);
     }
 
     public Date getDate() {
@@ -77,9 +86,25 @@ public class NewsfeedItem implements Serializable {
         this.player2Id = player2Id;
     }
 
+    public Long getTeam1Id() {
+        return team1Id;
+    }
+
+    public void setTeam1Id(Long team1Id) {
+        this.team1Id = team1Id;
+    }
+
+    public Long getTeam2Id() {
+        return team2Id;
+    }
+
+    public void setTeam2Id(Long team2Id) {
+        this.team2Id = team2Id;
+    }
+
     public String toJson() {
-        return String.format("{\"type\":\"%s\", \"date\":\"%s\", \"player1\": \"%s\", \"player2\": \"%s\"}",
-                type, date.toString(), player1Id, player2Id);
+        return String.format("{\"type\":\"%s\", \"date\":\"%s\", \"player1\": \"%s\", \"player2\": \"%s\", \"team1\":%d, \"team2\":%d}",
+                type, date.toString(), player1Id, player2Id, team1Id, team2Id);
     }
 
     @Override

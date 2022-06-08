@@ -1,6 +1,7 @@
 package com.esports.manager.teams;
 
 import com.esports.manager.global.exceptions.InternalErrorException;
+import com.esports.manager.newsfeed.NewsfeedLogic;
 import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.teams.entities.Member;
 import com.esports.manager.teams.entities.Team;
@@ -65,9 +66,13 @@ public class TeamManagement {
      *
      * @author Maximilian Rublik
      */
-    public static void createTeam (String name, String slogan, String tags) throws InvalidInputException, InternalErrorException {
+    public static Team createTeam (String name, String slogan, String tags) throws InvalidInputException, InternalErrorException {
         Team newTeam = new Team(name, slogan, tags);
         TeamRepository.createTeam(newTeam);
+
+        // create entry in newsfeed
+        NewsfeedLogic.registerTeamCreation(newTeam);
+        return newTeam;
     }
 
     /**
