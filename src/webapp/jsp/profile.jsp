@@ -47,6 +47,9 @@
         <!--Email noch in Nickname ändern-->
         <div class="nickname">${requestScope.profileViewBean.user.email}</div>
     </div>
+    <form class="log-out" action="../logout" method="Post">
+        <button class="log-out-button" type="submit">logout</button>
+    </form>
 </main>
 </body>
 </html>
