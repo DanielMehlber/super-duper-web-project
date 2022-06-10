@@ -5,7 +5,8 @@ CREATE TABLE `user` (
     `profile_picture` MediumBlob,
     `background_picture` MediumBlob,
     `passwordHash` varchar(64) NOT NULL,
-    `nickname` varchar(20)
+    `nickname` varchar(20),
+    `isAdmin` boolean NOT NULL DEFAULT 0
 );
 
 CREATE TABLE `team` (
