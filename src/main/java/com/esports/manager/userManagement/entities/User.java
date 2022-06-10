@@ -27,10 +27,11 @@ public class User {
     public User() {
     }
 
-    public User(String username, String email, String passwordHash) {
+    public User(String username, String email, String passwordHash, boolean isAdmin) {
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
+        this.isAdmin = isAdmin;
     }
 
     public String getUsername() {
