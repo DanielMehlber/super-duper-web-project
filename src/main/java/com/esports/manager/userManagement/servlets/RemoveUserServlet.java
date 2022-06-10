@@ -28,7 +28,7 @@ public class RemoveUserServlet extends HttpServlet {
             String username = request.getParameter("username");
             UserManagement.removeUser(username);
 
-            response.sendRedirect(getServletContext().getContextPath());
+            response.sendRedirect(getServletContext().getContextPath() + "/jsp/players.jsp");
         }
 
     }
