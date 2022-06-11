@@ -52,6 +52,11 @@
             <button class="log-out-button" type="submit">logout</button>
         </form>
     </c:if>
+    <c:if test="${requestScope.profileViewBean.isAdmin}">
+        <form class="removeUser" action="../users/removeuser" method="POST">
+            <button class="remove-button" type="submit">-</button>
+        </form>
+    </c:if>
 </main>
 </body>
 </html>
