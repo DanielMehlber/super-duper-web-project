@@ -45,7 +45,7 @@
         </c:if>
         <div class="username">@${requestScope.profileViewBean.user.username}</div>
         <!--Email noch in Nickname ändern-->
-        <div class="nickname">${requestScope.profileViewBean.user.email}</div>
+        <div class="nickname">${requestScope.profileViewBean.user.nickname}</div>
     </div>
     <c:if test="${requestScope.profileViewBean.editPermission}">
         <form class="log-out" action="../logout" method="Post">
