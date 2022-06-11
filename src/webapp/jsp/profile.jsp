@@ -54,7 +54,7 @@
     </c:if>
     <c:if test="${requestScope.profileViewBean.isAdmin}">
         <form class="removeUser" action="../users/removeuser" method="POST">
-            <button class="remove-button" type="submit">-</button>
+            <button class="remove-button" type="submit">Remove User</button>
         </form>
     </c:if>
 </main>

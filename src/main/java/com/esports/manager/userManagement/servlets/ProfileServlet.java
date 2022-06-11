@@ -43,6 +43,7 @@ public class ProfileServlet extends HttpServlet {
         // String someshit = request.getParameter("someshit");
 
         Boolean editPermission = false;
+        Boolean isAdmin =false;
 
         try {
             // 1) fetch currentUser from session
@@ -59,6 +60,11 @@ public class ProfileServlet extends HttpServlet {
             // Compare usernames with equals, damit daniel mich nicht haut
             if (currentUser.getUsername().equals(userOfPage.getUsername())) {
                 editPermission = true;
+            }
+
+            if (currentUser.getIsAdmin()){
+                isAdmin = true;
+                profileViewBean.setIsAdmin(true);
             }
 
             // 4) set profilePageUser in profile bean
