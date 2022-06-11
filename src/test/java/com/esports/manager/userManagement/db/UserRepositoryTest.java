@@ -45,7 +45,7 @@ public class UserRepositoryTest {
     public void uploadAndLoadProfilePicture() throws InternalErrorException, NoSuchUserException, WrongCredentialsException, NoImageFoundException {
         // just some random bytes
         byte[] picture = new byte[] {12, 13, 123, 32, 26, 45, 52, 45};
-        User user = new User("username", "username@username.com", UserManagement.hashPassword("password"));
+        User user = new User("username", "username@username.com", UserManagement.hashPassword("password"), false);
         HttpSession session = new MockHttpSession();
         // create user and login
         UserRepository.createNewUser(user);
@@ -63,7 +63,7 @@ public class UserRepositoryTest {
     public void uploadAndLoadBackgroundPicture() throws InternalErrorException, NoSuchUserException, WrongCredentialsException, NoImageFoundException {
         // just some random bytes
         byte[] picture = new byte[] {12, 13, 123, 32, 26, 45, 52, 45};
-        User user = new User("username", "username@username.com", UserManagement.hashPassword("password"));
+        User user = new User("username", "username@username.com", UserManagement.hashPassword("password"), false);
         HttpSession session = new MockHttpSession();
         // create user and login
         UserRepository.createNewUser(user);

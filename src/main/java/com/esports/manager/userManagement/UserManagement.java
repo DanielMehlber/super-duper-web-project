@@ -125,7 +125,7 @@ public class UserManagement {
      * @throws UsernameAlreadyTakenException the requested username is not available
      * @author Maximilian Rublik
      */
-    public static void registerUser(String username, String password, String email) throws InvalidInputException, InternalErrorException, UsernameAlreadyTakenException {
+    public static void registerUser(String username, String password, String email, Boolean isAdmin) throws InvalidInputException, InternalErrorException, UsernameAlreadyTakenException {
         if (checkPassedUserData(username, password, email)) {
 
             // check if username is available

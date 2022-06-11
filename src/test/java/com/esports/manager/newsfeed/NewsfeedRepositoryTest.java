@@ -40,8 +40,8 @@ public class NewsfeedRepositoryTest {
     public void persistAndLoadNewsfeedItem() throws Exception {
         // -- arrange --
         // create users to refer to in newsfeed item (necessary for foreign key constraint)
-        UserManagement.registerUser("player1", "password", "player1@gmail.com");
-        UserManagement.registerUser("player2", "password", "player2@gmail.com");
+        UserManagement.registerUser("player1", "password", "player1@gmail.com", false);
+        UserManagement.registerUser("player2", "password", "player2@gmail.com", false);
 
         // -- act --
         NewsfeedItem item = new NewsfeedItem(new Date(), "type", "player1", "player2");

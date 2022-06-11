@@ -45,12 +45,14 @@ public class RegistrationServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String email = req.getParameter("email");
+        Boolean isAdmin = false;
 
         try {
             UserManagement.registerUser(
                     username,
                     password,
-                    email);
+                    email,
+                    false);
         } catch(UsernameAlreadyTakenException ex) {
             // error messages
             log.warn("cannot perform user registration because username is already taken: " + ex.getMessage());
