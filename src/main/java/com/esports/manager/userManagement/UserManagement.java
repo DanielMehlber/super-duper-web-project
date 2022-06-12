@@ -311,6 +311,7 @@ public class UserManagement {
         try (PreparedStatement pstmt = QueryHandler.loadStatement("sql/user-management/removeUser.sql");
              Connection connection = pstmt.getConnection()) {
             pstmt.setString(1, username);
+            pstmt.executeUpdate();
             ResultSet result = pstmt.executeQuery();
         } catch (IOException | SQLException e) {
             log.error("cannot delete User because of an unexpected sql error: + e.getMessage()");
