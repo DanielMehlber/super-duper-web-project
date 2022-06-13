@@ -40,7 +40,7 @@ public class RemoveUserServlet extends HttpServlet {
             //execute removeUser method
             UserManagement.removeUser(username);
 
-            response.sendRedirect(getServletContext().getContextPath() + "/jsp/users");
+            response.sendRedirect(getServletContext().getContextPath() + "/users");
 
         } catch (InternalErrorException e) {
             log.error("An internal Error occured: " + e.getMessage());

@@ -306,16 +306,11 @@ public class UserManagement {
      * @throws InternalErrorException
      * @author Philipp Phan
      */
-    public static void removeUser(String username) throws InternalErrorException {
-        // Connect with Database and loads sql statement
-        try (PreparedStatement pstmt = QueryHandler.loadStatement("sql/user-management/removeUser.sql");
-             Connection connection = pstmt.getConnection()) {
-            pstmt.setString(1, username);
-            pstmt.executeUpdate();
-            ResultSet result = pstmt.executeQuery();
-        } catch (IOException | SQLException e) {
-            log.error("cannot delete User because of an unexpected sql error: + e.getMessage()");
-            throw new InternalErrorException("cannot delete User");
+    public static void removeUser(String username) {
+        try {
+            UserRepository.deleteUser(username);
+        }catch (InternalErrorException e){
+            log.error("Internal Error occured" + e.getMessage());
         }
     }
 
