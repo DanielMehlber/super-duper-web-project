@@ -20,7 +20,7 @@ CREATE TABLE `team` (
 );
 
 CREATE TABLE `member` (
-    `username` varchar(30) NOT NULL,
+    `username` varchar(30) NOT NULL ON DELETE CASCADE,
     `teamId` BIGINT NOT NULL,
     `since` datetime DEFAULT NULL,
     `role` varchar(30) DEFAULT NULL,
