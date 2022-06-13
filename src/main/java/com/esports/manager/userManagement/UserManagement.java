@@ -307,6 +307,7 @@ public class UserManagement {
      * @author Philipp Phan
      */
     public static void removeUser(String username) {
+
         try {
             UserRepository.deleteUser(username);
         }catch (InternalErrorException e){

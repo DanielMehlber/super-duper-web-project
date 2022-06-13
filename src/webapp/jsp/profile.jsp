@@ -52,14 +52,12 @@
             <button class="log-out-button" type="submit">logout</button>
         </form>
     </c:if>
-
-    <a class="remove-button" href="${pageContext.request.contextPath}/users/removeUser?username=${requestScope.profileViewBean.user.username}">Remove User</a>
-    <!--<a class="remove-button" href="${pageContext.request.contextPath}/users/removeUser?username=${requestScope.profileViewBean.user.username}">Remove User</a>-->
-    <!-- <form class="removeUser" action="/removeUser" method="POST">
-            <button class="remove-button" type="submit">Remove User</button>
-        </form>
-        -->
-
+    <c:if>
+        <a class="remove-button"
+           href="${pageContext.request.contextPath}/users/removeUser?username=${requestScope.profileViewBean.user.username}">Remove
+            User
+        </a>
+    </c:if>
 </main>
 </body>
 </html>

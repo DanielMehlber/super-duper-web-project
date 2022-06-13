@@ -26,7 +26,7 @@ CREATE TABLE `member` (
     `role` varchar(30) DEFAULT NULL,
     PRIMARY KEY (`teamId`,`username`),
     CONSTRAINT FOREIGN KEY (`teamId`) REFERENCES `team` (`id`),
-    CONSTRAINT FOREIGN KEY (`username`) REFERENCES `user` (`username`)
+    CONSTRAINT FOREIGN KEY (`username`) REFERENCES `user` (`uxsername`)
 );
 
 CREATE TABLE `newsfeed` (
