@@ -3,7 +3,8 @@
  * @param team.id
  * @param team.slogan
  * @param team.tags
- * @param team.members
+ * @param team.members list of team members
+ * @param team.size
  */
 function generateTeamCardHtml(team) {
     let html =
@@ -11,15 +12,18 @@ function generateTeamCardHtml(team) {
         <img alt="team logo" class="team-logo" src="teams/images?type=profile&id=${team.id}"
         <h2 class="team-title">${team.name}</h2>
         <p class="tags">${team.tags}</p>
-        <div>
-            <c:forEach items="${team.members}" var="member">
-                <img class="player-logo" src="/users/images?type=profile&user=${member.username}" alt="player logo">
-            </c:forEach>
+        <div>`
+            team.members.forEach(member => {
+                html +=
+                    `<img class="player-logo" src="users/images?type=profile&user=${member}" alt="player logo">`
+            });
+        html += `
         </div>
-        <p class="member-count-paragraph">${team.value.size()} members</p>
-        </a>`;
+            <p class="member-count-paragraph">${team.size} members</p>
+        </a>`
 
-    return html
+
+    return html;
 }
 
 function executeTeamSearch() {

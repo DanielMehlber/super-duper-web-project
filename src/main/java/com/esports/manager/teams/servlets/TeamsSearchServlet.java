@@ -1,7 +1,10 @@
 package com.esports.manager.teams.servlets;
 
+import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.teams.TeamManagement;
 import com.esports.manager.teams.beans.TeamsViewBean;
+import com.esports.manager.teams.entities.Member;
+import com.esports.manager.teams.entities.SearchableTeam;
 import com.esports.manager.teams.entities.Team;
 import com.esports.manager.teams.exceptions.NoTeamsFoundException;
 import com.esports.manager.userManagement.UserManagement;
@@ -42,16 +45,38 @@ public class TeamsSearchServlet extends HttpServlet {
 
         StringBuilder jsonBuilder = new StringBuilder("[");
         for (int i = 0; i < teams.size(); i++) {
-            Team team = teams.get(i);
+            SearchableTeam searchableTeam = getSearchableTeam(teams.get(i));
             String optionalComma = i+1 == teams.size() ? "" : ",";
 
-            String teamJson = String.format("{\"name\":\"%s\", \"id\":\"%s\", \"tags\":\"%s\", \"slogan\":\"%s\"}%s",
-                team, team.getId(), team.getTags(), team.getSlogan(), optionalComma);
+            String teamJson = String.format("{\"name\":\"%s\", \"id\":\"%s\", \"tags\":\"%s\", \"size\":\"%s\", \"members\":%s}%s",
+                    searchableTeam.getName(), searchableTeam.getId(), searchableTeam.getTags(), searchableTeam.getSize(), getMemberUsernamesAsJson(searchableTeam.getMembers()), optionalComma);
             jsonBuilder.append(teamJson);
         }
 
         jsonBuilder.append("]");
         String json = jsonBuilder.toString();
         resp.getWriter().println(json);
+    }
+
+    private String getMemberUsernamesAsJson(List<Member> members) {
+        StringBuilder memberJson = new StringBuilder("[");
+        for (int i = 0; i < members.size(); i++) {
+            memberJson.append("\"");
+            memberJson.append(String.format("%s",members.get(i).getUsername()));
+            memberJson.append("\"");
+            if (i < members.size()-1) {
+                memberJson.append(",");
+            }
+        }
+
+        memberJson.append("]");
+        return memberJson.toString();
+    }
+
+    private SearchableTeam getSearchableTeam(Team team) throws InternalErrorException {
+        SearchableTeam sTeam = new SearchableTeam(team);
+        sTeam.setMembers(TeamManagement.fetchMembersByTeamId(team.getId()));
+
+        return sTeam;
     }
 }
