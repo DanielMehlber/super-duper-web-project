@@ -1,0 +1,1 @@
+SELECT background_picture FROM game WHERE id = ?;

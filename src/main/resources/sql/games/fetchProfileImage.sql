@@ -1,0 +1,1 @@
+SELECT profile_picture FROM game WHERE id = ?;

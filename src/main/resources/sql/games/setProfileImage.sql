@@ -1,0 +1,1 @@
+UPDATE game SET profile_picture=? WHERE id=?;
