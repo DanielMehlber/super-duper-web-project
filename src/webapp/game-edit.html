@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheets/Elements.css"/>
+    <link rel="stylesheet" href="stylesheets/dashboard.css"/>
+    <link rel="stylesheet" href="stylesheets/game.css"/>
+    <link rel="stylesheet" href="stylesheets/TeamsPage.css"/>
+    <link rel="stylesheet" href="stylesheets/game-edit.css"/>
+    <link rel="stylesheet" href="stylesheets/game-modal.css"/>
+    <title>Games</title>
+</head>
+<body>
+    <script src="js/game-edit.js"></script>
+    <main id="main">
+        <a href="" class="game-edit-button button">&#128065;</a>
+        <form id="game-background-container" class="game-background-container" action="...">
+            <label class="game-background-selector-container secondary-button">
+                Select background
+                <input name="image" type="file" class="game-background-selector" oninput="updateBackgroundImage()"/>
+            </label>
+            <img class="game-background-image" src="test-img/game-bg.jpg">
+        </form>
+        <div class="game-main-container">
+            <div class="game-information-container">
+                <form class="game-cover-container">
+                    <label class="game-cover-selector-container secondary-button">
+                        Choose
+                        <input type="file" accept="image/*" class="game-cover-selector"/>
+                    </label>
+                    <img class="game-cover-image" src="test-img/game-pp.webp" alt=""/>
+                </form>
+                <form method="post" class="game-title-container" action="edit/title">
+                    <input name="title" type="text" value="Star Wars: Battelfront II"/>
+                    <button type="submit">&#128504;</button>
+                </form>
+                <form method="post" class="game-description-container" action="edit/desc">
+                    <textarea name="desc" class="game-description-editor">Star Wars Battlefront II is an action shooter video game based on the Star Wars franchise. It is the fourth main installment of the Star Wars: Battlefront series, and a sequel to the 2015 reboot of the series. The game features both single-player and multiplayer modes, and overall includes more content than its predecessor.</textarea> 
+                    <button type="submit">&#128504;</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Not part of the games page -->
+        <script src="js/game-modal.js"></script>
+        <section id="game-creation-modal" class="game-creation-modal-container">
+            <form class="game-creation-modal">
+                <h2>Create new Game</h2>
+                <input type="text" placeholder="Name of new Game"/>
+                <button type="submit">Send</button>
+                <div class="game-creation-modal-close" onclick="closeModal()">X</div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

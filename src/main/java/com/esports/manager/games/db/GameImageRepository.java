@@ -33,7 +33,7 @@ public class GameImageRepository {
         log.debug("loading profile image of game");
 
         byte[] image;
-        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/game/fetchProfileImage.sql");
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/games/fetchProfileImage.sql");
              Connection connection = pstmt.getConnection()) {
             pstmt.setLong(1, game.getId());
             ResultSet result = pstmt.executeQuery();

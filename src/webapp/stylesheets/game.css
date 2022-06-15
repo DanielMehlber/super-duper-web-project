@@ -1,0 +1,99 @@
+
+* {
+    --background-image-height: 500px;
+}
+
+.game-background-container {
+    position: absolute;
+    width: 100%;
+    height: var(--background-image-height);
+    background: linear-gradient(0deg, var(--main-bg-color) 10%, transparent 100%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.game-background-container img.game-background-image {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    object-fit: cover;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.game-main-container {
+    position: absolute;
+    width: 100%;
+    margin-top: calc(var(--background-image-height) - 200px);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.game-information-container {
+    display: grid;
+    grid-template-areas:
+        "game-cover-image game-title"
+        "game-cover-image game-desc";
+    grid-template-columns: min-content auto;
+    grid-template-rows: 100px auto;
+    width: 80%;
+}
+
+.game-information-container .game-cover-container {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: var(--main-fg-color);
+    border-width: 8px;
+    grid-area: game-cover-image;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-information-container .game-title-container {
+    grid-area: game-title;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.game-information-container .game-description-container {
+    grid-area: game-desc;
+    margin-left: 50px;
+    font-size: 1.7em;
+    color: darkgrey;
+    text-align: justify;
+    display: flex;
+    align-items: flex-start;
+}
+
+.game-title-container h1 {
+    font-size: 4em;
+}
+
+.game-cover-container img.game-cover-image {
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    object-fit: cover;
+}
+
+.game-teams-container {
+    margin-top: 80px;
+    width: 80%;
+}
+
+.game-edit-button {
+    position: absolute;
+    z-index: 2;
+    left: auto;
+    right: 0px;
+    padding: 10px;
+    margin: 20px;
+    text-decoration: none;
+}

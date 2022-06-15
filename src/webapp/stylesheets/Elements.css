@@ -18,7 +18,7 @@ body {
 }
 
 /*Text Elements*/
-input[type=text]{
+input[type=text], input[type=password], input[type=email] {
     font-size: 20px;
     color: #FFFFFF;
     background-color: transparent;
