@@ -83,7 +83,7 @@ main {
     grid-template-areas:
         "image username ."
         "image nickname ."
-        "form form .";
+        ". form .";
 }
 
 .profile-image {
@@ -110,6 +110,9 @@ main {
 }
 
 .profile-image-form {
+    gap: 15px;
+    display: flex;
+    justify-content: start;
     grid-area: form;
 }
 
@@ -120,13 +123,15 @@ main {
 .input-profile-label{
     grid-area: profile-image-input;
     padding: 4px;
-    height: 20px;
+    height: 25px;
     width: 160px;
     background-color: #2b92d5;
     font-size: 20px;
     border-radius: 8px;
     border: 3px solid #2b92d5;
     text-transform: uppercase;
+    line-height: 26px;
+
 }
 
 .accept-button-profile {
