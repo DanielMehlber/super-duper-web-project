@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Profile</title>
@@ -40,6 +41,7 @@
         <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${requestScope.profileViewBean.user.username}"
              class="profile-image"/>
         <c:if test="${requestScope.profileViewBean.editPermission}">
+            <label class="profile-image-label">Edit Profile Image:</label>
             <form class="profile-image-form" action="${pageContext.request.contextPath}/users/images"
                   method="POST" enctype="multipart/form-data">
                 <label class="input-profile-label">

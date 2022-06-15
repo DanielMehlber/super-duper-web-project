@@ -83,7 +83,12 @@ main {
     grid-template-areas:
         "image username ."
         "image nickname ."
-        ". form .";
+        "label form .";
+}
+
+.profile-image-label{
+    font-size: 22px;
+    grid-area: label;
 }
 
 .profile-image {
@@ -114,6 +119,7 @@ main {
     display: flex;
     justify-content: start;
     grid-area: form;
+    margin: 0px;
 }
 
 .profile-image-input {
@@ -131,7 +137,6 @@ main {
     border: 3px solid #2b92d5;
     text-transform: uppercase;
     line-height: 26px;
-
 }
 
 .accept-button-profile {
@@ -163,4 +168,10 @@ main {
 .remove-button:hover {
     background-color: #D52B2B;
     box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.log-out-button{
+    font-size: 20px;
+    height: 35px;
+    width: 120px;
 }
