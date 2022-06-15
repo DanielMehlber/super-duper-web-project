@@ -13,13 +13,36 @@ body {
 
 }
 
-.background-image{
+.background-image {
     z-index: -1;
     position: absolute;
     overflow: hidden;
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.background-image-upload {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 0px;
+    gap: 15px;
+}
+
+.background-image-input {
+    display: none;
+}
+
+.input-bg-label {
+    padding: 4px;
+    height: 20px;
+    width: 160px;
+    background-color: #2b92d5;
+    font-size: 20px;
+    border-radius: 8px;
+    border: 3px solid #2b92d5;
+    text-transform: uppercase;
 }
 
 main {
@@ -34,7 +57,7 @@ main {
     min-height: 100%;
 }
 
-.background-image-container{
+.background-image-container {
     margin-top: 20px;
     width: 900px;
     background: rgba(29, 39, 76, 0.87);
@@ -44,7 +67,7 @@ main {
 }
 
 
-.profile-card{
+.profile-card {
     width: 900px;
     height: 250px;
     background: rgb(29 39 76 / 74%);
@@ -63,7 +86,7 @@ main {
         "form form .";
 }
 
-.profile-image{
+.profile-image {
     border-radius: 50%;
     border: 4px solid var(--main-fg-color);
     height: 160px;
@@ -86,20 +109,53 @@ main {
     grid-area: nickname;
 }
 
-
-.profile-image-form{
+.profile-image-form {
     grid-area: form;
 }
 
 .profile-image-input {
+    display: none;
+}
+
+.input-profile-label{
     grid-area: profile-image-input;
-    margin: 0;
-    height: 40px;
-    width: 300px;
+    padding: 4px;
+    height: 20px;
+    width: 160px;
+    background-color: #2b92d5;
+    font-size: 20px;
+    border-radius: 8px;
+    border: 3px solid #2b92d5;
+    text-transform: uppercase;
 }
 
 .accept-button-profile {
     grid-area: accept-button-profile;
     height: 40px;
     width: 100px;
+}
+
+.remove-button {
+    font-size: 15px;
+    text-transform: uppercase;
+    height: 35px;
+    width: 120px;
+    border-radius: 8px;
+    border: 3px solid #D52B2B;
+    background-color: #D52B2B;
+    text-align: center;
+    line-height: 35px;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.remove-button:hover {
+    transform: translateY(-1px);
+    background-color: rgba(213, 43, 43, 0.9);
+    transition: 0.5s;
+}
+
+.remove-button:hover {
+    background-color: #D52B2B;
+    box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.25);
 }

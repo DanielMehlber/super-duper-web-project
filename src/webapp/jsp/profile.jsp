@@ -22,24 +22,30 @@
 <main class="flex-container">
     <img src="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
          class="background-image"/>
-    <div class="background-image-container">
-        <form class="background-image-upload"
-              action="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
-              method="POST"
-              enctype="multipart/form-data">
-            <c:if test="${requestScope.profileViewBean.editPermission}">
-                <input class="background-image-input" type="file" name="profile" accept="/image/*">
+    <c:if test="${requestScope.profileViewBean.editPermission}">
+        <div class="background-image-container">
+            <form class="background-image-upload"
+                  action="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
+                  method="POST"
+                  enctype="multipart/form-data">
+                <label class="input-bg-label">
+                    <input class="background-image-input" type="file" name="profile" accept="/image/*">
+                    Upload Image
+                </label>
                 <button class="accept-button-background" type="submit">Accept</button>
-            </c:if>
-        </form>
-    </div>
+            </form>
+        </div>
+    </c:if>
     <div class="profile-card">
         <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${requestScope.profileViewBean.user.username}"
              class="profile-image"/>
         <c:if test="${requestScope.profileViewBean.editPermission}">
             <form class="profile-image-form" action="${pageContext.request.contextPath}/users/images"
                   method="POST" enctype="multipart/form-data">
-                <input class="profile-image-input" type="file" name="profile" accept="image/*"/>
+                <label class="input-profile-label">
+                    Upload Image
+                    <input class="profile-image-input" type="file" name="profile" accept="image/*"/>
+                </label>
                 <button class="accept-button-profile" type="submit">Accept</button>
             </form>
         </c:if>
