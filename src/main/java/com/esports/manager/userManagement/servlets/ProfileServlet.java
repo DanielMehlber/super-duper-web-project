@@ -31,6 +31,8 @@ public class ProfileServlet extends HttpServlet {
          * TODO: this page must show information to every user (logged in self or selected user)
          *  - if user is the logged in user: show edit options
          *  - if user is not the logged in user: do not display edit options
+         *  - if user is admin: show delete option
+         *  - if user is not admin: do not display admin option
          */
         HttpSession currentSession = request.getSession();
 
@@ -43,14 +45,15 @@ public class ProfileServlet extends HttpServlet {
         // String someshit = request.getParameter("someshit");
 
         Boolean editPermission = false;
-        Boolean isAdmin =false;
-
+        Boolean isAdmin = false;
         try {
             // 1) fetch currentUser from session
             User currentUser = UserManagement.getAuthorizedUser(request.getSession());
+
+
             // 2) fetch profilePageUser from database with username parameter
             String usernameParameter = request.getParameter("username");
-            if(usernameParameter == null || usernameParameter.isBlank()) {
+            if (usernameParameter == null || usernameParameter.isBlank()) {
                 // there is no username specified, redirect to dashboard
                 response.sendRedirect(getServletContext().getContextPath() + "/dashboard");
                 return;
@@ -62,13 +65,11 @@ public class ProfileServlet extends HttpServlet {
                 editPermission = true;
             }
 
-            if (currentUser.getIsAdmin()){
-                isAdmin = true;
-                profileViewBean.setIsAdmin(true);
-            }
-
             // 4) set profilePageUser in profile bean
             profileViewBean.setUser(userOfPage);
+            profileViewBean.setIsAdmin(currentUser.getIsAdmin());
+
+
             // 5) set permission in profile bean
             profileViewBean.setEditPermission(editPermission);
             request.setAttribute("profileViewBean", profileViewBean);

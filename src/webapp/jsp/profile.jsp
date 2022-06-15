@@ -52,7 +52,8 @@
             <button class="log-out-button" type="submit">logout</button>
         </form>
     </c:if>
-    <c:if>
+
+    <c:if test="${requestScope.profileViewBean.isAdmin}">
         <a class="remove-button"
            href="${pageContext.request.contextPath}/users/removeUser?username=${requestScope.profileViewBean.user.username}">Remove
             User

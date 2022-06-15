@@ -31,17 +31,18 @@ public class RemoveUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+
             //Get authorized User
             User user = UserManagement.getAuthorizedUser(request.getSession());
 
-
+            if(user != null && user.getIsAdmin()){
             String username = request.getParameter("username");
 
             //execute removeUser method
             UserManagement.removeUser(username);
 
             response.sendRedirect(getServletContext().getContextPath() + "/users");
-
+            }
         } catch (InternalErrorException e) {
             log.error("An internal Error occured: " + e.getMessage());
         }

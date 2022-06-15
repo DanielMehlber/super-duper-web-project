@@ -40,7 +40,8 @@ public class ProfileViewBean implements Serializable {
     public Boolean getIsAdmin() {
         return isAdmin;
     }
-    public void setIsAdmin(Boolean isAdmin){
+
+    public void setIsAdmin(Boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
 

@@ -12,7 +12,9 @@ import java.time.LocalDateTime;
  */
 public class UserSessionBean implements Serializable {
     private static final long servialVersionUID = 1L;
-    public UserSessionBean(){}
+
+    public UserSessionBean() {
+    }
 
     private User user;
     //To track the login time of the user
@@ -33,4 +35,5 @@ public class UserSessionBean implements Serializable {
     public void setDateTime(LocalDateTime loginTime) {
         this.loginTime = loginTime;
     }
+
 }

@@ -263,7 +263,7 @@ public class UserRepository {
      *
      * @param username
      * @throws InternalErrorException
-     * @author Philipp Phan
+     * @author Philipp Phan (Copy from V.Stiehl)
      */
     public static void deleteUser(String username) throws InternalErrorException{
         // Connect with Database and loads sql statement

@@ -21,8 +21,8 @@ public class User {
     @ResultSetMapping("nickname")
     private String nickname;
 
-
-    private boolean isAdmin;
+    @ResultSetMapping("isAdmin")
+    private Boolean isAdmin;
     /**
      *to change user to admin:
      * UPDATE user SET isAdmin = 1 WHERE username = "username";
