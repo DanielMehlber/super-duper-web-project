@@ -25,6 +25,7 @@
          class="background-image"/>
     <c:if test="${requestScope.profileViewBean.editPermission}">
         <div class="background-image-container">
+            <label class="bg-image-label">Edit Background Image</label>
             <form class="background-image-upload"
                   action="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
                   method="POST"

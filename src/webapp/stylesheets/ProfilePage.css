@@ -28,6 +28,7 @@ body {
     padding: 10px;
     margin: 0px;
     gap: 15px;
+    grid-area: bg-image-upload;
 }
 
 .background-image-input {
@@ -64,8 +65,17 @@ main {
     backdrop-filter: blur(20px);
     border: 3px solid var(--sec-color);
     border-radius: 20px;
+
+    grid-template-rows: 1fr 1fr 1fr;
+
+    grid-template-areas:
+    "bg-label bg-image-upload .";
 }
 
+.bg-image-label{
+    font-size: 22px;
+    grid-area: bg-label;
+}
 
 .profile-card {
     width: 900px;
