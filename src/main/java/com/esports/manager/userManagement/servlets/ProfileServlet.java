@@ -47,11 +47,10 @@ public class ProfileServlet extends HttpServlet {
         Boolean editPermission = false;
         Boolean isAdmin = false;
         try {
-            // 1) fetch currentUser from session
+            // Fetch currentUser from session
             User currentUser = UserManagement.getAuthorizedUser(request.getSession());
 
-
-            // 2) fetch profilePageUser from database with username parameter
+            // Fetch profilePageUser from database with username parameter
             String usernameParameter = request.getParameter("username");
             if (usernameParameter == null || usernameParameter.isBlank()) {
                 // there is no username specified, redirect to dashboard
@@ -59,20 +58,23 @@ public class ProfileServlet extends HttpServlet {
                 return;
             }
             User userOfPage = UserManagement.fetchUserByUsername(usernameParameter);
-            // 3) compare both to set permissions
+            // Compare both to set permissions
             // Compare usernames with equals, damit daniel mich nicht haut
             if (currentUser.getUsername().equals(userOfPage.getUsername())) {
                 editPermission = true;
             }
 
-            // 4) set profilePageUser in profile bean
+            //set profilePageUser in profile bean
             profileViewBean.setUser(userOfPage);
+            //set admin property inside profile bean
             profileViewBean.setIsAdmin(currentUser.getIsAdmin());
 
 
-            // 5) set permission in profile bean
+            //set permission in profile bean
             profileViewBean.setEditPermission(editPermission);
+            // Set profileViewBean in Request
             request.setAttribute("profileViewBean", profileViewBean);
+
             RequestDispatcher rq = request.getRequestDispatcher("/jsp/profile.jsp");
             rq.forward(request, response);
         } catch (NoSuchUserException e) {
