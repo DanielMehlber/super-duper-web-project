@@ -20,13 +20,13 @@ CREATE TABLE `team` (
 );
 
 CREATE TABLE `member` (
-    `username` varchar(30) NOT NULL ON DELETE CASCADE,
+    `username` varchar(30) NOT NULL ,
     `teamId` BIGINT NOT NULL,
     `since` datetime DEFAULT NULL,
     `role` varchar(30) DEFAULT NULL,
     PRIMARY KEY (`teamId`,`username`),
     CONSTRAINT FOREIGN KEY (`teamId`) REFERENCES `team` (`id`),
-    CONSTRAINT FOREIGN KEY (`username`) REFERENCES `user` (`uxsername`)
+    CONSTRAINT FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE
 );
 
 CREATE TABLE `newsfeed` (
