@@ -1,3 +1,4 @@
+/*@Author Philipp Phan*/
 * {
     color: white;
     --main-color: #2B92D5;
@@ -13,39 +14,6 @@ body {
 
 }
 
-.background-image {
-    z-index: -1;
-    position: absolute;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.background-image-upload {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    margin: 0px;
-    gap: 15px;
-    grid-area: bg-image-upload;
-}
-
-.background-image-input {
-    display: none;
-}
-
-.input-bg-label {
-    padding: 4px;
-    height: 20px;
-    width: 160px;
-    background-color: #2b92d5;
-    font-size: 20px;
-    border-radius: 8px;
-    border: 3px solid #2b92d5;
-    text-transform: uppercase;
-}
-
 main {
     display: flex;
     flex-direction: column;
@@ -57,7 +25,7 @@ main {
     overflow-x: hidden;
     min-height: 100%;
 }
-
+/*Background Image and Background Container*/
 .background-image-container {
     margin-top: 20px;
     width: 900px;
@@ -75,11 +43,47 @@ main {
     grid-template-areas:
     "bg-label bg-image-upload .";
 }
+.background-image {
+    z-index: -1;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.background-image-input {
+    display: none;
+}
+
+.background-image-upload {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 0px;
+    gap: 15px;
+    grid-area: bg-image-upload;
+}
+
+
+
+.input-bg-label {
+    padding: 4px;
+    height: 20px;
+    width: 160px;
+    background-color: #2b92d5;
+    font-size: 20px;
+    border-radius: 8px;
+    border: 3px solid #2b92d5;
+    text-transform: uppercase;
+}
 
 .bg-image-label{
     font-size: 22px;
     grid-area: bg-label;
 }
+
+/*Profile Container*/
 
 .profile-card {
     width: 900px;
@@ -100,6 +104,20 @@ main {
         "label form .";
 }
 
+.username {
+    font-size: 35px;
+    justify-self: baseline;
+    grid-area: username;
+}
+
+.nickname {
+    font-size: 20px;
+    align-self: baseline;
+    justify-self: baseline;
+    grid-area: nickname;
+}
+
+/*Profile Image*/
 .profile-image-label{
     font-size: 22px;
     grid-area: label;
@@ -113,19 +131,6 @@ main {
     margin-top: 10px;
 
     grid-area: image;
-}
-
-.username {
-    font-size: 35px;
-    justify-self: baseline;
-    grid-area: username;
-}
-
-.nickname {
-    font-size: 20px;
-    align-self: baseline;
-    justify-self: baseline;
-    grid-area: nickname;
 }
 
 .profile-image-form {
@@ -159,6 +164,7 @@ main {
     width: 100px;
 }
 
+/*Remove User Button*/
 .remove-button {
     font-size: 15px;
     text-transform: uppercase;
@@ -184,6 +190,7 @@ main {
     box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.25);
 }
 
+/*Log-out Button*/
 .log-out-button{
     font-size: 20px;
     height: 35px;
