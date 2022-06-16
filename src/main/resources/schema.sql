@@ -1,4 +1,4 @@
--- Authors: Maximilian Rublik, Daniel Mehlber
+-- Authors: Maximilian Rublik, Daniel Mehlber, Philipp Phan
 CREATE TABLE `user` (
     `username` varchar(30) PRIMARY KEY,
     `email` varchar(40) NOT NULL,
