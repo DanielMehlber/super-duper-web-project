@@ -111,7 +111,7 @@ public class GameImageRepository {
      * @author Daniel Mehlber
      */
     public static void setBackgroundImage(final byte[] image, Game game) throws InternalErrorException {
-        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/game/setBackgroundImage.sql");
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/games/setBackgroundImage.sql");
              Connection connection = pstmt.getConnection()) {
             pstmt.setBytes(1, image);
             pstmt.setLong(2, game.getId());
@@ -133,7 +133,7 @@ public class GameImageRepository {
      * @author Daniel Mehlber
      */
     public static void setProfileImage(final byte[] image, Game game) throws InternalErrorException {
-        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/game/setProfileImage.sql");
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/games/setProfileImage.sql");
              Connection connection = pstmt.getConnection()) {
             pstmt.setBytes(1, image);
             pstmt.setLong(2, game.getId());

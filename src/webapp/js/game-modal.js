@@ -1,3 +1,5 @@
+// Authors: Daniel Mehlber
+
 function openModal() {
 
 }

@@ -31,6 +31,7 @@
                 ${requestScope.gamePageViewBean.game.description}
             </div>
         </div>
+        <!--
         <div class="game-teams-container">
             <h2>Teams</h2>
             <a class="team-container" href="${pageContext.request.contextPath}/teams/team?id=${team.getKey().id}">
@@ -45,6 +46,7 @@
                 <p class="member-count-paragraph">${team.value.size()} members</p>
             </a>
         </div>
+        -->
     </div>
 </main>
 </body>

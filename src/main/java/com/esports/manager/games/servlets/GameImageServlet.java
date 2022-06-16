@@ -153,7 +153,7 @@ public class GameImageServlet extends HttpServlet {
         }
 
         // read image as byte array from request
-        Part imagePart = request.getPart("profile");
+        Part imagePart = request.getPart("image");
         InputStream is = imagePart.getInputStream();
 
         // vvv Start Copy https://stackoverflow.com/a/1264737 vvv
@@ -177,7 +177,7 @@ public class GameImageServlet extends HttpServlet {
             return;
         }
 
-        response.sendRedirect(getServletContext().getContextPath()+"/game?id="+game.getId());
+        response.sendRedirect(getServletContext().getContextPath()+"/games/game?id="+game.getId());
         log.info("game image uploaded");
     }
 }
