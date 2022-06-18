@@ -20,6 +20,7 @@
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
+<%@include file="fragments/sidebar.jspf"%>
 <main class="flex-container">
     <img src="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
          class="background-image"/>
