@@ -35,12 +35,14 @@ public class RemoveUserServlet extends HttpServlet {
             //Get authorized User
             User user = UserManagement.getAuthorizedUser(request.getSession());
 
+            //Checks if user exists and user is admin
             if(user != null && user.getIsAdmin()){
             String username = request.getParameter("username");
 
             //execute removeUser method
             UserManagement.removeUser(username);
 
+            //redirect to /users page
             response.sendRedirect(getServletContext().getContextPath() + "/users");
             }
         } catch (InternalErrorException e) {
