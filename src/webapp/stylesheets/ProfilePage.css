@@ -21,10 +21,108 @@ main {
     align-content: center;
     align-items: center;
     justify-content: flex-start;
-    row-gap: 20px;
     overflow-x: hidden;
     min-height: 100%;
 }
+
+/*Side-Navigationbar*/
+nav {
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    background-color: #1d274c;
+}
+
+.nav-bar-button {
+    position: sticky;
+    left: 0px;
+    background-color: #1d274c;
+    width: 40px;
+    height: 40px;
+    border-radius: 0px 10px 10px 0px;
+    border-width: 0px;
+    top: 10px;
+    display: inline-block;
+    line-height: 100%;
+}
+
+.profile-container {
+    margin-top: 40px;
+}
+
+.profile-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-image > img {
+    border-radius: 50%;
+    border-width: 5px;
+    border-color: var(--main-fg-color);
+    border-style: solid;
+    transition: box-shadow 0.3s;
+}
+
+.profile-image > img:hover {
+    box-shadow: var(--main-fg-color) 0px 0px 15px;
+}
+
+.player-username {
+    color: white;
+    text-align-last: center;
+    margin: 20px;
+    text-align: center;
+}
+
+ul.navigation-options-container {
+    width: 100%;
+    list-style-type: none;
+    list-style-position: outside;
+    padding: 0px;
+}
+
+li.nav-option {
+    padding: 0px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+li.nav-option:hover {
+    background: var(--main-bg-color);
+}
+
+li.selected {
+    background: var(--main-bg-color);
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+li.nav-option::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 100%;
+    margin: 0px 10px 0px 0px;
+}
+
+li.selected::before {
+    background-color: var(--main-fg-color);
+}
+
+li.unselected::before {
+    background-color: transparent;
+}
+
+
 /*Background Image and Background Container*/
 .background-image-container {
     margin-top: 20px;
@@ -65,8 +163,6 @@ main {
     grid-area: bg-image-upload;
 }
 
-
-
 .input-bg-label {
     padding: 4px;
     height: 20px;
@@ -88,6 +184,7 @@ main {
 .profile-card {
     width: 900px;
     height: 250px;
+    margin-top: 20px;
     background: rgb(29 39 76 / 74%);
     backdrop-filter: blur(4px);
     border: 3px solid var(--sec-color);
@@ -123,7 +220,7 @@ main {
     grid-area: label;
 }
 
-.profile-image {
+.main-profile-image {
     border-radius: 50%;
     border: 4px solid var(--main-fg-color);
     height: 160px;
@@ -168,6 +265,7 @@ main {
 .remove-button {
     font-size: 15px;
     text-transform: uppercase;
+    margin-top: 20px;
     height: 35px;
     width: 120px;
     border-radius: 8px;

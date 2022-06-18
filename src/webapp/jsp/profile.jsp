@@ -1,22 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Profile</title>
     <meta charset="UTF-8">
     <base href="${pageContext.request.requestURI}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../stylesheets/Elements.css">
-    <link rel="stylesheet" href="../stylesheets/ProfilePage.css">
-    <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/stylesheets/ProfilePage.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
 <%@include file="fragments/sidebar.jspf"%>
-<main class="flex-container">
+<main class="flex-container" onclick="hideNav()">
+    <!--<button class="nav-bar-button">=</button>-->
     <img src="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
-         class="background-image"/>
+         class="background-image" alt="Background Image of user"/>
     <c:if test="${requestScope.profileViewBean.editPermission}">
         <div class="background-image-container">
             <label class="bg-image-label">Edit Background Image: </label>
@@ -25,7 +25,7 @@
                   method="POST"
                   enctype="multipart/form-data">
                 <label class="input-bg-label">
-                    <input class="background-image-input" type="file" name="profile" accept="/image/*">
+                    <input class="background-image-input" type="file" name="profile" accept="image/*">
                     Upload Image
                 </label>
                 <button class="accept-button-background" type="submit">Accept</button>
@@ -34,14 +34,14 @@
     </c:if>
     <div class="profile-card">
         <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${requestScope.profileViewBean.user.username}"
-             class="profile-image"/>
+             class="main-profile-image" alt="Profile Image of user"/>
         <c:if test="${requestScope.profileViewBean.editPermission}">
             <label class="profile-image-label">Edit Profile Image:</label>
             <form class="profile-image-form" action="${pageContext.request.contextPath}/users/images"
                   method="POST" enctype="multipart/form-data">
                 <label class="input-profile-label">
                     Upload Image
-                    <input class="profile-image-input" type="file" name="profile" accept="image/*"/>
+                    <input class="profile-image-input" type="file" name="profile" accept="image/*">
                 </label>
                 <button class="accept-button-profile" type="submit">Accept</button>
             </form>
@@ -50,11 +50,14 @@
         <!--Email noch in Nickname ändern-->
         <div class="nickname">${requestScope.profileViewBean.user.nickname}</div>
     </div>
+    <!--Eventuell löschen wenn Sidebar fertig ist-->
+    <!--
     <c:if test="${requestScope.profileViewBean.editPermission}">
         <form class="log-out" action="../logout" method="Post">
             <button class="log-out-button" type="submit">logout</button>
         </form>
     </c:if>
+    -->
 
     <c:if test="${requestScope.profileViewBean.isAdmin}">
         <a class="remove-button"
@@ -62,6 +65,7 @@
             User
         </a>
     </c:if>
+    <noscript></noscript>
 </main>
 </body>
 </html>
