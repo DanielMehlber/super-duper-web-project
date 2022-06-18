@@ -16,7 +16,8 @@
     <form class="login-card" action="../login" method="POST">
         <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Logo"
              class="logo img">
-        <input name="username" type="text" placeholder="Username" class="username" value="${requestScope.loginBean.username}" required/>
+        <input name="username" type="text" placeholder="Username" class="username"
+               value="${requestScope.loginBean.username}" required/>
         <input name="password" type="password" placeholder="Password" class="password" required/>
         <!--Get error Message from LoginBean-->
         <p class="error-text">
@@ -28,6 +29,7 @@
         <button class="cancel-button">Back</button>
         <a class="registration-redirect" href="${pageContext.request.contextPath}/registration">Not a member yet?</a>
     </form>
+    <noscript>Your browser does not support JavaScript!</noscript>
 </main>
 </body>
 </html>
