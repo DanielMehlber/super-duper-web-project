@@ -1,0 +1,1 @@
+DELETE FROM game WHERE 1=1;

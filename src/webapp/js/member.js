@@ -1,3 +1,4 @@
+// Authors: Daniel Mehlber
 
 /**
  * converts user JSON into HTML. Expected JSON:

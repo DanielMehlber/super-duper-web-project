@@ -1,3 +1,5 @@
+// Authors: Daniel Mehlber
+
 /**
  * Puts date in printable format
  * @param date date string

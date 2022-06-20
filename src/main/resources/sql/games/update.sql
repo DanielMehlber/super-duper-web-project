@@ -1,0 +1,1 @@
+UPDATE game SET name=?, description=? WHERE id = ?;

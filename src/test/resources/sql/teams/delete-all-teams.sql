@@ -1,0 +1,1 @@
+DELETE FROM team WHERE 1=1;
