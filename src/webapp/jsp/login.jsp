@@ -12,6 +12,7 @@
     <script src="${pageContext.request.contextPath}/js/cookieCheck.js" defer></script>
 
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <noscript>JavaScript is deactivated!</noscript>
 </head>
 <body>
 <main>

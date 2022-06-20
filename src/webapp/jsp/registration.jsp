@@ -17,6 +17,7 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/registration.js"></script>
         <noscript>JavaScript not enabled</noscript>
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+        <noscript>JavaScript is deactivated!</noscript>
     </head>
     <body>
         <main>
