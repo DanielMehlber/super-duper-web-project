@@ -157,7 +157,7 @@ public class UserRepository {
         log.debug("loading background image");
 
         byte[] image;
-        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/games/fetchBackgroundImage.sql");
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/fetchBackgroundImage.sql");
              Connection connection = pstmt.getConnection()) {
             pstmt.setString(1, username);
             ResultSet result = pstmt.executeQuery();
