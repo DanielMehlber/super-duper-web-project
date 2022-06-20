@@ -15,7 +15,7 @@
     <body>
     <%@include file="fragments/sidebar.jspf" %>
         <main>
-            <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
+            <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
             <form class="add-team-card" action="${pageContext.request.contextPath}/teams/addnewteam" method="POST" enctype="multipart/form-data">
                 <input name="name" class="name-input" type="text" placeholder="team name" required autofocus="autofocus">
                 <input name="slogan" class="slogan-input" type="text" placeholder="slogan">
