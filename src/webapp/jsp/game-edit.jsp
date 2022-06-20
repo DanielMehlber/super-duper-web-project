@@ -9,14 +9,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/Elements.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/dashboard.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/game.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/TeamsPage.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/game-edit.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/game-modal.css"/>
     <title>Games</title>
 </head>
 <body>
 <script src="${pageContext.request.contextPath}/js/game-edit.js"></script>
-<main id="main">
+<script src="${pageContext.request.contextPath}/js/newsfeed.js"></script>
+<%@include file="fragments/sidebar.jspf" %>
+<main id="main" onclick="hideNav()">
+    <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
     <a href="${pageContext.request.contextPath}/games/game?id=${requestScope.gamePageViewBean.game.id}&mode=view" class="game-edit-button button">&#128065;</a>
     <form id="game-background-container" method="post" class="game-background-container" action="${pageContext.request.contextPath}/games/images?id=${requestScope.gamePageViewBean.game.id}&type=background" enctype="multipart/form-data">
         <label class="game-background-selector-container secondary-button">
