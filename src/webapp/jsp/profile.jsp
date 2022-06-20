@@ -9,12 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/stylesheets/ProfilePage.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
-<%@include file="fragments/sidebar.jspf"%>
-<main class="flex-container" onclick="hideNav()">
-    <!--<button class="nav-bar-button">=</button>-->
+<%@include file="fragments/sidebar.jspf" %>
+<main id="main" class="flex-container" onclick="hideNav()">
+    <button class="nav-bar-button" onmouseover="toggleNav()">=</button>
+    <section class="main-content-container">
     <img src="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
          class="background-image" alt="Background Image of user"/>
     <c:if test="${requestScope.profileViewBean.editPermission}">
@@ -50,22 +52,15 @@
         <!--Email noch in Nickname ändern-->
         <div class="nickname">${requestScope.profileViewBean.user.nickname}</div>
     </div>
-    <!--Eventuell löschen wenn Sidebar fertig ist-->
-    <!--
-    <c:if test="${requestScope.profileViewBean.editPermission}">
-        <form class="log-out" action="../logout" method="Post">
-            <button class="log-out-button" type="submit">logout</button>
-        </form>
-    </c:if>
-    -->
-
+    <!--<a href="${pageContext.request.contextPath}/js/removeUserConfirmation.js"></a>-->
     <c:if test="${requestScope.profileViewBean.isAdmin}">
         <a class="remove-button"
            href="${pageContext.request.contextPath}/users/removeUser?username=${requestScope.profileViewBean.user.username}">Remove
             User
         </a>
     </c:if>
-    <noscript></noscript>
+    <noscript>Your Browser does not support JavaScript</noscript>
+    </section>
 </main>
 </body>
 </html>
