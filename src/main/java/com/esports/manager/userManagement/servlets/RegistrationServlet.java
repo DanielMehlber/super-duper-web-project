@@ -44,13 +44,20 @@ public class RegistrationServlet extends HttpServlet {
 
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+        String confirmPassword = req.getParameter("confirmPassword");
         String email = req.getParameter("email");
 
+
         try {
-            UserManagement.registerUser(
-                    username,
-                    password,
-                    email);
+            if (!password.equals(confirmPassword))
+            {
+                registrationViewSessionBean.setErrorMessage("Password does not match the confirmation");
+            } else {
+                UserManagement.registerUser(
+                        username,
+                        password,
+                        email);
+            }
         } catch(UsernameAlreadyTakenException ex) {
             // error messages
             log.warn("cannot perform user registration because username is already taken: " + ex.getMessage());

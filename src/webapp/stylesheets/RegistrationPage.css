@@ -24,10 +24,11 @@ main{
                 "email email"
                 "username username"
                 "password password"
+                "confirmPassword confirmPassword"
                 "error-text error-text"
                 "cancel continue"
                 "login-redirect login-redirect";
-    grid-template-rows: auto min-content min-content min-content 20px auto min-content;
+    grid-template-rows: auto min-content min-content min-content min-content 20px auto min-content;
     transition: all 1s;
 }
 
@@ -37,6 +38,10 @@ main{
 
 input.password{
     grid-area: password;
+}
+
+input.confirmPassword {
+    grid-area: confirmPassword;
 }
 input.username{
     grid-area: username;
@@ -64,6 +69,15 @@ input.email{
     height: 48px;
     grid-area: continue;
 }
+
+.disabled-enter-button {
+    opacity: 0.2;
+    background: red;
+    width: 161px;
+    height: 48px;
+    grid-area: continue;
+}
+
 .cancel-button{
     width: 161px;
     height: 48px;
