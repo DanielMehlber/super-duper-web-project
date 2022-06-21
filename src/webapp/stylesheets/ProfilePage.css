@@ -19,7 +19,6 @@ main {
 }
 
 .main-content-container{
-    padding: 0;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -28,6 +27,7 @@ main {
     justify-content: flex-start;
     overflow-x: hidden;
     min-height: 100%;
+    width: 100%;
     margin-top: -40px;
 }
 
