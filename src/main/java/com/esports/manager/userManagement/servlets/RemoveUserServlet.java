@@ -46,7 +46,7 @@ public class RemoveUserServlet extends HttpServlet {
             response.sendRedirect(getServletContext().getContextPath() + "/users");
             }
         } catch (InternalErrorException e) {
-            log.error("An internal Error occured: " + e.getMessage());
+            log.error("An internal Error occured while removing a user: " + e.getMessage());
         }
 
     }

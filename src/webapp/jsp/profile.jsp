@@ -10,6 +10,7 @@
     <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/stylesheets/ProfilePage.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/js/removeUserConfirmation.js" defer> </script>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
@@ -54,7 +55,7 @@
     </div>
     <!--<a href="${pageContext.request.contextPath}/js/removeUserConfirmation.js"></a>-->
     <c:if test="${requestScope.profileViewBean.isAdmin}">
-        <a class="remove-button"
+        <a class="remove-button" id="remove-user-button"
            href="${pageContext.request.contextPath}/users/removeUser?username=${requestScope.profileViewBean.user.username}">Remove
             User
         </a>
