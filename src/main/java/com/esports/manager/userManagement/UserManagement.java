@@ -4,6 +4,7 @@ import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.newsfeed.NewsfeedLogic;
 import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.teams.entities.Member;
+import com.esports.manager.teams.entities.Team;
 import com.esports.manager.userManagement.beans.UserSessionBean;
 import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
@@ -288,5 +289,9 @@ public class UserManagement {
         }
         users.removeAll(usersToRemove);
         return users;
+    }
+
+    public static List<Long> fetchTeamsIdsOfUser(final User user) throws InternalErrorException {
+        return UserRepository.fetchTeamsOfUser(user);
     }
 }

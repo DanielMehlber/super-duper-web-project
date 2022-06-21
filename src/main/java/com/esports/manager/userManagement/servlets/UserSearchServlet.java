@@ -46,20 +46,23 @@ public class UserSearchServlet extends HttpServlet {
 
         log.debug(String.format("generating json containing %d found users", users.size()));
 
-        // create team ids JSON list
-        // TODO fetch team Ids of user
-        List<Long> teamIds = new ArrayList<>();
-        StringBuilder teamJsonBuilder = new StringBuilder("[");
-        for(Long teamId : teamIds) {
-            teamJsonBuilder.append(String.format("%d,", teamId));
-        }
-        teamJsonBuilder.append("]");
-        String teamsJson = teamJsonBuilder.toString();
-
         // build json
         StringBuilder jsonBuilder = new StringBuilder("[");
         for(int i = 0; i < users.size(); i++) {
             User user = users.get(i);
+
+            List<Long> teamIds = UserManagement.fetchTeamsIdsOfUser(user);
+            StringBuilder teamJsonBuilder = new StringBuilder("[");
+            for(Long teamId : teamIds) {
+                teamJsonBuilder.append(String.format("%d", teamId));
+
+                // if this is not the last element, append comma
+                if(!teamIds.get(teamIds.size() - 1).equals(teamId)) {
+                    teamJsonBuilder.append(",");
+                }
+            }
+            teamJsonBuilder.append("]");
+            String teamsJson = teamJsonBuilder.toString();
 
             String optionalComma = i+1 == users.size() ? "" : ",";
 
