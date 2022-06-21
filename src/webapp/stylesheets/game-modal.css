@@ -44,3 +44,7 @@
     justify-self: right;
     align-self: flex-start;
 }
+
+.game-creation-modal-container.invisible {
+    display: none;
+}
