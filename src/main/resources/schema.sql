@@ -45,7 +45,7 @@ CREATE TABLE `newsfeed` (
 CREATE TABLE `game` (
     `id` SERIAL PRIMARY KEY,
     `name` VARCHAR(64) NOT NULL,
-    `description` TEXT NOT NULL DEFAULT "This is a Game. Appearantly the creator was too lazy to add a description. How Unfortunate. Click on the edit button on the upper-right corner.",
+    `description` TEXT NOT NULL,
     `profile_picture` mediumblob,
     `background_picture` mediumblob
 );
