@@ -1,11 +1,12 @@
--- Authors: Maximilian Rublik, Daniel Mehlber
+-- Authors: Maximilian Rublik, Daniel Mehlber, Philipp Phan
 CREATE TABLE `user` (
     `username` varchar(30) PRIMARY KEY,
     `email` varchar(40) NOT NULL,
     `profile_picture` MediumBlob,
     `background_picture` MediumBlob,
     `passwordHash` varchar(64) NOT NULL,
-    `nickname` varchar(20)
+    `nickname` varchar(20),
+    `isAdmin` boolean NOT NULL DEFAULT 0
 );
 
 CREATE TABLE `team` (
@@ -19,7 +20,7 @@ CREATE TABLE `team` (
 );
 
 CREATE TABLE `member` (
-    `username` varchar(30) NOT NULL,
+    `username` varchar(30) NOT NULL ,
     `teamId` BIGINT NOT NULL,
     `since` datetime DEFAULT NULL,
     `role` varchar(30) DEFAULT NULL,

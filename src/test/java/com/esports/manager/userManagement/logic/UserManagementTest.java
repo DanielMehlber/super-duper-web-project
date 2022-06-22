@@ -46,12 +46,12 @@ public class UserManagementTest {
     public void registerUser_usernameAlreadyTaken() throws InternalErrorException {
         // -- arrange --
         // create user in database
-        User createdUser = new User("username", "username@username.com", UserManagement.hashPassword("password123"));
+        User createdUser = new User("username", "username@username.com", UserManagement.hashPassword("password123"), false);
         UserRepository.createNewUser(createdUser);
 
         // -- act and assert --
         // try to register user with same username. Expect throw of UsernameAlreadyTakenException
-        Assertions.assertThrows(UsernameAlreadyTakenException.class, () -> UserManagement.registerUser(createdUser.getUsername(), "password123", createdUser.getEmail()));
+        Assertions.assertThrows(UsernameAlreadyTakenException.class, () -> UserManagement.registerUser(createdUser.getUsername(), "password123", createdUser.getEmail(), false));
     }
 
     @Test
@@ -60,10 +60,11 @@ public class UserManagementTest {
         String username = "username";
         String password = "password123";
         String email = "username@username.com";
+        boolean isAdmin = false;
 
         // -- act --
         // register user
-        UserManagement.registerUser(username, password, email);
+        UserManagement.registerUser(username, password, email, false);
 
         // -- assert --
         // check if user is in database
@@ -90,7 +91,8 @@ public class UserManagementTest {
         String username = "username";
         String password = "password123";
         String email = "username@username.com";
-        User createdUser = new User(username, email, UserManagement.hashPassword(password));
+        Boolean isAdmin = false;
+        User createdUser = new User(username, email, UserManagement.hashPassword(password), false);
         UserRepository.createNewUser(createdUser);
 
         // -- act --

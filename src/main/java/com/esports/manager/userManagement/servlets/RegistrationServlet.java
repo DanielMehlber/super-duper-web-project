@@ -46,6 +46,7 @@ public class RegistrationServlet extends HttpServlet {
         String password = req.getParameter("password");
         String confirmPassword = req.getParameter("confirmPassword");
         String email = req.getParameter("email");
+        Boolean isAdmin = false;
 
 
         try {
@@ -56,7 +57,8 @@ public class RegistrationServlet extends HttpServlet {
                 UserManagement.registerUser(
                         username,
                         password,
-                        email);
+                        email,
+                        false);
             }
         } catch(UsernameAlreadyTakenException ex) {
             // error messages

@@ -4,6 +4,7 @@ import com.esports.manager.global.db.mapping.ResultSetMapping;
 
 /**
  * The User entity contains all user data of a specific user.
+ *
  * @author Daniel Mehlber
  */
 public class User {
@@ -20,14 +21,23 @@ public class User {
     @ResultSetMapping("nickname")
     private String nickname;
 
-    public User() {}
+    @ResultSetMapping("isAdmin")
+    private Boolean isAdmin;
+    /**
+     *to change user to admin:
+     * UPDATE user SET isAdmin = 1 WHERE username = "username";
+     * */
 
-    public User (String username, String email, String passwordHash){
+
+    public User() {
+    }
+
+    public User(String username, String email, String passwordHash, boolean isAdmin) {
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
+        this.isAdmin = isAdmin;
     }
-
 
     public String getUsername() {
         return username;
@@ -59,5 +69,13 @@ public class User {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }

@@ -1,3 +1,4 @@
+/*@Author Philipp Phan*/
 * {
     color: white;
     --main-color: #2B92D5;
@@ -13,40 +14,186 @@ body {
 
 }
 
-.background-image{
-    z-index: -1;
-    position: absolute;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+main {
+
 }
 
-main {
+.main-content-container{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
     align-items: center;
     justify-content: flex-start;
-    row-gap: 20px;
     overflow-x: hidden;
     min-height: 100%;
+    width: 100%;
+    margin-top: -40px;
 }
 
-.background-image-container{
+/*Side-Navigationbar*/
+nav {
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    background-color: #1d274c;
+}
+
+.nav-bar-button {
+    position: sticky;
+    left: 0px;
+    background-color: #1d274c;
+    width: 40px;
+    height: 40px;
+    border-radius: 0px 10px 10px 0px;
+    border-width: 0px;
+    top: 10px;
+    display: inline-block;
+    line-height: 100%;
+}
+
+.profile-container {
+    margin-top: 40px;
+}
+
+.profile-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-image > img {
+    border-radius: 50%;
+    border-width: 5px;
+    border-color: var(--main-fg-color);
+    border-style: solid;
+    transition: box-shadow 0.3s;
+}
+
+.profile-image > img:hover {
+    box-shadow: var(--main-fg-color) 0px 0px 15px;
+}
+
+.player-username {
+    color: white;
+    text-align-last: center;
+    margin: 20px;
+    text-align: center;
+}
+
+ul.navigation-options-container {
+    width: 100%;
+    list-style-type: none;
+    list-style-position: outside;
+    padding: 0px;
+}
+
+li.nav-option {
+    padding: 0px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+li.nav-option:hover {
+    background: var(--main-bg-color);
+}
+
+li.selected {
+    background: var(--main-bg-color);
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+li.nav-option::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 100%;
+    margin: 0px 10px 0px 0px;
+}
+
+li.selected::before {
+    background-color: var(--main-fg-color);
+}
+
+li.unselected::before {
+    background-color: transparent;
+}
+
+
+/*Background Image and Background Container*/
+.background-image-container {
     margin-top: 20px;
     width: 900px;
     background: rgba(29, 39, 76, 0.87);
     backdrop-filter: blur(20px);
     border: 3px solid var(--sec-color);
     border-radius: 20px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+
+    grid-template-areas:
+    "bg-label bg-image-upload .";
+}
+.background-image {
+    z-index: -1;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    object-fit: cover;
 }
 
+.background-image-input {
+    display: none;
+}
 
-.profile-card{
+.background-image-upload {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 0px;
+    gap: 15px;
+    grid-area: bg-image-upload;
+}
+
+.input-bg-label {
+    padding: 4px;
+    height: 20px;
+    width: 160px;
+    background-color: #2b92d5;
+    font-size: 20px;
+    border-radius: 8px;
+    border: 3px solid #2b92d5;
+    text-transform: uppercase;
+}
+
+.bg-image-label{
+    font-size: 22px;
+    grid-area: bg-label;
+}
+
+/*Profile Container*/
+
+.profile-card {
     width: 900px;
     height: 250px;
+    margin-top: 20px;
     background: rgb(29 39 76 / 74%);
     backdrop-filter: blur(4px);
     border: 3px solid var(--sec-color);
@@ -60,17 +207,7 @@ main {
     grid-template-areas:
         "image username ."
         "image nickname ."
-        "form form .";
-}
-
-.profile-image{
-    border-radius: 50%;
-    border: 4px solid var(--main-fg-color);
-    height: 160px;
-    width: 160px;
-    margin-top: 10px;
-
-    grid-area: image;
+        "label form .";
 }
 
 .username {
@@ -86,20 +223,83 @@ main {
     grid-area: nickname;
 }
 
+/*Profile Image*/
+.profile-image-label{
+    font-size: 22px;
+    grid-area: label;
+}
 
-.profile-image-form{
+.main-profile-image {
+    border-radius: 50%;
+    border: 4px solid var(--main-fg-color);
+    height: 160px;
+    width: 160px;
+    margin-top: 10px;
+
+    grid-area: image;
+}
+
+.profile-image-form {
+    gap: 15px;
+    display: flex;
+    justify-content: start;
     grid-area: form;
+    margin: 0px;
 }
 
 .profile-image-input {
+    display: none;
+}
+
+.input-profile-label{
     grid-area: profile-image-input;
-    margin: 0;
-    height: 40px;
-    width: 300px;
+    padding: 4px;
+    height: 25px;
+    width: 160px;
+    background-color: #2b92d5;
+    font-size: 20px;
+    border-radius: 8px;
+    border: 3px solid #2b92d5;
+    text-transform: uppercase;
+    line-height: 26px;
 }
 
 .accept-button-profile {
     grid-area: accept-button-profile;
     height: 40px;
     width: 100px;
+}
+
+/*Remove User Button*/
+.remove-button {
+    font-size: 15px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    height: 35px;
+    width: 120px;
+    border-radius: 8px;
+    border: 3px solid #D52B2B;
+    background-color: #D52B2B;
+    text-align: center;
+    line-height: 35px;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.remove-button:hover {
+    transform: translateY(-1px);
+    background-color: rgba(213, 43, 43, 0.9);
+    transition: 0.5s;
+}
+
+.remove-button:hover {
+    background-color: #D52B2B;
+    box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+/*Log-out Button*/
+.log-out-button{
+    font-size: 20px;
+    height: 35px;
+    width: 120px;
 }

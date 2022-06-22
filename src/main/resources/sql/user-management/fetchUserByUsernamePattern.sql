@@ -1,1 +1,1 @@
-SELECT email, username, passwordHash, nickname FROM user WHERE REGEXP_LIKE(username, ?);
+SELECT email, username, passwordHash, nickname, isAdmin FROM user WHERE REGEXP_LIKE(username, ?);

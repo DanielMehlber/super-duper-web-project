@@ -42,8 +42,8 @@ public class NewsfeedRepositoryTest {
     public void persistAndLoadNewsfeedItem() throws Exception {
         // -- arrange --
         // create users to refer to in newsfeed item (necessary for foreign key constraint)
-        UserManagement.registerUser("player1", "password", "player1@gmail.com");
-        UserManagement.registerUser("player2", "password", "player2@gmail.com");
+        UserManagement.registerUser("player1", "password", "player1@gmail.com", false);
+        UserManagement.registerUser("player2", "password", "player2@gmail.com", false);
         Team team1 = TeamManagement.createTeam("team1", "slogan", "abc");
         Team team2 = TeamManagement.createTeam("team2", "slogan", "efg");
 

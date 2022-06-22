@@ -31,6 +31,8 @@ public class ProfileServlet extends HttpServlet {
          * TODO: this page must show information to every user (logged in self or selected user)
          *  - if user is the logged in user: show edit options
          *  - if user is not the logged in user: do not display edit options
+         *  - if user is admin: show delete option
+         *  - if user is not admin: do not display admin option
          */
         HttpSession currentSession = request.getSession();
 
@@ -43,29 +45,36 @@ public class ProfileServlet extends HttpServlet {
         // String someshit = request.getParameter("someshit");
 
         Boolean editPermission = false;
-
+        Boolean isAdmin = false;
         try {
-            // 1) fetch currentUser from session
+            // Fetch currentUser from session
             User currentUser = UserManagement.getAuthorizedUser(request.getSession());
-            // 2) fetch profilePageUser from database with username parameter
+
+            // Fetch profilePageUser from database with username parameter
             String usernameParameter = request.getParameter("username");
-            if(usernameParameter == null || usernameParameter.isBlank()) {
+            if (usernameParameter == null || usernameParameter.isBlank()) {
                 // there is no username specified, redirect to dashboard
                 response.sendRedirect(getServletContext().getContextPath() + "/dashboard");
                 return;
             }
             User userOfPage = UserManagement.fetchUserByUsername(usernameParameter);
-            // 3) compare both to set permissions
+            // Compare both to set permissions
             // Compare usernames with equals, damit daniel mich nicht haut
             if (currentUser.getUsername().equals(userOfPage.getUsername())) {
                 editPermission = true;
             }
 
-            // 4) set profilePageUser in profile bean
+            //set profilePageUser in profile bean
             profileViewBean.setUser(userOfPage);
-            // 5) set permission in profile bean
+            //set admin property inside profile bean
+            profileViewBean.setIsAdmin(currentUser.getIsAdmin());
+
+
+            //set permission in profile bean
             profileViewBean.setEditPermission(editPermission);
+            // Set profileViewBean in Request
             request.setAttribute("profileViewBean", profileViewBean);
+
             RequestDispatcher rq = request.getRequestDispatcher("/jsp/profile.jsp");
             rq.forward(request, response);
         } catch (NoSuchUserException e) {

@@ -1,13 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  Author: Philipp Phan
-  Date: 09.05.2022
-  Time: 10:01
-  To change this template use File | Settings | File Templates.
---%>
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<html lang="en">
 <head>
     <title>Login</title>
     <meta charset="UTF-8">
@@ -22,7 +16,8 @@
     <form class="login-card" action="../login" method="POST">
         <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Logo"
              class="logo img">
-        <input name="username" type="text" placeholder="Username" class="username" value="${requestScope.loginBean.username}" required/>
+        <input name="username" type="text" placeholder="Username" class="username"
+               value="${requestScope.loginBean.username}" required/>
         <input name="password" type="password" placeholder="Password" class="password" required/>
         <!--Get error Message from LoginBean-->
         <p class="error-text">
@@ -34,6 +29,7 @@
         <button class="cancel-button">Back</button>
         <a class="registration-redirect" href="${pageContext.request.contextPath}/registration">Not a member yet?</a>
     </form>
+    <noscript>Your browser does not support JavaScript!</noscript>
 </main>
 </body>
 </html>

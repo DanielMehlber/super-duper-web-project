@@ -1,5 +1,6 @@
 package com.esports.manager.userManagement;
 
+import com.esports.manager.global.db.queries.QueryHandler;
 import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.newsfeed.NewsfeedLogic;
 import com.esports.manager.teams.db.TeamRepository;
@@ -9,15 +10,21 @@ import com.esports.manager.userManagement.beans.UserSessionBean;
 import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.*;
+import com.esports.manager.userManagement.servlets.UserSearchServlet;
 import jakarta.mail.internet.AddressException;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -119,7 +126,7 @@ public class UserManagement {
      * @throws UsernameAlreadyTakenException the requested username is not available
      * @author Maximilian Rublik
      */
-    public static void registerUser(String username, String password, String email) throws InvalidInputException, InternalErrorException, UsernameAlreadyTakenException {
+    public static void registerUser(String username, String password, String email, Boolean isAdmin) throws InvalidInputException, InternalErrorException, UsernameAlreadyTakenException {
         if (checkPassedUserData(username, password, email)) {
 
             // check if username is available
@@ -128,7 +135,7 @@ public class UserManagement {
             }
 
             // create and persist new user
-            User newUser = new User(username, email, hashPassword(password));
+            User newUser = new User(username, email, hashPassword(password), false);
             UserRepository.createNewUser(newUser);
 
             // add happy news of user registration to newsfeed
@@ -199,7 +206,7 @@ public class UserManagement {
      * copied from <a href="https://stackoverflow.com/questions/624581/what-is-the-best-java-email-address-validation-">stackoverflow</a>
      * since we don't want to implement our own check whether an email is correct, nor use some alien like regex
      * language. So we take what the java god gave us
-     *
+     * <p>
      * Part for length check is own
      *
      * @param email email address to check
@@ -237,7 +244,7 @@ public class UserManagement {
         UserSessionBean userSessionBean = (UserSessionBean) session.getAttribute("userSessionBean");
         if (userSessionBean == null || userSessionBean.getUser() == null)
             throw new UnauthorizedException();
-        User user =  userSessionBean.getUser();
+        User user = userSessionBean.getUser();
         // check if user still exists
         try {
             user = UserRepository.getByUsername(user.getUsername());
@@ -251,6 +258,7 @@ public class UserManagement {
 
     /**
      * Returns all users in database
+     *
      * @return list of all users
      * @throws InternalErrorException a database error occurred
      * @author Daniel Mehlber
@@ -264,6 +272,7 @@ public class UserManagement {
 
     /**
      * Returns all users in database which usernames match the given pattern
+     *
      * @param pattern regex pattern
      * @return list of users which username matches regex pattern
      * @throws InternalErrorException a database error occurred
@@ -274,7 +283,7 @@ public class UserManagement {
         return UserRepository.fetchAllUserWithUsernamePattern(pattern);
     }
 
-    public static List<User> fetchUserNotAlreadyMember (Long teamId) throws InternalErrorException {
+    public static List<User> fetchUserNotAlreadyMember(Long teamId) throws InternalErrorException {
         log.debug("fetching users not already members in team..");
 
         List<User> users = fetchAllUsers();
@@ -290,6 +299,24 @@ public class UserManagement {
         users.removeAll(usersToRemove);
         return users;
     }
+
+
+    /**
+     * Deletes User from database
+     *
+     * @param username
+     * @throws InternalErrorException
+     * @author Philipp Phan
+     */
+    public static void removeUser(String username) {
+
+        try {
+            UserRepository.deleteUser(username);
+        }catch (InternalErrorException e){
+            log.error("Internal Error occured" + e.getMessage());
+        }
+    }
+
 
     public static List<Long> fetchTeamsIdsOfUser(final User user) throws InternalErrorException {
         return UserRepository.fetchTeamsOfUser(user);
