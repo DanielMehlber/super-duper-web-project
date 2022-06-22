@@ -1,13 +1,16 @@
 "use strict";
 
 function removeUserConfirmation() {
+    var check = confirm("Are you sure you to delete the User from the platform?");
+    if (check === true){
 
-    var check = confirm("Are you sure you to delete the User from the plattform?");
-    document.getElementById("remove-user-button").click();
+    } else {
+
+    }
 }
 
 
-var element = element.getElementById("remove-user-button");
+let element = element.getElementById("remove-user-button");
 element.addEventListener("click", removeUserConfirmation());
 
 
