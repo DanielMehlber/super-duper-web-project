@@ -1,3 +1,4 @@
+// Authors: Daniel Mehlber
 
 /**
  * converts user JSON into HTML. Expected JSON:
@@ -25,8 +26,8 @@ function generateUserCardHtml(user) {
     user.teamIds.forEach(teamId => {
             html += 
             `
-                <a href="/teams?id=${teamId}">
-                    <img class="team-icon" src="/teams/images?id=${teamId}&type=profile" alt="logo of team ${teamId}">
+                <a href="teams/team?id=${teamId}">
+                    <img class="team-icon" src="teams/images?id=${teamId}&type=profile" alt="logo of team ${teamId}">
                 </a>
             `
         });

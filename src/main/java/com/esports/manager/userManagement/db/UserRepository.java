@@ -6,6 +6,7 @@ import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoImageFoundException;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
+import com.google.protobuf.Internal;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -157,7 +159,7 @@ public class UserRepository {
         log.debug("loading background image");
 
         byte[] image;
-        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/fetchUserBackgroundImage.sql");
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/fetchBackgroundImage.sql");
              Connection connection = pstmt.getConnection()) {
             pstmt.setString(1, username);
             ResultSet result = pstmt.executeQuery();
@@ -276,5 +278,28 @@ public class UserRepository {
             log.error("cannot delete User because of an unexpected sql error: " + e.getMessage());
             throw new InternalErrorException("cannot delete User");
         }
+    }
+
+    public static List<Long> fetchTeamsOfUser(final User user) throws InternalErrorException {
+        List<Long> teamIds = new ArrayList<>();
+
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/fetchTeamsOfUser.sql");
+             Connection connection = pstmt.getConnection()) {
+            pstmt.setString(1, user.getUsername());
+            ResultSet result = pstmt.executeQuery();
+
+            while(result.next()) {
+                teamIds.add(result.getLong(1));
+            }
+
+        } catch (IOException | SQLException e) {
+            log.error("cannot fetch user teams because of an unexpected sql error: " + e.getMessage());
+            throw new InternalErrorException("cannot fetch users teams", e);
+        } catch (RuntimeException e) {
+            log.error("cannot fetch users teams because of an unexpected internal error: " + e.getMessage());
+            throw new InternalErrorException("cannot fetch users teams", e);
+        }
+
+        return teamIds;
     }
 }

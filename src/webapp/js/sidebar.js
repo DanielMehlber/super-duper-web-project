@@ -1,3 +1,4 @@
+// Authors: Daniel Mehlber
 
 function showNav() {
     document.getElementById("main").style.left = '200px';

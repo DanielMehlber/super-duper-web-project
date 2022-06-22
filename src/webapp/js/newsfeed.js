@@ -1,3 +1,5 @@
+// Authors: Daniel Mehlber
+
 /**
  * Puts date in printable format
  * @param date date string
@@ -38,6 +40,29 @@ function generatePlayerRegisteredNewsHTML(item) {
 }
 
 /**
+ * generates html of newsfeed item for newly created teams
+ * @param item.team1
+ * @param item.date
+ * @returns {string}
+ */
+function generateTeamCreatedNewsHTML(item) {
+    let s = `
+    <div class="newsfeed-item">
+         <div class="newsfeed-images">
+              <img src="teams/images?id=${item.team1}"/>
+         </div>
+         <div class="news-description">
+             🎉 <a href="teams/team?id=${item.team1}" class="player-ref">A new Team </a> has been founded 🎉 Click <a href="teams/team?id=${item.team1}" class="player-ref">here</a> to join
+         </div>
+         <div class="news-time">
+             ${formatDate(new Date(item.date))}
+         </div>
+    </div>`
+
+    return s
+}
+
+/**
  * Adds item to newsfeed
  * @param item.type type of newsfeed item
  */
@@ -47,6 +72,8 @@ function addNewsfeedItem(item) {
         case "player-join":
             html = generatePlayerRegisteredNewsHTML(item)
             break
+        case "team-created":
+            html = generateTeamCreatedNewsHTML(item)
     }
 
     let newsfeed = document.getElementById("newsfeed")

@@ -1,0 +1,50 @@
+.game-creation-modal-container {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 99;
+    background: #00000094;
+}
+
+.game-creation-modal {
+    background-color: #1d274c;
+    border-radius: 10px;
+    padding: 20px;
+
+    display: grid;
+    grid-template-areas: 
+        "modal-heading modal-heading"
+        "game-name game-submit";
+    grid-template-columns: auto min-content;
+    align-items: center;
+}
+
+.game-creation-modal h2 {
+    grid-area: modal-heading;
+}
+
+.game-creation-modal input {
+    grid-area: game-name;
+}
+
+.game-creation-modal button[type=submit] {
+    grid-area: game-submit;
+    height: 58px;
+}
+
+.game-creation-modal-close {
+    position: absolute;
+    justify-self: right;
+    align-self: flex-start;
+}
+
+.game-creation-modal-container.invisible {
+    display: none;
+}

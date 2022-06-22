@@ -64,6 +64,15 @@ public class NewsfeedRepository {
             statement.setTimestamp(2, new Timestamp(item.getDate().getTime()));
             statement.setString(3, item.getPlayer1Id());
             statement.setString(4, item.getPlayer2Id());
+            if(item.getTeam1Id() != null)
+                statement.setLong(5, item.getTeam1Id());
+            else
+                statement.setNull(5, Types.BIGINT);
+
+            if(item.getTeam2Id() != null)
+                statement.setLong(6, item.getTeam2Id());
+            else
+                statement.setNull(6, Types.BIGINT);
 
             statement.executeUpdate();
 

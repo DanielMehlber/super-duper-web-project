@@ -25,7 +25,7 @@ CREATE TABLE `member` (
     `since` datetime DEFAULT NULL,
     `role` varchar(30) DEFAULT NULL,
     PRIMARY KEY (`teamId`,`username`),
-    CONSTRAINT FOREIGN KEY (`teamId`) REFERENCES `team` (`id`),
+    CONSTRAINT FOREIGN KEY (`teamId`) REFERENCES `team` (`id`) ON DELETE CASCADE,
     CONSTRAINT FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE
 );
 
@@ -35,6 +35,18 @@ CREATE TABLE `newsfeed` (
     `type` VARCHAR(20) NOT NULL,
     `player1` varchar(30),
     `player2` varchar(30),
+    `team1` BIGINT,
+    `team2` BIGINT,
     CONSTRAINT `fk_player1` FOREIGN KEY (player1) REFERENCES user(username) ON DELETE SET NULL,
-    CONSTRAINT `fk_player2` FOREIGN KEY (player2) REFERENCES user(username) ON DELETE SET NULL
+    CONSTRAINT `fk_player2` FOREIGN KEY (player2) REFERENCES user(username) ON DELETE SET NULL,
+    CONSTRAINT `fk_team1` FOREIGN KEY (team1) REFERENCES team(id) ON DELETE SET NULL,
+    CONSTRAINT `fk_team2` FOREIGN KEY (team2) REFERENCES team(id) ON DELETE SET NULL
+);
+
+CREATE TABLE `game` (
+    `id` SERIAL PRIMARY KEY,
+    `name` VARCHAR(64) NOT NULL,
+    `description` TEXT NOT NULL,
+    `profile_picture` mediumblob,
+    `background_picture` mediumblob
 );
