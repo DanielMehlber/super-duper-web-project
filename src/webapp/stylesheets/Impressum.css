@@ -2,7 +2,7 @@
     color: white;
     --main-color: #2B92D5;
     --sec-color: #1d274c;
-    font-size: 14px;
+
 }
 
 html{
@@ -31,4 +31,12 @@ main{
     border: 3px solid var(--sec-color);
     border-radius: 20px;
     padding: 0px 25px;
+    font-size: 14px;
+}
+
+.subheading{
+    font-size: 16px;
+    margin: 0;
+}
+div{
 }
