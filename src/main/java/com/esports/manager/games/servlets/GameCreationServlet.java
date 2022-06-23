@@ -3,6 +3,8 @@ package com.esports.manager.games.servlets;
 import com.esports.manager.games.Games;
 import com.esports.manager.games.entities.Game;
 import com.esports.manager.userManagement.UserManagement;
+import com.esports.manager.userManagement.entities.User;
+import com.esports.manager.userManagement.exceptions.UnauthorizedException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,7 +22,10 @@ public class GameCreationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserManagement.getAuthorizedUser(req.getSession());
+        User currentUser = UserManagement.getAuthorizedUser(req.getSession());
+
+        if(!currentUser.getIsAdmin())
+            throw new UnauthorizedException();
 
         String titleParameter = req.getParameter("title");
         if(titleParameter == null || titleParameter.isBlank()) {

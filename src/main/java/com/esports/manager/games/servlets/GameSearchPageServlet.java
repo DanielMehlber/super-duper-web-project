@@ -15,7 +15,7 @@ import java.io.IOException;
  * @author Daniel Mehlber
  */
 @WebServlet("/games")
-public class GamesPageControllerServlet extends HttpServlet {
+public class GameSearchPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

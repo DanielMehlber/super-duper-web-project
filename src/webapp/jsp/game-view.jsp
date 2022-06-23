@@ -17,7 +17,9 @@
 <%@include file="fragments/sidebar.jspf" %>
 <main id="main" onclick="hideNav()">
     <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
-    <a href="${pageContext.request.contextPath}/games/game?id=${requestScope.gamePageViewBean.game.id}&mode=edit" class="game-edit-button button">&#9999;</a>
+    <c:if test="${requestScope.user.isAdmin}">
+        <a href="${pageContext.request.contextPath}/games/game?id=${requestScope.gamePageViewBean.game.id}&mode=edit" class="game-edit-button button">&#9999;</a>
+    </c:if>
     <div class="game-background-container">
         <img class="game-background-image" src="${pageContext.request.contextPath}/games/images?id=${gamePageViewBean.game.id}&type=background">
     </div>

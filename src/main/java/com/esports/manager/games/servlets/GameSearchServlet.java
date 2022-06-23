@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This servlet searches and returns game data in JSON format
+ * This servlet searches and returns game data in JSON format matching a certain regex pattern.
  * @author Daniel Mehlber
  */
 @WebServlet("/games/search")

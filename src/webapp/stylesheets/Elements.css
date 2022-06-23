@@ -17,6 +17,10 @@ body {
 
 }
 
+h1 {
+    font-size: 3em;
+}
+
 /*Text Elements*/
 input[type=text], input[type=password], input[type=email] {
     font-size: 20px;
