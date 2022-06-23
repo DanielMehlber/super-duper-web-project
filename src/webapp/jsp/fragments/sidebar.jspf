@@ -3,7 +3,7 @@
 <nav>
     <div class="profile-container">
         <a class="profile-image" href="${pageContext.request.contextPath}/profile?username=${sessionScope.userSessionBean.user.username}">
-            <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${sessionScope.userSessionBean.user.username}" width="100px" height="100px"
+            <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${sessionScope.userSessionBean.user.username}" width="100" height="100"
             alt="profile image of user ${sessionScope.userSessionBean.user.username}"/>
         </a>
         <div class="player-username">

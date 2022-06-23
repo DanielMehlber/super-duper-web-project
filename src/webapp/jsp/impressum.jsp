@@ -2,14 +2,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <title>Impressum</title>
     <meta charset="UTF-8">
     <base href="${pageContext.request.requestURI}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    ${pageContext.request.contextPath}/stylesheets/Impressum.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/stylesheets/Impressum.css" rel="stylesheet">
@@ -78,11 +76,11 @@
                 <br>
                 <p class="subheading">Haftung f&uuml;r Inhalte</p>
                 <br>
-                Die Inhalte unserer Seiten wurden mit gr&ouml;&szlig;ter Sorgfalt erstellt. F&uuml;r die Richtigkeit, Vollst&aumlndigkeit
-                und Aktualit&aumlt der Inhalte k&ouml;nnen wir jedoch keine Gew&aumlhr &uuml;bernehmen. Als Diensteanbieter sind wir gem&auml&szlig;
+                Die Inhalte unserer Seiten wurden mit gr&ouml;&szlig;ter Sorgfalt erstellt. F&uuml;r die Richtigkeit, Vollst&auml;ndigkeit
+                und Aktualit&auml;t der Inhalte k&ouml;nnen wir jedoch keine Gew&auml;hr &uuml;bernehmen. Als Diensteanbieter sind wir gem&auml;&szlig;
                 &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect;
                 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, &uuml;bermittelte oder gespeicherte
-                fremde Informationen zu &uuml;berwachen oder nach Umst&aumlnden zu forschen, die auf eine rechtswidrige T&aumltigkeit
+                fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit
                 hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den
                 allgemeinen Gesetzen bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem
                 Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden
