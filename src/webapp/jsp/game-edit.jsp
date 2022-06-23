@@ -19,7 +19,14 @@
 <%@include file="fragments/sidebar.jspf" %>
 <main id="main" onclick="hideNav()">
     <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
-    <a href="${pageContext.request.contextPath}/games/game?id=${requestScope.gamePageViewBean.game.id}&mode=view" class="game-edit-button button">&#128065;</a>
+    <div class="game-edit-buttons-container">
+        <a href="${pageContext.request.contextPath}/games/game?id=${requestScope.gamePageViewBean.game.id}&mode=view" class="game-view-button button">&#128065;</a>
+        <form method="post" action="${pageContext.request.contextPath}/games/game/edit" onsubmit="return confirm('Do you really want to delete this game?')">
+            <button class="game-view-button game-delete-button primary-button" type="submit">&#128465;&#65039;</button>
+            <input type="hidden" value="${requestScope.gamePageViewBean.game.id}" name="id"/>
+            <input type="hidden" value="delete" name="mode"/>
+        </form>
+    </div>
     <form id="game-background-container" method="post" class="game-background-container" action="${pageContext.request.contextPath}/games/images?id=${requestScope.gamePageViewBean.game.id}&type=background" enctype="multipart/form-data">
         <label class="game-background-selector-container secondary-button">
             Select background
@@ -39,10 +46,12 @@
             <form method="post" class="game-title-container" action="${pageContext.request.contextPath}/games/game/edit?id=${requestScope.gamePageViewBean.game.id}&item=title">
                 <input name="value" type="text" value="${requestScope.gamePageViewBean.game.name}"/>
                 <button type="submit">&#128504;</button>
+                <input type="hidden" value="edit" name="mode"/>
             </form>
             <form method="post" class="game-description-container" action="${pageContext.request.contextPath}/games/game/edit?id=${requestScope.gamePageViewBean.game.id}&item=description">
                 <textarea name="value" class="game-description-editor">${requestScope.gamePageViewBean.game.description}</textarea>
                 <button type="submit">&#128504;</button>
+                <input type="hidden" value="edit" name="mode"/>
             </form>
         </div>
     </div>

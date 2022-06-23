@@ -52,3 +52,25 @@ img.game-cover-image {
     align-self: center;
     margin-left: 10px;
 }
+
+.game-edit-buttons-container {
+    position: absolute;
+    z-index: 2;
+    left: auto;
+    right: 0px;
+    padding: 10px;
+    margin: 20px;
+    text-decoration: none;
+    display: flex;
+}
+
+.game-edit-buttons-container .game-view-button {
+    padding: 10px;
+    margin: 7px;
+    text-decoration: none;
+}
+
+.game-edit-buttons-container .game-delete-button {
+    background-color: red;
+    border-color: red;
+}

@@ -34,8 +34,8 @@ Author: Daniel Mehlber
 }
 
 .game-data > .game-image {
-    width: 100px;
-    height: 100px;
+    width: 180px;
+    height: 180px;
     margin-bottom: 20px;
     margin-top: 40px;
 }
@@ -78,6 +78,10 @@ Author: Daniel Mehlber
     height: inherit;
     border-radius: inherit;
     z-index: -2;
+}
+
+.game-data > .game-title {
+    font-size: 1.3em;
 }
 
 #game-list {

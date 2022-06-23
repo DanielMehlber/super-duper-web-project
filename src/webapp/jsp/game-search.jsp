@@ -27,20 +27,22 @@
         <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
         <section class="games-area">
             <h1>Games Area</h1>
-            <button id="add-game-button" class="primary-button">+</button>
+            <c:if test="${requestScope.user.isAdmin}">
+                <button id="add-game-button" class="primary-button">+</button>
+            </c:if>
             <input id="game-searchbar" type="text" placeholder="Search..." onkeydown="executeGameSearch()"/>
             <div id="game-list"></div>
         </section>
-        <section id="game-creation-modal" class="game-creation-modal-container">
-            <form class="game-creation-modal" action="${pageContext.request.contextPath}/games/new" method="post">
-                <h2>Create new Game</h2>
-                <input name="title" type="text" placeholder="Name of new Game" required/>
-                <button type="submit">Send</button>
-                <div class="game-creation-modal-close" onclick="closeModal()">X</div>
-            </form>
-        </section>
+        <c:if test="${requestScope.user.isAdmin}">
+            <section id="game-creation-modal" class="game-creation-modal-container">
+                <form class="game-creation-modal" action="${pageContext.request.contextPath}/games/new" method="post">
+                    <h2>Create new Game</h2>
+                    <input name="title" type="text" placeholder="Name of new Game" required/>
+                    <button type="submit">Send</button>
+                    <div class="game-creation-modal-close" onclick="closeModal()">X</div>
+                </form>
+            </section>
+        </c:if>
     </main>
-
-    <footer></footer>
 </body>
 </html>
