@@ -12,6 +12,7 @@
     <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <script src="${pageContext.request.contextPath}/js/removeUserConfirmation.js" defer></script>
+    <script src="${pageContext.request.contextPath}/js/profile.js"></script>
 </head>
 <body>
 
@@ -25,14 +26,14 @@
             <div class="background-image-container">
                 <label class="bg-image-label">Edit Background Image: </label>
                 <form class="background-image-upload"
+                      id="player-background-image"
                       action="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
                       method="POST"
                       enctype="multipart/form-data">
                     <label class="input-bg-label">
-                        <input class="background-image-input" type="file" name="profile" accept="image/*">
+                        <input class="background-image-input" id="background-image-input" type="file" name="profile" oninput="updateBackgroundImage()" accept="image/*">
                         Upload Image
                     </label>
-                    <button class="accept-button-background" type="submit">Accept</button>
                 </form>
             </div>
         </c:if>
@@ -41,13 +42,12 @@
                  class="main-profile-image" alt="Profile Image of user"/>
             <c:if test="${requestScope.profileViewBean.editPermission}">
                 <label class="profile-image-label">Edit Profile Image:</label>
-                <form class="profile-image-form" action="${pageContext.request.contextPath}/users/images"
+                <form class="profile-image-form" id="profile-profile-image" action="${pageContext.request.contextPath}/users/images"
                       method="POST" enctype="multipart/form-data">
                     <label class="input-profile-label">
                         Upload Image
-                        <input class="profile-image-input" type="file" name="profile" accept="image/*">
+                        <input class="profile-image-input" type="file" name="profile" oninput="updateProfileImage()" accept="image/*">
                     </label>
-                    <button class="accept-button-profile" type="submit">Accept</button>
                 </form>
             </c:if>
             <div class="username">@${requestScope.profileViewBean.user.username}</div>
@@ -62,6 +62,7 @@
             </a>
         </c:if>
         <noscript>Your Browser does not support JavaScript</noscript>
+        <a href="impressum.jsp">Impressum</a>
     </section>
 </main>
 </body>
