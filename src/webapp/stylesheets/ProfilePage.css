@@ -183,6 +183,13 @@ li.unselected::before {
     text-transform: uppercase;
 }
 
+.accept-button-background:disabled{
+    background-color: #D52B2B;
+    border: 3px solid #D52B2B;
+    box-shadow: none;
+    transform: none;
+}
+
 .bg-image-label{
     font-size: 22px;
     grid-area: bg-label;
