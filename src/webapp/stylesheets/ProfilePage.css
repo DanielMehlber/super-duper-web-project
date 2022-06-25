@@ -145,8 +145,14 @@ main {
     height: 160px;
     width: 160px;
     margin-top: 10px;
+    transition: 0.5s;
 
     grid-area: image;
+}
+
+.main-profile-image:hover{
+    box-shadow: 0px 0px 15px 2px var(--main-fg-color);
+    transition: 0.5s;
 }
 
 .profile-image-form {
