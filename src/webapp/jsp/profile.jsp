@@ -31,7 +31,7 @@
                       method="POST"
                       enctype="multipart/form-data">
                     <label class="input-bg-label">
-                        <input class="background-image-input" id="background-image-input" type="file" name="profile" oninput="updateBackgroundImage()" accept="image/*">
+                        <input class="background-image-input" id="background-image-input" type="file" name="profile"  accept="image/*">
                         Upload Image
                     </label>
                 </form>
@@ -46,7 +46,7 @@
                       method="POST" enctype="multipart/form-data">
                     <label class="input-profile-label">
                         Upload Image
-                        <input class="profile-image-input" type="file" name="profile" oninput="updateProfileImage()" accept="image/*">
+                        <input class="profile-image-input" type="file" name="profile" accept="image/*">
                     </label>
                 </form>
             </c:if>
@@ -54,7 +54,6 @@
             <!--Email noch in Nickname ändern-->
             <div class="nickname">${requestScope.profileViewBean.user.nickname}</div>
         </div>
-        <!--<a href="${pageContext.request.contextPath}/js/removeUserConfirmation.js"></a>-->
         <c:if test="${requestScope.profileViewBean.isAdmin}">
             <a class="remove-button" id="remove-user-button"
                href="${pageContext.request.contextPath}/users/removeUser?username=${requestScope.profileViewBean.user.username}">Remove
