@@ -1,4 +1,5 @@
 // Authors: Philipp Phan
+"use strict";
 function updateBackgroundImage() {
     const form = document.getElementById("player-background-image");
     form.submit()
