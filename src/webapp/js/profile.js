@@ -13,4 +13,5 @@ function setAllEventListener(){
     document.getElementById("profile-profile-image").addEventListener("input", updateProfileImage)
 }
 
-window.addEventListener("load", setAllEventListener)
+//window.addEventListener("load", setAllEventListener)
+document.addEventListener("DOMContentLoaded", setAllEventListener)
