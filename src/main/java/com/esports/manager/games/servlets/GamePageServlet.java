@@ -4,6 +4,9 @@ import com.esports.manager.games.Games;
 import com.esports.manager.games.beans.GamePageViewBean;
 import com.esports.manager.games.entities.Game;
 import com.esports.manager.games.exceptions.NoSuchGameException;
+import com.esports.manager.teams.TeamManagement;
+import com.esports.manager.teams.entities.Member;
+import com.esports.manager.teams.entities.Team;
 import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.userManagement.entities.User;
 
@@ -16,6 +19,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * This is the Controller for the Game View page where logged-in users can view or edit information about games on the platform.
@@ -81,8 +85,18 @@ public class GamePageServlet extends HttpServlet {
             return;
         }
 
+        // fetch teams playing this game
+        List<Team> teamsPlayingGame = Games.getTeamsWithGame(requestedGame);
+
+        // lazy fetch members of team
+        for(Team team : teamsPlayingGame) {
+            List<Member> members = TeamManagement.fetchMembersByTeamId(team.getId());
+            team.setMembers(members);
+        }
+
         GamePageViewBean gamePageViewBean = new GamePageViewBean();
         gamePageViewBean.setGame(requestedGame);
+        gamePageViewBean.setTeams(teamsPlayingGame);
         req.setAttribute("gamePageViewBean", gamePageViewBean);
 
         if(mode.equals(PAGE_MODE_EDIT)) {

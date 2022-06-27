@@ -19,7 +19,7 @@ function generateUserCardHtml(user) {
             @<span class="member-username">${user.username}</span>
         </div>
         <div class="member-nickname">
-            ${user.nickname}
+            
         </div>
         <div class="member-teams">`;
 

@@ -23,12 +23,13 @@
 }
 
 .game-main-container {
-    position: absolute;
     width: 100%;
     margin-top: calc(var(--background-image-height) - 200px);
     display: flex;
     align-items: center;
     flex-direction: column;
+    z-index: 30;
+    height: fit-content;
 }
 
 .game-information-container {
@@ -86,6 +87,10 @@
 .game-teams-container {
     margin-top: 80px;
     width: 80%;
+}
+
+.game-teams-container > h2 {
+    margin-bottom: 20px;
 }
 
 .game-edit-button {
