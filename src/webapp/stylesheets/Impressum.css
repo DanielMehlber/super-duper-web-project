@@ -25,9 +25,12 @@ main{
 }
 
 #main-content{
-    align-items: center;width: 1250px;
+    align-items: center;
+    width: 800px;
+    height: 1000px;
     background-color: var(--sec-color);
     margin-top: 20px;
+    margin-bottom: 20px;
     border: 3px solid var(--sec-color);
     border-radius: 20px;
     padding: 0px 25px;

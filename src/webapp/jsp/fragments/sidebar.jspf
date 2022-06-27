@@ -24,7 +24,7 @@
             <a href="${pageContext.request.contextPath}/users">Players</a>
         </li>
         <li class="unselected nav-option">
-            <a href="${pageContext.request.contextPath}/settings">Settings</a>
+            <a href="${pageContext.request.contextPath}/jsp/impressum.jsp">Impressum</a>
         </li>
         <li class="unselected nav-option">
             <a href="${pageContext.request.contextPath}/logout">Logout</a>
