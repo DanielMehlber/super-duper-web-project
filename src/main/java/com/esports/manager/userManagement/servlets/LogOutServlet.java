@@ -28,29 +28,22 @@ public class LogOutServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(LoginServlet.class);
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/jsp/login.jsp").forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServerException, IOException, ServletException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServerException, IOException, ServletException{
         response.setContentType("text/html;charset=UTF-8");
 
         //Get current HttpSession
         HttpSession session = request.getSession();
 
-        //Get current user from session
-        User user = UserManagement.getAuthorizedUser(request.getSession());
         //Get userSessionBean
         UserSessionBean userSessionBean = (UserSessionBean) session.getAttribute("userSessionBean");
+        userSessionBean.setUser(null);
 
         //Remove sessionBean from session
         //session.invalidate();
         session.removeAttribute("userSessionBean");
 
-        // Forward back to login page
-        RequestDispatcher rd = request.getRequestDispatcher("/jsp/login.jsp");
-        rd.forward(request, response);
+        // redirect back to login page
+        response.sendRedirect(getServletContext().getContextPath() + "/login");
     }
 
 }
