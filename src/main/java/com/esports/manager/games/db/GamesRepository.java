@@ -6,6 +6,7 @@ import com.esports.manager.global.db.mapping.ResultSetProcessor;
 import com.esports.manager.global.db.queries.QueryHandler;
 import com.esports.manager.global.exceptions.InternalErrorException;
 
+import com.esports.manager.teams.entities.Team;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Database interface for game entities.
@@ -173,6 +175,87 @@ public class GamesRepository {
 
         log.info("fetched games by search from database");
         return gameList;
+    }
+
+    /**
+     * Adds a game entity to a team entity in the database.
+     * @param game game to add team to
+     * @param team team that will be added
+     * @throws InternalErrorException sql error; database error; runtime error
+     * @author Daniel Mehlber
+     */
+    public static void addGameToTeam(final Game game, final Team team) throws InternalErrorException {
+        log.debug(String.format("adding game id:%d to team id:%d", game.getId(), team.getId()));
+
+        try(PreparedStatement statement = QueryHandler.loadStatement("/sql/games/addToTeam.sql");
+            Connection connection = statement.getConnection()) {
+
+            // set parameters
+            statement.setLong(1, game.getId());
+            statement.setLong(2, team.getId());
+
+            // execute update
+            statement.executeUpdate();
+        } catch (SQLException | IOException | RuntimeException | InternalErrorException e) {
+            log.error(String.format("cannot add game to team due to an internal error: %s", e.getMessage()), e);
+            throw new InternalErrorException("cannot add game to team", e);
+        }
+    }
+
+    /**
+     * Fetches all teams from database having a game added to their collection.
+     * @param game the game that must be in the teams collection
+     * @return a list of teams
+     * @throws InternalErrorException sql error; runtime error
+     * @author Daniel Mehlber
+     */
+    public static List<Team> getTeamsOfGame(final Game game) throws InternalErrorException {
+        log.debug(String.format("fetching teams of game id:%d", game.getId()));
+
+        List<Team> teamsList = new LinkedList<>();
+        try(PreparedStatement statement = QueryHandler.loadStatement("/sql/games/getTeamsOfGame.sql");
+            Connection connection = statement.getConnection()) {
+
+            // set parameters
+            statement.setLong(1, game.getId());
+
+            // convert result
+            ResultSet resultSet = statement.executeQuery();
+            teamsList = ResultSetProcessor.convert(Team.class, resultSet);
+
+        } catch (SQLException | IOException | RuntimeException | InternalErrorException e) {
+            log.error(String.format("cannot fetch teams of game %d due to an internal error: %s", game.getId(), e.getMessage()), e);
+            throw new InternalErrorException("cannot fetch teams of game", e);
+        }
+
+
+        log.info("fetched teams of game from database");
+        return teamsList;
+    }
+
+    /**
+     * Removes a game from a teams collection
+     * @param game game that will be removed
+     * @param team team that has the game in their collection
+     * @throws InternalErrorException sql error; database error
+     * @author Daniel Mehlber
+     */
+    public static void removeGameFromTeam(final Game game, final Team team) throws InternalErrorException {
+        log.debug(String.format("removing game id:%d from team id:%d", game.getId(), team.getId()));
+
+        try(PreparedStatement statement = QueryHandler.loadStatement("/sql/games/removeGameFromTeam.sql");
+            Connection connection = statement.getConnection()) {
+
+            // set parameters
+            statement.setLong(2, game.getId());
+            statement.setLong(1, team.getId());
+
+            // execute update
+            statement.executeUpdate();
+        } catch (SQLException | IOException | RuntimeException | InternalErrorException e) {
+            log.error(String.format("cannot remove game from team due to an internal error: %s", e.getMessage()), e);
+            throw new InternalErrorException("cannot remove game from team", e);
+        }
     }
 
 }

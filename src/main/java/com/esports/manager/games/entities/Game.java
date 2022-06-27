@@ -22,6 +22,11 @@ public class Game implements Serializable {
 
     public Game() {}
 
+    public Game(String name, String description) {
+        setName(name);
+        setDescription(description);
+    }
+
     public long getId() {
         return id;
     }
