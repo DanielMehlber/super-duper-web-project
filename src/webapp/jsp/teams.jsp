@@ -36,7 +36,7 @@
 
 			<c:forEach items="${teamsBean.teams}" var="team">
 				<a class="team-container" href="${pageContext.request.contextPath}/teams/team?id=${team.getKey().id}">
-					<img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${team.getKey().id}" />
+					<img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${team.getKey().id}" alt="Team logo" />
 					<h2 class="team-title">${team.getKey().name}</h2>
 					<p class="tags">${team.getKey().tags}</p>
 					<div>
