@@ -50,3 +50,11 @@ CREATE TABLE `game` (
     `profile_picture` mediumblob,
     `background_picture` mediumblob
 );
+
+CREATE TABLE `game_team` (
+    game_id BIGINT UNSIGNED NOT NULL,
+    team_id BIGINT NOT NULL,
+    PRIMARY KEY (game_id, team_id),
+    CONSTRAINT FOREIGN KEY (game_id) REFERENCES game(id) ON DELETE CASCADE,
+    CONSTRAINT FOREIGN KEY (team_id) REFERENCES team(id) ON DELETE CASCADE
+);

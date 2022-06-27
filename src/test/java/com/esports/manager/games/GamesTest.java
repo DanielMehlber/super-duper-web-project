@@ -1,8 +1,11 @@
 package com.esports.manager.games;
 
+import com.esports.manager.games.db.GamesRepository;
 import com.esports.manager.games.entities.Game;
 import com.esports.manager.games.exceptions.NoSuchGameException;
 import com.esports.manager.global.db.queries.QueryHandler;
+import com.esports.manager.teams.db.TeamRepository;
+import com.esports.manager.teams.entities.Team;
 import com.esports.manager.util.DataSourceCreator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -91,6 +94,38 @@ public class GamesTest {
             Assertions.fail("result does not contain keyWordInDesc");
         if(!found.contains(keyWordInName))
             Assertions.fail("result does not contain keyWordInName");
+    }
+
+    @Test
+    public void gamesTeamIntegration() throws Exception {
+        // create games
+        Game game1 = new Game("game1", "this is a game");
+        Game game2 = new Game("game2", "this is another game");
+
+        GamesRepository.create(game1);
+        GamesRepository.create(game2);
+
+        // create team
+        Team team1 = new Team("ateam", "we are a team", "we,are,a,team");
+        Team team2 = new Team("anotherTeam", "We are a team", "we");
+
+        TeamRepository.createTeam(team1);
+        TeamRepository.createTeam(team2);
+
+        Games.addToTeam(game1, team1);
+        Games.addToTeam(game2, team1);
+        Games.addToTeam(game2, team2);
+
+        List<Team> teams = Games.getTeamsWithGame(game1);
+        Assertions.assertEquals(1, teams.size());
+        Assertions.assertEquals(team1, teams.get(0));
+
+        Games.removeGameFromTeam(team1, game1);
+        teams = Games.getTeamsWithGame(game1);
+        Assertions.assertEquals(0, teams.size());
+
+        teams = Games.getTeamsWithGame(game2);
+        Assertions.assertEquals(2, teams.size());
     }
 
 }
