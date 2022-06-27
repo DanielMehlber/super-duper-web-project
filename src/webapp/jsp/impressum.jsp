@@ -59,6 +59,7 @@
                 <br>
                 Registernummer: 1337
                 <br>
+                <br>
             </div>
             <div>
                 <p class="subheading">Verantwortlich f&uuml;r den Inhalt nach &sect; 55 Abs. 2 RStV:</p>
@@ -86,24 +87,6 @@
                 Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden
                 Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
                 <br>
-                <br>
-            </div>
-            <div>
-                <p class="subheading">Datenschutz</p>
-                <br>
-                Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten m&ouml;glich. Soweit
-                auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder eMail-Adressen)
-                erhoben werden, erfolgt dies, soweit m&ouml;glich, stets auf freiwilliger Basis. Diese Daten werden ohne
-                Ihre ausdr&uuml;ckliche Zustimmung nicht an Dritte weitergegeben.
-                <br>
-                Wir weisen darauf hin, dass die Daten&uuml;bertragung im Internet (z.B. bei der Kommunikation per E-Mail)
-                Sicherheitsl&uuml;cken aufweisen kann. Ein l&uuml;ckenloser Schutz der Daten vor dem Zugriff durch Dritte ist
-                nicht m&ouml;glich.
-                <br>
-                Der Nutzung von im Rahmen der Impressumspflicht ver&ouml;ffentlichten Kontaktdaten durch Dritte zur
-                &uuml;bersendung von nicht ausdr&uuml;cklich angeforderter Werbung und Informationsmaterialien wird hiermit
-                ausdr&uuml;cklich widersprochen. Die Betreiber der Seiten behalten sich ausdr&uuml;cklich rechtliche Schritte
-                im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.
                 <br>
             </div>
             <noscript>Your Browser does not support JavaScript</noscript>
