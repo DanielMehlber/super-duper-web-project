@@ -2,7 +2,9 @@ package com.esports.manager.teams.entities;
 
 import com.esports.manager.global.db.mapping.ResultSetMapping;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 
 /**
@@ -21,6 +23,8 @@ public class Team {
 
     @ResultSetMapping("tags")
     private String tags;
+
+    private List<Member> members;
 
     public Team(String name, String slogan, String tags){
         this.name = name;
@@ -73,5 +77,17 @@ public class Team {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, slogan, tags);
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
+    }
+
+    public int getMemberCount() {
+        return members.size();
     }
 }

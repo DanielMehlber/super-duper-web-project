@@ -68,7 +68,7 @@ public class TeamImageServlet extends HttpServlet {
             } catch (NoImageFoundException e) {
                 // no team image was found in database for team, send default one
                 log.debug(String.format("no team picture found for team %s, redirecting to default image", team.getName()));
-                resp.sendRedirect(getServletContext().getContextPath() + "/img/default-pb.jpg");
+                resp.sendRedirect(getServletContext().getContextPath() + "/img/default-team-image.jpg");
                 return;
             }
         } else if (type.equalsIgnoreCase("background")) {

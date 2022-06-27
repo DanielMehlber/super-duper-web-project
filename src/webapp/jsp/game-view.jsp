@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/Elements.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/dashboard.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/game.css"/>
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/TeamsPage.css"/>
     <title>Games</title>
 </head>
 <body>
@@ -35,22 +35,25 @@
                 ${requestScope.gamePageViewBean.game.description}
             </div>
         </div>
-        <!--
+
         <div class="game-teams-container">
-            <h2>Teams</h2>
-            <a class="team-container" href="${pageContext.request.contextPath}/teams/team?id=${team.getKey().id}">
-                <img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${team.getKey().id}" />
-                <h2 class="team-title">${team.getKey().name}</h2>
-                <p class="tags">${team.getKey().tags}</p>
-                <div>
-                    <c:forEach items="${team.value}" var="member">
-                        <img class="player-logo" src="${pageContext.request.contextPath}/users/images?type=profile&user=${member.username}" alt="player logo">
-                    </c:forEach>
-                </div>
-                <p class="member-count-paragraph">${team.value.size()} members</p>
-            </a>
+            <h2>${requestScope.gamePageViewBean.teamsCount} Teams are playing ${requestScope.gamePageViewBean.game.name}</h2>
+            <c:forEach items="${requestScope.gamePageViewBean.teams}" var="team">
+                <a class="team-container" href="${pageContext.request.contextPath}/teams/team?id=${team.id}">
+                    <img class="team-background" src="${pageContext.request.contextPath}/teams/images?type=background&id=${team.id}">
+                    <img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${team.id}" />
+                    <h2 class="team-title">${team.name}</h2>
+                    <p class="tags">${team.tags}</p>
+                    <div>
+                        <c:forEach items="${team.members}" var="member">
+                            <img class="player-logo" src="${pageContext.request.contextPath}/users/images?type=profile&user=${member.username}" alt="team logo">
+                        </c:forEach>
+                    </div>
+                    <p class="member-count-paragraph">${team.memberCount} members</p>
+                </a>
+            </c:forEach>
         </div>
-        -->
+
     </div>
 </main>
 </body>
