@@ -21,13 +21,14 @@ function formatDate(date) {
  * @param item.date date of registration
  */
 function generatePlayerRegisteredNewsHTML(item) {
+    let tadaEmoji = "&#x1F389;";
     let s = `
     <div class="newsfeed-item">
          <div class="newsfeed-images">
               <img src="users/images?user=${item.player1}"/>
          </div>
          <div class="news-description">
-             🎉 Player @<a href="profile?username=${item.player1}" class="player-ref">${item.player1}</a> has joined the platform! 🎉
+             ` + tadaEmoji + ` Player @<a href="profile?username=${item.player1}" class="player-ref">${item.player1}</a> has joined the platform! ` + tadaEmoji + `
          </div>
          <div class="news-time">
              ${formatDate(new Date(item.date))}
@@ -50,7 +51,7 @@ function generateTeamCreatedNewsHTML(item) {
               <img src="teams/images?id=${item.team1}"/>
          </div>
          <div class="news-description">
-             🎉 <a href="teams/team?id=${item.team1}" class="player-ref">A new Team </a> has been founded 🎉 Click <a href="teams/team?id=${item.team1}" class="player-ref">here</a> to join
+            '\u1F389' <a href="teams/team?id=${item.team1}" class="player-ref">A new Team </a> has been founded '\u1F389' Click <a href="teams/team?id=${item.team1}" class="player-ref">here</a> to join
          </div>
          <div class="news-time">
              ${formatDate(new Date(item.date))}
