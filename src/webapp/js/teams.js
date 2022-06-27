@@ -1,3 +1,12 @@
+/*
+Author: Maximilian Rublik
+ */
+
+"use strict";
+function setAllEventListener(){
+    document.getElementsByClassName("search-input")[0].addEventListener("keyup", executeTeamSearch)
+}
+
 /**
  * @param team.name name of team
  * @param team.id
@@ -22,7 +31,6 @@ function generateTeamCardHtml(team) {
             <p class="member-count-paragraph">${team.size} members</p>
         </a>`
 
-
     return html;
 }
 
@@ -42,5 +50,7 @@ function executeTeamSearch() {
             })
         });
 }
+
+document.addEventListener("DOMContentLoaded", setAllEventListener)
 
 executeTeamSearch();
