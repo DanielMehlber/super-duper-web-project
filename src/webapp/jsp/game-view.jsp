@@ -37,7 +37,7 @@
         </div>
 
         <div class="game-teams-container">
-            <h2>Teams playing ${requestScope.gamePageViewBean.game.name}</h2>
+            <h2>${requestScope.gamePageViewBean.teamsCount} Teams are playing ${requestScope.gamePageViewBean.game.name}</h2>
             <c:forEach items="${requestScope.gamePageViewBean.teams}" var="team">
                 <a class="team-container" href="${pageContext.request.contextPath}/teams/team?id=${team.id}">
                     <img class="team-background" src="${pageContext.request.contextPath}/teams/images?type=background&id=${team.id}">

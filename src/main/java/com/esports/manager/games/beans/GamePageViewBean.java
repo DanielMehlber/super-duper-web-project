@@ -15,6 +15,8 @@ public class GamePageViewBean implements Serializable {
     private Game game;
     private List<Team> teams;
 
+    private int teamsCount;
+
     public GamePageViewBean() {}
 
     public Game getGame() {
@@ -31,5 +33,10 @@ public class GamePageViewBean implements Serializable {
 
     public void setTeams(List<Team> teams) {
         this.teams = teams;
+        teamsCount = teams.size();
+    }
+
+    public int getTeamsCount() {
+        return teamsCount;
     }
 }
