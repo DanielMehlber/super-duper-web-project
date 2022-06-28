@@ -26,6 +26,11 @@ Author: Maximilian Rublik
     margin: 10px;
 }
 
+#add-team-button {
+    height: 58px;
+    width: 58px;
+}
+
 .add-button {
 	height: 58px;
 	width: 58px;

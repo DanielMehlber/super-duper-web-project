@@ -1,0 +1,123 @@
+/*
+Author: Maximilian Rublik
+ */
+.team-creation-modal-container {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 99;
+    background: #00000094;
+}
+
+
+.team-creation-modal-container.invisible {
+    display: none;
+}
+
+#add-team-headers {
+    grid-area: header;
+}
+
+.team-creation-modal {
+    background-color: #1d274c;
+    border-radius: 10px;
+    padding: 20px;
+
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "team-name team-name"
+        "slogan slogan"
+        "game-selection game-selection"
+        "tags tags"
+        "team-logo background-logo"
+        "enter-button enter-button";
+    grid-row-gap: 14px;
+    grid-column-gap: 14px;
+}
+
+.team-name-input {
+    grid-area: team-name;
+}
+
+.slogan-input {
+    grid-area: slogan;
+}
+
+.add-team-modal-game-selection {
+    grid-area: game-selection;
+    margin: 10px;
+    width: 397px;
+    height: 50px;
+    padding-right: 16px;
+    padding-left: 16px;
+}
+
+.tags-textarea {
+    grid-area: tags;
+    resize: none;
+    width: 359px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin: 10px;
+}
+
+.team-logo-label {
+    grid-area: team-logo;
+    border: 3px solid #2b92d5;
+    border-radius: 8px;
+    color: #2b92d5;
+    background-color: transparent;
+    font-size: 20px;
+    width: 160px;
+    height: 50px;
+    padding-left: 16px;
+    margin: 10px;
+    text-align: start;
+    line-height: 50px;
+}
+
+.team-logo-input {
+    display: none;
+}
+
+.background-label {
+    grid-area: background-logo;
+    border: 3px solid #2b92d5;
+    border-radius: 8px;
+    color: #2b92d5;
+    background-color: transparent;
+    font-size: 20px;
+    width: 160px;
+    height: 50px;
+    padding-right: 16px;
+    margin: 10px;
+    text-align: end;
+    line-height: 50px;
+}
+
+.background-input {
+    display: none;
+}
+
+.enter-button {
+    grid-area: enter-button;
+    width: 397px;
+    height: 50px;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin: 10px;
+}
+
+.team-creation-modal-close {
+    position: absolute;
+    justify-self: right;
+    align-self: flex-start;
+}

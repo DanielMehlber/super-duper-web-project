@@ -5,6 +5,7 @@ Author: Maximilian Rublik
 "use strict";
 function setAllEventListener(){
     document.getElementsByClassName("search-input")[0].addEventListener("keyup", executeTeamSearch)
+    document.getElementById("add-team-button").addEventListener("click", openModal);
 }
 
 /**
@@ -51,6 +52,18 @@ function executeTeamSearch() {
         });
 }
 
+function openModal() {
+    let modal = document.getElementById("team-creation-modal");
+    modal.classList.remove("invisible");
+}
+
+function closeModal() {
+    let modal = document.getElementById("team-creation-modal");
+    modal.classList.add("invisible");
+}
+
+
 document.addEventListener("DOMContentLoaded", setAllEventListener)
 
 executeTeamSearch();
+closeModal();
