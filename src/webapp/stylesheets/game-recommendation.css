@@ -58,6 +58,9 @@ img.game-background-image {
     grid-area: title;
     font-size: 3em;
     align-self: flex-start;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .game-data-container > .game-stats-container {
