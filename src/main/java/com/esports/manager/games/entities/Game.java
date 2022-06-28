@@ -56,7 +56,7 @@ public class Game implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Game game = (Game) o;
-        return id == game.id && Objects.equals(name, game.name) && Objects.equals(description, game.description);
+        return id.equals(game.id) && Objects.equals(name, game.name) && Objects.equals(description, game.description);
     }
 
     @Override

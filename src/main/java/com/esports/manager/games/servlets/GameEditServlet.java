@@ -52,9 +52,9 @@ public class GameEditServlet extends HttpServlet {
             return;
         }
 
-        Long id;
+        long id;
         try {
-            id = Long.valueOf(parameterId);
+            id = Long.parseLong(parameterId);
         } catch (NumberFormatException e) {
             log.warn("cannot set data of game: game id is not valid number");
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "game id is NaN");
@@ -84,6 +84,7 @@ public class GameEditServlet extends HttpServlet {
             if (parameterItem == null || parameterItem.isBlank()) {
                 log.warn("cannot change game data: item parameter not set");
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "item parameter is missing");
+                return;
             }
 
 
