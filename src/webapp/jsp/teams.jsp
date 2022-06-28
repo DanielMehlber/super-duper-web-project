@@ -18,7 +18,7 @@
 </head>
 <body>
 	<noscript>Javascript deactivated!</noscript>
-	<script src="${pageContext.request.contextPath}/js/team.js" defer></script>
+	<script src="${pageContext.request.contextPath}/js/teams.js" defer></script>
 	<%@include file="fragments/sidebar.jspf" %>
 
 	<main id="main" onclick="hideNav()">
@@ -36,22 +36,8 @@
 				<a href="${pageContext.request.contextPath}/teams/addnewteam" class="add-button">+</a>
 			</div>
 
-			<c:forEach items="${teamsBean.teams}" var="team">
-				<a class="team-container" href="${pageContext.request.contextPath}/teams/team?id=${team.getKey().id}">
-					<img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${team.getKey().id}" alt="Team logo" />
-					<h2 class="team-title">${team.getKey().name}</h2>
-					<p class="tags">${team.getKey().tags}</p>
-					<div>
-						<c:forEach items="${team.value}" var="member">
-							<img class="player-logo" src="${pageContext.request.contextPath}/users/images?type=profile&user=${member.username}" alt="player logo">
-						</c:forEach>
-					</div>
-					<p class="member-count-paragraph">${team.value.size()} members</p>
-				</a>
-			</c:forEach>
+			<div id="team-list"></div>
 		</section>
-
-		<div id="team-list"></div>
 	</main>
 
 	<footer></footer>
