@@ -22,7 +22,7 @@
     <%@include file="fragments/sidebar.jspf" %>
 
     <main id="main" onclick="hideNav()">
-        <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
+        <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
         <section class="players-area">
             <h1>Players Area</h1>
             <input id="player-searchbar" type="text" placeholder="Search..." onkeydown="executePlayerSearch()"/>

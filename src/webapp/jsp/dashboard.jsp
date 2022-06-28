@@ -22,7 +22,7 @@
     <%@include file="fragments/sidebar.jspf" %>
 
     <main id="main" onclick="hideNav()">
-        <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
+        <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
         <section class="main-content-container">
             <div class="dashboard-header">
                 <h1>Welcome back</h1>
