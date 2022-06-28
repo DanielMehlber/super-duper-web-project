@@ -120,7 +120,7 @@ public class TeamRepository {
             throw new InternalErrorException("cannot fetch profile image", e);
         }
 
-        if(image == null) {
+        if(image.length == 0) {
             log.warn("team " + id + " has no profile image");
             throw new NoImageFoundException(id.toString(), "profile");
         }
