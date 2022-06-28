@@ -37,6 +37,7 @@ public class GameEditServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         User currentUser;
         if(!(currentUser = UserManagement.getAuthorizedUser(request.getSession())).getIsAdmin()) {
             log.warn(String.format("user '%s' tried to edit game, which is only possible as admin user. Request denied.", currentUser.getUsername()));

@@ -10,4 +10,8 @@ public class NoSuchGameException extends Exception {
         super(String.format("no game with id:%d known to system", id));
     }
 
+    public NoSuchGameException() {
+        super("No game was found in database");
+    }
+
 }
