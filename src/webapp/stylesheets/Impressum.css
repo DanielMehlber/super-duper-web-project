@@ -8,6 +8,7 @@
 html{
     background-color: var(--main-bg-color);
     height: 100%;
+    overflow: hidden;
 }
 
 body{
@@ -22,18 +23,19 @@ main{
     display: flex;
     width: 100%;
     justify-content: center;
+    align-items: center;
 }
 
 #main-content{
     align-items: center;
     width: 800px;
-    height: 820px;
+    height: 435px;
     background-color: var(--sec-color);
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 20px;
     border: 3px solid var(--sec-color);
     border-radius: 20px;
-    padding: 0px 25px;
+    padding: 5px 25px;
     font-size: 14px;
 }
 
