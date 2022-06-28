@@ -30,6 +30,7 @@
     flex-direction: column;
     z-index: 30;
     height: fit-content;
+    position: relative;
 }
 
 .game-information-container {

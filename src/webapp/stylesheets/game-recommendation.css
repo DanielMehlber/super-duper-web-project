@@ -1,0 +1,90 @@
+/*
+Author: Daniel Mehlber
+*/
+.game-recommendation-container {
+    width: 1000px;
+    height: fit-content;
+    grid-area: game-recommendation;
+}
+
+.game-recommendation-container > .game-recommendation-panel {
+    border-radius: 10px;
+    background-color: #1d274cde;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-recommendation-panel > h2 {
+    font-size: 2.2em;
+    margin-bottom: 40px;
+    margin-top: 0;
+    color: rgb(156, 156, 156);
+}
+
+img.game-background-image {
+    object-fit: cover;
+    border-radius: inherit;
+    z-index: -2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.game-data-container {
+    display: grid;
+    grid-template-areas:
+        "cover title"
+        "cover stats";
+    grid-template-columns: min-content auto;
+    grid-template-rows: 61px auto;
+    align-items: center;
+    margin: 20px 0px;
+    column-gap: 50px;
+}
+
+.game-data-container > .game-cover-container {
+    width: 200px;
+    height: 200px;
+    grid-area: cover;
+}
+
+.game-data-container > .game-title {
+    grid-area: title;
+    font-size: 3em;
+    align-self: flex-start;
+}
+
+.game-data-container > .game-stats-container {
+    grid-area: stats;
+    font-size: 1.5em;
+}
+
+.game-data-container img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border-color: var(--main-fg-color);
+    border-width: 5px;
+    border-style: solid;
+    box-sizing: border-box;
+}
+
+.game-stats-container > span {
+    color: var(--main-fg-color);
+    /* text-decoration: underline; */
+    padding-right: 10px;
+    font-size: 1.4em;
+}
+
+.game-recommendation-button {
+    padding: 10px;
+    align-self: self-end;
+    text-decoration: none;
+}

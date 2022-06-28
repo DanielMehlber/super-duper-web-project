@@ -15,9 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Database interface for game entities.
@@ -37,9 +35,9 @@ public class GamesRepository {
      */
     public static Game fetchById(final long id) throws NoSuchGameException, InternalErrorException {
         log.debug(String.format("loading game with id:%d from database", id));
-        List<Game> gameList = new LinkedList<>();
+        List<Game> gameList;
         try(PreparedStatement statement = QueryHandler.loadStatement("/sql/games/fetch-by-id.sql");
-            Connection connection = statement.getConnection()) {
+            Connection ignored = statement.getConnection()) {
 
             // set parameters
             statement.setLong(1, id);
@@ -72,7 +70,7 @@ public class GamesRepository {
         log.debug(String.format("updating game with id:%d", game.getId()));
 
         try(PreparedStatement statement = QueryHandler.loadStatement("/sql/games/update.sql");
-            Connection connection = statement.getConnection()) {
+            Connection ignored = statement.getConnection()) {
 
             // set parameters
             statement.setString(1, game.getName());
@@ -100,7 +98,7 @@ public class GamesRepository {
         log.debug("creating game in database");
 
         try(PreparedStatement statement = QueryHandler.loadStatement("/sql/games/insert.sql");
-            Connection connection = statement.getConnection()) {
+            Connection ignored = statement.getConnection()) {
 
             // set parameters
             statement.setString(1, game.getName());
@@ -130,7 +128,7 @@ public class GamesRepository {
         log.debug(String.format("deleting game with id:%d", game.getId()));
 
         try(PreparedStatement statement = QueryHandler.loadStatement("/sql/games/delete.sql");
-            Connection connection = statement.getConnection()) {
+            Connection ignored = statement.getConnection()) {
 
             // set parameters
             statement.setLong(1, game.getId());
@@ -155,9 +153,9 @@ public class GamesRepository {
      */
     public static List<Game> search(final String searchTern) throws InternalErrorException {
         log.debug(String.format("searching game by term '%s' in database", searchTern));
-        List<Game> gameList = new LinkedList<>();
+        List<Game> gameList;
         try(PreparedStatement statement = QueryHandler.loadStatement("/sql/games/search.sql");
-            Connection connection = statement.getConnection()) {
+            Connection ignored = statement.getConnection()) {
 
             // set parameters
             statement.setString(1, searchTern);
@@ -188,7 +186,7 @@ public class GamesRepository {
         log.debug(String.format("adding game id:%d to team id:%d", game.getId(), team.getId()));
 
         try(PreparedStatement statement = QueryHandler.loadStatement("/sql/games/addToTeam.sql");
-            Connection connection = statement.getConnection()) {
+            Connection ignored = statement.getConnection()) {
 
             // set parameters
             statement.setLong(1, game.getId());
@@ -212,9 +210,9 @@ public class GamesRepository {
     public static List<Team> getTeamsOfGame(final Game game) throws InternalErrorException {
         log.debug(String.format("fetching teams of game id:%d", game.getId()));
 
-        List<Team> teamsList = new LinkedList<>();
+        List<Team> teamsList;
         try(PreparedStatement statement = QueryHandler.loadStatement("/sql/games/getTeamsOfGame.sql");
-            Connection connection = statement.getConnection()) {
+            Connection ignored = statement.getConnection()) {
 
             // set parameters
             statement.setLong(1, game.getId());
@@ -244,7 +242,7 @@ public class GamesRepository {
         log.debug(String.format("removing game id:%d from team id:%d", game.getId(), team.getId()));
 
         try(PreparedStatement statement = QueryHandler.loadStatement("/sql/games/removeGameFromTeam.sql");
-            Connection connection = statement.getConnection()) {
+            Connection ignored = statement.getConnection()) {
 
             // set parameters
             statement.setLong(2, game.getId());
@@ -256,6 +254,38 @@ public class GamesRepository {
             log.error(String.format("cannot remove game from team due to an internal error: %s", e.getMessage()), e);
             throw new InternalErrorException("cannot remove game from team", e);
         }
+    }
+
+    /**
+     * Fetches a random game from database (if there are any games in it)
+     * @return random game
+     * @throws InternalErrorException sql error; internal error; runtime error; connection error
+     * @throws NoSuchGameException there are no games in database and thus no game was fetched
+     * @author Daniel Mehlber
+     */
+    public static Game getRandomGame() throws InternalErrorException, NoSuchGameException {
+        log.debug("loading random game from database");
+        List<Game> gameList;
+
+        try(PreparedStatement statement = QueryHandler.loadStatement("/sql/games/fetchRandom.sql");
+            Connection ignored = statement.getConnection()) {
+
+            // convert result
+            ResultSet resultSet = statement.executeQuery();
+            gameList = ResultSetProcessor.convert(Game.class, resultSet);
+
+        } catch (SQLException | IOException | RuntimeException | InternalErrorException e) {
+            log.error(String.format("cannot fetch random game due to an internal error: %s", e.getMessage()), e);
+            throw new InternalErrorException("cannot fetch random game", e);
+        }
+
+        if(gameList.isEmpty()) {
+            log.warn("cannot fetch random game: no games in database");
+            throw new NoSuchGameException();
+        }
+
+        log.info("fetched random game from database");
+        return gameList.get(0);
     }
 
 }

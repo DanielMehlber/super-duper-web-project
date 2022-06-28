@@ -7,9 +7,9 @@ import com.esports.manager.games.entities.Game;
 import com.esports.manager.games.exceptions.NoSuchGameException;
 import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.games.db.GameImageRepository;
-import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoImageFoundException;
+import com.esports.manager.userManagement.exceptions.UnauthorizedException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -50,11 +50,11 @@ public class GameImageServlet extends HttpServlet {
             return;
         }
 
-        Long id;
+        long id;
         try {
-            id = Long.valueOf(parameterId);
+            id = Long.parseLong(parameterId);
         } catch (RuntimeException e) {
-            log.warn(String.format("cannot load image: passed game-id parameter is not a valid number"));
+            log.warn("cannot load image: passed game-id parameter is not a valid number");
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "game id is NaN");
             return;
         }
@@ -121,7 +121,8 @@ public class GameImageServlet extends HttpServlet {
         // check if user is logged in
         User user = UserManagement.getAuthorizedUser(request.getSession());
 
-        // TODO: Check if user is team loader/admin
+        if(!user.getIsAdmin())
+            throw new UnauthorizedException();
 
         // get type from request (is "profile", if parameter was not specified)
         String type = request.getParameter("type");
@@ -134,9 +135,9 @@ public class GameImageServlet extends HttpServlet {
             return;
         }
 
-        Long id;
+        long id;
         try {
-            id = Long.valueOf(parameterId);
+            id = Long.parseLong(parameterId);
         } catch (NumberFormatException e) {
             log.warn("cannot set image of game: game id is not valid number");
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "game id is NaN");

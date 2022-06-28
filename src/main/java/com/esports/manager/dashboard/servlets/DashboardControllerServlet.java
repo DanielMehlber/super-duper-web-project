@@ -1,6 +1,13 @@
 package com.esports.manager.dashboard.servlets;
 
-import com.esports.manager.dashboard.beans.DashboardBean;
+import com.esports.manager.dashboard.beans.DashboardViewBean;
+import com.esports.manager.dashboard.beans.GameRecommendationViewBean;
+import com.esports.manager.games.Games;
+import com.esports.manager.games.entities.Game;
+import com.esports.manager.global.exceptions.InternalErrorException;
+import com.esports.manager.teams.TeamManagement;
+import com.esports.manager.teams.entities.Member;
+import com.esports.manager.teams.entities.Team;
 import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
@@ -13,6 +20,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Servlet setting up the dashboard in order to display the JSP
@@ -36,10 +46,36 @@ public class DashboardControllerServlet extends HttpServlet {
             response.sendRedirect("/");
         }
 
-        DashboardBean dashboardBean = new DashboardBean();
-        dashboardBean.setUsername(currentUser.getUsername());
+        DashboardViewBean dashboardViewBean = new DashboardViewBean();
+        dashboardViewBean.setUsername(currentUser.getUsername());
 
-        request.setAttribute("dashboardBean", dashboardBean);
+        // game recommendation tile
+        setupGameRecommendation(dashboardViewBean);
+
+        request.setAttribute("dashboardBean", dashboardViewBean);
         request.getRequestDispatcher("/jsp/dashboard.jsp").forward(request, response);
+    }
+
+    private void setupGameRecommendation(DashboardViewBean dashboardViewBean) throws InternalErrorException {
+        Game randomGame = Games.getRandomGame();
+
+        // if there is no game to be recommended, the attribute will be null.
+        if(randomGame != null) {
+            GameRecommendationViewBean gameRecommendationViewBean = new GameRecommendationViewBean();
+            gameRecommendationViewBean.setGame(randomGame);
+            // get amount of teams
+            List<Team> teams = Games.getTeamsWithGame(randomGame);
+            gameRecommendationViewBean.setTeamsCount(teams.size());
+
+            // get amount of players in all teams
+            Set<Member> players = new HashSet<>();
+            for(Team team : teams) {
+                List<Member> teamMembers = TeamManagement.fetchMembersByTeamId(team.getId());
+                players.addAll(teamMembers);
+            }
+            gameRecommendationViewBean.setPlayerCount(players.size());
+
+            dashboardViewBean.setGameRecommendation(gameRecommendationViewBean);
+        }
     }
 }

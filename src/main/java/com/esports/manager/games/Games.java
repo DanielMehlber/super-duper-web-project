@@ -61,4 +61,21 @@ public class Games {
     public static void removeGameFromTeam(final Team team, final Game game) throws InternalErrorException {
         GamesRepository.removeGameFromTeam(game, team);
     }
+
+    /**
+     * Select a random game from {@link GamesRepository} and return it.
+     * @return a random game or null, if there are no games in database
+     * @throws InternalErrorException database error; sql error; connection error
+     * @author Daniel Mehlber
+     */
+    public static Game getRandomGame() throws InternalErrorException {
+        Game game;
+        try {
+            game = GamesRepository.getRandomGame();
+        } catch (NoSuchGameException e) {
+            return null;
+        }
+        return game;
+    }
+
 }

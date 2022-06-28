@@ -2,6 +2,8 @@ package com.esports.manager.teams.entities;
 
 import com.esports.manager.global.db.mapping.ResultSetMapping;
 
+import java.util.Objects;
+
 public class Member {
     @ResultSetMapping("username")
     private String username;
@@ -45,5 +47,18 @@ public class Member {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Member member = (Member) o;
+        return Objects.equals(username, member.username) && Objects.equals(teamId, member.teamId) && Objects.equals(role, member.role);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, teamId, role);
     }
 }
