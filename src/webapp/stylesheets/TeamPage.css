@@ -29,8 +29,8 @@ th {
     margin-bottom: 20px;
     display: grid;
     grid-template-areas:
-        "Logo Title"
-        "Logo Slogan";
+        "Logo Title Remove-Button"
+        "Logo Slogan Slogan";
     grid-template-columns:
         auto 1fr;
     grid-template-rows:
@@ -55,6 +55,11 @@ th {
     color: #FFFFFF;
     text-decoration: underline;
     grid-area: Title;
+}
+
+.remove-team-button {
+    grid-area: Remove-Button;
+    background-color: red;
 }
 
 .team-slogan {
