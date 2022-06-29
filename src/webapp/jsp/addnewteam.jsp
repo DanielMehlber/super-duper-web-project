@@ -7,6 +7,7 @@
     <head>>
         <title>Add new team</title>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <base href="${pageContext.request.requestURI}" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/Elements.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/AddNewTeam.css">
