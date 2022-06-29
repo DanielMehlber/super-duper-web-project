@@ -62,7 +62,6 @@ function closeModal() {
     modal.classList.add("invisible");
 }
 
-
 document.addEventListener("DOMContentLoaded", setAllEventListener)
 
 executeTeamSearch();

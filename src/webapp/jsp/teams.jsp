@@ -13,7 +13,7 @@
 	<title>Title</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/Elements.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/TeamsPage.css">
-	<link href="${pageContext.request.contextPath}/stylesheets/team-modal.css" rel="stylesheet"/>
+	<link href="${pageContext.request.contextPath}/stylesheets/team-creation-modal.css" rel="stylesheet"/>
 	<link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
 	<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>

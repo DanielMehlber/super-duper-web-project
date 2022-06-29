@@ -1,5 +1,6 @@
 package com.esports.manager.teams.servlets;
 
+import com.esports.manager.teams.beans.AddMemberViewBean;
 import com.esports.manager.teams.beans.TeamViewBean;
 import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.userManagement.UserManagement;
@@ -35,17 +36,25 @@ public class TeamServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         Long id;
 
+
+        AddMemberViewBean addMemberViewBean = new AddMemberViewBean();
+
         TeamViewBean teamViewBean = new TeamViewBean();
 
         try {
             id = Long.parseLong(req.getParameter("id"));
             teamViewBean.setTeam(TeamRepository.getTeamById(id));
             teamViewBean.setMembers(TeamRepository.getMemberByTeamId(id));
+
+            addMemberViewBean.setUsers(UserManagement.fetchUserNotAlreadyMember(id));
+            addMemberViewBean.setTeamId(id);
+
         } catch (NumberFormatException e) {
-            log.fatal("there was a problem casting the id parameter...");
+            log.fatal("there was a problemS casting the id parameter...");
             teamViewBean.setErrorMessage("The given team ID was incorrect..");
         } finally {
             req.setAttribute("teamViewBean", teamViewBean);
+            req.setAttribute("addMemberViewBean", addMemberViewBean);
 
             RequestDispatcher rq = req.getRequestDispatcher("/jsp/team.jsp");
             rq.forward(req, resp);
