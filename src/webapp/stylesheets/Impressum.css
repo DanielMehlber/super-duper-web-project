@@ -1,0 +1,46 @@
+*{
+    color: white;
+    --main-color: #2B92D5;
+    --sec-color: #1d274c;
+
+}
+
+html{
+    background-color: var(--main-bg-color);
+    height: 100%;
+    overflow: hidden;
+}
+
+body{
+
+}
+
+main{
+
+}
+
+#main-container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-content{
+    align-items: center;
+    width: 800px;
+    height: 435px;
+    background-color: var(--sec-color);
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 3px solid var(--sec-color);
+    border-radius: 20px;
+    padding: 5px 25px;
+    font-size: 14px;
+}
+
+.subheading{
+    font-size: 16px;
+    margin: 0;
+}
+
