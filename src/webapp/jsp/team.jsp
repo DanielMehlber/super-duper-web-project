@@ -27,6 +27,7 @@
                 <div class="head-information">
                     <img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${teamViewBean.getTeam().getId()}" alt="teamLogo"/>
                     <h1 class="team-title">${teamViewBean.team.name}</h1>
+                    <h3 class="team-slogan">${teamViewBean.team.slogan}</h3>
                 </div>
 
                 <table>
@@ -56,7 +57,7 @@
                         </c:forEach>
                     </select>
                     <input type="hidden" name="teamId" value="${addMemberViewBean.teamId}">
-                    <input class="position-field" name="position" placeholder="position" autofocus="autofocus"/>
+                    <input type="text" class="position-field" name="position" placeholder="position" autofocus="autofocus"/>
 
                     <button id="add-selected-member-button" class="primary-button">Add</button>
                     <div class="add-member-modal-close" onclick="closeModal()">X</div>

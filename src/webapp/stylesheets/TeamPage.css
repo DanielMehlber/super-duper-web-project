@@ -24,15 +24,17 @@ th {
     border-collapse: collapse;
 }
 
-.team-title {
-    float: left;
-    font-size: 50px;
-    color: #FFFFFF;
-    text-decoration: underline;
-}
 
 .head-information {
     margin-bottom: 20px;
+    display: grid;
+    grid-template-areas:
+        "Logo Title"
+        "Logo Slogan";
+    grid-template-columns:
+        auto 1fr;
+    grid-template-rows:
+        auto 1fr;
 }
 
 .team-logo {
@@ -44,8 +46,21 @@ th {
     height: 196px;
     width: 196px;
     margin-right: 20px;
+    grid-area: Logo;
 }
 
+.team-title {
+    float: left;
+    font-size: 50px;
+    color: #FFFFFF;
+    text-decoration: underline;
+    grid-area: Title;
+}
+
+.team-slogan {
+    grid-area: Slogan;
+    color: #989898;
+}
 
 tr {
     color: #FFFFFF;
@@ -85,6 +100,6 @@ tr {
     border-bottom: solid 1px #000000;
 }
 
-h1, h2{
+h1, h2, h3{
     margin: 0px;
 }

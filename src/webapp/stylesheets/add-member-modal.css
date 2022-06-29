@@ -40,15 +40,22 @@ Author: Maximilian Rublik
 }
 
 .user-selection {
+    height: 58px;
+    margin: 10px;
     grid-area: user;
 }
 
 .position-field {
+    margin: 10px;
     grid-area: position;
 }
 
-.enter-button {
+#add-selected-member-button {
     grid-area: enter-button;
+    height: 58px;
+    margin: 0px 10px;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 .add-member-modal-close {
