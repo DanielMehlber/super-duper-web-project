@@ -1,7 +1,7 @@
 <%--
   User: Maximilian Rublik
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="" %>
+<%@ page contentType="text/html;charset=UTF-8" errorPage="" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -50,7 +50,7 @@
             <section id="add-member-modal" class="add-member-modal-container">
                 <form class="add-member-modal" action="${pageContext.request.contextPath}/teams/addmember" method="POST">
                     <h2 id="add-member-title">Add member</h2>
-                    <select class="user-selection" name="users">
+                    <select id="add-member-user-selection" class="user-selection" name="users" required>
                         <c:forEach items="${addMemberViewBean.users}" var="user">
                             <option value="${user.username}">${user.username}</option>
                         </c:forEach>
@@ -58,7 +58,7 @@
                     <input type="hidden" name="teamId" value="${addMemberViewBean.teamId}">
                     <input class="position-field" name="position" placeholder="position" autofocus="autofocus"/>
 
-                    <button class="primary-button">Add</button>
+                    <button id="add-selected-member-button" class="primary-button">Add</button>
                     <div class="add-member-modal-close" onclick="closeModal()">X</div>
                 </form>
             </section>
