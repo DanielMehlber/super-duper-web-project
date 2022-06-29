@@ -46,7 +46,7 @@ public class AddNewTeamServlet extends HttpServlet {
         String teamname = req.getParameter("name");
         String slogan = req.getParameter("slogan");
         String tags = req.getParameter("tags");
-        Long gameId = Long.valueOf(req.getParameter("selection"));
+
 
         Part profilePart = req.getPart("profile");
         Part backgroundPart = req.getPart("background");
@@ -56,8 +56,12 @@ public class AddNewTeamServlet extends HttpServlet {
         Team newTeam;
 
         try {
+
             newTeam = TeamManagement.createTeam(teamname, slogan, tags);
-            Games.addToTeam(Games.fetchById(gameId), newTeam);
+            String gameIdString = req.getParameter("selection");
+            if (!gameIdString.equals("")) {
+                Games.addToTeam(Games.fetchById(Long.valueOf(gameIdString)), newTeam);
+            }
         } catch (InvalidInputException e) {
             throw new RuntimeException(e);
         } catch (NoSuchGameException e) {

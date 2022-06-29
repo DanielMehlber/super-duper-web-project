@@ -47,7 +47,7 @@
 				<input name="slogan" class="slogan-input" type="text" placeholder="slogan"/>
 
 				<select name="selection" id="add-team-game-selection" class="add-team-modal-game-selection">
-
+					<option selected value>none</option>
 				</select>
 				<textarea class="tags-textarea" placeholder="Insert tags comma ' , ' seperated"></textarea>
 
