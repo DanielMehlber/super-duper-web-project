@@ -50,7 +50,13 @@
                             <td>${member.since}</td>
                             <td>${member.role}</td>
                             <c:if test="${ not member.isTeamLeader}">
-                                <td><a class="remove-button" href="${pageContext.request.contextPath}/teams/removemember?teamid=${teamViewBean.getTeam().getId()}&username=${member.username}">-</a></td>
+                                <td>
+                                    <form method="POST" action="${pageContext.request.contextPath}/teams/removeMember" onsubmit="return confirm('Do you really want to delete this member from the team?')">
+                                        <button class="remove-button" type="submit">-</button>
+                                        <input type="hidden" value="${teamViewBean.getTeam().id}" name="id" />
+                                        <input type="hidden" value="${member.username}" name="username" />
+                                    </form>
+                                </td>
                             </c:if>
                         </tr>
                     </c:forEach>
