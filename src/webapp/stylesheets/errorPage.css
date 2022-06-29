@@ -1,0 +1,32 @@
+/*Author Philipp Phan*/
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-container{
+    background-color: #1d274c;
+    height: 260px;
+    width: 500px;
+    padding: 15px;
+    border: 3px solid #1d274c;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+#errorCode404{
+    margin: 0;
+    font-size: 80px;
+}
+
+.button{
+    text-decoration: none;
+    padding: 3px;
+    margin: 16px 0;
+}
