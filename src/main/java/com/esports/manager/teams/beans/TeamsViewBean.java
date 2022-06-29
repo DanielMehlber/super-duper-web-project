@@ -19,7 +19,6 @@ public class TeamsViewBean implements Serializable
 {
     private Map<Team, List<Member>> teams;
 
-
     private String tags;
 
     private List<User> users;

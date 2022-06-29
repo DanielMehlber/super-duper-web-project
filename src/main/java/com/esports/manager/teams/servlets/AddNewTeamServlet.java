@@ -1,5 +1,8 @@
 package com.esports.manager.teams.servlets;
 
+import com.esports.manager.games.Games;
+import com.esports.manager.games.entities.Game;
+import com.esports.manager.games.exceptions.NoSuchGameException;
 import com.esports.manager.teams.TeamManagement;
 import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.teams.entities.Team;
@@ -43,6 +46,7 @@ public class AddNewTeamServlet extends HttpServlet {
         String teamname = req.getParameter("name");
         String slogan = req.getParameter("slogan");
         String tags = req.getParameter("tags");
+        Long gameId = Long.valueOf(req.getParameter("selection"));
 
         Part profilePart = req.getPart("profile");
         Part backgroundPart = req.getPart("background");
@@ -53,11 +57,12 @@ public class AddNewTeamServlet extends HttpServlet {
 
         try {
             newTeam = TeamManagement.createTeam(teamname, slogan, tags);
+            Games.addToTeam(Games.fetchById(gameId), newTeam);
         } catch (InvalidInputException e) {
-            // TODO: handle invalid input (Maxi)
+            throw new RuntimeException(e);
+        } catch (NoSuchGameException e) {
             throw new RuntimeException(e);
         }
-
 
         TeamRepository.setProfileImage(bufferImage(profileIS), newTeam);
         TeamRepository.setBackgroundImage(bufferImage(backgroundIS), newTeam);
