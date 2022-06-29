@@ -49,7 +49,7 @@
 				<select name="selection" id="add-team-game-selection" class="add-team-modal-game-selection">
 					<option selected value>none</option>
 				</select>
-				<textarea class="tags-textarea" placeholder="Insert tags comma ' , ' seperated"></textarea>
+				<textarea name="tags" class="tags-textarea" placeholder="Insert tags comma ' , ' seperated"></textarea>
 
 				<label class="team-logo-label">
 					UPLOAD LOGO
