@@ -1,8 +1,7 @@
 <%--
   User: Maximilian Rublik
-  Date: 21.05.2022
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="" %>
+<%@ page contentType="text/html;charset=UTF-8" errorPage="" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -11,13 +10,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet"/>
-        <link href="${pageContext.request.contextPath}/stylesheets/TeamPage.css" rel="stylesheet"/>
         <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
+        <link href="${pageContext.request.contextPath}/stylesheets/TeamPage.css" rel="stylesheet"/>
+        <link href="${pageContext.request.contextPath}/stylesheets/add-member-modal.css" rel="stylesheet"/>
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
         <title>${teamViewBean.team.name}</title>
     </head>
     <body>
-        <main>
+        <noscript>Javascript deactivated!</noscript>
+        <script src="${pageContext.request.contextPath}/js/team.js" defer></script>
+        <%@include file="fragments/sidebar.jspf" %>
+
+        <main id="main" onclick="hideNav()">
+            <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
             <div class="info-area">
                 <div class="head-information">
                     <img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${teamViewBean.getTeam().getId()}" alt="teamLogo"/>
@@ -29,7 +34,7 @@
                         <th>Playername</th>
                         <th>Since</th>
                         <th>Position</th>
-                        <th><a class="add-button" href="${pageContext.request.contextPath}/teams/addmember?teamid=${teamViewBean.getTeam().getId()}">+</a></th>
+                        <th><button id="add-member-button" class="primary-button">+</button>
                     </tr>
                     <c:forEach items="${teamViewBean.members}" var="member">
                         <tr>
@@ -41,10 +46,25 @@
                     </c:forEach>
                 </table>
             </div>
+
+            <section id="add-member-modal" class="add-member-modal-container">
+                <form class="add-member-modal" action="${pageContext.request.contextPath}/teams/addmember" method="POST">
+                    <h2 id="add-member-title">Add member</h2>
+                    <select id="add-member-user-selection" class="user-selection" name="users" required>
+                        <c:forEach items="${addMemberViewBean.users}" var="user">
+                            <option value="${user.username}">${user.username}</option>
+                        </c:forEach>
+                    </select>
+                    <input type="hidden" name="teamId" value="${addMemberViewBean.teamId}">
+                    <input class="position-field" name="position" placeholder="position" autofocus="autofocus"/>
+
+                    <button id="add-selected-member-button" class="primary-button">Add</button>
+                    <div class="add-member-modal-close" onclick="closeModal()">X</div>
+                </form>
+            </section>
         </main>
 
         <footer>
-
         </footer>
     </body>
 </html>

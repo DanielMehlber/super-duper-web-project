@@ -1,6 +1,22 @@
+/*
+Author: Maximilian Rublik
+ */
+
+.info-area {
+    background-color: #1D274C;
+    border-radius: 4px;
+    display: grid;
+    width: 1050px;
+    margin: auto;
+    align-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
 table {
     border-collapse: collapse;
 }
+
 th {
     color: #FFFFFF;
     text-align: left;
@@ -30,15 +46,6 @@ th {
     margin-right: 20px;
 }
 
-.info-area {
-    background-color: #1D274C;
-    border-radius: 4px;
-    display: grid;
-    width: 1050px;
-    align-content: center;
-    align-items: center;
-    padding: 50px;
-}
 
 tr {
     color: #FFFFFF;
