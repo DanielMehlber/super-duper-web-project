@@ -20,7 +20,7 @@ body{
     align-items: center;
 }
 
-#errorCode404{
+.errorCode{
     margin: 0;
     font-size: 80px;
 }
