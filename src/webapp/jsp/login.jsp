@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/Elements.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/loginPage.css">
+    <script src="${pageContext.request.contextPath}/js/cookieCheck.js" defer></script>
+
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
@@ -29,7 +31,8 @@
         <button class="cancel-button">Back</button>
         <a class="registration-redirect" href="${pageContext.request.contextPath}/registration">Not a member yet?</a>
     </form>
-    <noscript>Your browser does not support JavaScript!</noscript>
+    <div id="cookieText"></div>
+    <noscript>JavaScript is not activated. Please activate JavaScript</noscript>
 </main>
 </body>
 </html>
