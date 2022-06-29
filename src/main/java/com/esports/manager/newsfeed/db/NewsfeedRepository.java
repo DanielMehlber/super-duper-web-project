@@ -87,7 +87,7 @@ public class NewsfeedRepository {
 
             // set new id in entity
             item.setId(id);
-            log.debug(String.format("persisted new newsfeed item with id:%d", id));
+            log.info(String.format("persisted new newsfeed item with id:%d", id));
         } catch (SQLException | InternalErrorException | IOException e) {
             log.error(String.format("cannot insert newsfeed item: an internal error occurred: %s", e.getMessage()), e);
             throw new InternalErrorException("cannot insert newsfeed item due to an internal error", e);

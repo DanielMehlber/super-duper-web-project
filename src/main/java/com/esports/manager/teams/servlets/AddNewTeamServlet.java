@@ -1,9 +1,11 @@
 package com.esports.manager.teams.servlets;
 
+import com.esports.manager.teams.TeamManagement;
 import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.teams.entities.Team;
 import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.userManagement.entities.User;
+import com.esports.manager.userManagement.exceptions.InvalidInputException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -49,9 +51,16 @@ public class AddNewTeamServlet extends HttpServlet {
         InputStream profileIS = profilePart.getInputStream();
         InputStream backgroundIS = backgroundPart.getInputStream();
 
-        Team newTeam = new Team(teamname, slogan, tags);
+        Team newTeam;
 
-        TeamRepository.createTeam(newTeam);
+        try {
+            newTeam = TeamManagement.createTeam(teamname, slogan, tags);
+        } catch (InvalidInputException e) {
+            // TODO: handle invalid input (Maxi)
+            throw new RuntimeException(e);
+        }
+
+
         TeamRepository.setProfileImage(bufferImage(profileIS), newTeam);
         TeamRepository.setBackgroundImage(bufferImage(backgroundIS), newTeam);
 

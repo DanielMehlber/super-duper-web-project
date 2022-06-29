@@ -1,6 +1,7 @@
 package com.esports.manager.newsfeed.factory;
 
 import com.esports.manager.newsfeed.entities.NewsfeedItem;
+import com.esports.manager.teams.entities.Member;
 import com.esports.manager.teams.entities.Team;
 import com.esports.manager.userManagement.entities.User;
 
@@ -18,6 +19,10 @@ public class NewsfeedFactory {
 
     public static NewsfeedItem newTeamCreatedNews(final Date date, final Team createdTeam) {
         return new NewsfeedItem(date, NewsfeedItem.TYPE_TEAM_CREATED, null, null, createdTeam.getId(), null);
+    }
+
+    public static NewsfeedItem memberJoinedTeam(final Date date, final Team toTeam, final User member) {
+        return new NewsfeedItem(date, NewsfeedItem.TYPE_MEMBER_JOINED_TEAM, member.getUsername(), null, toTeam.getId(), null);
     }
 
 }

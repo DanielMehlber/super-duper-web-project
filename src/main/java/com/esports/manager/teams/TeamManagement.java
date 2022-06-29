@@ -7,7 +7,10 @@ import com.esports.manager.teams.entities.Member;
 import com.esports.manager.teams.entities.Team;
 import com.esports.manager.teams.exceptions.NoSuchTeamException;
 import com.esports.manager.teams.exceptions.NoTeamsFoundException;
+import com.esports.manager.userManagement.UserManagement;
+import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.InvalidInputException;
+import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -85,8 +88,14 @@ public class TeamManagement {
      *
      * @author Maximilian Rublik
      */
-    public static void addUserToTeam (String username, Long teamid, String role, Date since) throws InternalErrorException {
+    public static void addUserToTeam (String username, Long teamid, String role, Date since) throws InternalErrorException, NoSuchTeamException, NoSuchUserException {
+        // check that referenced entites exist
+        User user = UserManagement.fetchUserByUsername(username);
+        Team team = TeamManagement.fetchTeamById(teamid);
+
         TeamRepository.addUserToTeam(teamid, username, role, since);
+        // add newsfeed item
+        NewsfeedLogic.registerNewMemberOfTeam(team, user);
     }
 
     /**
