@@ -1,5 +1,6 @@
 package com.esports.manager.teams.servlets;
 
+import com.esports.manager.teams.TeamManagement;
 import com.esports.manager.teams.beans.AddMemberViewBean;
 import com.esports.manager.teams.beans.TeamViewBean;
 import com.esports.manager.teams.db.TeamRepository;
@@ -36,15 +37,17 @@ public class TeamServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         Long id;
 
-
         AddMemberViewBean addMemberViewBean = new AddMemberViewBean();
-
         TeamViewBean teamViewBean = new TeamViewBean();
 
         try {
             id = Long.parseLong(req.getParameter("id"));
             teamViewBean.setTeam(TeamRepository.getTeamById(id));
             teamViewBean.setMembers(TeamRepository.getMemberByTeamId(id));
+
+            if (loggedinUser.getUsername().equals(TeamManagement.fetchTeamLeaderByTeamId(id).getUsername())) {
+                teamViewBean.setIsTeamLeader(true);
+            }
 
             addMemberViewBean.setUsers(UserManagement.fetchUserNotAlreadyMember(id));
             addMemberViewBean.setTeamId(id);

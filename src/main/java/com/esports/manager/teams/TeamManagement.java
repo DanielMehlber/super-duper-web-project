@@ -60,6 +60,16 @@ public class TeamManagement {
     }
 
     /**
+     * Remove team by teamID
+     * @param teamId
+     *
+     * @author Maximilian Rublik
+     */
+    public static void removeTeamByTeamId(long teamId) {
+        TeamRepository.removeTeam(teamId);
+    }
+
+    /**
      *
      * @param name
      * @param slogan
@@ -76,6 +86,10 @@ public class TeamManagement {
         // create entry in newsfeed
         NewsfeedLogic.registerTeamCreation(newTeam);
         return newTeam;
+    }
+
+    public static Member fetchTeamLeaderByTeamId(long id) {
+        return TeamRepository.getTeamLeaderByTeamId(id);
     }
 
     /**

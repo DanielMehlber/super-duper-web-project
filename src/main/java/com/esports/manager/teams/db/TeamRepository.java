@@ -67,6 +67,31 @@ public class TeamRepository {
         return team.get(0);
     }
 
+    /**
+     * returns the teamleader of the team given by the id
+     * @param id teamId
+     * @return team leader
+     * @author Maximilian Rublik
+     */
+    public static Member getTeamLeaderByTeamId(final long id) {
+        log.debug("fetch team leader by teamId");
+        List<Member> teamleader;
+        ResultSet results;
+
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchTeamLeaderByTeam.sql");
+                Connection connection = pstmt.getConnection()) {
+            pstmt.setLong(1, id);
+            results = pstmt.executeQuery();
+            teamleader = ResultSetProcessor.convert(Member.class, results);
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        } catch (InternalErrorException e) {
+            throw new RuntimeException(e);
+        }
+
+        return teamleader.get(0);
+    }
+
     public static List<Member> getMemberByTeamId(final long id) throws InternalErrorException {
         log.debug("fetch members by teamId");
 
@@ -271,6 +296,26 @@ public class TeamRepository {
         } catch (SQLException | IOException e) {
             log.error("cannot remove user from team due to an sql error");
             throw new InternalErrorException("cannot remove member from team", e);
+        }
+    }
+
+    /**
+     * Removes team by teamId
+     * @param teamId
+     * @author Maximilian Rublik
+     */
+    public static void removeTeam (Long teamId) {
+        log.debug("remove team by Id");
+
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/removeTeamByTeamId.sql");
+                Connection connection = pstmt.getConnection()) {
+            pstmt.setLong(1, teamId);
+            pstmt.executeUpdate();
+        } catch (SQLException | IOException e) {
+            log.error("cannot remove team by ID due to an sql error");
+            throw new RuntimeException(e);
+        } catch (InternalErrorException e) {
+            throw new RuntimeException(e);
         }
     }
 

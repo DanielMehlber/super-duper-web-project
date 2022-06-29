@@ -14,6 +14,8 @@ public class TeamViewBean implements Serializable {
 
     private Team team;
 
+    private boolean isTeamLeader;
+
     private List<Member> members;
 
     public List<Member> getMembers() {
@@ -38,5 +40,13 @@ public class TeamViewBean implements Serializable {
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    public boolean getIsTeamLeader() {
+        return isTeamLeader;
+    }
+
+    public void setIsTeamLeader(boolean isTeamLeader) {
+        this.isTeamLeader = isTeamLeader;
     }
 }
