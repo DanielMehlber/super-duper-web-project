@@ -261,7 +261,7 @@ public class TeamRepository {
         log.debug("created team to database");
     }
 
-    public static void addUserToTeam (Long teamid, String username, String role, Date since) throws InternalErrorException {
+    public static void addUserToTeam (Long teamid, String username, String role, Date since, boolean isTeamLeader) throws InternalErrorException {
         log.debug("add user to team");
 
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/addUserToTeam.sql");
@@ -270,6 +270,7 @@ public class TeamRepository {
             pstmt.setLong(2, teamid);
             pstmt.setString(3, role);
             pstmt.setDate(4, since);
+            pstmt.setBoolean(5, isTeamLeader);
             pstmt.executeUpdate();
 
         } catch (SQLException | IOException e) {

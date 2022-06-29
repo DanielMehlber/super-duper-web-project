@@ -59,7 +59,7 @@ public class AddMemberServlet extends HttpServlet {
         java.sql.Date since = new Date(System.currentTimeMillis());
 
         try {
-            TeamManagement.addUserToTeam(username, teamId, role, since);
+            TeamManagement.addUserToTeam(username, teamId, role, since, false);
         } catch (NoSuchTeamException e) {
             // TODO: Maxi handle this
         } catch (NoSuchUserException e) {

@@ -35,8 +35,8 @@ public class TeamManagement {
      */
     public static List<Team> fetchAllTeams() throws NoTeamsFoundException, InternalErrorException {
        log.debug("fetching all teams...");
-        List<Team> teams = TeamRepository.getAllTeams();
-        return teams;
+
+       return TeamRepository.getAllTeams();
     }
 
     public static List<Member> fetchMembersByTeamId(final long id) throws InternalErrorException {
@@ -70,7 +70,6 @@ public class TeamManagement {
     }
 
     /**
-     *
      * @param name
      * @param slogan
      * @param tags
@@ -102,12 +101,12 @@ public class TeamManagement {
      *
      * @author Maximilian Rublik
      */
-    public static void addUserToTeam (String username, Long teamid, String role, Date since) throws InternalErrorException, NoSuchTeamException, NoSuchUserException {
+    public static void addUserToTeam (String username, Long teamid, String role, Date since, boolean isTeamLeader) throws InternalErrorException, NoSuchTeamException, NoSuchUserException {
         // check that referenced entites exist
         User user = UserManagement.fetchUserByUsername(username);
         Team team = TeamManagement.fetchTeamById(teamid);
 
-        TeamRepository.addUserToTeam(teamid, username, role, since);
+        TeamRepository.addUserToTeam(teamid, username, role, since, isTeamLeader);
         // add newsfeed item
         NewsfeedLogic.registerNewMemberOfTeam(team, user);
     }
