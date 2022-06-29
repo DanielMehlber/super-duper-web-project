@@ -28,9 +28,8 @@
 			<div class="head-information">
 				<h1 id="teams-title">Your Teams</h1>
 
-				<select class="game-selection">
-					<option value="LeagueOfLegends">League of Legends</option>
-					<option value="Counterstrike">Counterstrike</option>
+				<select class="game-selection" id="game-filter-selection">
+					<option selected value>All</option>
 				</select>
 
 				<input type="text" class="search-input" placeholder="Search" />

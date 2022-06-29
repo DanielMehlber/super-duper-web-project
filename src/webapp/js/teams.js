@@ -37,6 +37,7 @@ function generateTeamCardHtml(team) {
 
 function loadGames() {
     const gameSelection = document.getElementById("add-team-game-selection");
+    const gameFilterSelection = document.getElementById("game-filter-selection");
 
     fetch("games/search?search=")
         .then(response => response.json())
@@ -44,6 +45,7 @@ function loadGames() {
             gamesJson.forEach(gameOption => {
                 const html = generateGameOptionHtml(gameOption)
                 gameSelection.innerHTML += html;
+                gameFilterSelection.innerHTML += html;
             });
         });
 }
