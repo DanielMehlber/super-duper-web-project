@@ -2,6 +2,10 @@ package com.esports.manager.teams.entities;
 
 import com.esports.manager.global.db.mapping.ResultSetMapping;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+
 
 /**
  * The Team entity contains all user data of a specific user.
@@ -19,6 +23,8 @@ public class Team {
 
     @ResultSetMapping("tags")
     private String tags;
+
+    private List<Member> members;
 
     public Team(String name, String slogan, String tags){
         this.name = name;
@@ -58,5 +64,30 @@ public class Team {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Team team = (Team) o;
+        return Objects.equals(id, team.id) && Objects.equals(name, team.name) && Objects.equals(slogan, team.slogan) && Objects.equals(tags, team.tags);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, slogan, tags);
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
+    }
+
+    public int getMemberCount() {
+        return members.size();
     }
 }

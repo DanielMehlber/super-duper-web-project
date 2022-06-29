@@ -4,6 +4,7 @@
     border-radius: 5px;
     width: fit-content;
     padding: 30px;
+    grid-area: newsfeed;
 }
 
 .newsfeed-container h2 {

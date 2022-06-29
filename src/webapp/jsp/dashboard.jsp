@@ -22,15 +22,18 @@
     <%@include file="fragments/sidebar.jspf" %>
 
     <main id="main" onclick="hideNav()">
-        <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
+        <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
         <section class="main-content-container">
-            <div class="dashboard-header">
-                <h1>Welcome back</h1>
-            </div>
-            <section class="newsfeed-container">
-                <h2>Newsfeed</h2>
-                <div id="newsfeed" class="newsfeed">
+            <section class="dashboard-content-container">
+                <div class="dashboard-header">
+                    <h1>Welcome back</h1>
                 </div>
+                <section class="newsfeed-container">
+                    <h2>Newsfeed</h2>
+                    <div id="newsfeed" class="newsfeed">
+                    </div>
+                </section>
+                <%@include file="fragments/game-recommendation.jsp"%>
             </section>
         </section>
     </main>

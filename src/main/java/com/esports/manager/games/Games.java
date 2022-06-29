@@ -4,6 +4,7 @@ import com.esports.manager.games.db.GamesRepository;
 import com.esports.manager.games.entities.Game;
 import com.esports.manager.games.exceptions.NoSuchGameException;
 import com.esports.manager.global.exceptions.InternalErrorException;
+import com.esports.manager.teams.entities.Team;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -47,6 +48,34 @@ public class Games {
 
     public static List<Game> search(final String term) throws InternalErrorException {
         return GamesRepository.search(term);
+    }
+
+    public static void addToTeam(final Game game, final Team team) throws InternalErrorException {
+        GamesRepository.addGameToTeam(game, team);
+    }
+
+    public static List<Team> getTeamsWithGame(final Game game) throws InternalErrorException {
+        return GamesRepository.getTeamsOfGame(game);
+    }
+
+    public static void removeGameFromTeam(final Team team, final Game game) throws InternalErrorException {
+        GamesRepository.removeGameFromTeam(game, team);
+    }
+
+    /**
+     * Select a random game from {@link GamesRepository} and return it.
+     * @return a random game or null, if there are no games in database
+     * @throws InternalErrorException database error; sql error; connection error
+     * @author Daniel Mehlber
+     */
+    public static Game getRandomGame() throws InternalErrorException {
+        Game game;
+        try {
+            game = GamesRepository.getRandomGame();
+        } catch (NoSuchGameException e) {
+            return null;
+        }
+        return game;
     }
 
 }

@@ -22,6 +22,11 @@ public class Game implements Serializable {
 
     public Game() {}
 
+    public Game(String name, String description) {
+        setName(name);
+        setDescription(description);
+    }
+
     public long getId() {
         return id;
     }
@@ -51,7 +56,7 @@ public class Game implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Game game = (Game) o;
-        return id == game.id && Objects.equals(name, game.name) && Objects.equals(description, game.description);
+        return id.equals(game.id) && Objects.equals(name, game.name) && Objects.equals(description, game.description);
     }
 
     @Override
