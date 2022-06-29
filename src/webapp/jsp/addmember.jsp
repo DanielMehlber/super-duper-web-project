@@ -18,7 +18,7 @@
 <body>
 <%@include file="fragments/sidebar.jspf" %>
     <main>
-        <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
+        <button class="nav-bar-button" >&#9776;</button>
         <form class="add-member-form" action="${pageContext.request.contextPath}/teams/addmember" method="POST">
             <select class="user-selection" name="users">
                 <c:forEach items="${addMemberViewBean.users}" var="user">

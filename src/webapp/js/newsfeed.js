@@ -119,3 +119,5 @@ function loadMoreNewsfeedItems() {
             })
         })
 }
+
+document.addEventListener("DOMContentLoaded", loadMoreNewsfeedItems)

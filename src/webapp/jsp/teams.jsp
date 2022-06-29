@@ -20,8 +20,8 @@
 <body>
 	<noscript>Javascript deactivated!</noscript>
 	<%@include file="fragments/sidebar.jspf" %>
-	<main id="main" onclick="hideNav()">
-		<button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
+	<main id="main">
+		<button class="nav-bar-button" >&#9776;</button>
 
 		<section class="teams-area">
 			<div class="head-information">

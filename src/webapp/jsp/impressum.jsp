@@ -16,8 +16,8 @@
 </head>
 <body>
 <%@include file="fragments/sidebar.jspf" %>
-<main id="main" onclick="hideNav()">
-    <button class="nav-bar-button" onmouseover="toggleNav()">=</button>
+<main id="main">
+    <button class="nav-bar-button" >&#9776;</button>
     <section id="main-container">
         <div id="main-content">
             <h2>Impressum</h2>

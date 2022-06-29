@@ -18,8 +18,8 @@
 <body>
 
 <%@include file="fragments/sidebar.jspf" %>
-<main id="main" class="flex-container" onclick="hideNav()">
-    <button class="nav-bar-button" onmouseover="toggleNav()">=</button>
+<main id="main" class="flex-container">
+    <button class="nav-bar-button" >&#9776;</button>
     <section class="main-content-container">
         <img src="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
              class="background-image" alt="Background Image of user"/>

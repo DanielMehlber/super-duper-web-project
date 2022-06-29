@@ -16,21 +16,20 @@
     <link href="${pageContext.request.contextPath}/stylesheets/game-modal.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-    <script src="${pageContext.request.contextPath}/js/game-modal.js" defer></script>
-    <script src="${pageContext.request.contextPath}/js/game-search.js" defer></script>
+    <script type="module" src="${pageContext.request.contextPath}/js/game-search.js" defer></script>
 </head>
 <body>
 
     <%@include file="fragments/sidebar.jspf" %>
 
-    <main id="main" onclick="hideNav()">
-        <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
+    <main id="main">
+        <button class="nav-bar-button" >&#9776;</button>
         <section class="games-area">
             <h1>Games Area</h1>
             <c:if test="${requestScope.user.isAdmin}">
                 <button id="add-game-button" class="primary-button">+</button>
             </c:if>
-            <input id="game-searchbar" type="text" placeholder="Search..." onkeydown="executeGameSearch()"/>
+            <input id="game-searchbar" type="text" placeholder="Search..."/>
             <div id="game-list"></div>
         </section>
         <c:if test="${requestScope.user.isAdmin}">
@@ -39,7 +38,7 @@
                     <h2>Create new Game</h2>
                     <input name="title" type="text" placeholder="Name of new Game" required/>
                     <button type="submit">Send</button>
-                    <div class="game-creation-modal-close" onclick="closeModal()">X</div>
+                    <div class="game-creation-modal-close">X</div>
                 </form>
             </section>
         </c:if>

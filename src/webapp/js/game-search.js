@@ -1,5 +1,6 @@
 // Authors: Daniel Mehlber
 
+import {openModal, closeModal} from "./game-modal.js";
 
 /**
  * converts user JSON into HTML. Expected JSON:
@@ -46,7 +47,13 @@ function executeGameSearch() {
 function setupAddGameButton() {
     let button = document.getElementById("add-game-button");
     button.addEventListener("click", openModal);
+    document.getElementById("game-creation-modal").addEventListener("click", closeModal)
 }
 
-executeGameSearch()
-setupAddGameButton()
+function init() {
+    executeGameSearch()
+    setupAddGameButton()
+    document.getElementById("game-searchbar").addEventListener("keyup", executeGameSearch);
+}
+
+document.addEventListener("DOMContentLoaded", init);
