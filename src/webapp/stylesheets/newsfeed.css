@@ -21,14 +21,15 @@
 }
 
 .newsfeed-item {
-    height:  fit-content;
+    height: fit-content;
     width: fit-content;
     color: white;
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
         "images description"
         "images date";
     grid-template-columns: 90px auto;
+    grid-column-gap: 10px;
     margin-bottom: 10px;
 }
 
@@ -36,6 +37,7 @@
     grid-area: images;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .newsfeed-item .news-description {
@@ -69,5 +71,6 @@
     border-style: solid;
     border-color: var(--main-fg-color);
     margin: 5px 0px;
-    margin-right: -15px;
+    margin-right: -7px;
+    margin-left: -7px;
 }

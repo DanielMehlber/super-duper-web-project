@@ -17,6 +17,15 @@ public class Member {
     @ResultSetMapping("role")
     private String role;
 
+    public Member() {}
+
+    public Member(final String username, final Long teamId, String since, String role) {
+        this.role = role;
+        this.username = username;
+        this.teamId = teamId;
+        this.since = since;
+    }
+
     public String getUsername() {
         return username;
     }

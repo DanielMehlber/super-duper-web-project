@@ -4,6 +4,7 @@ import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.newsfeed.db.NewsfeedRepository;
 import com.esports.manager.newsfeed.entities.NewsfeedItem;
 import com.esports.manager.newsfeed.factory.NewsfeedFactory;
+import com.esports.manager.teams.entities.Member;
 import com.esports.manager.teams.entities.Team;
 import com.esports.manager.userManagement.entities.User;
 import org.apache.logging.log4j.LogManager;
@@ -53,6 +54,18 @@ public class NewsfeedLogic {
      */
     public static void registerTeamCreation(final Team team) throws InternalErrorException {
         NewsfeedItem item = NewsfeedFactory.newTeamCreatedNews(new Date(), team);
+        NewsfeedRepository.persistNewsfeedItem(item);
+    }
+
+    /**
+     * Creates newsfeed item when a user joined a team
+     * @param team team the user joined to
+     * @param member member that joined the team
+     * @throws InternalErrorException database error
+     * @author Daniel Mehlber
+     */
+    public static void registerNewMemberOfTeam(final Team team, final User member) throws InternalErrorException {
+        NewsfeedItem item = NewsfeedFactory.memberJoinedTeam(new Date(), team, member);
         NewsfeedRepository.persistNewsfeedItem(item);
     }
 

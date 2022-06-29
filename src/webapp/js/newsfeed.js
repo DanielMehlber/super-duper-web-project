@@ -41,6 +41,31 @@ function generatePlayerRegisteredNewsHTML(item) {
 }
 
 /**
+ * Generates news feed item for a user registration
+ * @param item.player1 id of player who has joined
+ * @param item.team1 id of team that the player has joined
+ * @param item.date date of join
+ */
+function generatePlayerJoinedTeamHTML(item) {
+    let tadaEmoji = "&#x1F389;";
+    let s = `
+    <div class="newsfeed-item">
+         <div class="newsfeed-images">
+              <img src="users/images?user=${item.player1}"/>
+              <img src="teams/images?id=${item.team1}"/>
+         </div>
+         <div class="news-description">
+             ` + tadaEmoji + ` Player @<a href="profile?username=${item.player1}" class="player-ref">${item.player1}</a> has joined a new team! ` + tadaEmoji + `
+         </div>
+         <div class="news-time">
+             ${formatDate(new Date(item.date))}
+         </div>
+    </div>`
+
+    return s
+}
+
+/**
  * generates html of newsfeed item for newly created teams
  * @param item.team1
  * @param item.date
@@ -75,6 +100,10 @@ function addNewsfeedItem(item) {
             break
         case "team-created":
             html = generateTeamCreatedNewsHTML(item)
+            break
+        case "member-join-team":
+            html = generatePlayerJoinedTeamHTML(item)
+            break
     }
 
     let newsfeed = document.getElementById("newsfeed")

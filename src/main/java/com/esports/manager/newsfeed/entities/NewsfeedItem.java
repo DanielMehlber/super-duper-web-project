@@ -13,6 +13,7 @@ public class NewsfeedItem implements Serializable {
 
     public static final String TYPE_PLAYER_JOIN = "player-join";
     public static final String TYPE_TEAM_CREATED = "team-created";
+    public static final String TYPE_MEMBER_JOINED_TEAM = "member-join-team";
 
     @ResultSetMapping("id")
     private Long id;

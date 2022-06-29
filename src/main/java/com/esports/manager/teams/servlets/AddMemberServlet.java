@@ -2,8 +2,10 @@ package com.esports.manager.teams.servlets;
 
 import com.esports.manager.teams.TeamManagement;
 import com.esports.manager.teams.beans.AddMemberViewBean;
+import com.esports.manager.teams.exceptions.NoSuchTeamException;
 import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.userManagement.entities.User;
+import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -64,7 +66,14 @@ public class AddMemberServlet extends HttpServlet {
         String role = req.getParameter("position");
         java.sql.Date since = new Date(System.currentTimeMillis());
 
-        TeamManagement.addUserToTeam(username, teamId, role, since);
+        try {
+            TeamManagement.addUserToTeam(username, teamId, role, since);
+        } catch (NoSuchTeamException e) {
+            // TODO: Maxi handle this
+        } catch (NoSuchUserException e) {
+            // TODO: Maxi handle this
+        }
+
         RequestDispatcher rq = req.getRequestDispatcher(getServletContext().getContextPath() + "/teams/team?id="+ teamId);
         resp.sendRedirect(getServletContext().getContextPath() + "/teams/team?id="+ teamId);
     }
