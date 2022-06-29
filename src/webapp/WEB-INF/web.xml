@@ -16,4 +16,10 @@
         <location>/index</location>
         <exception-type>com.esports.manager.userManagement.exceptions.UnauthorizedException</exception-type>
     </error-page>
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/jsp/notFoundError.jsp</location>
+    </error-page>
+    
 </web-app>
