@@ -11,8 +11,6 @@
     <link href="${pageContext.request.contextPath}/stylesheets/ProfilePage.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-
-    <script src="${pageContext.request.contextPath}/js/removeUserConfirmation.js" defer></script>
     <script src="${pageContext.request.contextPath}/js/profile.js"></script>
 </head>
 <body>
@@ -47,7 +45,7 @@
                       method="POST" enctype="multipart/form-data">
                     <label class="input-profile-label">
                         Upload Image
-                        <input class="profile-image-input" type="file" name="profile" oninput="updateProfileImage()" accept="image/*">
+                        <input class="profile-image-input" type="file" name="profile" accept="image/*">
                     </label>
                 </form>
             </c:if>
