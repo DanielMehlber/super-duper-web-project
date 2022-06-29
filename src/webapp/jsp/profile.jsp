@@ -60,7 +60,6 @@
             </a>
         </c:if>
         <noscript>Your Browser does not support JavaScript</noscript>
-        <a href="impressum.jsp">Impressum</a>
     </section>
 </main>
 </body>
