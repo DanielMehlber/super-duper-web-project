@@ -5,6 +5,9 @@
  * @param date date string
  * @returns {string} a formatted version of date
  */
+
+"use strict";
+
 function formatDate(date) {
     const formattedDate = date.toLocaleString("en-GB", {
         day: "numeric",

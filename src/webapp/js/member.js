@@ -7,6 +7,9 @@
  * @param user.nickname nickname of user
  * @param user.teamIds list of team ids the user is member of
  */
+
+"use strict";
+
 function generateUserCardHtml(user) {
     let html =
         `<div class="member-card">

@@ -1,3 +1,6 @@
+//Authors:
+"use strict";
+
 function checkPassword () {
     let password = document.getElementsByName('password')[0];
     let confirmPassword = document.getElementsByName('confirmPassword')[0];

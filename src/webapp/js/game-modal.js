@@ -1,4 +1,5 @@
 // Authors: Daniel Mehlber
+"use strict";
 
 function openModal() {
     const main = document.getElementById("main");
