@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="${pageContext.request.contextPath}/"/>
-    <title>Players</title>
+    <title>Search Games</title>
     <link href="stylesheets/Elements.css" rel="stylesheet"/>
     <link href="stylesheets/game-search.css" rel="stylesheet"/>
     <link href="stylesheets/game-modal.css" rel="stylesheet"/>

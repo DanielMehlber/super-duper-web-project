@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="stylesheets/game.css"/>
     <link rel="stylesheet" href="stylesheets/game-edit.css"/>
     <link rel="stylesheet" href="stylesheets/game-modal.css"/>
-    <title>Games</title>
+    <title>${requestScope.gamePageViewBean.game.name} | Edit</title>
 </head>
 <body>
 <script src="js/game-edit.js"></script>

@@ -28,6 +28,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * collection of methods that will be used in user management
@@ -176,6 +177,9 @@ public class UserManagement {
      */
     private static boolean isValidUsername(String username) {
         if (username == null || username.isBlank()) return false;
+        if(!username.matches("^[a-zA-Z_\\d]*$")) {
+            return false;
+        }
         // we restrict the username to be 30 char at max in the db
         return username.length() < 30;
     }

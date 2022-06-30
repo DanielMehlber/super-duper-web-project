@@ -2,6 +2,7 @@ package com.esports.manager.games;
 
 import com.esports.manager.games.db.GamesRepository;
 import com.esports.manager.games.entities.Game;
+import com.esports.manager.games.exceptions.GameDataInsufficientException;
 import com.esports.manager.games.exceptions.NoSuchGameException;
 import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.teams.entities.Team;
@@ -9,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Implements logic for games management
@@ -23,10 +25,16 @@ public class Games {
         return GamesRepository.fetchById(id);
     }
 
-    public static void updateGame(final long id, final String name, final String description) throws InternalErrorException, NoSuchGameException {
+    public static void updateGame(final long id, final String name, final String description) throws InternalErrorException, NoSuchGameException, GameDataInsufficientException {
         Game current = GamesRepository.fetchById(id);
         current.setName(name);
         current.setDescription(description);
+
+        if(!isGameDataValid(current)) {
+            log.warn("cannot update game: passed game data was not sufficient and cannot be accepted");
+            throw new GameDataInsufficientException();
+        }
+
         GamesRepository.update(current);
     }
 
@@ -39,10 +47,16 @@ public class Games {
         return GamesRepository.search(term);
     }
 
-    public static Game createGame(final String name, final String description) throws InternalErrorException {
+    public static Game createGame(final String name, final String description) throws InternalErrorException, GameDataInsufficientException {
         Game game = new Game();
         game.setName(name);
         game.setDescription(description);
+
+        if(!isGameDataValid(game)) {
+            log.warn("cannot create new game: game data is not sufficient");
+            throw new GameDataInsufficientException();
+        }
+
         GamesRepository.create(game);
         return game;
     }
@@ -95,5 +109,28 @@ public class Games {
         }
 
         return game;
+    }
+
+    /**
+     * Checks if passed game data is valid
+     * @author Daniel Mehlber
+     */
+    public static boolean isGameDataValid(final Game game) {
+        final String multiLineText = "^[-,.\\w\\s:;\\(\\)!?]*$";
+        final String singeLineText = "^[-,.\\w :;!?]*$";
+
+        // check game description
+        if(!Pattern.matches(multiLineText, game.getDescription())) {
+            log.warn("game data is not valid: description contains forbidden characters");
+            return false;
+        }
+
+        // check game name
+        if(!Pattern.matches(singeLineText, game.getName())) {
+            log.warn("game data is not valid: name contains forbidden characters");
+            return false;
+        }
+
+        return true;
     }
 }
