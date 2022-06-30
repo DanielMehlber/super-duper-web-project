@@ -44,7 +44,7 @@
                 <img class="game-cover-image" src="${pageContext.request.contextPath}/games/images?id=${requestScope.gamePageViewBean.game.id}&type=profile" alt="cover of game"/>
             </form>
             <form method="post" class="game-title-container" accept-charset="utf-8" action="${pageContext.request.contextPath}/games/game/edit?id=${requestScope.gamePageViewBean.game.id}&item=title">
-                <input name="value" type="text" value="${requestScope.gamePageViewBean.game.name}"/>
+                <input name="value" type="text" value="${requestScope.gamePageViewBean.game.name}" maxlength="64"/>
                 <button type="submit">&#128504;</button>
                 <input type="hidden" value="edit" name="mode"/>
             </form>
