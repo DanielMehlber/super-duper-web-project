@@ -75,13 +75,14 @@ function generatePlayerJoinedTeamHTML(item) {
  * @returns {string}
  */
 function generateTeamCreatedNewsHTML(item) {
+    let tadaEmoji = "&#x1F389;";
     let s = `
     <div class="newsfeed-item">
          <div class="newsfeed-images">
               <img src="teams/images?id=${item.team1}" alt="team logo"/>
          </div>
          <div class="news-description">
-            '\u1F389' <a href="teams/team?id=${item.team1}" class="player-ref">A new Team </a> has been founded '\u1F389' Click <a href="teams/team?id=${item.team1}" class="player-ref">here</a> to join
+            ` + tadaEmoji + ` <a href="teams/team?id=${item.team1}" class="player-ref">A new Team </a> has been founded` + tadaEmoji + `Click <a href="teams/team?id=${item.team1}" class="player-ref">here</a> to join
          </div>
          <div class="news-time">
              ${formatDate(new Date(item.date))}
