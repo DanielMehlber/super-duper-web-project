@@ -102,6 +102,10 @@ Author: Maximilian Rublik
     line-height: 50px;
 }
 
+.image-input {
+    display: none;
+}
+
 .enter-button {
     grid-area: enter-button;
     width: 397px;
