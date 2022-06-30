@@ -42,8 +42,9 @@ public class TeamServlet extends HttpServlet {
 
         try {
             id = Long.parseLong(req.getParameter("id"));
-            teamViewBean.setTeam(TeamRepository.getTeamById(id));
-            teamViewBean.setMembers(TeamRepository.getMemberByTeamId(id));
+
+            teamViewBean.setTeam(TeamManagement.getTeamById(id));
+            teamViewBean.setMembers(TeamManagement.fetchMembersByTeamId(id));
 
             if (loggedinUser.getUsername().equals(TeamManagement.fetchTeamLeaderByTeamId(id).getUsername())) {
                 teamViewBean.setIsTeamLeader(true);

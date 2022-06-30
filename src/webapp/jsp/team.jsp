@@ -29,6 +29,10 @@
                     <h1 class="team-title">${teamViewBean.team.name}</h1>
                     <h3 class="team-slogan">${teamViewBean.team.slogan}</h3>
 
+                    <div >
+
+                    </div>
+
                     <c:if test="${teamViewBean.isTeamLeader}">
                         <form method="POST" action="${pageContext.request.contextPath}/teams/removeTeam" onsubmit="return confirm('Do you really want to delete this team?')">
                             <button class="remove-team-button" type="submit">X</button>
@@ -39,7 +43,7 @@
 
                 <table>
                     <tr class="header-row">
-                        <th>Playername</th>
+                        <th>Player name</th>
                         <th>Since</th>
                         <th>Position</th>
                         <th><button id="add-member-button" class="primary-button">+</button>

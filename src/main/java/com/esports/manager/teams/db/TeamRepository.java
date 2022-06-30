@@ -92,7 +92,7 @@ public class TeamRepository {
         return teamleader.get(0);
     }
 
-    public static List<Member> getMemberByTeamId(final long id) throws InternalErrorException {
+    public static List<Member> getMembersByTeamId(final long id) throws InternalErrorException {
         log.debug("fetch members by teamId");
 
         List<Member> members;

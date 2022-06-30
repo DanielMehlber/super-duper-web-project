@@ -39,9 +39,13 @@ public class TeamManagement {
        return TeamRepository.getAllTeams();
     }
 
+    public static Team getTeamById(Long id) throws InternalErrorException {
+        return TeamRepository.getTeamById(id);
+    }
+
     public static List<Member> fetchMembersByTeamId(final long id) throws InternalErrorException {
         log.debug("fetch members by teamId...");
-        List<Member> members = TeamRepository.getMemberByTeamId(id);
+        List<Member> members = TeamRepository.getMembersByTeamId(id);
         return members;
     }
 
