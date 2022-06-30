@@ -1,6 +1,7 @@
 package com.esports.manager.teams.beans;
 
 import com.esports.manager.global.exceptions.InternalErrorException;
+import com.esports.manager.teams.TeamManagement;
 import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.teams.entities.Member;
 import com.esports.manager.teams.entities.Team;
@@ -46,7 +47,7 @@ public class TeamsViewBean implements Serializable
 
     public void setTeams(List<Team> teams) throws InternalErrorException {
         for (Team team : teams) {
-            getTeams().put(team, TeamRepository.getMemberByTeamId(team.getId()));
+            getTeams().put(team, TeamManagement.fetchMembersByTeamId(team.getId()));
         }
     }
 
