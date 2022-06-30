@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/Elements.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/loginPage.css">
     <script src="${pageContext.request.contextPath}/js/cookieCheck.js" defer></script>
-
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>

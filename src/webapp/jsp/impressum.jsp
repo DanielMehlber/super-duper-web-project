@@ -6,13 +6,12 @@
 <head>
     <title>Impressum</title>
     <meta charset="UTF-8">
-    <base href="${pageContext.request.requestURI}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="${pageContext.request.requestURI}"/>
     <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/stylesheets/Impressum.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-    <script src="${pageContext.request.contextPath}/js/removeUserConfirmation.js" defer></script>
 </head>
 <body>
 <%@include file="fragments/sidebar.jspf" %>

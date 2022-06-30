@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/Elements.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/RegistrationPage.css">
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/registration.js"></script>
-        <noscript>JavaScript not enabled</noscript>
+
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     </head>
     <body>
@@ -35,6 +35,7 @@
                 <button name="registerButton" class="enter-button">Join us</button>
                 <a class="login-redirect" href="${pageContext.request.contextPath}/login">Already a member?</a>
         	</form>
+            <noscript>JavaScript not enabled</noscript>
         </main>
     </body>
 </html>

@@ -11,7 +11,6 @@
     <link href="${pageContext.request.contextPath}/stylesheets/ProfilePage.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-
     <script src="${pageContext.request.contextPath}/js/profile.js" defer></script>
 </head>
 <body>

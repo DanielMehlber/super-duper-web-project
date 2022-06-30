@@ -9,6 +9,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <base href="${pageContext.request.requestURI}"/>
         <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet"/>
         <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
         <link href="${pageContext.request.contextPath}/stylesheets/TeamPage.css" rel="stylesheet"/>
