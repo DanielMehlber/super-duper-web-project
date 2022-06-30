@@ -18,7 +18,6 @@
 	<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
-	<noscript>Javascript deactivated!</noscript>
 	<script src="${pageContext.request.contextPath}/js/teams.js" defer></script>
 	<script src="${pageContext.request.contextPath}/js/addNewTeam.js" defer></script>
 	<%@include file="fragments/sidebar.jspf" %>
@@ -53,20 +52,21 @@
 
 				<label class="team-logo-label">
 					UPLOAD LOGO
-					<input name="profile" class="team-logo-input" onchange="checkProfile()" type="file" accept="image/*"/>
+					<input name="profile" class="image-input" type="file" accept="image/*"/>
 				</label>
 
 				<label class="background-label">
 					BACKGROUND
-					<input name="background" class="background-input" onchange="checkBackground()" type="file" accept="image/*"/>
+					<input name="background" class="image-input" type="file" accept="image/*"/>
 				</label>
 
 				<button class="enter-button" type="submit" name="enter-button">Save</button>
-				<div class="team-creation-modal-close" onclick="closeModal()">X</div>
+				<div class="team-creation-modal-close">X</div>
 			</form>
 		</section>
 	</main>
 
 	<footer></footer>
+	<noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
 </body>
 </html>
