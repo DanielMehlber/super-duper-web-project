@@ -1,5 +1,6 @@
 package com.esports.manager.teams.beans;
 
+import com.esports.manager.games.entities.Game;
 import com.esports.manager.teams.entities.Member;
 import com.esports.manager.teams.entities.Team;
 
@@ -11,6 +12,10 @@ import java.util.List;
  */
 public class TeamViewBean implements Serializable {
     private String errorMessage;
+
+    private Game game;
+
+    private boolean hasGame;
 
     private Team team;
 
@@ -48,5 +53,24 @@ public class TeamViewBean implements Serializable {
 
     public void setIsTeamLeader(boolean isTeamLeader) {
         this.isTeamLeader = isTeamLeader;
+    }
+
+    public Game getGame() {
+        return this.game;
+    }
+
+    public void setGame(Game game) {
+        if (game != null) {
+            this.game = game;
+            setHasGame(true);
+        }
+    }
+
+    public boolean getHasGame() {
+        return hasGame;
+    }
+
+    public void setHasGame(boolean hasGame) {
+        this.hasGame = hasGame;
     }
 }

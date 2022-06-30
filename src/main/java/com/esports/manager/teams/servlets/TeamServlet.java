@@ -1,5 +1,6 @@
 package com.esports.manager.teams.servlets;
 
+import com.esports.manager.games.Games;
 import com.esports.manager.teams.TeamManagement;
 import com.esports.manager.teams.beans.AddMemberViewBean;
 import com.esports.manager.teams.beans.TeamViewBean;
@@ -33,25 +34,26 @@ public class TeamServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User loggedinUser = UserManagement.getAuthorizedUser(req.getSession());
+        User loggedInUser = UserManagement.getAuthorizedUser(req.getSession());
         resp.setContentType("text/html;charset=UTF-8");
-        Long id;
+        Long teamId;
 
         AddMemberViewBean addMemberViewBean = new AddMemberViewBean();
         TeamViewBean teamViewBean = new TeamViewBean();
 
         try {
-            id = Long.parseLong(req.getParameter("id"));
+            teamId = Long.parseLong(req.getParameter("id"));
 
-            teamViewBean.setTeam(TeamManagement.getTeamById(id));
-            teamViewBean.setMembers(TeamManagement.fetchMembersByTeamId(id));
+            teamViewBean.setTeam(TeamManagement.getTeamById(teamId));
+            teamViewBean.setMembers(TeamManagement.fetchMembersByTeamId(teamId));
+            teamViewBean.setGame(Games.getGameByTeamId(teamId));
 
-            if (loggedinUser.getUsername().equals(TeamManagement.fetchTeamLeaderByTeamId(id).getUsername())) {
+            if (loggedInUser.getUsername().equals(TeamManagement.fetchTeamLeaderByTeamId(teamId).getUsername())) {
                 teamViewBean.setIsTeamLeader(true);
             }
 
-            addMemberViewBean.setUsers(UserManagement.fetchUserNotAlreadyMember(id));
-            addMemberViewBean.setTeamId(id);
+            addMemberViewBean.setUsers(UserManagement.fetchUserNotAlreadyMember(teamId));
+            addMemberViewBean.setTeamId(teamId);
 
         } catch (NumberFormatException e) {
             log.fatal("there was a problemS casting the id parameter...");

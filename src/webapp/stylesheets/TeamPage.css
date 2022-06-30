@@ -2,12 +2,16 @@
 Author: Maximilian Rublik
  */
 
+main {
+    flex-direction: column;
+}
+
 .info-area {
     background-color: #1D274C;
     border-radius: 4px;
     display: grid;
     width: 1050px;
-    margin: auto;
+    margin: 100px auto 0px auto;
     align-content: center;
     align-items: center;
     padding: 50px;
@@ -23,7 +27,6 @@ th {
     border-bottom: 2px solid #000000;
     border-collapse: collapse;
 }
-
 
 .head-information {
     margin-bottom: 20px;
@@ -103,6 +106,24 @@ tr {
 
 .header-row {
     border-bottom: solid 1px #000000;
+}
+
+.game-area {
+    display: grid;
+    width: 1050px;
+    margin: 0px auto;
+    align-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.game-container {
+    background-color: #1D274C;
+    border-radius: 4px;
+}
+
+.game-title {
+    text-decoration: underline;
 }
 
 h1, h2, h3{

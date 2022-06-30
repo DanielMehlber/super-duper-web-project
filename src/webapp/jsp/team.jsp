@@ -63,6 +63,15 @@
                 </table>
             </div>
 
+            <c:if test="${teamViewBean.hasGame}">
+                <section class="game-area">
+                    <h2>Played Game</h2>
+                    <div class="game-container">
+                        <label class="game-title">${teamViewBean.game.name}</label>
+                    </div>
+                </section>
+            </c:if>
+
             <section id="add-member-modal" class="add-member-modal-container">
                 <form class="add-member-modal" action="${pageContext.request.contextPath}/teams/addmember" method="POST">
                     <h2 id="add-member-title">Add member</h2>
