@@ -11,9 +11,7 @@ main {
     border-radius: 4px;
     display: grid;
     width: 1050px;
-    margin: 100px auto 0px auto;
-    align-content: center;
-    align-items: center;
+    margin: 100px auto 50px auto;
     padding: 50px;
 }
 
@@ -110,20 +108,47 @@ tr {
 
 .game-area {
     display: grid;
-    width: 1050px;
     margin: 0px auto;
     align-content: center;
     align-items: center;
-    padding: 50px;
+    row-gap: 15px;
 }
 
 .game-container {
     background-color: #1D274C;
     border-radius: 4px;
+    width: 1050px;
+    height: 150px;
+    display: grid;
+    padding: 50px;
+    grid-template-areas:
+        "Logo Title"
+        "Logo Description";
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
+
+.game-cover-image {
+    height: 150px;
+    width: 150px;
+    border-width: 2px;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: var(--main-fg-color);
+    grid-area: Logo;
 }
 
 .game-title {
+    grid-area: Title;
     text-decoration: underline;
+}
+
+.game-description {
+    grid-area: Description;
 }
 
 h1, h2, h3{

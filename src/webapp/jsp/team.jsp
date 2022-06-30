@@ -67,7 +67,9 @@
                 <section class="game-area">
                     <h2>Played Game</h2>
                     <div class="game-container">
+                        <img alt="game logo" class="game-cover-image" src="${pageContext.request.contextPath}/games/images?id=${teamViewBean.game.id}&type=profile">
                         <label class="game-title">${teamViewBean.game.name}</label>
+                        <label class="game-description">${teamViewBean.game.description}</label>
                     </div>
                 </section>
             </c:if>
