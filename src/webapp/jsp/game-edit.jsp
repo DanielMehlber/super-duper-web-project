@@ -18,7 +18,7 @@
 <script src="${pageContext.request.contextPath}/js/newsfeed.js"></script>
 <%@include file="fragments/sidebar.jspf" %>
 <main id="main" onclick="hideNav()">
-    <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
+    <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
     <div class="game-edit-buttons-container">
         <a href="${pageContext.request.contextPath}/games/game?id=${requestScope.gamePageViewBean.game.id}&mode=view" class="game-view-button button">&#128065;</a>
         <form method="post" action="${pageContext.request.contextPath}/games/game/edit" onsubmit="return confirm('Do you really want to delete this game?')" >

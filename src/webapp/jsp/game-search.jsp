@@ -24,7 +24,7 @@
     <%@include file="fragments/sidebar.jspf" %>
 
     <main id="main" onclick="hideNav()">
-        <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
+        <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
         <section class="games-area">
             <h1>Games Area</h1>
             <c:if test="${requestScope.user.isAdmin}">
