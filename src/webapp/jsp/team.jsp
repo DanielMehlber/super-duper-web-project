@@ -22,7 +22,7 @@
         <script src="js/team.js" defer></script>
         <%@include file="fragments/sidebar.jspf" %>
 
-        <main id="main" onclick="hideNav()">
+        <main id="main">
             <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
             <div class="info-area">
                 <div class="head-information">
@@ -89,7 +89,7 @@
 
 
                     <button id="add-selected-member-button" class="primary-button">Add</button>
-                    <div class="add-member-modal-close" onclick="closeModal()">X</div>
+                    <div class="add-member-modal-close">X</div>
                 </form>
             </section>
         </main>
