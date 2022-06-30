@@ -82,6 +82,7 @@ footer {
     border-color: var(--main-fg-color);
     border-style: solid;
     transition: box-shadow 0.3s;
+    object-fit: cover;
 }
 
 .profile-image > img:hover {
