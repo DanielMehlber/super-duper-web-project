@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class Games {
 
+    // TODO: Documentation (Daniel)
     private static final Logger log = LogManager.getLogger(Games.class);
 
     public static Game fetchById(long id) throws NoSuchGameException, InternalErrorException {

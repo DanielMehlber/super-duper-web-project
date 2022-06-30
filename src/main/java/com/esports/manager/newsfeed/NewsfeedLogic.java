@@ -4,7 +4,6 @@ import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.newsfeed.db.NewsfeedRepository;
 import com.esports.manager.newsfeed.entities.NewsfeedItem;
 import com.esports.manager.newsfeed.factory.NewsfeedFactory;
-import com.esports.manager.teams.entities.Member;
 import com.esports.manager.teams.entities.Team;
 import com.esports.manager.userManagement.entities.User;
 import org.apache.logging.log4j.LogManager;
@@ -25,7 +24,7 @@ public class NewsfeedLogic {
      * Fetch a specific amount of newsfeed items before the passed date.
      * @param before fetched items are until that date (exclusive)
      * @param count max amount of items that will be fetched
-     * @return list of newfeed items
+     * @return list of newsfeed items
      * @throws InternalErrorException database error; SQL error
      * @author Daniel Mehlber
      */

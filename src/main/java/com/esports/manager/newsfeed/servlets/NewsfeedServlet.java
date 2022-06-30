@@ -45,8 +45,8 @@ public class NewsfeedServlet extends HttpServlet {
      * @param req an {@link HttpServletRequest} object that contains the request the client has made of the servlet
      * @param resp an {@link HttpServletResponse} object that contains the response the servlet sends to the client
      *
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException user is unauthorized; internal error occurred
+     * @throws IOException IO error
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -66,7 +66,7 @@ public class NewsfeedServlet extends HttpServlet {
         } else {
             // convert passed date string to date
             try {
-                beforeDate = new SimpleDateFormat("yyyy-MM-ddTHH:mm:SS").parse(beforeDateParameter);
+                beforeDate = new SimpleDateFormat("yyyy-MM-ddTHH:mm:ss").parse(beforeDateParameter);
             } catch (ParseException e) {
                 log.warn(String.format("cannot fetch newsfeed: user '%s' passed date with invalid format '%s'",
                         user.getUsername(), beforeDateParameter));
@@ -86,9 +86,9 @@ public class NewsfeedServlet extends HttpServlet {
             return;
         }
 
-        int amount = 0;
+        int amount;
         try {
-            amount = Integer.valueOf(amountParameter);
+            amount = Integer.parseInt(amountParameter);
         } catch (NumberFormatException e) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
             resp.getWriter().println("parameter 'amount' must be a number");

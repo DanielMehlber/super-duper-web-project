@@ -15,6 +15,10 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
+/**
+ * Controller for the creation of a new servlet.
+ * @author Daniel Mehlber
+ */
 @WebServlet("/games/new")
 public class GameCreationServlet extends HttpServlet {
 

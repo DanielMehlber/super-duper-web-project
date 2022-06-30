@@ -8,6 +8,7 @@ import java.util.Objects;
 
 /**
  * Entity for Game object
+ * @author Daniel Mehlber
  */
 public class Game implements Serializable {
 
