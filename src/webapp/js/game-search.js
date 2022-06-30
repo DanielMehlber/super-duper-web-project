@@ -1,12 +1,14 @@
 // Authors: Daniel Mehlber
 
-
 /**
  * converts user JSON into HTML. Expected JSON:
  * 
  * @param game.id id of game
  * @param game.title title of game
  */
+
+"use strict";
+
 function generateGameCardHtml(game) {
     let html =
         `<div class="game-card">
