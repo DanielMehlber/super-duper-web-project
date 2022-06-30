@@ -83,7 +83,8 @@
                         </c:forEach>
                     </select>
                     <input type="hidden" name="teamId" value="${addMemberViewBean.teamId}">
-                    <input type="text" class="position-field" name="position" placeholder="position" autofocus="autofocus"/>
+                    <input type="text" class="position-field" name="position" placeholder="position" autofocus="autofocus" maxlength="30"/>
+
 
                     <button id="add-selected-member-button" class="primary-button">Add</button>
                     <div class="add-member-modal-close" onclick="closeModal()">X</div>

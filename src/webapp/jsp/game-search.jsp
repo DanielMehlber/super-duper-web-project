@@ -24,7 +24,7 @@
     <%@include file="fragments/sidebar.jspf" %>
 
     <main id="main" onclick="hideNav()">
-        <button class="nav-bar-button" onmouseover="toggleNav()">☰</button>
+        <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
         <section class="games-area">
             <h1>Games Area</h1>
             <c:if test="${requestScope.user.isAdmin}">
@@ -37,7 +37,7 @@
             <section id="game-creation-modal" class="game-creation-modal-container">
                 <form class="game-creation-modal" action="${pageContext.request.contextPath}/games/new" method="post">
                     <h2>Create new Game</h2>
-                    <input name="title" type="text" placeholder="Name of new Game" required/>
+                    <input name="title" type="text" placeholder="Name of new Game" required maxlength="64"/>
                     <button type="submit">Send</button>
                     <div class="game-creation-modal-close" onclick="closeModal()">X</div>
                 </form>

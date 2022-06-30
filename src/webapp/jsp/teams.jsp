@@ -43,13 +43,13 @@
 		<section id="team-creation-modal" class="team-creation-modal-container">
 			<form class="team-creation-modal" action="${pageContext.request.contextPath}/teams/addnewteam" method="POST" enctype="multipart/form-data">
 				<h2 id="add-team-header">Add team</h2>
-				<input name="name" class="team-name-input" type="text" placeholder="team name" required/>
-				<input name="slogan" class="slogan-input" type="text" placeholder="slogan"/>
+				<input name="name" class="team-name-input" type="text" placeholder="team name" required maxlength="50"/>
+				<input name="slogan" class="slogan-input" type="text" placeholder="slogan" maxlength="255"/>
 
 				<select name="selection" id="add-team-game-selection" class="add-team-modal-game-selection">
 					<option selected value>none</option>
 				</select>
-				<textarea name="tags" class="tags-textarea" placeholder="Insert tags comma ' , ' seperated"></textarea>
+				<textarea name="tags" class="tags-textarea" placeholder="Insert tags comma ' , ' seperated" maxlength="255"></textarea>
 
 				<label class="team-logo-label">
 					UPLOAD LOGO
