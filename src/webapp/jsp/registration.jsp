@@ -10,17 +10,17 @@
     <head>
         <title>Registration</title>
         <meta charset="UTF-8">
-    	<base href="${pageContext.request.requestURI}" />
+        <base href="${pageContext.request.contextPath}/"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/Elements.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/RegistrationPage.css">
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/registration.js"></script>
-        <noscript>JavaScript not enabled</noscript>
+        <link rel="stylesheet" href="stylesheets/Elements.css">
+        <link rel="stylesheet" href="stylesheets/RegistrationPage.css">
+        <script type="text/javascript" src="js/registration.js"></script>
+
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     </head>
     <body>
         <main>
-        	<form class="registration-card" method="POST" action="${pageContext.request.contextPath}/registration">
+        	<form class="registration-card" method="POST" action="registration">
                 <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Logo" class="logo img">
                 <input type="email" name="email" class="email" placeholder="Choose E-Mail" maxlength="40" required>
                 <input type="text" name="username" class="username" placeholder="Choose Username" maxlength="30" required>
@@ -33,8 +33,9 @@
                 
                 <button class="cancel-button" onclick="history.back()">Back</button>
                 <button name="registerButton" class="enter-button">Join us</button>
-                <a class="login-redirect" href="${pageContext.request.contextPath}/login">Already a member?</a>
+                <a class="login-redirect" href="login">Already a member?</a>
         	</form>
+            <noscript>JavaScript not enabled</noscript>
         </main>
     </body>
 </html>

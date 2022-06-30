@@ -9,28 +9,29 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet"/>
-        <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
-        <link href="${pageContext.request.contextPath}/stylesheets/TeamPage.css" rel="stylesheet"/>
-        <link href="${pageContext.request.contextPath}/stylesheets/add-member-modal.css" rel="stylesheet"/>
+        <base href="${pageContext.request.contextPath}/"/>
+        <link href="stylesheets/Elements.css" rel="stylesheet"/>
+        <link href="stylesheets/dashboard.css" rel="stylesheet"/>
+        <link href="stylesheets/TeamPage.css" rel="stylesheet"/>
+        <link href="stylesheets/add-member-modal.css" rel="stylesheet"/>
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
         <title>${teamViewBean.team.name}</title>
     </head>
     <body>
         <noscript>Javascript deactivated!</noscript>
-        <script src="${pageContext.request.contextPath}/js/team.js" defer></script>
+        <script src="js/team.js" defer></script>
         <%@include file="fragments/sidebar.jspf" %>
 
         <main id="main" onclick="hideNav()">
             <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
             <div class="info-area">
                 <div class="head-information">
-                    <img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${teamViewBean.getTeam().getId()}" alt="teamLogo"/>
+                    <img class="team-logo" src="teams/images?type=profile&id=${teamViewBean.getTeam().getId()}" alt="teamLogo"/>
                     <h1 class="team-title">${teamViewBean.team.name}</h1>
                     <h3 class="team-slogan">${teamViewBean.team.slogan}</h3>
 
                     <c:if test="${teamViewBean.isTeamLeader}">
-                        <form method="POST" action="${pageContext.request.contextPath}/teams/removeTeam" onsubmit="return confirm('Do you really want to delete this team?')">
+                        <form method="POST" action="teams/removeTeam" onsubmit="return confirm('Do you really want to delete this team?')">
                             <button class="remove-team-button" type="submit">X</button>
                             <input type="hidden" value="${teamViewBean.team.id}" name="teamId">
                         </form>
@@ -49,9 +50,10 @@
                             <td>${member.username}</td>
                             <td>${member.since}</td>
                             <td>${member.role}</td>
+                            <td><a class="remove-button" href="teams/removemember?teamid=${teamViewBean.getTeam().getId()}&username=${member.username}">-</a></td>
                             <c:if test="${ not member.isTeamLeader}">
                                 <td>
-                                    <form method="POST" action="${pageContext.request.contextPath}/teams/removeMember" onsubmit="return confirm('Do you really want to delete this member from the team?')">
+                                    <form method="POST" action="teams/removeMember" onsubmit="return confirm('Do you really want to delete this member from the team?')">
                                         <button class="remove-button" type="submit">-</button>
                                         <input type="hidden" value="${teamViewBean.getTeam().id}" name="id" />
                                         <input type="hidden" value="${member.username}" name="username" />
@@ -67,7 +69,7 @@
                 <section class="game-area">
                     <h2>Played Game</h2>
                     <div class="game-container">
-                        <img alt="game logo" class="game-cover-image" src="${pageContext.request.contextPath}/games/images?id=${teamViewBean.game.id}&type=profile">
+                        <img alt="game logo" class="game-cover-image" src="games/images?id=${teamViewBean.game.id}&type=profile">
                         <label class="game-title">${teamViewBean.game.name}</label>
                         <label class="game-description">${teamViewBean.game.description}</label>
                     </div>
@@ -75,7 +77,7 @@
             </c:if>
 
             <section id="add-member-modal" class="add-member-modal-container">
-                <form class="add-member-modal" action="${pageContext.request.contextPath}/teams/addmember" method="POST">
+                <form class="add-member-modal" action="teams/addmember" method="POST">
                     <h2 id="add-member-title">Add member</h2>
                     <select id="add-member-user-selection" class="user-selection" name="users" required>
                         <c:forEach items="${addMemberViewBean.users}" var="user">
@@ -91,7 +93,6 @@
                 </form>
             </section>
         </main>
-
         <footer>
         </footer>
     </body>
