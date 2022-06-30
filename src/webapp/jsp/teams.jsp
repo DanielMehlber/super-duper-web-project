@@ -20,6 +20,7 @@
 <body>
 	<noscript>Javascript deactivated!</noscript>
 	<script src="${pageContext.request.contextPath}/js/teams.js" defer></script>
+	<script src="${pageContext.request.contextPath}/js/addNewTeam.js" defer></script>
 	<%@include file="fragments/sidebar.jspf" %>
 
 	<main id="main" onclick="hideNav()">
