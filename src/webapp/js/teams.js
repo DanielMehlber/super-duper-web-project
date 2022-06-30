@@ -6,6 +6,7 @@ Author: Maximilian Rublik
 function setAllEventListener(){
     document.getElementsByClassName("search-input")[0].addEventListener("keyup", executeTeamSearch)
     document.getElementById("add-team-button").addEventListener("click", openModal);
+    document.getElementById("game-filter-selection").addEventListener("change", executeTeamSearch);
 }
 
 /**
@@ -65,12 +66,14 @@ function generateGameOptionHtml(game) {
 
 function executeTeamSearch() {
     const searchbar = document.getElementsByClassName("search-input")[0];
+    const gameFilterSelection = document.getElementById("game-filter-selection");
+    const selectedGameFilter = gameFilterSelection.selectedIndex;
     const searchValue = searchbar.value;
 
     const teamList = document.getElementById("team-list");
     teamList.innerHTML = "";
 
-    fetch("teams/search?un="+searchValue)
+    fetch("teams/search?filter=" + selectedGameFilter + "&un="+searchValue)
         .then(response => response.json())
         .then(teamJson => {
             teamJson.forEach(teamJson => {

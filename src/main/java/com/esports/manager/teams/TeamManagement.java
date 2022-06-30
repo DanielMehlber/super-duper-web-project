@@ -124,7 +124,12 @@ public class TeamManagement {
         }
     }
 
-    public static List<Team> fetchTeamByNamePattern(String teamSearchPattern) throws InternalErrorException{
-        return TeamRepository.fetchAllTeamsWithNamePattern(teamSearchPattern);
+    public static List<Team> fetchTeamByFilterAndNamePattern(String teamSearchPattern, Long gameId) throws InternalErrorException, NoTeamsFoundException {
+        if (gameId == 0 && (teamSearchPattern == null || teamSearchPattern.isBlank())) {
+            return TeamRepository.getAllTeams();
+        } else if (gameId == 0) {
+            return TeamRepository.fetchAllTeamsByNamePattern(teamSearchPattern);
+        }
+        return TeamRepository.fetchAllTeamsByFilterAndWithNamePattern(teamSearchPattern, gameId);
     }
 }

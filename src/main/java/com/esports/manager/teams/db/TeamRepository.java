@@ -320,14 +320,37 @@ public class TeamRepository {
         }
     }
 
-    public static List<Team> fetchAllTeamsWithNamePattern(String teamSearchPattern) throws InternalErrorException {
-       log.debug("loading teams according to search pattern");
+    public static List<Team> fetchAllTeamsByNamePattern(String teamSearchPattern) throws InternalErrorException {
+        log.debug("loading teams according to search pattern");
 
         List<Team> teams;
         //TODO: Statement
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchTeamByNamePattern.sql");
-            Connection connection = pstmt.getConnection()){
+             Connection connection = pstmt.getConnection()){
             pstmt.setString(1, teamSearchPattern);
+            ResultSet resultSet = pstmt.executeQuery();
+
+            teams = ResultSetProcessor.convert(Team.class, resultSet);
+        } catch (IOException | SQLException e) {
+            log.error("cannot fetch users with username pattern because of an unexpected sql error: " + e.getMessage());
+            throw new InternalErrorException("cannot fetch users with username pattern", e);
+        } catch (RuntimeException e) {
+            log.error("cannot fetch users with username pattern because of an unexpected internal error: " + e.getMessage());
+            throw new InternalErrorException("cannot fetch users with username pattern", e);
+        }
+
+        return teams;
+    }
+
+    public static List<Team> fetchAllTeamsByFilterAndWithNamePattern(String teamSearchPattern, Long gameId) throws InternalErrorException {
+        log.debug("loading teams according to search pattern");
+
+        List<Team> teams;
+        //TODO: Statement
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchTeamByFilterAndNamePattern.sql");
+             Connection connection = pstmt.getConnection()){
+            pstmt.setString(1, teamSearchPattern);
+            pstmt.setLong(2, gameId);
             ResultSet resultSet = pstmt.executeQuery();
 
             teams = ResultSetProcessor.convert(Team.class, resultSet);
