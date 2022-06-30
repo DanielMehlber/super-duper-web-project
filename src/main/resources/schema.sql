@@ -1,4 +1,8 @@
 -- Authors: Maximilian Rublik, Daniel Mehlber, Philipp Phan
+
+-- Allow 10MB for images per packet
+SET GLOBAL max_allowed_packet=10 * 1024 * 1024;
+
 CREATE TABLE `user` (
     `username` varchar(30) PRIMARY KEY,
     `email` varchar(40) NOT NULL,
@@ -24,6 +28,7 @@ CREATE TABLE `member` (
     `teamId` BIGINT NOT NULL,
     `since` datetime DEFAULT NULL,
     `role` varchar(30) DEFAULT NULL,
+    `isTeamLeader` tinyint(1) NOT NULL,
     PRIMARY KEY (`teamId`,`username`),
     CONSTRAINT FOREIGN KEY (`teamId`) REFERENCES `team` (`id`) ON DELETE CASCADE,
     CONSTRAINT FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE
@@ -37,10 +42,10 @@ CREATE TABLE `newsfeed` (
     `player2` varchar(30),
     `team1` BIGINT,
     `team2` BIGINT,
-    CONSTRAINT `fk_player1` FOREIGN KEY (player1) REFERENCES user(username) ON DELETE SET NULL,
-    CONSTRAINT `fk_player2` FOREIGN KEY (player2) REFERENCES user(username) ON DELETE SET NULL,
-    CONSTRAINT `fk_team1` FOREIGN KEY (team1) REFERENCES team(id) ON DELETE SET NULL,
-    CONSTRAINT `fk_team2` FOREIGN KEY (team2) REFERENCES team(id) ON DELETE SET NULL
+    CONSTRAINT `fk_player1` FOREIGN KEY (player1) REFERENCES user(username) ON DELETE CASCADE ,
+    CONSTRAINT `fk_player2` FOREIGN KEY (player2) REFERENCES user(username) ON DELETE CASCADE,
+    CONSTRAINT `fk_team1` FOREIGN KEY (team1) REFERENCES team(id) ON DELETE CASCADE,
+    CONSTRAINT `fk_team2` FOREIGN KEY (team2) REFERENCES team(id) ON DELETE CASCADE
 );
 
 CREATE TABLE `game` (

@@ -17,23 +17,20 @@ import java.io.IOException;
  * Servlet for removing members from the system
  * @author Maximilian Rublik
  */
-@WebServlet("teams/removemember")
+@WebServlet("teams/removeMember")
 public class RemoveMemberServlet extends HttpServlet {
     private static final long serialVersionUID = 1;
 
     private final Logger log = LogManager.getLogger(RemoveMemberServlet.class);
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = UserManagement.getAuthorizedUser(req.getSession());
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User loggedInUser = UserManagement.getAuthorizedUser(req.getSession());
 
-        if (user != null) {
-            Long teamId = Long.valueOf(req.getParameter("teamid"));
-            String username = req.getParameter("username");
+        Long teamId = Long.valueOf(req.getParameter("id"));
+        String username = req.getParameter("username");
 
-            TeamManagement.removeUserFromTeam(username, teamId);
-
-            resp.sendRedirect(getServletContext().getContextPath() + "/teams/team?id=" + teamId);
-        }
+        TeamManagement.removeUserFromTeam(username, teamId);
+        resp.sendRedirect(getServletContext().getContextPath() + "/teams/team?id=" + teamId);
     }
 }

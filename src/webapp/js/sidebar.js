@@ -1,4 +1,5 @@
 // Authors: Daniel Mehlber
+"use strict";
 
 document.addEventListener("DOMContentLoaded", initNav)
 

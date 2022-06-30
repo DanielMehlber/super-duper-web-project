@@ -1,4 +1,5 @@
 // Authors: Daniel Mehlber
+"use strict";
 
 export function openModal() {
     const modal = document.getElementById("game-creation-modal");

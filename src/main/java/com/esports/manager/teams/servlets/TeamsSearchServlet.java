@@ -30,17 +30,18 @@ public class TeamsSearchServlet extends HttpServlet {
         final User loggedInUser = UserManagement.getAuthorizedUser(req.getSession());
 
         final String teamSearchPattern = req.getParameter("un");
+        final Long filterSelection = Long.valueOf(req.getParameter("filter"));
 
         List<Team> teams;
-        if (teamSearchPattern == null || teamSearchPattern.isBlank()) {
-            log.debug("team search: no pattern was provided, fetching all teams");
-            try {
-                teams = TeamManagement.fetchAllTeams();
-            } catch (NoTeamsFoundException e) {
-                throw new RuntimeException(e);
+
+        try {
+            if (teamSearchPattern == null || teamSearchPattern.isBlank()) {
+                teams = TeamManagement.fetchTeamByFilterAndNamePattern(".*", filterSelection);
+            } else {
+                teams = TeamManagement.fetchTeamByFilterAndNamePattern(teamSearchPattern, filterSelection);
             }
-        } else {
-            teams = TeamManagement.fetchTeamByNamePattern(teamSearchPattern);
+        } catch (NoTeamsFoundException e) {
+            throw new RuntimeException(e);
         }
 
         StringBuilder jsonBuilder = new StringBuilder("[");

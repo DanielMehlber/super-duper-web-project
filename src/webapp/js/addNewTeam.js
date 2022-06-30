@@ -1,3 +1,6 @@
+//Author: @
+"use strict";
+
 function checkImageSize (input) {
     let saveButton = document.getElementsByName("enter-button")[0];
     const allowedSize = 16 * 1024;

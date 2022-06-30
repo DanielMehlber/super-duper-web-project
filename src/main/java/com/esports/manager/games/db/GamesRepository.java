@@ -257,6 +257,38 @@ public class GamesRepository {
     }
 
     /**
+     * fetch game data which is played by a team
+     *
+     * @param teamId id from the team
+     * @return game played by team
+     *
+     * @author Maximilian Rublik
+     */
+    public static Game fetchGameByTeamId(Long teamId) throws InternalErrorException, NoSuchGameException {
+        log.debug("fetch game by using teamId: " + teamId);
+
+        List<Game> gameList;
+        try (PreparedStatement statement = QueryHandler.loadStatement("/sql/games/fetchGameByTeamId.sql");
+            Connection ignored = statement.getConnection()) {
+            statement.setLong(1, teamId);
+
+            ResultSet resultSet = statement.executeQuery();
+            gameList = ResultSetProcessor.convert(Game.class, resultSet);
+        } catch (SQLException | IOException | InternalErrorException e) {
+            log.error("cannot fetch game by teamId due to an internal error: " + e.getMessage());
+            throw new InternalErrorException("cannot fetch game by teamId", e);
+        }
+
+        if (gameList.isEmpty()) {
+            log.warn("cannot fetch game by teamId: no games in database");
+            throw new NoSuchGameException();
+        }
+
+        log.info("fetched game by teamId");
+        return gameList.get(0);
+    }
+
+    /**
      * Fetches a random game from database (if there are any games in it)
      * @return random game
      * @throws InternalErrorException sql error; internal error; runtime error; connection error

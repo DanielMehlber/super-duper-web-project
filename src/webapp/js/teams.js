@@ -6,6 +6,7 @@ Author: Maximilian Rublik
 function setAllEventListener(){
     document.getElementsByClassName("search-input")[0].addEventListener("keyup", executeTeamSearch)
     document.getElementById("add-team-button").addEventListener("click", openModal);
+    document.getElementById("game-filter-selection").addEventListener("change", executeTeamSearch);
 }
 
 /**
@@ -35,14 +36,44 @@ function generateTeamCardHtml(team) {
     return html;
 }
 
+function loadGames() {
+    const gameSelection = document.getElementById("add-team-game-selection");
+    const gameFilterSelection = document.getElementById("game-filter-selection");
+
+    fetch("games/search?search=")
+        .then(response => response.json())
+        .then(gamesJson => {
+            gamesJson.forEach(gameOption => {
+                const html = generateGameOptionHtml(gameOption)
+                gameSelection.innerHTML += html;
+                gameFilterSelection.innerHTML += html;
+            });
+        });
+}
+
+/**
+ * converts
+ *
+ * @param game.id id of the game
+ * @param game.title title of the game
+ */
+function generateGameOptionHtml(game) {
+    let html =
+        `<option value="` + game.id + `">` + game.title + `</option>`
+
+    return html;
+}
+
 function executeTeamSearch() {
     const searchbar = document.getElementsByClassName("search-input")[0];
+    const gameFilterSelection = document.getElementById("game-filter-selection");
+    const selectedGameFilter = gameFilterSelection.selectedIndex;
     const searchValue = searchbar.value;
 
     const teamList = document.getElementById("team-list");
     teamList.innerHTML = "";
 
-    fetch("teams/search?un="+searchValue)
+    fetch("teams/search?filter=" + selectedGameFilter + "&un="+searchValue)
         .then(response => response.json())
         .then(teamJson => {
             teamJson.forEach(teamJson => {
@@ -65,4 +96,5 @@ function closeModal() {
 document.addEventListener("DOMContentLoaded", setAllEventListener)
 
 executeTeamSearch();
+loadGames();
 closeModal();

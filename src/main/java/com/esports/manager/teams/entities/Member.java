@@ -14,6 +14,9 @@ public class Member {
     @ResultSetMapping("since")
     private String since;
 
+    @ResultSetMapping("isTeamLeader")
+    private Boolean isTeamLeader;
+
     @ResultSetMapping("role")
     private String role;
 
@@ -56,6 +59,14 @@ public class Member {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public boolean getIsTeamLeader() {
+        return this.isTeamLeader;
+    }
+
+    public void setIsTeamLeader(boolean isTeamLeader) {
+        this.isTeamLeader = isTeamLeader;
     }
 
     @Override

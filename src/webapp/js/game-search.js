@@ -1,13 +1,14 @@
 // Authors: Daniel Mehlber
 
-import {openModal, closeModal} from "./game-modal.js";
-
 /**
  * converts user JSON into HTML. Expected JSON:
  * 
  * @param game.id id of game
  * @param game.title title of game
  */
+
+"use strict";
+
 function generateGameCardHtml(game) {
     let html =
         `<div class="game-card">
@@ -47,13 +48,7 @@ function executeGameSearch() {
 function setupAddGameButton() {
     let button = document.getElementById("add-game-button");
     button.addEventListener("click", openModal);
-    document.getElementById("game-creation-modal").addEventListener("click", closeModal)
 }
 
-function init() {
-    executeGameSearch()
-    setupAddGameButton()
-    document.getElementById("game-searchbar").addEventListener("keyup", executeGameSearch);
-}
-
-document.addEventListener("DOMContentLoaded", init);
+executeGameSearch()
+setupAddGameButton()

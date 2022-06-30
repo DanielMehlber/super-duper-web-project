@@ -153,8 +153,8 @@ main {
     width: 160px;
     margin-top: 10px;
     transition: 0.5s;
-
     grid-area: image;
+    object-fit: cover;
 }
 
 .main-profile-image:hover{

@@ -3,6 +3,7 @@ package com.esports.manager.userManagement;
 import com.esports.manager.global.db.queries.QueryHandler;
 import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.newsfeed.NewsfeedLogic;
+import com.esports.manager.teams.TeamManagement;
 import com.esports.manager.teams.db.TeamRepository;
 import com.esports.manager.teams.entities.Member;
 import com.esports.manager.teams.entities.Team;
@@ -296,7 +297,7 @@ public class UserManagement {
         log.debug("fetching users not already members in team..");
 
         List<User> users = fetchAllUsers();
-        List<Member> members = TeamRepository.getMemberByTeamId(teamId);
+        List<Member> members = TeamManagement.fetchMembersByTeamId(teamId);
         List<User> usersToRemove = new LinkedList<>();
         for (User user : users) {
             for (Member member : members) {

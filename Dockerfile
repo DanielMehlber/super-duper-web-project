@@ -41,4 +41,4 @@ EXPOSE 9990
 RUN /opt/jboss/wildfly/bin/add-user.sh admin admin --silent
 
 # Run wildfly server
-CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0", "--server-config=standalone.xml"]
+CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0", "--server-config=standalone.xml", "-Djboss.http.port=80"]

@@ -35,13 +35,17 @@ public class TeamManagement {
      */
     public static List<Team> fetchAllTeams() throws NoTeamsFoundException, InternalErrorException {
        log.debug("fetching all teams...");
-        List<Team> teams = TeamRepository.getAllTeams();
-        return teams;
+
+       return TeamRepository.getAllTeams();
+    }
+
+    public static Team getTeamById(Long id) throws InternalErrorException {
+        return TeamRepository.getTeamById(id);
     }
 
     public static List<Member> fetchMembersByTeamId(final long id) throws InternalErrorException {
         log.debug("fetch members by teamId...");
-        List<Member> members = TeamRepository.getMemberByTeamId(id);
+        List<Member> members = TeamRepository.getMembersByTeamId(id);
         return members;
     }
 
@@ -60,7 +64,16 @@ public class TeamManagement {
     }
 
     /**
+     * Remove team by teamID
+     * @param teamId
      *
+     * @author Maximilian Rublik
+     */
+    public static void removeTeamByTeamId(long teamId) {
+        TeamRepository.removeTeam(teamId);
+    }
+
+    /**
      * @param name
      * @param slogan
      * @param tags
@@ -78,6 +91,10 @@ public class TeamManagement {
         return newTeam;
     }
 
+    public static Member fetchTeamLeaderByTeamId(long id) {
+        return TeamRepository.getTeamLeaderByTeamId(id);
+    }
+
     /**
      *
      * @param username
@@ -88,12 +105,12 @@ public class TeamManagement {
      *
      * @author Maximilian Rublik
      */
-    public static void addUserToTeam (String username, Long teamid, String role, Date since) throws InternalErrorException, NoSuchTeamException, NoSuchUserException {
+    public static void addUserToTeam (String username, Long teamid, String role, Date since, boolean isTeamLeader) throws InternalErrorException, NoSuchTeamException, NoSuchUserException {
         // check that referenced entites exist
         User user = UserManagement.fetchUserByUsername(username);
         Team team = TeamManagement.fetchTeamById(teamid);
 
-        TeamRepository.addUserToTeam(teamid, username, role, since);
+        TeamRepository.addUserToTeam(teamid, username, role, since, isTeamLeader);
         // add newsfeed item
         NewsfeedLogic.registerNewMemberOfTeam(team, user);
     }
@@ -111,7 +128,12 @@ public class TeamManagement {
         }
     }
 
-    public static List<Team> fetchTeamByNamePattern(String teamSearchPattern) throws InternalErrorException{
-        return TeamRepository.fetchAllTeamsWithNamePattern(teamSearchPattern);
+    public static List<Team> fetchTeamByFilterAndNamePattern(String teamSearchPattern, Long gameId) throws InternalErrorException, NoTeamsFoundException {
+        if (gameId == 0 && (teamSearchPattern == null || teamSearchPattern.isBlank())) {
+            return TeamRepository.getAllTeams();
+        } else if (gameId == 0) {
+            return TeamRepository.fetchAllTeamsByNamePattern(teamSearchPattern);
+        }
+        return TeamRepository.fetchAllTeamsByFilterAndWithNamePattern(teamSearchPattern, gameId);
     }
 }

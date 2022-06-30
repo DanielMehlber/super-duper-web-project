@@ -1,6 +1,9 @@
 package com.esports.manager.teams.servlets;
 
+import com.esports.manager.games.Games;
+import com.esports.manager.games.entities.Game;
 import com.esports.manager.teams.TeamManagement;
+import com.esports.manager.teams.beans.GamesViewBean;
 import com.esports.manager.teams.beans.TeamsViewBean;
 import com.esports.manager.teams.exceptions.NoTeamsFoundException;
 import com.esports.manager.userManagement.UserManagement;
@@ -15,6 +18,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author Maximilian Rublik
@@ -34,16 +38,9 @@ public class TeamsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User loggedinUser = UserManagement.getAuthorizedUser(req.getSession());
 
-        TeamsViewBean teamsViewBean = new TeamsViewBean();
-
-        try {
-            teamsViewBean.setTeams(TeamManagement.fetchAllTeams());
-        } catch (NoTeamsFoundException e) {
-            teamsViewBean.setErrorMessage("No teams found");
-            throw new RuntimeException(e);
-        } finally {
-            req.setAttribute("teamsBean", teamsViewBean);
-        }
+        GamesViewBean gamesViewBean = new GamesViewBean();
+        gamesViewBean.setGames(Games.searchGame(".*"));
+        req.setAttribute("gamesViewBean", gamesViewBean);
 
         RequestDispatcher rq = req.getRequestDispatcher("/jsp/teams.jsp");
         rq.forward(req, resp);

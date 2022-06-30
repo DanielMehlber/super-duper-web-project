@@ -79,4 +79,21 @@ public class Games {
         return game;
     }
 
+    /**
+     * Get the game played by the team selected by teamId
+     *
+     * @return game played by teamId
+     * @throws InternalErrorException database error; sql error; connection error;
+     * @author Maximilian Rublik
+     */
+    public static Game getGameByTeamId(Long teamId) throws InternalErrorException {
+        Game game;
+        try {
+            game = GamesRepository.fetchGameByTeamId(teamId);
+        } catch (NoSuchGameException e) {
+            return null;
+        }
+
+        return game;
+    }
 }
