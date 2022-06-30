@@ -18,7 +18,6 @@
         <title>${teamViewBean.team.name}</title>
     </head>
     <body>
-        <noscript>Javascript deactivated!</noscript>
         <script src="${pageContext.request.contextPath}/js/team.js" defer></script>
         <%@include file="fragments/sidebar.jspf" %>
 
@@ -95,5 +94,6 @@
 
         <footer>
         </footer>
+        <noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
     </body>
 </html>

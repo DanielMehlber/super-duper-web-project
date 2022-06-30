@@ -19,5 +19,6 @@
         <p>Let&#180;s get you back</p>
         <a class="button" id="homeButton" href="${pageContext.request.contextPath}/dashboard">Home</a>
     </div>
+    <noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
 </body>
 </html>

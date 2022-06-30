@@ -17,7 +17,6 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/registration.js"></script>
         <noscript>JavaScript not enabled</noscript>
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-        <noscript>JavaScript is deactivated!</noscript>
     </head>
     <body>
         <main>
@@ -37,5 +36,6 @@
                 <a class="login-redirect" href="${pageContext.request.contextPath}/login">Already a member?</a>
         	</form>
         </main>
+        <noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
     </body>
 </html>

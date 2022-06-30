@@ -15,7 +15,6 @@
     <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/stylesheets/newsfeed.css" rel="stylesheet"/>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-    <noscript>JavaScript is deactivated!</noscript>
 </head>
 <body onload="loadMoreNewsfeedItems();">
     <script src="${pageContext.request.contextPath}/js/newsfeed.js"></script>
@@ -40,5 +39,6 @@
     </main>
 
     <footer></footer>
+    <noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
 </body>
 </html>

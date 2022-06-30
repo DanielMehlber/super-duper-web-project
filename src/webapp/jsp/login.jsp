@@ -12,7 +12,6 @@
     <script src="${pageContext.request.contextPath}/js/cookieCheck.js" defer></script>
 
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-    <noscript>JavaScript is deactivated!</noscript>
 </head>
 <body>
 <main>
@@ -33,7 +32,7 @@
         <a class="registration-redirect" href="${pageContext.request.contextPath}/registration">Not a member yet?</a>
     </form>
     <div id="cookieText"></div>
-    <noscript>JavaScript is not activated. Please activate JavaScript</noscript>
-</main>
+    </main>
+    <noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
 </body>
 </html>

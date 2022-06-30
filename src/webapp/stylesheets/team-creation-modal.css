@@ -83,7 +83,7 @@ Author: Maximilian Rublik
     line-height: 50px;
 }
 
-.team-logo-input {
+.image-input {
     display: none;
 }
 
@@ -102,10 +102,6 @@ Author: Maximilian Rublik
     line-height: 50px;
 }
 
-.background-input {
-    display: none;
-}
-
 .enter-button {
     grid-area: enter-button;
     width: 397px;
@@ -113,6 +109,16 @@ Author: Maximilian Rublik
     padding-right: 16px;
     padding-left: 16px;
     margin: 10px;
+}
+
+.disabled-enter-button {
+    grid-area: enter-button;
+    width: 397px;
+    height: 50px;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin: 10px;
+    background-color: red;
 }
 
 .team-creation-modal-close {

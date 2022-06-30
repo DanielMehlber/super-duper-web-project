@@ -1,4 +1,4 @@
-//Authors:
+//Author: Maximilian Rublik
 "use strict";
 
 function checkPassword () {

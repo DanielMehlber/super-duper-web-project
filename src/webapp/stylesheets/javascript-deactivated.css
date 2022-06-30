@@ -1,0 +1,20 @@
+.javascript-deactivated-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    border-color: #37A7F0;
+    border-width: 4px;
+    border-radius: 8px;
+    z-index: 99;
+}
+
+.javascript-deactivated-container > .title {
+    color: #D52B2B;
+    text-align: center;
+}
+
+.javascript-deactivated-container > .subtitle {
+    color: black;
+    text-align: center;
+}
