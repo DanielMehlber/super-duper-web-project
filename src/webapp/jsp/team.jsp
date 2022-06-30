@@ -27,11 +27,19 @@
                 <div class="head-information">
                     <img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${teamViewBean.getTeam().getId()}" alt="teamLogo"/>
                     <h1 class="team-title">${teamViewBean.team.name}</h1>
+                    <h3 class="team-slogan">${teamViewBean.team.slogan}</h3>
+
+                    <c:if test="${teamViewBean.isTeamLeader}">
+                        <form method="POST" action="${pageContext.request.contextPath}/teams/removeTeam" onsubmit="return confirm('Do you really want to delete this team?')">
+                            <button class="remove-team-button" type="submit">X</button>
+                            <input type="hidden" value="${teamViewBean.team.id}" name="teamId">
+                        </form>
+                    </c:if>
                 </div>
 
                 <table>
                     <tr class="header-row">
-                        <th>Playername</th>
+                        <th>Player name</th>
                         <th>Since</th>
                         <th>Position</th>
                         <th><button id="add-member-button" class="primary-button">+</button>
@@ -41,11 +49,30 @@
                             <td>${member.username}</td>
                             <td>${member.since}</td>
                             <td>${member.role}</td>
-                            <td><a class="remove-button" href="${pageContext.request.contextPath}/teams/removemember?teamid=${teamViewBean.getTeam().getId()}&username=${member.username}">-</a></td>
+                            <c:if test="${ not member.isTeamLeader}">
+                                <td>
+                                    <form method="POST" action="${pageContext.request.contextPath}/teams/removeMember" onsubmit="return confirm('Do you really want to delete this member from the team?')">
+                                        <button class="remove-button" type="submit">-</button>
+                                        <input type="hidden" value="${teamViewBean.getTeam().id}" name="id" />
+                                        <input type="hidden" value="${member.username}" name="username" />
+                                    </form>
+                                </td>
+                            </c:if>
                         </tr>
                     </c:forEach>
                 </table>
             </div>
+
+            <c:if test="${teamViewBean.hasGame}">
+                <section class="game-area">
+                    <h2>Played Game</h2>
+                    <div class="game-container">
+                        <img alt="game logo" class="game-cover-image" src="${pageContext.request.contextPath}/games/images?id=${teamViewBean.game.id}&type=profile">
+                        <label class="game-title">${teamViewBean.game.name}</label>
+                        <label class="game-description">${teamViewBean.game.description}</label>
+                    </div>
+                </section>
+            </c:if>
 
             <section id="add-member-modal" class="add-member-modal-container">
                 <form class="add-member-modal" action="${pageContext.request.contextPath}/teams/addmember" method="POST">
@@ -56,7 +83,8 @@
                         </c:forEach>
                     </select>
                     <input type="hidden" name="teamId" value="${addMemberViewBean.teamId}">
-                    <input class="position-field" name="position" placeholder="position" autofocus="autofocus" maxlength="30"/>
+                    <input type="text" class="position-field" name="position" placeholder="position" autofocus="autofocus" maxlength="30"/>
+
 
                     <button id="add-selected-member-button" class="primary-button">Add</button>
                     <div class="add-member-modal-close" onclick="closeModal()">X</div>

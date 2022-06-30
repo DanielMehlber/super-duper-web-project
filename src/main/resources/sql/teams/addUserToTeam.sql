@@ -1,1 +1,1 @@
-insert into member (username, teamId, role, since) values (?,?,?,?);
+insert into member (username, teamId, role, since, isTeamLeader) values (?,?,?,?,?);

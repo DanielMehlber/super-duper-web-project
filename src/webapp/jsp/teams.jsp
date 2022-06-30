@@ -20,6 +20,7 @@
 <body>
 	<noscript>Javascript deactivated!</noscript>
 	<script src="${pageContext.request.contextPath}/js/teams.js" defer></script>
+	<script src="${pageContext.request.contextPath}/js/addNewTeam.js" defer></script>
 	<%@include file="fragments/sidebar.jspf" %>
 
 	<main id="main" onclick="hideNav()">
@@ -28,9 +29,8 @@
 			<div class="head-information">
 				<h1 id="teams-title">Your Teams</h1>
 
-				<select class="game-selection">
-					<option value="LeagueOfLegends">League of Legends</option>
-					<option value="Counterstrike">Counterstrike</option>
+				<select class="game-selection" id="game-filter-selection">
+					<option selected value>All</option>
 				</select>
 
 				<input type="text" class="search-input" placeholder="Search" />
@@ -46,10 +46,10 @@
 				<input name="name" class="team-name-input" type="text" placeholder="team name" required maxlength="50"/>
 				<input name="slogan" class="slogan-input" type="text" placeholder="slogan" maxlength="255"/>
 
-				<select class="add-team-modal-game-selection">
-
+				<select name="selection" id="add-team-game-selection" class="add-team-modal-game-selection">
+					<option selected value>none</option>
 				</select>
-				<textarea class="tags-textarea" placeholder="Insert tags comma ' , ' seperated" maxlength="255"></textarea>
+				<textarea name="tags" class="tags-textarea" placeholder="Insert tags comma ' , ' seperated" maxlength="255"></textarea>
 
 				<label class="team-logo-label">
 					UPLOAD LOGO

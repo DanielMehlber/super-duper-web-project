@@ -24,6 +24,7 @@ CREATE TABLE `member` (
     `teamId` BIGINT NOT NULL,
     `since` datetime DEFAULT NULL,
     `role` varchar(30) DEFAULT NULL,
+    `isTeamLeader` tinyint(1) NOT NULL,
     PRIMARY KEY (`teamId`,`username`),
     CONSTRAINT FOREIGN KEY (`teamId`) REFERENCES `team` (`id`) ON DELETE CASCADE,
     CONSTRAINT FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE

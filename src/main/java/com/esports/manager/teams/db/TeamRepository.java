@@ -67,7 +67,32 @@ public class TeamRepository {
         return team.get(0);
     }
 
-    public static List<Member> getMemberByTeamId(final long id) throws InternalErrorException {
+    /**
+     * returns the teamleader of the team given by the id
+     * @param id teamId
+     * @return team leader
+     * @author Maximilian Rublik
+     */
+    public static Member getTeamLeaderByTeamId(final long id) {
+        log.debug("fetch team leader by teamId");
+        List<Member> teamleader;
+        ResultSet results;
+
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchTeamLeaderByTeam.sql");
+                Connection connection = pstmt.getConnection()) {
+            pstmt.setLong(1, id);
+            results = pstmt.executeQuery();
+            teamleader = ResultSetProcessor.convert(Member.class, results);
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        } catch (InternalErrorException e) {
+            throw new RuntimeException(e);
+        }
+
+        return teamleader.get(0);
+    }
+
+    public static List<Member> getMembersByTeamId(final long id) throws InternalErrorException {
         log.debug("fetch members by teamId");
 
         List<Member> members;
@@ -236,7 +261,7 @@ public class TeamRepository {
         log.debug("created team to database");
     }
 
-    public static void addUserToTeam (Long teamid, String username, String role, Date since) throws InternalErrorException {
+    public static void addUserToTeam (Long teamid, String username, String role, Date since, boolean isTeamLeader) throws InternalErrorException {
         log.debug("add user to team");
 
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/addUserToTeam.sql");
@@ -245,6 +270,7 @@ public class TeamRepository {
             pstmt.setLong(2, teamid);
             pstmt.setString(3, role);
             pstmt.setDate(4, since);
+            pstmt.setBoolean(5, isTeamLeader);
             pstmt.executeUpdate();
 
         } catch (SQLException | IOException e) {
@@ -274,14 +300,57 @@ public class TeamRepository {
         }
     }
 
-    public static List<Team> fetchAllTeamsWithNamePattern(String teamSearchPattern) throws InternalErrorException {
-       log.debug("loading teams according to search pattern");
+    /**
+     * Removes team by teamId
+     * @param teamId
+     * @author Maximilian Rublik
+     */
+    public static void removeTeam (Long teamId) {
+        log.debug("remove team by Id");
+
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/removeTeamByTeamId.sql");
+                Connection connection = pstmt.getConnection()) {
+            pstmt.setLong(1, teamId);
+            pstmt.executeUpdate();
+        } catch (SQLException | IOException e) {
+            log.error("cannot remove team by ID due to an sql error");
+            throw new RuntimeException(e);
+        } catch (InternalErrorException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static List<Team> fetchAllTeamsByNamePattern(String teamSearchPattern) throws InternalErrorException {
+        log.debug("loading teams according to search pattern");
 
         List<Team> teams;
         //TODO: Statement
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchTeamByNamePattern.sql");
-            Connection connection = pstmt.getConnection()){
+             Connection connection = pstmt.getConnection()){
             pstmt.setString(1, teamSearchPattern);
+            ResultSet resultSet = pstmt.executeQuery();
+
+            teams = ResultSetProcessor.convert(Team.class, resultSet);
+        } catch (IOException | SQLException e) {
+            log.error("cannot fetch users with username pattern because of an unexpected sql error: " + e.getMessage());
+            throw new InternalErrorException("cannot fetch users with username pattern", e);
+        } catch (RuntimeException e) {
+            log.error("cannot fetch users with username pattern because of an unexpected internal error: " + e.getMessage());
+            throw new InternalErrorException("cannot fetch users with username pattern", e);
+        }
+
+        return teams;
+    }
+
+    public static List<Team> fetchAllTeamsByFilterAndWithNamePattern(String teamSearchPattern, Long gameId) throws InternalErrorException {
+        log.debug("loading teams according to search pattern");
+
+        List<Team> teams;
+        //TODO: Statement
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchTeamByFilterAndNamePattern.sql");
+             Connection connection = pstmt.getConnection()){
+            pstmt.setString(1, teamSearchPattern);
+            pstmt.setLong(2, gameId);
             ResultSet resultSet = pstmt.executeQuery();
 
             teams = ResultSetProcessor.convert(Team.class, resultSet);

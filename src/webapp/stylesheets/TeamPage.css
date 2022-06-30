@@ -2,14 +2,16 @@
 Author: Maximilian Rublik
  */
 
+main {
+    flex-direction: column;
+}
+
 .info-area {
     background-color: #1D274C;
     border-radius: 4px;
     display: grid;
     width: 1050px;
-    margin: auto;
-    align-content: center;
-    align-items: center;
+    margin: 100px auto 50px auto;
     padding: 50px;
 }
 
@@ -24,15 +26,16 @@ th {
     border-collapse: collapse;
 }
 
-.team-title {
-    float: left;
-    font-size: 50px;
-    color: #FFFFFF;
-    text-decoration: underline;
-}
-
 .head-information {
     margin-bottom: 20px;
+    display: grid;
+    grid-template-areas:
+        "Logo Title Remove-Button"
+        "Logo Slogan Slogan";
+    grid-template-columns:
+        auto 1fr;
+    grid-template-rows:
+        auto 1fr;
 }
 
 .team-logo {
@@ -44,8 +47,26 @@ th {
     height: 196px;
     width: 196px;
     margin-right: 20px;
+    grid-area: Logo;
 }
 
+.team-title {
+    float: left;
+    font-size: 50px;
+    color: #FFFFFF;
+    text-decoration: underline;
+    grid-area: Title;
+}
+
+.remove-team-button {
+    grid-area: Remove-Button;
+    background-color: red;
+}
+
+.team-slogan {
+    grid-area: Slogan;
+    color: #989898;
+}
 
 tr {
     color: #FFFFFF;
@@ -85,6 +106,51 @@ tr {
     border-bottom: solid 1px #000000;
 }
 
-h1, h2{
+.game-area {
+    display: grid;
+    margin: 0px auto;
+    align-content: center;
+    align-items: center;
+    row-gap: 15px;
+}
+
+.game-container {
+    background-color: #1D274C;
+    border-radius: 4px;
+    width: 1050px;
+    height: 150px;
+    display: grid;
+    padding: 50px;
+    grid-template-areas:
+        "Logo Title"
+        "Logo Description";
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
+
+.game-cover-image {
+    height: 150px;
+    width: 150px;
+    border-width: 2px;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: var(--main-fg-color);
+    grid-area: Logo;
+}
+
+.game-title {
+    grid-area: Title;
+    text-decoration: underline;
+}
+
+.game-description {
+    grid-area: Description;
+}
+
+h1, h2, h3{
     margin: 0px;
 }
