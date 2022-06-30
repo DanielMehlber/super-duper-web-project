@@ -10,17 +10,17 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<base href="${pageContext.request.requestURI}"/>
+	<base href="${pageContext.request.contextPath}/"/>
 	<title>Title</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/Elements.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/TeamsPage.css">
-	<link href="${pageContext.request.contextPath}/stylesheets/team-creation-modal.css" rel="stylesheet"/>
-	<link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="stylesheets/Elements.css">
+	<link rel="stylesheet" href="stylesheets/TeamsPage.css">
+	<link href="stylesheets/team-creation-modal.css" rel="stylesheet"/>
+	<link href="stylesheets/dashboard.css" rel="stylesheet"/>
 	<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
 	<noscript>Javascript deactivated!</noscript>
-	<script src="${pageContext.request.contextPath}/js/teams.js" defer></script>
+	<script src="js/teams.js" defer></script>
 	<%@include file="fragments/sidebar.jspf" %>
 
 	<main id="main" onclick="hideNav()">
@@ -42,7 +42,7 @@
 		</section>
 
 		<section id="team-creation-modal" class="team-creation-modal-container">
-			<form class="team-creation-modal" action="${pageContext.request.contextPath}/teams/addnewteam" method="POST" enctype="multipart/form-data">
+			<form class="team-creation-modal" action="teams/addnewteam" method="POST" enctype="multipart/form-data">
 				<h2 id="add-team-header">Add team</h2>
 				<input name="name" class="team-name-input" type="text" placeholder="team name" required/>
 				<input name="slogan" class="slogan-input" type="text" placeholder="slogan"/>

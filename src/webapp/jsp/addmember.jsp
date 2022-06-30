@@ -8,10 +8,10 @@
     <title>Add member</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="${pageContext.request.requestURI}" />
-    <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet"/>
-    <link href="${pageContext.request.contextPath}/stylesheets/AddMember.css" rel="stylesheet"/>
-    <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
+    <base href="${pageContext.request.contextPath}/"/>
+    <link href="stylesheets/Elements.css" rel="stylesheet"/>
+    <link href="stylesheets/AddMember.css" rel="stylesheet"/>
+    <link href="stylesheets/dashboard.css" rel="stylesheet"/>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <noscript>JavaScript is deactivated!</noscript>
 </head>
@@ -19,7 +19,7 @@
 <%@include file="fragments/sidebar.jspf" %>
     <main>
         <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
-        <form class="add-member-form" action="${pageContext.request.contextPath}/teams/addmember" method="POST">
+        <form class="add-member-form" action="teams/addmember" method="POST">
             <select class="user-selection" name="users">
                 <c:forEach items="${addMemberViewBean.users}" var="user">
                     <option value="${user.username}">${user.username}</option>

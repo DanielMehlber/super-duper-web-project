@@ -10,15 +10,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="${pageContext.request.requestURI}"/>
+    <base href="${pageContext.request.contextPath}/"/>
     <title>Players</title>
-    <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet"/>
-    <link href="${pageContext.request.contextPath}/stylesheets/game-search.css" rel="stylesheet"/>
-    <link href="${pageContext.request.contextPath}/stylesheets/game-modal.css" rel="stylesheet"/>
-    <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
+    <link href="stylesheets/Elements.css" rel="stylesheet"/>
+    <link href="stylesheets/game-search.css" rel="stylesheet"/>
+    <link href="stylesheets/game-modal.css" rel="stylesheet"/>
+    <link href="stylesheets/dashboard.css" rel="stylesheet"/>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-    <script src="${pageContext.request.contextPath}/js/game-modal.js" defer></script>
-    <script src="${pageContext.request.contextPath}/js/game-search.js" defer></script>
+    <script src="js/game-modal.js" defer></script>
+    <script src="js/game-search.js" defer></script>
 </head>
 <body>
 
@@ -36,7 +36,7 @@
         </section>
         <c:if test="${requestScope.user.isAdmin}">
             <section id="game-creation-modal" class="game-creation-modal-container">
-                <form class="game-creation-modal" action="${pageContext.request.contextPath}/games/new" method="post">
+                <form class="game-creation-modal" action="games/new" method="post">
                     <h2>Create new Game</h2>
                     <input name="title" type="text" placeholder="Name of new Game" required/>
                     <button type="submit">Send</button>

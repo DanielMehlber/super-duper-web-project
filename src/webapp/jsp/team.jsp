@@ -9,24 +9,24 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <base href="${pageContext.request.requestURI}"/>
-        <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet"/>
-        <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet"/>
-        <link href="${pageContext.request.contextPath}/stylesheets/TeamPage.css" rel="stylesheet"/>
-        <link href="${pageContext.request.contextPath}/stylesheets/add-member-modal.css" rel="stylesheet"/>
+        <base href="${pageContext.request.contextPath}/"/>
+        <link href="stylesheets/Elements.css" rel="stylesheet"/>
+        <link href="stylesheets/dashboard.css" rel="stylesheet"/>
+        <link href="stylesheets/TeamPage.css" rel="stylesheet"/>
+        <link href="stylesheets/add-member-modal.css" rel="stylesheet"/>
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
         <title>${teamViewBean.team.name}</title>
     </head>
     <body>
         <noscript>Javascript deactivated!</noscript>
-        <script src="${pageContext.request.contextPath}/js/team.js" defer></script>
+        <script src="js/team.js" defer></script>
         <%@include file="fragments/sidebar.jspf" %>
 
         <main id="main" onclick="hideNav()">
             <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
             <div class="info-area">
                 <div class="head-information">
-                    <img class="team-logo" src="${pageContext.request.contextPath}/teams/images?type=profile&id=${teamViewBean.getTeam().getId()}" alt="teamLogo"/>
+                    <img class="team-logo" src="teams/images?type=profile&id=${teamViewBean.getTeam().getId()}" alt="teamLogo"/>
                     <h1 class="team-title">${teamViewBean.team.name}</h1>
                 </div>
 
@@ -42,14 +42,14 @@
                             <td>${member.username}</td>
                             <td>${member.since}</td>
                             <td>${member.role}</td>
-                            <td><a class="remove-button" href="${pageContext.request.contextPath}/teams/removemember?teamid=${teamViewBean.getTeam().getId()}&username=${member.username}">-</a></td>
+                            <td><a class="remove-button" href="teams/removemember?teamid=${teamViewBean.getTeam().getId()}&username=${member.username}">-</a></td>
                         </tr>
                     </c:forEach>
                 </table>
             </div>
 
             <section id="add-member-modal" class="add-member-modal-container">
-                <form class="add-member-modal" action="${pageContext.request.contextPath}/teams/addmember" method="POST">
+                <form class="add-member-modal" action="teams/addmember" method="POST">
                     <h2 id="add-member-title">Add member</h2>
                     <select id="add-member-user-selection" class="user-selection" name="users" required>
                         <c:forEach items="${addMemberViewBean.users}" var="user">
@@ -64,7 +64,6 @@
                 </form>
             </section>
         </main>
-
         <footer>
         </footer>
     </body>

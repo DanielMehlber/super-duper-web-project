@@ -5,13 +5,13 @@
 <head>
     <title>Profile</title>
     <meta charset="UTF-8">
-    <base href="${pageContext.request.requestURI}"/>
+    <base href="${pageContext.request.contextPath}/"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/stylesheets/ProfilePage.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet">
+    <link href="stylesheets/Elements.css" rel="stylesheet">
+    <link href="stylesheets/ProfilePage.css" rel="stylesheet">
+    <link href="stylesheets/dashboard.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-    <script src="${pageContext.request.contextPath}/js/profile.js" defer></script>
+    <script src="js/profile.js" defer></script>
 </head>
 <body>
 
@@ -19,14 +19,14 @@
 <main id="main" class="flex-container" onclick="hideNav()">
     <button class="nav-bar-button" onmouseover="toggleNav()">=</button>
     <section class="main-content-container">
-        <img src="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
+        <img src="users/images?type=background&user=${requestScope.profileViewBean.user.username}"
              class="background-image" alt="Background Image of user"/>
         <c:if test="${requestScope.profileViewBean.editPermission}">
             <div class="background-image-container">
                 <label class="bg-image-label">Edit Background Image: </label>
                 <form class="background-image-upload"
                       id="player-background-image"
-                      action="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
+                      action="users/images?type=background&user=${requestScope.profileViewBean.user.username}"
                       method="POST"
                       enctype="multipart/form-data">
                     <label class="input-bg-label">
@@ -37,11 +37,11 @@
             </div>
         </c:if>
         <div class="profile-card">
-            <img src="${pageContext.request.contextPath}/users/images?type=profile&user=${requestScope.profileViewBean.user.username}"
+            <img src="users/images?type=profile&user=${requestScope.profileViewBean.user.username}"
                  class="main-profile-image" alt="Profile Image of user"/>
             <c:if test="${requestScope.profileViewBean.editPermission}">
                 <label class="profile-image-label">Edit Profile Image:</label>
-                <form class="profile-image-form" id="profile-profile-image" action="${pageContext.request.contextPath}/users/images"
+                <form class="profile-image-form" id="profile-profile-image" action="users/images"
                       method="POST" enctype="multipart/form-data">
                     <label class="input-profile-label">
                         Upload Image
@@ -55,7 +55,7 @@
         </div>
         <c:if test="${requestScope.profileViewBean.isAdmin}">
             <a class="remove-button" id="remove-user-button"
-               href="${pageContext.request.contextPath}/users/removeUser?username=${requestScope.profileViewBean.user.username}">Remove
+               href="users/removeUser?username=${requestScope.profileViewBean.user.username}">Remove
                 User
             </a>
         </c:if>
