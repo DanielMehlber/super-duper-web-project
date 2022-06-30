@@ -120,7 +120,7 @@ public class TeamRepository {
             throw new InternalErrorException("cannot fetch profile image", e);
         }
 
-        if(image == null) {
+        if(image.length == 0) {
             log.warn("team " + id + " has no profile image");
             throw new NoImageFoundException(id.toString(), "profile");
         }
@@ -272,5 +272,27 @@ public class TeamRepository {
             log.error("cannot remove user from team due to an sql error");
             throw new InternalErrorException("cannot remove member from team", e);
         }
+    }
+
+    public static List<Team> fetchAllTeamsWithNamePattern(String teamSearchPattern) throws InternalErrorException {
+       log.debug("loading teams according to search pattern");
+
+        List<Team> teams;
+        //TODO: Statement
+        try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchTeamByNamePattern.sql");
+            Connection connection = pstmt.getConnection()){
+            pstmt.setString(1, teamSearchPattern);
+            ResultSet resultSet = pstmt.executeQuery();
+
+            teams = ResultSetProcessor.convert(Team.class, resultSet);
+        } catch (IOException | SQLException e) {
+            log.error("cannot fetch users with username pattern because of an unexpected sql error: " + e.getMessage());
+            throw new InternalErrorException("cannot fetch users with username pattern", e);
+        } catch (RuntimeException e) {
+            log.error("cannot fetch users with username pattern because of an unexpected internal error: " + e.getMessage());
+            throw new InternalErrorException("cannot fetch users with username pattern", e);
+        }
+
+        return teams;
     }
 }

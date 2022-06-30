@@ -11,13 +11,14 @@
     <link href="${pageContext.request.contextPath}/stylesheets/ProfilePage.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-    <script src="${pageContext.request.contextPath}/js/profile.js"></script>
+
+    <script src="${pageContext.request.contextPath}/js/profile.js" defer></script>
 </head>
 <body>
 
 <%@include file="fragments/sidebar.jspf" %>
-<main id="main" class="flex-container">
-    <button class="nav-bar-button" >&#9776;</button>
+<main id="main" class="flex-container" onclick="hideNav()">
+    <button class="nav-bar-button" onmouseover="toggleNav()">=</button>
     <section class="main-content-container">
         <img src="${pageContext.request.contextPath}/users/images?type=background&user=${requestScope.profileViewBean.user.username}"
              class="background-image" alt="Background Image of user"/>
@@ -45,7 +46,7 @@
                       method="POST" enctype="multipart/form-data">
                     <label class="input-profile-label">
                         Upload Image
-                        <input class="profile-image-input" type="file" name="profile" accept="image/*">
+                        <input class="profile-image-input" type="file" name="profile" oninput="updateProfileImage()" accept="image/*">
                     </label>
                 </form>
             </c:if>

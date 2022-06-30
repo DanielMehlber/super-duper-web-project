@@ -66,6 +66,14 @@ public class UserManagement {
         }
     }
 
+    /**
+     * Fetches user entity by his username
+     * @param username username of requested user
+     * @return user entity (if username is known to system)
+     * @throws NoSuchUserException no user with username found in database
+     * @throws InternalErrorException sql error; database error; runtime error; (developer fault)
+     * @author Daniel Mehlber
+     */
     public static User fetchUserByUsername(final String username) throws NoSuchUserException, InternalErrorException {
         log.debug("fetching user by username...");
         return UserRepository.getByUsername(username);
@@ -283,6 +291,7 @@ public class UserManagement {
         return UserRepository.fetchAllUserWithUsernamePattern(pattern);
     }
 
+    // TODO: Documentation (Maxi)
     public static List<User> fetchUserNotAlreadyMember(Long teamId) throws InternalErrorException {
         log.debug("fetching users not already members in team..");
 
@@ -317,7 +326,7 @@ public class UserManagement {
         }
     }
 
-
+    // TODO: documentation
     public static List<Long> fetchTeamsIdsOfUser(final User user) throws InternalErrorException {
         return UserRepository.fetchTeamsOfUser(user);
     }

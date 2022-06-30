@@ -60,8 +60,9 @@ public class QueryHandler extends HttpServlet {
                 // source is in cache, load from there
                 source = cache.get(resourcePath);
             } else {
-                // source is not in cache, load from file
+                // source is not in cache, load from file and put it in cache
                 source = loadSource(resourcePath);
+                cache.put(resourcePath, source);
             }
 
 

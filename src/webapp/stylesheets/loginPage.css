@@ -2,9 +2,11 @@
 
 main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
+
 }
 
 .login-card{
@@ -16,6 +18,8 @@ main {
     justify-content: center;
     align-items: center;
     justify-items: center;
+
+    margin-bottom: 10px;
 
     /* defines colums and rows as areas of the grid (set area using grid-area) */
     grid-template-areas:

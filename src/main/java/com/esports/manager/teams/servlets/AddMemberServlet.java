@@ -37,15 +37,7 @@ public class AddMemberServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User loggedinUser = UserManagement.getAuthorizedUser(req.getSession());
-        AddMemberViewBean addMemberViewBean = new AddMemberViewBean();
-        Long teamId = Long.valueOf(req.getParameter("teamid"));
-        addMemberViewBean.setUsers(UserManagement.fetchUserNotAlreadyMember(teamId));
-        addMemberViewBean.setTeamId(teamId);
-        req.setAttribute("addMemberViewBean", addMemberViewBean);
-
-        RequestDispatcher rq = req.getRequestDispatcher("/jsp/addmember.jsp");
-        rq.forward(req, resp);
+        super.doGet(req, resp);
     }
 
     /**

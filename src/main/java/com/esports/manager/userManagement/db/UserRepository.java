@@ -280,6 +280,7 @@ public class UserRepository {
         }
     }
 
+    // TODO: Zuweisen und Dokumentation
     public static List<Long> fetchTeamsOfUser(final User user) throws InternalErrorException {
         List<Long> teamIds = new ArrayList<>();
 

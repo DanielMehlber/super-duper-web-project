@@ -28,7 +28,6 @@
             <input type="hidden" name="teamId" value="${addMemberViewBean.teamId}">
             <input class="position-field" name="position" placeholder="position" autofocus="autofocus"/>
 
-            <button class="cancel-button" onclick="history.back()" type="reset">Cancel</button>
             <button class="enter-button" type="submit">Add</button>
         </form>
     </main>

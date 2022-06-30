@@ -33,8 +33,6 @@ public class AddNewTeamServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User loggedinUser = UserManagement.getAuthorizedUser(req.getSession());
-        RequestDispatcher rq = req.getRequestDispatcher("/jsp/addnewteam.jsp");
-        rq.forward(req, resp);
     }
 
     @Override

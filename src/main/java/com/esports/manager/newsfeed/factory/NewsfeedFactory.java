@@ -1,7 +1,6 @@
 package com.esports.manager.newsfeed.factory;
 
 import com.esports.manager.newsfeed.entities.NewsfeedItem;
-import com.esports.manager.teams.entities.Member;
 import com.esports.manager.teams.entities.Team;
 import com.esports.manager.userManagement.entities.User;
 

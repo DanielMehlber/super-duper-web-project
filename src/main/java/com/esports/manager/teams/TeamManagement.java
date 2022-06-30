@@ -110,4 +110,8 @@ public class TeamManagement {
             log.warn("");
         }
     }
+
+    public static List<Team> fetchTeamByNamePattern(String teamSearchPattern) throws InternalErrorException{
+        return TeamRepository.fetchAllTeamsWithNamePattern(teamSearchPattern);
+    }
 }

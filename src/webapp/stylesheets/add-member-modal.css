@@ -1,0 +1,58 @@
+/*
+Author: Maximilian Rublik
+ */
+
+.add-member-modal-container {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 99;
+    background: #00000094;
+}
+
+.add-member-modal-container.invisible {
+    display: none;
+}
+
+.add-member-modal {
+    background-color: #1d274c;
+    border-radius: 10px;
+    padding: 20px;
+
+    display: grid;
+    grid-template-areas:
+        "title title"
+        "user position"
+        "clear enter-button";
+    grid-row-gap: 14px;
+    grid-column-gap: 14px;
+}
+
+#add-member-title {
+    grid-area: title;
+}
+
+.user-selection {
+    grid-area: user;
+}
+
+.position-field {
+    grid-area: position;
+}
+
+.enter-button {
+    grid-area: enter-button;
+}
+
+.add-member-modal-close {
+    position: absolute;
+    justify-self: right;
+    align-self: flex-start;
+}

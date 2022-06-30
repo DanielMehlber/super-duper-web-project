@@ -22,6 +22,7 @@ import java.io.InputStream;
 
 /**
  * This servlet lets the user load and save profile images
+ * @author Daniel Mehlber
  */
 @WebServlet("/users/images")
 @MultipartConfig(maxFileSize = 1024*1024*10) // 10mb at most
@@ -38,6 +39,7 @@ public class UserImageServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         // pull parameters
         String username = request.getParameter("user");
         if(username == null || username.isBlank()) {
