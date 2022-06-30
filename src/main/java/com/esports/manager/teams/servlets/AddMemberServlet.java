@@ -1,12 +1,11 @@
 package com.esports.manager.teams.servlets;
 
 import com.esports.manager.teams.TeamManagement;
-import com.esports.manager.teams.beans.AddMemberViewBean;
 import com.esports.manager.teams.exceptions.NoSuchTeamException;
 import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
-import jakarta.servlet.RequestDispatcher;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -50,7 +49,7 @@ public class AddMemberServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User loggedinUser = UserManagement.getAuthorizedUser(req.getSession());
+        User loggedInUser = UserManagement.getAuthorizedUser(req.getSession());
         req.setCharacterEncoding("UTF-8");
 
         String username = req.getParameter("users");
@@ -61,12 +60,13 @@ public class AddMemberServlet extends HttpServlet {
         try {
             TeamManagement.addUserToTeam(username, teamId, role, since, false);
         } catch (NoSuchTeamException e) {
-            // TODO: Maxi handle this
+            log.warn("cannot load team: no matching team can be found");
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "no such team in database");
         } catch (NoSuchUserException e) {
-            // TODO: Maxi handle this
+            log.warn("cannot load user: no matching user can be found");
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "no such user in database");
         }
 
-        RequestDispatcher rq = req.getRequestDispatcher(getServletContext().getContextPath() + "/teams/team?id="+ teamId);
         resp.sendRedirect(getServletContext().getContextPath() + "/teams/team?id="+ teamId);
     }
 }
