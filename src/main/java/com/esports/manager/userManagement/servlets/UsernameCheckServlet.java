@@ -18,6 +18,7 @@ import java.io.IOException;
  */
 @WebServlet("/users/username/check")
 public class UsernameCheckServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
     private final Logger log = LogManager.getLogger(UsernameCheckServlet.class);
 

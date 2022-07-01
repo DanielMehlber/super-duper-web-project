@@ -27,6 +27,7 @@ import java.io.InputStream;
 @WebServlet("/users/images")
 @MultipartConfig(maxFileSize = 1024*1024*10) // 10mb at most
 public class UserImageServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
     private final Logger log = LogManager.getLogger(UserImageServlet.class);
 

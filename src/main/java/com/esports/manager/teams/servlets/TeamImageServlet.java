@@ -25,6 +25,7 @@ import java.io.IOException;
 @WebServlet("/teams/images")
 @MultipartConfig(maxFileSize = 1024*1024*10) // 10mb max
 public class TeamImageServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
     private final Logger log = LogManager.getLogger(TeamImageServlet.class);
 
     /**

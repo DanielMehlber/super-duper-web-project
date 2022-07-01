@@ -19,7 +19,7 @@ import java.io.IOException;
  */
 @WebServlet("teams/removeMember")
 public class RemoveMemberServlet extends HttpServlet {
-    private static final long serialVersionUID = 1;
+    private static final long serialVersionUID = 1L;
 
     private final Logger log = LogManager.getLogger(RemoveMemberServlet.class);
 

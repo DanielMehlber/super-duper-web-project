@@ -31,6 +31,7 @@ import java.io.InputStream;
 @WebServlet("/games/images")
 @MultipartConfig(maxFileSize = 1024*1024*10) // 10mb at most
 public class GameImageServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
     private final Logger log = LogManager.getLogger(GameImageServlet.class);
 

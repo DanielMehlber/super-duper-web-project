@@ -22,6 +22,8 @@ import java.util.List;
 
 @WebServlet("/teams/search")
 public class TeamsSearchServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
     private final Logger log = LogManager.getLogger(TeamsSearchServlet.class);
 
     @Override
