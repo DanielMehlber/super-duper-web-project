@@ -13,6 +13,8 @@ import java.util.List;
 public class TeamViewBean implements Serializable {
     private String errorMessage;
 
+    private boolean currentUserIsAdmin;
+
     private Game game;
 
     private boolean hasGame;
@@ -72,5 +74,13 @@ public class TeamViewBean implements Serializable {
 
     public void setHasGame(boolean hasGame) {
         this.hasGame = hasGame;
+    }
+
+    public boolean getCurrentUserIsAdmin() {
+        return this.currentUserIsAdmin;
+    }
+
+    public void setCurrentUserIsAdmin(boolean isAdmin) {
+        this.currentUserIsAdmin = isAdmin;
     }
 }

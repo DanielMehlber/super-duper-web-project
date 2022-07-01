@@ -47,6 +47,7 @@ public class TeamServlet extends HttpServlet {
             teamViewBean.setTeam(TeamManagement.getTeamById(teamId));
             teamViewBean.setMembers(TeamManagement.fetchMembersByTeamId(teamId));
             teamViewBean.setGame(Games.getGameByTeamId(teamId));
+            teamViewBean.setCurrentUserIsAdmin(loggedInUser.getIsAdmin());
 
             if (loggedInUser.getUsername().equals(TeamManagement.fetchTeamLeaderByTeamId(teamId).getUsername())) {
                 teamViewBean.setIsTeamLeader(true);
