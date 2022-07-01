@@ -29,7 +29,7 @@
                     <h1 class="team-title">${teamViewBean.team.name}</h1>
                     <h3 class="team-slogan">${teamViewBean.team.slogan}</h3>
 
-                    <c:if test="${teamViewBean.isTeamLeader}">
+                    <c:if test="${teamViewBean.isTeamLeader || teamViewBean.currentUserIsAdmin}">
                         <form name="remove-team-form" method="POST" action="teams/removeTeam">
                             <button class="remove-team-button" type="submit">X</button>
                             <input type="hidden" value="${teamViewBean.team.id}" name="teamId">
@@ -42,14 +42,18 @@
                         <th>Player name</th>
                         <th>Since</th>
                         <th>Position</th>
-                        <th><button id="add-member-button" class="primary-button">+</button>
+                        <c:if test="${teamViewBean.isTeamLeader || teamViewBean.currentUserIsAdmin}">
+                            <th>
+                                <button id="add-member-button" class="primary-button">+</button>
+                            </th>
+                        </c:if>
                     </tr>
                     <c:forEach items="${teamViewBean.members}" var="member">
                         <tr>
                             <td>${member.username}</td>
                             <td>${member.since}</td>
                             <td>${member.role}</td>
-                            <c:if test="${ not member.isTeamLeader}">
+                            <c:if test="${teamViewBean.isTeamLeader || teamViewBean.currentUserIsAdmin}">
                                 <td>
                                     <form name="remove-member-form" method="POST" action="teams/removeMember">
                                         <button class="remove-button" type="submit">-</button>
