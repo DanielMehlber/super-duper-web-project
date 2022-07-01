@@ -18,6 +18,7 @@ container will use this database image at startup, so it does not work without i
 In order to start the software (incl. database schema filled with demo-data) just call
 ```shell
 # 1) compile the .war file without running unit tests (optional)
+# Other option: place downloaded ROOT.war into ./target directory
 mvn package -DskipTests
 
 # 2) build containers
@@ -31,7 +32,7 @@ docker-compose up -d
 # 4) stop all containers (application + db)
 docker-compose down
 ```
-* Instead of Step 1, you can also place the downloaded `ROOT.war` file into the `target` folder inside the source directory (in case you don't want to use maven)
+* Instead of Step 1, you can also place the downloaded `ROOT.war` file into the `target` folder inside the project directory (in case you don't want to use maven). You may have to create this directory first.
 * In Step 2 the container will download:
   * mysql image
   * wildfly server (wildfly-preview-26.1.0.Final)
@@ -42,6 +43,7 @@ docker-compose down
 In order to start the software (incl. database, but without demo data) just call
 ```shell
 # 1) compile the .war file without running unit tests (optional)
+# Other option: place downloaded ROOT.war into ./target directory
 mvn package -DskipTests
 
 # 2) build containers
