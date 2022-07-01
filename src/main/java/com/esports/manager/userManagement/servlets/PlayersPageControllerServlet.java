@@ -12,7 +12,7 @@ import java.io.IOException;
 
 /**
  * This servlet controls access to the user page
- * @author Daniel Mehlber
+ * @author Philipp Phan
  */
 @WebServlet("/users")
 public class PlayersPageControllerServlet extends HttpServlet {
