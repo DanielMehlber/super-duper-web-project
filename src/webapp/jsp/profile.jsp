@@ -59,10 +59,9 @@
             </c:if>
         </div>
         <c:if test="${requestScope.profileViewBean.isAdmin}">
-            <a class="remove-button" id="remove-user-button"
-               href="users/removeUser?username=${requestScope.profileViewBean.user.username}">Remove
-                User
-            </a>
+            <form action="users/removeUser?username=${requestScope.profileViewBean.user.username}" method="POST">
+                <button class="remove-button" id="remove-user-button" type="submit">Delete User</button>
+            </form>utton" id="remove-user-button"
         </c:if>
         <noscript>Your Browser does not support JavaScript</noscript>
     </section>
