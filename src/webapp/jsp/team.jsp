@@ -50,7 +50,6 @@
                             <td>${member.username}</td>
                             <td>${member.since}</td>
                             <td>${member.role}</td>
-                            <td><a class="remove-button" href="teams/removemember?teamid=${teamViewBean.getTeam().getId()}&username=${member.username}">-</a></td>
                             <c:if test="${ not member.isTeamLeader}">
                                 <td>
                                     <form name="remove-member-form" method="POST" action="teams/removeMember">
