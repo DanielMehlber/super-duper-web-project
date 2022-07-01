@@ -47,8 +47,9 @@ function executeGameSearch() {
 
 function setupAddGameButton() {
     let button = document.getElementById("add-game-button");
-    button.addEventListener("click", openModal);
+    if(button)
+        button.addEventListener("click", openModal);
 }
 
-executeGameSearch()
-setupAddGameButton()
+document.addEventListener("DOMContentLoaded", setupAddGameButton)
+document.addEventListener("DOMContentLoaded", executeGameSearch)

@@ -1,14 +1,16 @@
 // Authors: Daniel Mehlber
 "use strict";
 
-export function openModal() {
+function openModal() {
     const modal = document.getElementById("game-creation-modal");
-    modal.classList.remove("invisible")
+    if(modal)
+        modal.classList.remove("invisible")
 }
 
-export function closeModal() {
+function closeModal() {
     const modal = document.getElementById("game-creation-modal")
-    modal.classList.add("invisible")
+    if(modal)
+        modal.classList.add("invisible")
 }
 
 document.addEventListener("DOMContentLoaded", closeModal)
