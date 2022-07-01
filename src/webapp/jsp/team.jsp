@@ -82,7 +82,13 @@
                 <form class="add-member-modal" action="teams/addmember" method="POST">
                     <h2 id="add-member-title">Add member</h2>
                     <select id="add-member-user-selection" class="user-selection" name="users" required>
+                        <%--
+                        following part is inspired by: https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box
+                        --%>
                         <option value="" disabled selected>Select your option</option>
+                        <%--
+                        ende of inspired part
+                        --%>
                         <c:forEach items="${addMemberViewBean.users}" var="user">
                             <option value="${user.username}">${user.username}</option>
                         </c:forEach>
