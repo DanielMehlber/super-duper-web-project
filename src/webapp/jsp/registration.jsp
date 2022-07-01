@@ -30,8 +30,8 @@
                 	<div class="error-message-text">${requestScope.registrationBean.errorMessage}</div>
                	</c:if>
                 
-                <button class="cancel-button">Back</button>
-                <button name="registerButton" class="enter-button">Join us</button>
+                <button class="cancel-button" type="reset">Reset</button>
+                <button name="registerButton" class="enter-button" type="submit">Join us</button>
                 <a class="login-redirect" href="login">Already a member?</a>
         	</form>
         </main>
