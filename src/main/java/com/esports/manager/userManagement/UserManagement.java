@@ -33,7 +33,7 @@ import java.util.regex.Pattern;
 /**
  * collection of methods that will be used in user management
  *
- * @author Daniel Mehlber, Maximilian Rublik, Philipp Phan
+ * @author Maximilian Rublik, Philipp Phan
  */
 public class UserManagement {
 
@@ -48,7 +48,7 @@ public class UserManagement {
      * @return true if the username is available
      * @throws InternalErrorException some unexpected and fatal internal error
      *                                occurred
-     * @author Daniel Mehlber
+     * @author Maximilian Rublik
      * @see UserManagement#fetchUserByUsername(String)
      */
     public static boolean isUsernameAvailable(final String username) throws InternalErrorException {
@@ -74,7 +74,7 @@ public class UserManagement {
      * @return user entity (if username is known to system)
      * @throws NoSuchUserException no user with username found in database
      * @throws InternalErrorException sql error; database error; runtime error; (developer fault)
-     * @author Daniel Mehlber
+     * @author Philipp Phan
      */
     public static User fetchUserByUsername(final String username) throws NoSuchUserException, InternalErrorException {
         log.debug("fetching user by username...");
@@ -268,7 +268,7 @@ public class UserManagement {
      *
      * @return list of all users
      * @throws InternalErrorException a database error occurred
-     * @author Daniel Mehlber
+     * @author Philipp Phan
      */
     public static List<User> fetchAllUsers() throws InternalErrorException {
         log.debug("fetching all users...");
@@ -283,7 +283,7 @@ public class UserManagement {
      * @param pattern regex pattern
      * @return list of users which username matches regex pattern
      * @throws InternalErrorException a database error occurred
-     * @author Daniel Mehlber
+     * @author Philipp Phan
      */
     public static List<User> fetchUserByUsernamePattern(final String pattern) throws InternalErrorException {
         log.debug(String.format("fetching users matching pattern '%s'...", pattern));
@@ -336,7 +336,7 @@ public class UserManagement {
      *
      * @param user user object
      * @throws InternalErrorException data base error
-     * @author Daniel Mehlber
+     * @author Philipp Phan
     */
     public static List<Long> fetchTeamsIdsOfUser(final User user) throws InternalErrorException {
         return UserRepository.fetchTeamsOfUser(user);
