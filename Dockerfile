@@ -32,7 +32,7 @@ COPY target/*.war /opt/jboss/wildfly/standalone/deployments/ROOT.war
 COPY wildfly-config/*.xml /opt/jboss/wildfly/standalone/configuration/
 
 # 3) Standard http access port
-EXPOSE 8080
+EXPOSE 80
 
 # 4) Admin interface
 EXPOSE 9990

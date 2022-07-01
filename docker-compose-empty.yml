@@ -18,7 +18,6 @@ services:
       - "3306:3306"
     volumes:
       - ./src/main/resources/schema.sql:/docker-entrypoint-initdb.d/schema.sql
-      - ./db_dump.sql:/docker-entrypoint-initdb.d/db_dump.sql
     command: --init-file /docker-entrypoint-initdb.d/schema.sql
     healthcheck:
       test: [ "CMD", "mysql", "--user=mysql-user", "--password=Password123!?", "--execute=SELECT 1" ]
