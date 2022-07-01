@@ -15,7 +15,6 @@ function updateProfileImage() {
 function setAllEventListener(){
     document.getElementById("player-background-image").addEventListener("input", updateBackgroundImage)
     document.getElementById("profile-profile-image").addEventListener("input", updateProfileImage)
-    document.getElementsByName("profile")[0].addEventListener("input", updateProfileImage);
 }
 
 //window.addEventListener("load", setAllEventListener)
