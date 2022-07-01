@@ -285,6 +285,13 @@ public class UserRepository {
     }
 
     // TODO: Zuweisen und Dokumentation
+    /**
+     * Get all team in which the user is a member of
+     *
+     * @param user
+     * @throws InternalErrorException
+     * @author Daniel Mehlber / Philipp Phan
+    * */
     public static List<Long> fetchTeamsOfUser(final User user) throws InternalErrorException {
         List<Long> teamIds = new ArrayList<>();
 
@@ -295,7 +302,6 @@ public class UserRepository {
             pstmt.setString(1, user.getUsername());
             // Puts name of user in index(1) of the prepared statement
             ResultSet result = pstmt.executeQuery();
-            //Put
 
             while(result.next()) {
                 teamIds.add(result.getLong(1));
