@@ -2,6 +2,8 @@ package com.esports.manager.teams.entities;
 
 import java.util.List;
 
+/*@author Maximilian Rublik*/
+
 public class SearchableTeam extends Team {
     private List<Member> members;
 

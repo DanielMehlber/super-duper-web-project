@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * Database interactions with user entities
- * @author Daniel Mehlber, Maximilian Rublik, Philipp Phan
+ * @author Maximilian Rublik, Philipp Phan
  */
 public class UserRepository {
 
@@ -32,7 +32,7 @@ public class UserRepository {
      * @return user instance fetched from database
      * @throws InternalErrorException an unexpected internal error occurred
      * @throws NoSuchUserException no such user with passed username
-     * @author Daniel Mehlber
+     * @author Maximilian Rublik
      */
     public static User getByUsername(final String username) throws InternalErrorException, NoSuchUserException {
         log.debug("fetching user entity by username from database...");
@@ -90,7 +90,7 @@ public class UserRepository {
      * @param username name to check
      * @return true if username is available and unique
      * @throws InternalErrorException an internal database error occurred
-     * @author Daniel Mehlber
+     * @author Maximilian Rublik
      */
     public static boolean isUniqueUsername(final String username) throws InternalErrorException {
         log.debug("checking for already existing username in database");
@@ -113,7 +113,7 @@ public class UserRepository {
      * @return bytes of image
      * @throws InternalErrorException cannot fetch from database; connection error; sql error
      * @throws NoImageFoundException there is no profile picture for this username
-     * @author Daniel Mehlber
+     * @author Philipp Phan
      */
     public static byte[] loadProfileImage(final String username) throws InternalErrorException, NoImageFoundException {
         log.debug("loading profile image");
@@ -153,7 +153,7 @@ public class UserRepository {
      * @return bytes of image
      * @throws InternalErrorException cannot fetch from database; connection error; sql error
      * @throws NoImageFoundException there is no background picture for this username
-     * @author Daniel Mehlber
+     * @author Philipp Phan
      */
     public static byte[] loadBackgroundImage(final String username) throws InternalErrorException, NoImageFoundException {
         log.debug("loading background image");
@@ -192,7 +192,7 @@ public class UserRepository {
      * @param image image data as byte array
      * @param user images will belong to this user
      * @throws InternalErrorException cannot write to database
-     * @author Daniel Mehlber
+     * @author Philipp Phan
      */
     public static void setBackgroundImage(final byte[] image, User user) throws InternalErrorException {
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/setUserBackgroundImage.sql");
@@ -214,7 +214,7 @@ public class UserRepository {
      * @param image image data as byte array
      * @param user images will belong to this user
      * @throws InternalErrorException cannot write to database
-     * @author Daniel Mehlber
+     * @author Philipp Phan
      */
     public static void setProfileImage(final byte[] image, User user) throws InternalErrorException {
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/setUserProfileImage.sql");
@@ -236,7 +236,7 @@ public class UserRepository {
      * @param pattern regex pattern
      * @return list of users with username matching regex pattern
      * @throws InternalErrorException an unexpected internal error occurred
-     * @author Daniel Mehlber
+     * @author Maximilian Rublik
      */
     public static List<User> fetchAllUserWithUsernamePattern(final String pattern) throws InternalErrorException {
         log.debug("loading background image");

@@ -5,6 +5,8 @@ import com.esports.manager.userManagement.entities.User;
 import java.io.Serializable;
 import java.util.List;
 
+/*@author Maximilian Rublik*/
+
 public class AddMemberViewBean implements Serializable {
     private List<User> users;
 
