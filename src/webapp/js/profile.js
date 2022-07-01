@@ -12,9 +12,14 @@ function updateProfileImage() {
     form.submit()
 }
 
+function logoutAlert(){
+    window.alert("You have deleted the user");
+}
+
 function setAllEventListener(){
     document.getElementById("player-background-image").addEventListener("input", updateBackgroundImage)
     document.getElementById("profile-profile-image").addEventListener("input", updateProfileImage)
+    document.getElementById("remove-user-button").addEventListener("click", logoutAlert)
 }
 
 //window.addEventListener("load", setAllEventListener)
