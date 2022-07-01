@@ -19,6 +19,7 @@ import java.io.IOException;
  */
 @WebServlet("/index")
 public class LandingPageServlet extends HttpServlet {
+    private static final long serialVersionUID = 1;
 
     /**
      * Checks if a user is already logged in and forwards the user accordingly. If the user is logged in, forward to

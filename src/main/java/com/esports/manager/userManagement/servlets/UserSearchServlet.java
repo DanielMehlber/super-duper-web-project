@@ -20,6 +20,7 @@ import java.util.List;
  */
 @WebServlet("/users/search")
 public class UserSearchServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
     private final Logger log = LogManager.getLogger(UserSearchServlet.class);
 

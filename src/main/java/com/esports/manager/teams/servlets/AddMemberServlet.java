@@ -23,7 +23,7 @@ import java.sql.Date;
  */
 @WebServlet("teams/addmember")
 public class AddMemberServlet extends HttpServlet {
-    private static final long serialVersionUID = 1;
+    private static final long serialVersionUID = 1L;
     private final Logger log = LogManager.getLogger(AddMemberServlet.class);
 
     /**

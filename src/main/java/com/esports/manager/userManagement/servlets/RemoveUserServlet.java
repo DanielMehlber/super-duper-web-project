@@ -25,7 +25,7 @@ import java.io.InterruptedIOException;
 
 @WebServlet("users/removeUser")
 public class RemoveUserServlet extends HttpServlet {
-    private static final long serialVersionUID = 1;
+    private static final long serialVersionUID = 1L;
     private final Logger log = LogManager.getLogger(RemoveUserServlet.class);
 
     @Override

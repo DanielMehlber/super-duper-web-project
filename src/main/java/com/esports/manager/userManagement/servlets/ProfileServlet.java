@@ -23,26 +23,14 @@ import java.io.IOException;
  */
 @WebServlet("/profile")
 public class ProfileServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
     private final Logger log = LogManager.getLogger();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*
-         * TODO: this page must show information to every user (logged in self or selected user)
-         *  - if user is the logged in user: show edit options
-         *  - if user is not the logged in user: do not display edit options
-         *  - if user is admin: show delete option
-         *  - if user is not admin: do not display admin option
-         */
         HttpSession currentSession = request.getSession();
 
-
         ProfileViewBean profileViewBean = new ProfileViewBean();
-
-        // "http://www.leckmichamarsch.de/page?username=daniel&someshit=shit"
-        // in JSP: <a href="page?username=${requestScrope.userBean.username}">Hier klicken</a>
-        // String username = request.getParameter("username");
-        // String someshit = request.getParameter("someshit");
 
         Boolean editPermission = false;
         Boolean isAdmin = false;
@@ -59,7 +47,6 @@ public class ProfileServlet extends HttpServlet {
             }
             User userOfPage = UserManagement.fetchUserByUsername(usernameParameter);
             // Compare both to set permissions
-            // Compare usernames with equals, damit daniel mich nicht haut
             if (currentUser.getUsername().equals(userOfPage.getUsername())) {
                 editPermission = true;
             }
@@ -83,11 +70,6 @@ public class ProfileServlet extends HttpServlet {
             response.sendRedirect("/dashboard");
             return;
         }
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

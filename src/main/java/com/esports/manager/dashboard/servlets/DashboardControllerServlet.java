@@ -9,6 +9,7 @@ import com.esports.manager.teams.TeamManagement;
 import com.esports.manager.teams.entities.Member;
 import com.esports.manager.teams.entities.Team;
 import com.esports.manager.userManagement.UserManagement;
+import com.esports.manager.userManagement.db.UserRepository;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.NoSuchUserException;
 import jakarta.servlet.ServletException;
@@ -30,6 +31,7 @@ import java.util.Set;
  */
 @WebServlet("/dashboard")
 public class DashboardControllerServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
     private final Logger log = LogManager.getLogger(DashboardControllerServlet.class);
     @Override
@@ -42,8 +44,7 @@ public class DashboardControllerServlet extends HttpServlet {
         } catch (NoSuchUserException e) {
             // user does not exist anymore, log out user and redirect him to login page
             log.warn(String.format("user '%s' was logged in, but does not exist anymore. The user was logged out.", currentUser.getUsername()));
-            UserManagement.performLogout();
-            response.sendRedirect("/");
+            response.sendRedirect("/logout");
         }
 
         DashboardViewBean dashboardViewBean = new DashboardViewBean();

@@ -4,10 +4,21 @@ Author: Maximilian Rublik
 
 "use strict"
 function setAllEventListener() {
-    document.getElementById("add-member-button").addEventListener("click", openModal);
+    let addMember = document.getElementById("add-member-button");
+    if (addMember) {
+    addMember.addEventListener("click", openModal);
+    }
     document.getElementsByClassName("add-member-modal-close")[0].addEventListener("click", closeModal);
-    document.getElementsByName("remove-member-form")[0].addEventListener("submit", confirmDeleteMember);
-    document.getElementsByName("remove-team-form")[0].addEventListener("submit", confirmDeleteTeam);
+    let removeMember = document.getElementsByName("remove-member-form")[0];
+    if (removeMember) {
+        removeMember.addEventListener("submit", confirmDeleteMember)
+    }
+
+    let removeTeam = document.getElementsByName("remove-team-form")[0];
+    if (removeTeam) {
+        removeTeam.addEventListener("submit", confirmDeleteTeam);
+    }
+
     document.getElementById("main").addEventListener("click", hideNav);
     document.getElementsByClassName("nav-bar-button")[0].addEventListener("mouseover", toggleNav);
 }

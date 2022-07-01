@@ -1,3 +1,6 @@
+<%--
+  Author: Philipp Phan
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -17,7 +20,7 @@
 <body>
 
 <%@include file="fragments/sidebar.jspf" %>
-<main id="main" class="flex-container" >
+<main id="main" class="flex-container">
     <button class="nav-bar-button">&#9776;</button>
     <section class="main-content-container">
         <img src="users/images?type=background&user=${requestScope.profileViewBean.user.username}"
@@ -53,14 +56,17 @@
             </c:if>
             <div class="username">@${requestScope.profileViewBean.user.username}</div>
             <c:if test="${requestScope.profileViewBean.isAdmin && requestScope.profileViewBean.editPermission}">
-                    <p class="admin-status">You are an admin
+                <p class="admin-status">You are an admin
                     <span role="tooltip">You can edit / remove games and remove users</span>
-                    </p>
+                </p>
+            </c:if>
+            <c:if test="${requestScope.profileViewBean.user.isAdmin}">
+                <span class="platformRole">Admin</span>
             </c:if>
         </div>
         <c:if test="${requestScope.profileViewBean.isAdmin}">
-            <form action="users/removeUser?username=${requestScope.profileViewBean.user.username}" method="POST">
-                <button class="remove-button" id="remove-user-button" type="submit">Delete User</button>
+            <form action="users/removeUser?username=${requestScope.profileViewBean.user.username}" method="POST" id="remove-user-form">
+                <button class="remove-button">Delete User</button>
             </form>
         </c:if>
     </section>

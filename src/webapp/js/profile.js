@@ -12,14 +12,17 @@ function updateProfileImage() {
     form.submit()
 }
 
-function deleteAlert(){
-    window.alert("You have deleted the user");
+function deleteAlert(event){
+    const result = confirm("Are you sure you want to remove the user");
+    if(!result){
+        event.preventDefault();
+    }
 }
 
 function setAllEventListener(){
     document.getElementById("player-background-image").addEventListener("input", updateBackgroundImage)
     document.getElementById("profile-profile-image").addEventListener("input", updateProfileImage)
-    document.getElementById("remove-user-button").addEventListener("click", deleteAlert)
+    document.getElementById("remove-user-form").addEventListener("submit", deleteAlert)
 }
 
 //window.addEventListener("load", setAllEventListener)

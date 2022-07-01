@@ -81,12 +81,6 @@ public class UserManagement {
         return UserRepository.getByUsername(username);
     }
 
-
-    // TODO: Log user out of active session
-    public static void performLogout() {
-
-    }
-
     /**
      * Checks if username and password (from html form) align with those in database
      *
@@ -296,7 +290,13 @@ public class UserManagement {
         return UserRepository.fetchAllUserWithUsernamePattern(pattern);
     }
 
-    // TODO: Documentation (Maxi)
+    /**
+     *
+     * @param teamId Unique id of the team
+     * @return list of users
+     * @throws InternalErrorException a database error occurred
+     * @author Maximilian Rublik
+     * */
     public static List<User> fetchUserNotAlreadyMember(Long teamId) throws InternalErrorException {
         log.debug("fetching users not already members in team..");
 
@@ -318,8 +318,8 @@ public class UserManagement {
     /**
      * Deletes User from database
      *
-     * @param username
-     * @throws InternalErrorException
+     * @param username unique name of the user
+     * @throws InternalErrorException an internal Error occured while removing the user
      * @author Philipp Phan
      */
     public static void removeUser(String username) {
@@ -331,7 +331,13 @@ public class UserManagement {
         }
     }
 
-    // TODO: documentation
+    /**
+     * Gets ID of teams in which the user is a member
+     *
+     * @param user user object
+     * @throws InternalErrorException data base error
+     * @author Daniel Mehlber
+    */
     public static List<Long> fetchTeamsIdsOfUser(final User user) throws InternalErrorException {
         return UserRepository.fetchTeamsOfUser(user);
     }

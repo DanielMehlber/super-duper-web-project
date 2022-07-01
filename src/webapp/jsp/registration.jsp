@@ -22,8 +22,10 @@
         	<form class="registration-card" method="POST" action="registration">
                 <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Logo" class="logo img">
                 <input type="email" name="email" class="email" placeholder="Choose E-Mail" maxlength="40" required autofocus>
-                <input type="text" name="username" class="username" placeholder="Choose Username" maxlength="30" required>
-                <input type="password" name="password" class="password" minlength="8" placeholder="Choose Password" required>
+                <input type="text" name="username" class="username" placeholder="Choose Username" maxlength="30"
+                       title="Only use letters or numbers for the username" pattern="^[a-zA-Z_\d]*$" required>
+                <input type="password" name="password" class="password" minlength="8" placeholder="Choose Password"
+                       title="Minimum 8 letters required" required>
                 <input type="password" name="confirmPassword" class="confirmPassword" minlength="8" placeholder="Confirm Password" required>
                 
                 <c:if test="${not empty requestScope.registrationBean.errorMessage}">

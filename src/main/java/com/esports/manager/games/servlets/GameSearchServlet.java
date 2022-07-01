@@ -21,6 +21,7 @@ import java.util.List;
  */
 @WebServlet("/games/search")
 public class GameSearchServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
     private final Logger log = LogManager.getLogger(GameSearchServlet.class);
 
