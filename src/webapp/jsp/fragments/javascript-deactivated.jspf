@@ -1,0 +1,9 @@
+<%--
+  User: Maximilian Rublik
+--%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<link href="${pageContext.request.contextPath}/stylesheets/javascript-deactivated.css" rel="stylesheet" />
+<div class="javascript-deactivated-container">
+    <h2 class="title">JAVASCRIPT Deactivated</h2>
+    <h4 class="subtitle">Please reactivate your Javascript and reload this page!</h4>
+</div>

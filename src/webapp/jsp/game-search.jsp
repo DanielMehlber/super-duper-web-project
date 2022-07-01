@@ -45,5 +45,6 @@
             </section>
         </c:if>
     </main>
+    <noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
 </body>
 </html>

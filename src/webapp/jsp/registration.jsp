@@ -37,5 +37,6 @@
         	</form>
             <noscript>JavaScript not enabled</noscript>
         </main>
+        <noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
     </body>
 </html>

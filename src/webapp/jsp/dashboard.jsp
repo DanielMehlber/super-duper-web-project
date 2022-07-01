@@ -40,5 +40,6 @@
     </main>
 
     <footer></footer>
+    <noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
 </body>
 </html>

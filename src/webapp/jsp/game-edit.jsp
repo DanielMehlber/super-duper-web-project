@@ -18,6 +18,7 @@
 <script src="js/game-edit.js"></script>
 <script src="js/newsfeed.js"></script>
 <%@include file="fragments/sidebar.jspf" %>
+
 <main id="main">
     <button class="nav-bar-button">&#9776;</button>
     <div class="game-edit-buttons-container">
@@ -55,9 +56,7 @@
                 <input type="hidden" value="edit" name="mode"/>
             </form>
         </div>
-    </div>
-
-
-</main>
+    </main>
+    <noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
 </body>
 </html>

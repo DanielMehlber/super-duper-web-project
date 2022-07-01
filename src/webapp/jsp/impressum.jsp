@@ -64,6 +64,7 @@
             <noscript>Your Browser does not support JavaScript</noscript>
         </div>
     </section>
+    <noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
 </main>
 </body>
 </html>

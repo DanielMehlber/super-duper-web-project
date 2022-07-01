@@ -31,7 +31,7 @@
         <a class="registration-redirect" href="registration">Not a member yet?</a>
     </form>
     <div id="cookieText"></div>
-    <noscript>JavaScript is not activated. Please activate JavaScript</noscript>
-</main>
+    </main>
+    <noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
 </body>
 </html>

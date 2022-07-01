@@ -1,4 +1,4 @@
-//Authors: Maximilian Rublik
+//Author: Maximilian Rublik
 "use strict";
 
 function setAllEventListeners() {

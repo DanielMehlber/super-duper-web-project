@@ -15,10 +15,10 @@
         <link href="stylesheets/TeamPage.css" rel="stylesheet"/>
         <link href="stylesheets/add-member-modal.css" rel="stylesheet"/>
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+        <noscript>JavaScript is deactivated!</noscript>
         <title>${teamViewBean.team.name}</title>
     </head>
     <body>
-        <noscript>Javascript deactivated!</noscript>
         <script src="js/team.js" defer></script>
         <%@include file="fragments/sidebar.jspf" %>
 
@@ -93,5 +93,6 @@
         </main>
         <footer>
         </footer>
+        <noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
     </body>
 </html>
