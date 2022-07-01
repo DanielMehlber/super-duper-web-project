@@ -15,6 +15,8 @@ public class GamePageViewBean implements Serializable {
     private Game game;
     private List<Team> teams;
 
+    private String error;
+
     private int teamsCount;
 
     public GamePageViewBean() {}
@@ -38,5 +40,13 @@ public class GamePageViewBean implements Serializable {
 
     public int getTeamsCount() {
         return teamsCount;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }

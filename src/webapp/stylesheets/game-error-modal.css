@@ -1,0 +1,55 @@
+/*
+    Author: Daniel Mehlber
+*/
+
+.error-modal-container {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 3;
+    top: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    overflow: hidden;
+}
+
+.error-modal-container.invisible {
+    display: none;
+}
+
+.error-modal {
+    border-radius: 5px;
+    padding: 20px;
+    background: rgba(29, 39, 76, 1);
+    color: white;
+    width: 70%;
+    text-align: center;
+    margin-bottom: 15px;
+    box-shadow: 0px 0px 15px 2px rgb(43, 146, 213);
+}
+
+.error-modal > .error-modal-close {
+    float: right;
+}
+
+.slide-in {
+    animation: slide-in-bottom 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+/* Animation from https://animista.net/play/entrances/slide-in-elliptic/slide-in-elliptic-bottom-fwd */
+@keyframes slide-in-bottom {
+    0% {
+        transform: translateY(1000px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
