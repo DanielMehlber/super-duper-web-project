@@ -5,7 +5,7 @@
 <%@ page language="java" pageEncoding="UTF-8" errorPage=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Registration</title>
         <meta charset="UTF-8">
@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="stylesheets/Elements.css">
         <link rel="stylesheet" href="stylesheets/RegistrationPage.css">
-        <script type="text/javascript" src="js/registration.js"></script>
+        <script src="js/registration.js"></script>
 
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     </head>
