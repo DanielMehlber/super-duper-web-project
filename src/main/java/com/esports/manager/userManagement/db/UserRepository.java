@@ -271,9 +271,13 @@ public class UserRepository {
         // Connect with Database and loads sql statement
         // V.Siehl Page.18 (04_JDBC)
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/removeUser.sql");
+             //Load Prepared Statement from QueryHandler
              Connection connection = pstmt.getConnection()) {
+            //Retrieves connection with statement object
             pstmt.setString(1, username);
+            // Puts username in index(1) of the prepared statement
             pstmt.executeUpdate();
+            //prepared sql statement is being executed
         } catch (IOException | SQLException e) {
             log.error("cannot delete User because of an unexpected sql error: " + e.getMessage());
             throw new InternalErrorException("cannot delete User");
@@ -285,9 +289,13 @@ public class UserRepository {
         List<Long> teamIds = new ArrayList<>();
 
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/user-management/fetchTeamsOfUser.sql");
+             //Load prepared Statement from QueryHandler
              Connection connection = pstmt.getConnection()) {
+            //Establish Connection with statement object
             pstmt.setString(1, user.getUsername());
+            // Puts name of user in index(1) of the prepared statement
             ResultSet result = pstmt.executeQuery();
+            //Put
 
             while(result.next()) {
                 teamIds.add(result.getLong(1));
