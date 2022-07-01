@@ -1,5 +1,10 @@
-//Authors:
+//Authors: Maximilian Rublik
 "use strict";
+
+function setAllEventListeners() {
+    document.getElementsByName("password")[0].addEventListener("keyup", checkPassword);
+    document.getElementsByName("passwordConfirm")[0].addEventListener("keyup", checkPassword);
+}
 
 function checkPassword () {
     let password = document.getElementsByName('password')[0];
@@ -17,3 +22,5 @@ function checkPassword () {
         confirmPassword.setCustomValidity("Invalid Field.");
     }
 }
+
+addEventListener("DOMContentLoaded", setAllEventListeners);
