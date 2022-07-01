@@ -87,6 +87,7 @@ img.team-background {
     border-style: solid;
     height: 116px;
     width: 116px;
+    object-fit: cover;
 }
 
 .player-logo {
