@@ -21,7 +21,6 @@
     <script src="js/game-search.js"></script>
 </head>
 <body>
-
     <%@include file="fragments/sidebar.jspf" %>
 
     <main id="main">
