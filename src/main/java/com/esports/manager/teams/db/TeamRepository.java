@@ -47,6 +47,12 @@ public class TeamRepository {
         return teams;
     }
 
+    /**
+     * Returns team by its id
+     * @param id id of team
+     * @throws InternalErrorException Database error
+     * @author Maximilian Rublik
+     * */
     public static Team getTeamById(final long id) throws InternalErrorException {
         log.debug("fetch single team entity by id from database...");
 
@@ -92,6 +98,12 @@ public class TeamRepository {
         return teamleader.get(0);
     }
 
+    /**
+     * Returns List of members of team by team id
+     * @param id id of team
+     * @throws InternalErrorException Database error
+     * @author Maximilian Rublik
+     * */
     public static List<Member> getMembersByTeamId(final long id) throws InternalErrorException {
         log.debug("fetch members by teamId");
 
@@ -261,6 +273,16 @@ public class TeamRepository {
         log.debug("created team to database");
     }
 
+    /**
+     * Adds user to desired team
+     * @param  teamid ID of team
+     * @param username name of user
+     * @param role Role of user in team
+     * @param since Date of entry
+     * @param isTeamLeader Boolean if user is teamleader / creator
+     * @throws InternalErrorException Database error
+     * @author Maximilian Rublik
+     * */
     public static void addUserToTeam (Long teamid, String username, String role, Date since, boolean isTeamLeader) throws InternalErrorException {
         log.debug("add user to team");
 
@@ -320,11 +342,16 @@ public class TeamRepository {
         }
     }
 
+    /**
+     * Returns all teams matching the search pattern
+     * @param teamSearchPattern searchPattern as String
+     * @throws InternalErrorException Database error
+     * @author Maximilian Rublik
+     * */
     public static List<Team> fetchAllTeamsByNamePattern(String teamSearchPattern) throws InternalErrorException {
         log.debug("loading teams according to search pattern");
 
         List<Team> teams;
-        //TODO: Statement
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchTeamByNamePattern.sql");
              Connection connection = pstmt.getConnection()){
             pstmt.setString(1, teamSearchPattern);
@@ -342,11 +369,17 @@ public class TeamRepository {
         return teams;
     }
 
+    /**
+     * Returns all teams matching the search pattern with filter
+     * @param teamSearchPattern searchPattern as String
+     * @param gameId Unique ID of the game
+     * @throws InternalErrorException Database error
+     * @author Maximilian Rublik
+     * */
     public static List<Team> fetchAllTeamsByFilterAndWithNamePattern(String teamSearchPattern, Long gameId) throws InternalErrorException {
         log.debug("loading teams according to search pattern");
 
         List<Team> teams;
-        //TODO: Statement
         try (PreparedStatement pstmt = QueryHandler.loadStatement("/sql/teams/fetchTeamByFilterAndNamePattern.sql");
              Connection connection = pstmt.getConnection()){
             pstmt.setString(1, teamSearchPattern);

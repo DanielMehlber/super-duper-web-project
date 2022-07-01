@@ -39,10 +39,25 @@ public class TeamManagement {
        return TeamRepository.getAllTeams();
     }
 
+    /**
+     * return team by its id
+     * @param id of the team you want to have
+     * @return a team fitting the id
+     * @throws InternalErrorException
+     * @author: Maximilian Rublik
+     */
     public static Team getTeamById(Long id) throws InternalErrorException {
         return TeamRepository.getTeamById(id);
     }
 
+    /**
+     * fetch all members of a team according the teamId
+     * @param id of the team you want the members to
+     * @return list of fitting members
+     * @throws InternalErrorException
+     *
+     * @author: Maximilian Rublik
+     */
     public static List<Member> fetchMembersByTeamId(final long id) throws InternalErrorException {
         log.debug("fetch members by teamId...");
         List<Member> members = TeamRepository.getMembersByTeamId(id);
@@ -91,16 +106,22 @@ public class TeamManagement {
         return newTeam;
     }
 
+    /**
+     * fetch the teamleader of a team by its teamId
+     * @param id of the team
+     * @return single member which is the teamleader
+     * @author: Maximilian Rublik
+     */
     public static Member fetchTeamLeaderByTeamId(long id) {
         return TeamRepository.getTeamLeaderByTeamId(id);
     }
 
     /**
-     *
-     * @param username
-     * @param teamid
-     * @param role
-     * @param since
+     * adds user to team
+     * @param username of the user which you want to add
+     * @param teamid where the user shall be added
+     * @param role a role the user can be given (freetext), teamleader gets his automatically
+     * @param since datetime when the user was added
      * @throws InternalErrorException some unexpected and fatal internal error occurred
      *
      * @author Maximilian Rublik
@@ -128,6 +149,15 @@ public class TeamManagement {
         }
     }
 
+    /**
+     * fetch teams by a game filter by id and a searchpattern
+     * @param teamSearchPattern from input to search specific teams with
+     * @param gameId of a game you want to filter with
+     * @return list of teams fitting on the searchpattern and gameId
+     * @throws InternalErrorException
+     * @throws NoTeamsFoundException
+     * @author: Maximilian Rublik
+     */
     public static List<Team> fetchTeamByFilterAndNamePattern(String teamSearchPattern, Long gameId) throws InternalErrorException, NoTeamsFoundException {
         if (gameId == 0 && (teamSearchPattern == null || teamSearchPattern.isBlank())) {
             return TeamRepository.getAllTeams();

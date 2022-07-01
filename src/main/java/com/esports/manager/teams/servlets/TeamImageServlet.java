@@ -90,9 +90,4 @@ public class TeamImageServlet extends HttpServlet {
         resp.getOutputStream().write(image);
         resp.getOutputStream().flush();
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO: not sure whether we really need it here
-    }
 }

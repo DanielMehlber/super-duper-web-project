@@ -54,6 +54,7 @@ function setupAddGameButton() {
 function init() {
     setupAddGameButton();
     document.getElementById("game-searchbar").addEventListener("keyup", executeGameSearch);
+    document.getElementsByClassName("game-creation-modal-close")[0].addEventListener("click", closeModal);
 }
 
 document.addEventListener("DOMContentLoaded", init)

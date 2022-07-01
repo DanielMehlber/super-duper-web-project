@@ -4,6 +4,11 @@ import com.esports.manager.userManagement.entities.User;
 
 import java.io.Serializable;
 
+/**
+ * This ViewBean saves all data for the profile page
+ * @author Philipp Phan
+ */
+
 public class ProfileViewBean implements Serializable {
     public ProfileViewBean() {
     }
