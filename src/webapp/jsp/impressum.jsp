@@ -12,11 +12,12 @@
     <link href="stylesheets/dashboard.css" rel="stylesheet">
     <link href="stylesheets/Impressum.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <script src="js/sidebar.js"></script>
 </head>
 <body>
 <%@include file="fragments/sidebar.jspf" %>
-<main id="main" onclick="hideNav()">
-    <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
+<main id="main">
+    <button class="nav-bar-button">&#9776;</button>
     <section id="main-container">
         <div id="main-content">
             <h2>Impressum</h2>

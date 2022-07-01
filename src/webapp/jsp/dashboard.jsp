@@ -17,13 +17,13 @@
     <link href="stylesheets/newsfeed.css" rel="stylesheet"/>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
-<body onload="loadMoreNewsfeedItems();">
+<body>
     <script src="js/newsfeed.js"></script>
 
     <%@include file="fragments/sidebar.jspf" %>
 
-    <main id="main" onclick="hideNav()">
-        <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
+    <main id="main">
+        <button class="nav-bar-button">&#9776;</button>
         <section class="main-content-container">
             <section class="dashboard-content-container">
                 <div class="dashboard-header">

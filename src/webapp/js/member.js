@@ -10,6 +10,9 @@
 
 "use strict";
 
+function setAllEventListener() {
+    document.getElementById("player-searchbar").addEventListener("keydown", executePlayerSearch)
+}
 function generateUserCardHtml(user) {
     let html =
         `<div class="member-card">
@@ -61,4 +64,6 @@ function executePlayerSearch() {
         })
 }
 
+
+addEventListener("DOMContentLoaded", setAllEventListener);
 executePlayerSearch()

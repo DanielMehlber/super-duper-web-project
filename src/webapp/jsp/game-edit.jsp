@@ -18,11 +18,11 @@
 <script src="js/game-edit.js"></script>
 <script src="js/newsfeed.js"></script>
 <%@include file="fragments/sidebar.jspf" %>
-<main id="main" onclick="hideNav()">
-    <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
+<main id="main">
+    <button class="nav-bar-button">&#9776;</button>
     <div class="game-edit-buttons-container">
         <a href="games/game?id=${requestScope.gamePageViewBean.game.id}&mode=view" class="game-view-button button">&#128065;</a>
-        <form method="post" action="games/game/edit" onsubmit="return confirm('Do you really want to delete this game?')" >
+        <form method="post" action="games/game/edit">
             <button class="game-view-button game-delete-button primary-button" type="submit">&#128465;&#65039;</button>
             <input type="hidden" value="${requestScope.gamePageViewBean.game.id}" name="id"/>
             <input type="hidden" value="delete" name="mode"/>
@@ -31,7 +31,7 @@
     <form id="game-background-container" method="post" class="game-background-container" action="games/images?id=${requestScope.gamePageViewBean.game.id}&type=background" enctype="multipart/form-data">
         <label class="game-background-selector-container secondary-button">
             Select background
-            <input name="image" type="file" class="game-background-selector" oninput="updateBackgroundImage()" accept="image/*"/>
+            <input name="image" type="file" class="game-background-selector" accept="image/*"/>
         </label>
         <img class="game-background-image" src="games/images?id=${requestScope.gamePageViewBean.game.id}&type=background" alt="background of game">
     </form>
@@ -40,7 +40,7 @@
             <form id="game-cover-container" class="game-cover-container" method="post" action="games/images?id=${requestScope.gamePageViewBean.game.id}&type=profile" enctype="multipart/form-data">
                 <label class="game-cover-selector-container secondary-button">
                     Choose
-                    <input type="file" name="image" accept="image/*" class="game-cover-selector" oninput="updateCoverImage()"/>
+                    <input type="file" name="image" accept="image/*" class="game-cover-selector"/>
                 </label>
                 <img class="game-cover-image" src="games/images?id=${requestScope.gamePageViewBean.game.id}&type=profile" alt="cover of game"/>
             </form>

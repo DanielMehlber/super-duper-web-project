@@ -25,8 +25,8 @@
 	<script src="js/addNewTeam.js" defer></script>
 	<%@include file="fragments/sidebar.jspf" %>
 
-	<main id="main" onclick="hideNav()">
-		<button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
+	<main id="main">
+		<button class="nav-bar-button">&#9776;</button>
 		<section class="teams-area">
 			<div class="head-information">
 				<h1 id="teams-title">Your Teams</h1>
@@ -55,16 +55,16 @@
 
 				<label class="team-logo-label">
 					UPLOAD LOGO
-					<input name="profile" class="team-logo-input" onchange="checkProfile()" type="file" accept="image/*"/>
+					<input name="profile" class="team-logo-input" type="file" accept="image/*"/>
 				</label>
 
 				<label class="background-label">
 					BACKGROUND
-					<input name="background" class="background-input" onchange="checkBackground()" type="file" accept="image/*"/>
+					<input name="background" class="background-input" type="file" accept="image/*"/>
 				</label>
 
 				<button class="enter-button" type="submit" name="enter-button">Save</button>
-				<div class="team-creation-modal-close" onclick="closeModal()">X</div>
+				<div class="team-creation-modal-close">X</div>
 			</form>
 		</section>
 	</main>
