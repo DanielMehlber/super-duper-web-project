@@ -17,7 +17,6 @@
 	<link href="stylesheets/team-creation-modal.css" rel="stylesheet"/>
 	<link href="stylesheets/dashboard.css" rel="stylesheet"/>
 	<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-	<noscript>JavaScript is deactivated!</noscript>
 </head>
 <body>
 	<noscript>Javascript deactivated!</noscript>
@@ -71,5 +70,6 @@
 	</main>
 
 	<footer></footer>
+	<noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
 </body>
 </html>

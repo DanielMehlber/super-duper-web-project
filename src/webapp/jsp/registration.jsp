@@ -35,7 +35,6 @@
                 <button name="registerButton" class="enter-button">Join us</button>
                 <a class="login-redirect" href="login">Already a member?</a>
         	</form>
-            <noscript>JavaScript not enabled</noscript>
         </main>
         <noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
     </body>
