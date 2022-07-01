@@ -81,12 +81,6 @@ public class UserManagement {
         return UserRepository.getByUsername(username);
     }
 
-
-    // TODO: Log user out of active session
-    public static void performLogout() {
-
-    }
-
     /**
      * Checks if username and password (from html form) align with those in database
      *
