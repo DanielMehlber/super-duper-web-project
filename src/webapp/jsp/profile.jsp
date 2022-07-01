@@ -30,7 +30,8 @@
                       method="POST"
                       enctype="multipart/form-data">
                     <label class="input-bg-label">
-                        <input class="background-image-input" id="background-image-input" type="file" name="profile"  accept="image/*">
+                        <input class="background-image-input" id="background-image-input" type="file" name="profile"
+                               accept="image/*">
                         Upload Image
                     </label>
                 </form>
@@ -45,13 +46,15 @@
                       method="POST" enctype="multipart/form-data">
                     <label class="input-profile-label">
                         Upload Image
-                        <input class="profile-image-input" type="file" name="profile" oninput="updateProfileImage()" accept="image/*">
+                        <input class="profile-image-input" type="file" name="profile" oninput="updateProfileImage()"
+                               accept="image/*">
                     </label>
                 </form>
             </c:if>
             <div class="username">@${requestScope.profileViewBean.user.username}</div>
-            <!--Email noch in Nickname ändern-->
-            <div class="nickname">${requestScope.profileViewBean.user.nickname}</div>
+            <c:if test="${requestScope.profileViewBean.isAdmin && requestScope.profileViewBean.editPermission}">
+                    <p class="admin-status">You are an admin</p>
+            </c:if>
         </div>
         <c:if test="${requestScope.profileViewBean.isAdmin}">
             <a class="remove-button" id="remove-user-button"
