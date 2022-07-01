@@ -63,8 +63,8 @@
                 <button class="remove-button" id="remove-user-button" type="submit">Delete User</button>
             </form>
         </c:if>
-        <noscript>Your Browser does not support JavaScript</noscript>
     </section>
 </main>
+<noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
 </body>
 </html>

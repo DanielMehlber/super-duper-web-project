@@ -120,7 +120,7 @@ textarea {
     font-size: 1em;
     border-color: var(--main-fg-color);
     border-width: 3px;
-    border-radius: 5px;
+    border-radius: 10px;
     border-style: solid;
     padding: 10px;
     transition: all 0.5s;

@@ -2,8 +2,7 @@
   Author: Maximilian Rublik
   Date: 10.05.2022
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" errorPage=""%>
+<%@ page language="java" pageEncoding="UTF-8" errorPage=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -35,7 +34,6 @@
                 <button name="registerButton" class="enter-button">Join us</button>
                 <a class="login-redirect" href="login">Already a member?</a>
         	</form>
-            <noscript>JavaScript not enabled</noscript>
         </main>
         <noscript><%@include file="fragments/javascript-deactivated.jspf" %></noscript>
     </body>
