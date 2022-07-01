@@ -171,7 +171,7 @@ public class TeamRepository {
      * @return profile image from team
      * @throws InternalErrorException some unexpected and fatal internal error occured
      * @throws NoImageFoundException no image found to team
-     /*@author Maximilian Rublik*/
+     @author Maximilian Rublik
      */
     public static byte[] loadBackgroundImage(final Long id) throws InternalErrorException, NoImageFoundException {
         log.debug("loading team background image");

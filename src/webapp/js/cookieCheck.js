@@ -1,4 +1,4 @@
-//@Author Philipp Phan
+// Author Philipp Phan
 "use strict";
 
 window.addEventListener("DOMContentLoaded", checkCookies)
