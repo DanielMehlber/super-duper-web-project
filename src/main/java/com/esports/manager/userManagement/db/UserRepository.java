@@ -265,7 +265,7 @@ public class UserRepository {
      *
      * @param username
      * @throws InternalErrorException
-     * @author Philipp Phan (Inspiration from V.Stiehl)
+     * @author Philipp Phan (Inspiration from V.Stiehl Vorlesung(04_JDBC))
      */
     public static void deleteUser(String username) throws InternalErrorException{
         // Connect with Database and loads sql statement
@@ -285,11 +285,11 @@ public class UserRepository {
     }
 
     /**
-     * Get all team in which the user is a member of
+     * Get all teams in which the user is a member of
      *
      * @param user
      * @throws InternalErrorException
-     * @author Daniel Mehlber / Philipp Phan
+     * @author Philipp Phan
     * */
     public static List<Long> fetchTeamsOfUser(final User user) throws InternalErrorException {
         List<Long> teamIds = new ArrayList<>();
