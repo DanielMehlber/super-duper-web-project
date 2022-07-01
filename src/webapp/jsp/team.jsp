@@ -53,7 +53,7 @@
                             <td>${member.username}</td>
                             <td>${member.since}</td>
                             <td>${member.role}</td>
-                            <c:if test="${member.isTeamLeader || teamViewBean.currentUserIsAdmin}">
+                            <c:if test="${teamViewBean.isTeamLeader || teamViewBean.currentUserIsAdmin}">
                                 <td>
                                     <form name="remove-member-form" method="POST" action="teams/removeMember">
                                         <button class="remove-button" type="submit">-</button>
