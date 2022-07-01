@@ -5,17 +5,16 @@
 <head>
     <title>Login</title>
     <meta charset="UTF-8">
-    <base href="${pageContext.request.requestURI}"/>
+    <base href="${pageContext.request.contextPath}/"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/Elements.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/loginPage.css">
-    <script src="${pageContext.request.contextPath}/js/cookieCheck.js" defer></script>
-
+    <link rel="stylesheet" href="stylesheets/Elements.css">
+    <link rel="stylesheet" href="stylesheets/loginPage.css">
+    <script src="js/cookieCheck.js" defer></script>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
 <main>
-    <form class="login-card" action="../login" method="POST">
+    <form class="login-card" action="login" method="POST">
         <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="Logo"
              class="logo img">
         <input name="username" type="text" placeholder="Username" class="username"
@@ -27,9 +26,9 @@
                 ${requestScope.loginBean.errorMessage}
             </c:if>
         </p>
-        <button class="enter-button">Login</button>
-        <button class="cancel-button">Back</button>
-        <a class="registration-redirect" href="${pageContext.request.contextPath}/registration">Not a member yet?</a>
+        <button class="enter-button" type="submit">Login</button>
+        <button class="cancel-button" type="reset">Back</button>
+        <a class="registration-redirect" href="registration">Not a member yet?</a>
     </form>
     <div id="cookieText"></div>
     </main>

@@ -7,6 +7,11 @@ function setAllEventListener(){
     document.getElementsByClassName("search-input")[0].addEventListener("keyup", executeTeamSearch)
     document.getElementById("add-team-button").addEventListener("click", openModal);
     document.getElementById("game-filter-selection").addEventListener("change", executeTeamSearch);
+    document.getElementsByClassName("nav-bar-button")[0].addEventListener("mouseover", toggleNav);
+    document.getElementById("main").addEventListener("click", hideNav);
+    document.getElementsByClassName("team-creation-modal-close")[0].addEventListener("click", closeModal);
+    document.getElementsByName("background")[0].addEventListener("change", checkBackground);
+    document.getElementsByName("profile")[0].addEventListener("change", checkProfile);
 }
 
 /**

@@ -6,18 +6,18 @@
 <head>
     <title>Impressum</title>
     <meta charset="UTF-8">
-    <base href="${pageContext.request.requestURI}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="${pageContext.request.contextPath}/stylesheets/Elements.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/stylesheets/dashboard.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/stylesheets/Impressum.css" rel="stylesheet">
+    <base href="${pageContext.request.contextPath}/"/>
+    <link href="stylesheets/Elements.css" rel="stylesheet">
+    <link href="stylesheets/dashboard.css" rel="stylesheet">
+    <link href="stylesheets/Impressum.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-    <script src="${pageContext.request.contextPath}/js/removeUserConfirmation.js" defer></script>
+    <script src="js/sidebar.js"></script>
 </head>
 <body>
 <%@include file="fragments/sidebar.jspf" %>
-<main id="main" onclick="hideNav()">
-    <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
+<main id="main">
+    <button class="nav-bar-button">&#9776;</button>
     <section id="main-container">
         <div id="main-content">
             <h2>Impressum</h2>

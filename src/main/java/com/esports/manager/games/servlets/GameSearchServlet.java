@@ -44,7 +44,7 @@ public class GameSearchServlet extends HttpServlet {
             games = Games.searchGame(".*");
         } else {
             // search for game by regex pattern
-            games = Games.search(gameSearchPattern);
+            games = Games.searchGame(gameSearchPattern);
         }
 
         log.debug(String.format("generating json containing %d found users", games.size()));

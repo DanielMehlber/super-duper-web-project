@@ -29,7 +29,7 @@ main {
     min-height: 100%;
     background-color: var(--main-bg-color);
     box-shadow: rgb(0 0 0 / 35%) -7px 0px 15px;
-    transition: left 0.5s;
+    transition: all 0.5s;
     transition-timing-function: cubic-bezier(0.47, 0.14, 0.48, 1.15);
 }
 
@@ -82,6 +82,7 @@ footer {
     border-color: var(--main-fg-color);
     border-style: solid;
     transition: box-shadow 0.3s;
+    object-fit: cover;
 }
 
 .profile-image > img:hover {
@@ -157,4 +158,8 @@ section.dashboard-content-container {
 
 .dashboard-header {
     grid-area: heading;
+}
+
+.showing-nav {
+    transform: translateX(200px);
 }

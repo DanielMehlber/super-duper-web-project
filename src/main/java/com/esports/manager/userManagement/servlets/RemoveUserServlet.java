@@ -29,9 +29,8 @@ public class RemoveUserServlet extends HttpServlet {
     private final Logger log = LogManager.getLogger(RemoveUserServlet.class);
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-
             //Get authorized User
             User user = UserManagement.getAuthorizedUser(request.getSession());
 
@@ -45,9 +44,10 @@ public class RemoveUserServlet extends HttpServlet {
             //redirect to /users page
             response.sendRedirect(getServletContext().getContextPath() + "/users");
             }
+
+            log.info("User has been deleted");
         } catch (InternalErrorException e) {
             log.error("An internal Error occured while removing a user: " + e.getMessage());
         }
-
     }
 }

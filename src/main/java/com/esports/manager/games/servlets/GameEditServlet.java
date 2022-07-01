@@ -3,6 +3,7 @@ package com.esports.manager.games.servlets;
 import com.esports.manager.games.Games;
 import com.esports.manager.games.db.GamesRepository;
 import com.esports.manager.games.entities.Game;
+import com.esports.manager.games.exceptions.GameDataInsufficientException;
 import com.esports.manager.games.exceptions.NoSuchGameException;
 import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.userManagement.entities.User;
@@ -95,17 +96,24 @@ public class GameEditServlet extends HttpServlet {
                 return;
             }
 
-            if (parameterItem.equals(ITEM_TITLE)) {
-                game.setName(parameterValue);
-                GamesRepository.update(game);
-            } else if (parameterItem.equals(ITEM_DESCRIPTION)) {
-                game.setDescription(parameterValue);
-                GamesRepository.update(game);
-            } else {
-                log.warn("cannot set data of game: unknown item value " + parameterItem);
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "game item unkown");
+            try {
+                if (parameterItem.equals(ITEM_TITLE)) {
+                    game.setName(parameterValue);
+                    Games.updateGame(game.getId(), game.getName(), game.getDescription());
+                } else if (parameterItem.equals(ITEM_DESCRIPTION)) {
+                    game.setDescription(parameterValue);
+                    Games.updateGame(game.getId(), game.getName(), game.getDescription());
+                } else {
+                    log.warn("cannot set data of game: unknown item value " + parameterItem);
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "game item unkown");
+                    return;
+                }
+            } catch (GameDataInsufficientException e) {
+                // ISSUE: the passed game data is not valid (e.g. contains invalid characters)
+                log.warn(String.format("cannot update game id:%d because passed data was invalid", game.getId()));
+                // TODO: redirect to game edit page and display error
                 return;
-            }
+            } catch (NoSuchGameException ignored) {}
 
             response.sendRedirect(getServletContext().getContextPath() + "/games/game?id=" + game.getId());
             log.info("game data changed");
