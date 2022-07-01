@@ -47,7 +47,6 @@ public class ProfileServlet extends HttpServlet {
             }
             User userOfPage = UserManagement.fetchUserByUsername(usernameParameter);
             // Compare both to set permissions
-            // Compare usernames with equals, damit daniel mich nicht haut
             if (currentUser.getUsername().equals(userOfPage.getUsername())) {
                 editPermission = true;
             }
