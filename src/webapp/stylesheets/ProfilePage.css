@@ -125,7 +125,7 @@ main {
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
-        "image username ."
+        "image username role"
         "image admin ."
         "label form .";
 }
@@ -134,6 +134,14 @@ main {
     font-size: 35px;
     justify-self: baseline;
     grid-area: username;
+}
+
+.platformRole{
+    font-size: 20px;
+    border: 3px solid gold;
+    border-radius: 8px;
+    padding: 8px;
+    grid-area: role;
 }
 
 .admin-status {
