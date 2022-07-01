@@ -26,7 +26,7 @@
         <li class="unselected nav-option">
             <a href="jsp/impressum.jsp">Impressum</a>
         </li>
-        <li class="unselected nav-option">
+        <li class="unselected nav-option" id="sidebarLogOut">
             <a href="logout">Logout</a>
         </li>
     </ul>

@@ -20,6 +20,10 @@ function toggleNav() {
     }
 }
 
+function logoutAlert(){
+    window.alert("You have been logged out! See you soon.");
+}
+
 function initNav() {
     document.getElementById("main").style.left = '0px';
     const navButtons = document.getElementsByClassName("nav-bar-button");
@@ -32,4 +36,5 @@ function initNav() {
     if(main !== undefined) {
         main.addEventListener("click", hideNav)
     }
+    document.getElementById("sidebarLogOut").addEventListener("click", logoutAlert);
 }
