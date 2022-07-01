@@ -16,8 +16,8 @@
 <body>
 <script src="js/newsfeed.js"></script>
 <%@include file="fragments/sidebar.jspf" %>
-<main id="main" onclick="hideNav()">
-    <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
+<main id="main">
+    <button class="nav-bar-button">&#9776;</button>
     <c:if test="${requestScope.user.isAdmin}">
         <a href="games/game?id=${requestScope.gamePageViewBean.game.id}&mode=edit" class="game-edit-button button">&#9999;</a>
     </c:if>

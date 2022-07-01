@@ -17,7 +17,7 @@
     <link href="stylesheets/newsfeed.css" rel="stylesheet"/>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
-<body onload="loadMoreNewsfeedItems();">
+<body>
     <script src="js/newsfeed.js"></script>
 
     <%@include file="fragments/sidebar.jspf" %>
