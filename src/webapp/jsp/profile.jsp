@@ -61,7 +61,7 @@
         <c:if test="${requestScope.profileViewBean.isAdmin}">
             <form action="users/removeUser?username=${requestScope.profileViewBean.user.username}" method="POST">
                 <button class="remove-button" id="remove-user-button" type="submit">Delete User</button>
-            </form>utton" id="remove-user-button"
+            </form>
         </c:if>
         <noscript>Your Browser does not support JavaScript</noscript>
     </section>
