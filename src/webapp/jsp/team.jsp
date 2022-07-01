@@ -82,6 +82,7 @@
                 <form class="add-member-modal" action="teams/addmember" method="POST">
                     <h2 id="add-member-title">Add member</h2>
                     <select id="add-member-user-selection" class="user-selection" name="users" required>
+                        <option value="" disabled selected>Select your option</option>
                         <c:forEach items="${addMemberViewBean.users}" var="user">
                             <option value="${user.username}">${user.username}</option>
                         </c:forEach>
