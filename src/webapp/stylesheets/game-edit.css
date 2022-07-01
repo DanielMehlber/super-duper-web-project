@@ -1,4 +1,6 @@
-
+/*
+    Author: Daniel Mehlber
+*/
 .game-background-container > .game-background-selector {
     position: absolute;
     z-index: 3;
