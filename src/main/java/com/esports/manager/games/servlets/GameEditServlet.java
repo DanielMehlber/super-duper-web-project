@@ -1,6 +1,8 @@
 package com.esports.manager.games.servlets;
 
 import com.esports.manager.games.Games;
+import com.esports.manager.games.beans.GameEditPageViewBean;
+import com.esports.manager.games.beans.GamePageViewBean;
 import com.esports.manager.games.db.GamesRepository;
 import com.esports.manager.games.entities.Game;
 import com.esports.manager.games.exceptions.GameDataInsufficientException;
@@ -111,7 +113,19 @@ public class GameEditServlet extends HttpServlet {
             } catch (GameDataInsufficientException e) {
                 // ISSUE: the passed game data is not valid (e.g. contains invalid characters)
                 log.warn(String.format("cannot update game id:%d because passed data was invalid", game.getId()));
-                // TODO: redirect to game edit page and display error
+
+                /*
+                 * this page will redirect to the game page controller. This controller will look for a session bean
+                 * containing errors from a past interaction, that need to be displayed on the game page.
+                 *
+                 * The error set here will be displayed on the game page
+                 */
+                GamePageViewBean gameEditPageViewBean = new GamePageViewBean();
+                gameEditPageViewBean.setError("Cannot apply received game data: Please make sure to only use valid characters");
+                request.getSession().setAttribute("gamePageViewBean", gameEditPageViewBean);
+
+                // redirect to edit page (in order to display error)
+                response.sendRedirect(getServletContext().getContextPath() + "/games/game?mode=edit&id=" + game.getId());
                 return;
             } catch (NoSuchGameException ignored) {}
 

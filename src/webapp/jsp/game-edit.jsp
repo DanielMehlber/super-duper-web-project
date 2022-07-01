@@ -12,12 +12,18 @@
     <link rel="stylesheet" href="stylesheets/game.css"/>
     <link rel="stylesheet" href="stylesheets/game-edit.css"/>
     <link rel="stylesheet" href="stylesheets/game-modal.css"/>
+    <link rel="stylesheet" href="stylesheets/game-error-modal.css"/>
     <title>${requestScope.gamePageViewBean.game.name} | Edit</title>
 </head>
 <body>
     <script src="js/game-edit.js"></script>
     <script src="js/newsfeed.js"></script>
+    <script src="js/game-error-modal.js"></script>
     <%@include file="fragments/sidebar.jspf" %>
+
+    <c:if test="${not empty requestScope.gamePageViewBean.error}">
+        <%@include file="fragments/game-error-modal.jspf" %>
+    </c:if>
 
     <main id="main">
         <button class="nav-bar-button">&#9776;</button>

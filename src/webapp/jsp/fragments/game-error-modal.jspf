@@ -1,0 +1,12 @@
+<%--
+  Author: Daniel Mehlber
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<section class="error-modal-container" id="error-modal-container">
+    <section class="error-modal slide-in">
+        <div class="error-modal-close" id="error-modal-close">
+            &times;
+        </div>
+        ${requestScope.gamePageViewBean.error}
+    </section>
+</section>

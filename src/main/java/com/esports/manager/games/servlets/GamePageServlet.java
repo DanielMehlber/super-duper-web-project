@@ -1,6 +1,7 @@
 package com.esports.manager.games.servlets;
 
 import com.esports.manager.games.Games;
+import com.esports.manager.games.beans.GameEditPageViewBean;
 import com.esports.manager.games.beans.GamePageViewBean;
 import com.esports.manager.games.entities.Game;
 import com.esports.manager.games.exceptions.NoSuchGameException;
@@ -95,16 +96,26 @@ public class GamePageServlet extends HttpServlet {
             team.setMembers(members);
         }
 
-        GamePageViewBean gamePageViewBean = new GamePageViewBean();
+        /*
+         * if there were errors from a previous interaction (e.g. submit of invalid input data) there already is a
+         * GamePageViewBean containing the error stored in session. If this is the case, use this bean instead of creating
+         * a new one in order to display the error.
+         */
+        GamePageViewBean gamePageViewBean = (GamePageViewBean) req.getSession().getAttribute("gamePageViewBean");
+        req.getSession().removeAttribute("gamePageViewBean");
+        if(gamePageViewBean == null) {
+            gamePageViewBean = new GamePageViewBean();
+        }
         gamePageViewBean.setGame(requestedGame);
         gamePageViewBean.setTeams(teamsPlayingGame);
         req.setAttribute("gamePageViewBean", gamePageViewBean);
 
+        // redirect according to current mode
         if(mode.equals(PAGE_MODE_EDIT)) {
-            // navigate to view page
+            // navigate to edit page
             req.getRequestDispatcher("/jsp/game-edit.jsp").forward(req, resp);
         } else {
-            // navigate to edit page
+            // navigate to view page
             req.getRequestDispatcher("/jsp/game-view.jsp").forward(req, resp);
         }
     }

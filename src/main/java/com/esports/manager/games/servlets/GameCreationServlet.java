@@ -1,8 +1,10 @@
 package com.esports.manager.games.servlets;
 
 import com.esports.manager.games.Games;
+import com.esports.manager.games.beans.GamePageViewBean;
 import com.esports.manager.games.entities.Game;
 import com.esports.manager.games.exceptions.GameDataInsufficientException;
+import com.esports.manager.global.exceptions.InternalErrorException;
 import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.UnauthorizedException;
@@ -46,9 +48,25 @@ public class GameCreationServlet extends HttpServlet {
             game = Games.createGame(titleParameter, "");
         } catch (GameDataInsufficientException e) {
             log.warn("cannot create game: game data is insufficient");
-            // just redirect back to game search
-            // TODO: display some kind of error message on the game search page
-            resp.sendRedirect(getServletContext().getContextPath() + "/games");
+
+            /*
+             * This view bean stored in session will contain the error, so that it will be shown at the game page.
+             * The controller of the game page will check for this bean in order to display any failed interactions
+             * that happened before the redirect to itself.
+             */
+            GamePageViewBean gamePageViewBean = new GamePageViewBean();
+            gamePageViewBean.setError("Cannot apply received game data: Please make sure to only use valid characters");
+            req.getSession().setAttribute("gamePageViewBean", gamePageViewBean);
+
+            // create empty game
+            try {
+                game = Games.createGame("new unnamed game", "");
+            } catch (GameDataInsufficientException ignored) {
+                // ISSUE: this edge case really should not happen
+                throw new InternalErrorException("cannot create game", ignored);
+            }
+
+            resp.sendRedirect(getServletContext().getContextPath() + "/games/game?mode=view&id="+game.getId());
             return;
         }
 
