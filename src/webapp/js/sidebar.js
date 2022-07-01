@@ -24,7 +24,7 @@ function initNav() {
     document.getElementById("main").style.left = '0px';
     const navButtons = document.getElementsByClassName("nav-bar-button");
     if(navButtons[0] !== undefined) {
-        navButtons[0].addEventListener("mouseenter", toggleNav)
+        navButtons[0].addEventListener("mouseover", toggleNav)
         navButtons[0].addEventListener("click", toggleNav)
     }
 
