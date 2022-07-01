@@ -4,6 +4,8 @@ import com.esports.manager.games.entities.Game;
 
 import java.util.List;
 
+/*@author Maximilian Rublik*/
+
 public class GamesViewBean {
 
     private List<Game> games;
