@@ -26,8 +26,8 @@
                 ${requestScope.loginBean.errorMessage}
             </c:if>
         </p>
-        <button class="enter-button">Login</button>
-        <button class="cancel-button">Back</button>
+        <button class="enter-button" type="submit">Login</button>
+        <button class="cancel-button" type="reset">Back</button>
         <a class="registration-redirect" href="registration">Not a member yet?</a>
     </form>
     <div id="cookieText"></div>

@@ -323,9 +323,9 @@ public class UserManagement {
      * @author Philipp Phan
      */
     public static void removeUser(String username) {
-
         try {
             UserRepository.deleteUser(username);
+            log.info("User has been deleted from database");
         }catch (InternalErrorException e){
             log.error("Internal Error occured" + e.getMessage());
         }
