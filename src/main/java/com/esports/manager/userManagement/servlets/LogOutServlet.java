@@ -44,6 +44,7 @@ public class LogOutServlet extends HttpServlet {
 
         // redirect back to login page
         response.sendRedirect(getServletContext().getContextPath() + "/login");
+        log.info("User has been logged out");
     }
 
 }

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="stylesheets/dashboard.css"/>
     <link rel="stylesheet" href="stylesheets/game.css"/>
     <link rel="stylesheet" href="stylesheets/TeamsPage.css"/>
-    <title>Games</title>
+    <title>${requestScope.gamePageViewBean.game.name}</title>
 </head>
 <body>
 <script src="js/newsfeed.js"></script>

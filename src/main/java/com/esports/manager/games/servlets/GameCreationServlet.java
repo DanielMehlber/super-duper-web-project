@@ -2,6 +2,7 @@ package com.esports.manager.games.servlets;
 
 import com.esports.manager.games.Games;
 import com.esports.manager.games.entities.Game;
+import com.esports.manager.games.exceptions.GameDataInsufficientException;
 import com.esports.manager.userManagement.UserManagement;
 import com.esports.manager.userManagement.entities.User;
 import com.esports.manager.userManagement.exceptions.UnauthorizedException;
@@ -40,7 +41,16 @@ public class GameCreationServlet extends HttpServlet {
             return;
         }
 
-        Game game = Games.createGame(titleParameter, "");
+        Game game = null;
+        try {
+            game = Games.createGame(titleParameter, "");
+        } catch (GameDataInsufficientException e) {
+            log.warn("cannot create game: game data is insufficient");
+            // just redirect back to game search
+            // TODO: display some kind of error message on the game search page
+            resp.sendRedirect(getServletContext().getContextPath() + "/games");
+            return;
+        }
 
         // redirect
         resp.sendRedirect(getServletContext().getContextPath() + "/games/game?id="+game.getId());
