@@ -10,6 +10,8 @@ function setAllEventListener(){
     document.getElementsByClassName("nav-bar-button")[0].addEventListener("mouseover", toggleNav);
     document.getElementById("main").addEventListener("click", hideNav);
     document.getElementsByClassName("team-creation-modal-close")[0].addEventListener("click", closeModal);
+    document.getElementsByName("background")[0].addEventListener("change", checkBackground);
+    document.getElementsByName("profile")[0].addEventListener("change", checkProfile);
 }
 
 /**

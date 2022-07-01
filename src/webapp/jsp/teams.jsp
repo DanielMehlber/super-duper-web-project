@@ -55,12 +55,12 @@
 
 				<label class="team-logo-label">
 					UPLOAD LOGO
-					<input name="profile" class="team-logo-input" onchange="checkProfile()" type="file" accept="image/*"/>
+					<input name="profile" class="team-logo-input" type="file" accept="image/*"/>
 				</label>
 
 				<label class="background-label">
 					BACKGROUND
-					<input name="background" class="background-input" onchange="checkBackground()" type="file" accept="image/*"/>
+					<input name="background" class="background-input" type="file" accept="image/*"/>
 				</label>
 
 				<button class="enter-button" type="submit" name="enter-button">Save</button>
