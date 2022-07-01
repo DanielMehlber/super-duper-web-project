@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * This servlet searches and returns user data in JSON format
- * @author Daniel Mehlber
+ * @author Philipp Phan
  */
 @WebServlet("/users/search")
 public class UserSearchServlet extends HttpServlet {

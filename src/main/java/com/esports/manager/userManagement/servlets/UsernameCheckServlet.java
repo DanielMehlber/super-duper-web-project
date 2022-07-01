@@ -34,7 +34,7 @@ public class UsernameCheckServlet extends HttpServlet {
      * @throws ServletException an internal error occurred
      * @throws IOException an IO-Error occurred
      *
-     * @author Daniel Mehlber
+     * @author Maximilian Rublik
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
