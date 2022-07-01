@@ -2,16 +2,18 @@
 "use strict";
 
 function showNav() {
-    document.getElementById("main").style.left = '200px';
+    document.getElementById("main").classList.add("showing-nav");
+    // document.getElementById("main").style.left = '200px';
 }
 
 function hideNav() {
-    document.getElementById("main").style.left = '0px';
+    document.getElementById("main").classList.remove("showing-nav");
+    // document.getElementById("main").style.left = '0px';
 }
 
 function toggleNav() {
     const nav = document.getElementById("main")
-    if(nav.style.left !== '0px') {
+    if(nav.classList.contains("showing-nav")) {
         hideNav()
     } else {
         showNav()
@@ -19,7 +21,7 @@ function toggleNav() {
 }
 
 function initNav() {
-    document.getElementById("main").style.left = '0px';
+    hideNav()
 }
 
 initNav()
