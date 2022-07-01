@@ -53,7 +53,9 @@
             </c:if>
             <div class="username">@${requestScope.profileViewBean.user.username}</div>
             <c:if test="${requestScope.profileViewBean.isAdmin && requestScope.profileViewBean.editPermission}">
-                    <p class="admin-status">You are an admin</p>
+                    <p class="admin-status">You are an admin
+                    <span role="tooltip">You can edit / remove games and remove users</span>
+                    </p>
             </c:if>
         </div>
         <c:if test="${requestScope.profileViewBean.isAdmin}">

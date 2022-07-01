@@ -139,6 +139,21 @@ main {
     justify-self: baseline;
     margin: 0;
     grid-area: admin;
+
+}
+
+.admin-status span[role=tooltip] {
+    display: none;
+    transition: 0.5s;
+}
+
+.admin-status:hover span[role=tooltip] {
+    display: block;
+    background-color: #2b92d5;
+    padding: 2px;
+    border: 1px solid #2b92d5;
+    border-radius: 5px;
+    margin-top: 5px;
 }
 
 /*Profile Image*/
