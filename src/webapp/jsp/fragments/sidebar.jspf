@@ -3,7 +3,7 @@
 <nav>
     <div class="profile-container">
         <a class="profile-image" href="profile?username=${sessionScope.userSessionBean.user.username}">
-            <img alt="user logo" src="users/images?type=profile&user=${sessionScope.userSessionBean.user.username}" width="100" height="100"
+            <img src="users/images?type=profile&user=${sessionScope.userSessionBean.user.username}" width="100" height="100"
             alt="profile image of user ${sessionScope.userSessionBean.user.username}"/>
         </a>
         <div class="player-username">
@@ -26,8 +26,8 @@
         <li class="unselected nav-option">
             <a href="jsp/impressum.jsp">Impressum</a>
         </li>
-        <li class="unselected nav-option" id="sidebarLogOut">
-            <a href="logout">Logout</a>
+        <li class="unselected nav-option">
+            <a href="logout" id="sidebarLogOut">Logout</a>
         </li>
     </ul>
 </nav>

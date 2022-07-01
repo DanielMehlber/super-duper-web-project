@@ -55,6 +55,7 @@ public class GameImageRepository {
 
         if(image == null) {
             log.warn(String.format("no profile image found for game id:%d", game.getId()));
+
             throw new NoImageFoundException(game, "profile");
         }
 
