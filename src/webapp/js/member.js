@@ -54,7 +54,7 @@ function executePlayerSearch() {
     const playersList = document.getElementById("player-list")
     playersList.innerHTML = ""
 
-    fetch("users/search?un="+searchTerm)
+    fetch("users/search?un="+encodeURIComponent(searchTerm))
         .then(response => response.json())
         .then(usersJson => {
             usersJson.forEach(userJson => {
