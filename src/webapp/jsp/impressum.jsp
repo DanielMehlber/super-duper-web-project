@@ -44,7 +44,7 @@
             <div>
                 <p class="subheading">Kontakt:</p>
                 <br>
-                Telefon: <a href="https://goo.gl/maps/R1CF8m6Wf8kJUZtg9">089 24290495</a>
+                Telefon: <a>089 24290495</a>
                 <br>
                 E-Mail: <a href='hop4600@thi.de'>hop4600@thi.de</a>
                 <br>
