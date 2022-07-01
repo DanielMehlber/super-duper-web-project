@@ -5,7 +5,7 @@ import com.esports.manager.global.db.mapping.ResultSetMapping;
 /**
  * The User entity contains all user data of a specific user.
  *
- * @author Daniel Mehlber
+ * @author Philipp Phan
  */
 public class User {
 
