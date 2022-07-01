@@ -22,8 +22,8 @@
         <script src="js/team.js" defer></script>
         <%@include file="fragments/sidebar.jspf" %>
 
-        <main id="main" onclick="hideNav()">
-            <button class="nav-bar-button" onmouseover="toggleNav()">&#9776;</button>
+        <main id="main">
+            <button class="nav-bar-button">&#9776;</button>
             <div class="info-area">
                 <div class="head-information">
                     <img class="team-logo" src="teams/images?type=profile&id=${teamViewBean.getTeam().getId()}" alt="teamLogo"/>
@@ -31,7 +31,7 @@
                     <h3 class="team-slogan">${teamViewBean.team.slogan}</h3>
 
                     <c:if test="${teamViewBean.isTeamLeader}">
-                        <form method="POST" action="teams/removeTeam" onsubmit="return confirm('Do you really want to delete this team?')">
+                        <form name="remove-team-form" method="POST" action="teams/removeTeam">
                             <button class="remove-team-button" type="submit">X</button>
                             <input type="hidden" value="${teamViewBean.team.id}" name="teamId">
                         </form>
@@ -53,7 +53,7 @@
                             <td><a class="remove-button" href="teams/removemember?teamid=${teamViewBean.getTeam().getId()}&username=${member.username}">-</a></td>
                             <c:if test="${ not member.isTeamLeader}">
                                 <td>
-                                    <form method="POST" action="teams/removeMember" onsubmit="return confirm('Do you really want to delete this member from the team?')">
+                                    <form name="remove-member-form" method="POST" action="teams/removeMember">
                                         <button class="remove-button" type="submit">-</button>
                                         <input type="hidden" value="${teamViewBean.getTeam().id}" name="id" />
                                         <input type="hidden" value="${member.username}" name="username" />
@@ -87,9 +87,8 @@
                     <input type="hidden" name="teamId" value="${addMemberViewBean.teamId}">
                     <input type="text" class="position-field" name="position" placeholder="position" autofocus="autofocus" maxlength="30"/>
 
-
                     <button id="add-selected-member-button" class="primary-button">Add</button>
-                    <div class="add-member-modal-close" onclick="closeModal()">X</div>
+                    <div class="add-member-modal-close">X</div>
                 </form>
             </section>
         </main>
