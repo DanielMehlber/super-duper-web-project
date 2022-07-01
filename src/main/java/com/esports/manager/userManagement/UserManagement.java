@@ -331,7 +331,13 @@ public class UserManagement {
         }
     }
 
-    // TODO: documentation
+    /**
+     * Gets ID of teams in which the user is a member
+     *
+     * @param user
+     * @throws InternalErrorException
+     * @author Daniel Mehlber
+    */
     public static List<Long> fetchTeamsIdsOfUser(final User user) throws InternalErrorException {
         return UserRepository.fetchTeamsOfUser(user);
     }
