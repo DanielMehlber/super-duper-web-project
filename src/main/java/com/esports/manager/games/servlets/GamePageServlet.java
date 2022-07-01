@@ -1,7 +1,6 @@
 package com.esports.manager.games.servlets;
 
 import com.esports.manager.games.Games;
-import com.esports.manager.games.beans.GameEditPageViewBean;
 import com.esports.manager.games.beans.GamePageViewBean;
 import com.esports.manager.games.entities.Game;
 import com.esports.manager.games.exceptions.NoSuchGameException;

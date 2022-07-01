@@ -87,7 +87,7 @@ public class GameImageServlet extends HttpServlet {
                 return;
             }
         } else if (type.equalsIgnoreCase("background")) {
-            // TODO: return value based (not exception based): just return null and check for it.
+
             try {
                 image = GameImageRepository.loadBackgroundImage(game);
             } catch (NoImageFoundException e) {

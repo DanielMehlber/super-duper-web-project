@@ -1,7 +1,6 @@
 package com.esports.manager.games.servlets;
 
 import com.esports.manager.games.Games;
-import com.esports.manager.games.beans.GameEditPageViewBean;
 import com.esports.manager.games.beans.GamePageViewBean;
 import com.esports.manager.games.db.GamesRepository;
 import com.esports.manager.games.entities.Game;

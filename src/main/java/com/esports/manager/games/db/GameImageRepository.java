@@ -53,7 +53,6 @@ public class GameImageRepository {
             throw new InternalErrorException("cannot fetch profile image of game", e);
         }
 
-        // TODO: return value based (not exception based): just return null and check for it.
         if(image == null) {
             log.warn(String.format("no profile image found for game id:%d", game.getId()));
             throw new NoImageFoundException(game, "profile");
@@ -94,7 +93,6 @@ public class GameImageRepository {
             throw new InternalErrorException("cannot fetch background image of game", e);
         }
 
-        // TODO: return value based (not exception based): just return null and check for it.
         if(image == null) {
             log.warn(String.format("game id:%d has no background image", game.getId()));
             throw new NoImageFoundException(game, "background");
