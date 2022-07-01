@@ -11,8 +11,10 @@ function updateCoverImage() {
     form.submit()
 }
 
-function confirmDeletion() {
-    return confirm('Do you really want to delete this game?')
+function confirmDeletion(event) {
+    const result = confirm('Do you really want to delete this game?')
+    if(!result)
+        event.preventDefault();
 }
 
 function init() {

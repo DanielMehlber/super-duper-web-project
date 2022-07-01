@@ -29,7 +29,7 @@
         <button class="nav-bar-button">&#9776;</button>
         <div class="game-edit-buttons-container">
             <a href="games/game?id=${requestScope.gamePageViewBean.game.id}&mode=view" class="game-view-button button">&#128065;</a>
-            <form method="post" action="games/game/edit">
+            <form method="post" action="games/game/edit" id="game-delete-button">
                 <button class="game-view-button game-delete-button primary-button" type="submit">&#128465;&#65039;</button>
                 <input type="hidden" value="${requestScope.gamePageViewBean.game.id}" name="id"/>
                 <input type="hidden" value="delete" name="mode"/>
@@ -52,7 +52,7 @@
                     <img class="game-cover-image" src="games/images?id=${requestScope.gamePageViewBean.game.id}&type=profile" alt="cover of game"/>
                 </form>
                 <form method="post" class="game-title-container" accept-charset="utf-8" action="games/game/edit?id=${requestScope.gamePageViewBean.game.id}&item=title">
-                    <input name="value" type="text" value="${requestScope.gamePageViewBean.game.name}"/>
+                    <input name="value" type="text" value="${requestScope.gamePageViewBean.game.name}" pattern="^[-,.\w :;!?]*$"/>
                     <button type="submit">&#128504;</button>
                     <input type="hidden" value="edit" name="mode"/>
                 </form>
