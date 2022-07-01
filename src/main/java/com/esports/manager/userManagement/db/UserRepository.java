@@ -284,7 +284,6 @@ public class UserRepository {
         }
     }
 
-    // TODO: Zuweisen und Dokumentation
     /**
      * Get all team in which the user is a member of
      *
