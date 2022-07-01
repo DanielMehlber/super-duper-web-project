@@ -4,6 +4,8 @@ import com.esports.manager.global.db.mapping.ResultSetMapping;
 
 import java.util.Objects;
 
+/*@author Maximilian Rublik*/
+
 public class Member {
     @ResultSetMapping("username")
     private String username;
