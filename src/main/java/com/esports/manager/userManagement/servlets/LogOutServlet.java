@@ -28,7 +28,7 @@ public class LogOutServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(LoginServlet.class);
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServerException, IOException, ServletException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServerException, IOException, ServletException{
         response.setContentType("text/html;charset=UTF-8");
 
         //Get current HttpSession
