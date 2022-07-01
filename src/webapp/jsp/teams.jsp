@@ -21,7 +21,6 @@
 <body>
 	<noscript>Javascript deactivated!</noscript>
 	<script src="js/teams.js" defer></script>
-	<script src="js/teams.js" defer></script>
 	<script src="js/addNewTeam.js" defer></script>
 	<%@include file="fragments/sidebar.jspf" %>
 
