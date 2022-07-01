@@ -37,7 +37,6 @@ docker-compose down
   * mysql image
   * wildfly server (wildfly-preview-26.1.0.Final)
   * mysql-connector for JDBC
-  * database setup script (from google drive)
 
 ### Option 2: Containers without any data (empty schema, no demo data)
 In order to start the software (incl. database, but without demo data) just call
@@ -58,25 +57,27 @@ docker-compose -f docker-compose-empty.yml up -d
 docker-compose -f docker-compose-empty.yml down
 ```
 
-### Manual Installation
+## Manual Installation
 
 Download the following:
 * ROOT.war (E-Mail)
 * The SQL Setup Script [here](https://drive.google.com/file/d/1xgm1NpjNFq4mnnyVld7DkPKZ3G2Q50l0/view?usp=sharing)
 
+Also take the `schema.sql` script from `./src/main/resources/schema.sql` of the project folder.
+
 1. Start your Wildfly and database
-2. create a new JNDI datasource on your wildfly called `java:jboss/datasources/eSportsDS`
+2. create a new JNDI datasource on your wildfly called `java:jboss/datasources/eSportsDS` and configure it.
 3. run `./src/main/resources/schema.sql` on your SQL server (to establish an empty schema)
 4. run `./db_dump.sql` on your SQL server (skip this step if you want a clean installation)
 5. place the `ROOT.war` file in your `deployments` folder (Wildfly)
-6. Start the application
+6. Enter the application at your configured port and host.
 
 
 # Usage
 
-The server is online on `http://localhost` (on port `80`). Just navigate to http://localhost in order to get to the login page.
+When using docker, the server is online on `http://localhost` (on port `80`). Just navigate to http://localhost in order to get to the login page.
 
-To login as admin user use username `admin` with password `admin123`. This enables you to
+To login as admin user use username `admin` with password `admin123` (when `db_dump.sql` is was installed on database). This enables you to
 * delete user
 * add games
 * edit games
