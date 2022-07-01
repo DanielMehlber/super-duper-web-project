@@ -26,7 +26,7 @@
         <button class="nav-bar-button" >&#9776;</button>
         <section class="players-area">
             <h1>Players Area</h1>
-            <input id="player-searchbar" type="text" placeholder="Search..." onkeydown="executePlayerSearch()"/>
+            <input id="player-searchbar" type="text" placeholder="Search..." />
             <div id="player-list"></div>
         </section>
     </main>
