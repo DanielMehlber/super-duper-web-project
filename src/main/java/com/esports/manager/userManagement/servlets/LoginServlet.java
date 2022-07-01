@@ -28,6 +28,11 @@ public class LoginServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(LoginServlet.class);
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/jsp/login.jsp").forward(req, resp);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServerException, IOException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
