@@ -74,7 +74,7 @@ public class RegistrationServlet extends HttpServlet {
         } catch (InvalidInputException ex) {
             // error messages
         	log.warn(String.format("cannot perform user registration because of an invalid user input: %s", ex.getMessage()), ex);
-            registrationViewSessionBean.setErrorMessage("your input was not valid");
+            registrationViewSessionBean.setErrorMessage("Please use for you username only letters and numbers and as password minimum 8 characters");
             // place bean in request scope (forwarding)
             req.setAttribute("registrationBean", registrationViewSessionBean);
             // forward back to registration jsp
