@@ -39,6 +39,13 @@ public class TeamManagement {
        return TeamRepository.getAllTeams();
     }
 
+    /**
+     * return team by its id
+     * @param id of the team you want to have
+     * @return a team fitting the id
+     * @throws InternalErrorException
+     * @author: Maximilian Rublik
+     */
     public static Team getTeamById(Long id) throws InternalErrorException {
         return TeamRepository.getTeamById(id);
     }
@@ -110,11 +117,11 @@ public class TeamManagement {
     }
 
     /**
-     *
-     * @param username
-     * @param teamid
-     * @param role
-     * @param since
+     * adds user to team
+     * @param username of the user which you want to add
+     * @param teamid where the user shall be added
+     * @param role a role the user can be given (freetext), teamleader gets his automatically
+     * @param since datetime when the user was added
      * @throws InternalErrorException some unexpected and fatal internal error occurred
      *
      * @author Maximilian Rublik
