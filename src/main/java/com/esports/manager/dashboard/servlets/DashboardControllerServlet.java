@@ -31,6 +31,7 @@ import java.util.Set;
  */
 @WebServlet("/dashboard")
 public class DashboardControllerServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
     private final Logger log = LogManager.getLogger(DashboardControllerServlet.class);
     @Override

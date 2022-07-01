@@ -24,7 +24,7 @@ import java.io.IOException;
  */
 @WebServlet("/games/new")
 public class GameCreationServlet extends HttpServlet {
-
+    private static final long serialVersionUID = 1L;
     private final Logger log = LogManager.getLogger(GameCreationServlet.class);
 
     @Override

@@ -23,6 +23,7 @@ import java.io.IOException;
  */
 @WebServlet("/profile")
 public class ProfileServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
     private final Logger log = LogManager.getLogger();
 
     @Override

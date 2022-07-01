@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @WebServlet("/games/game/edit")
 public class GameEditServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
     private static final Logger log = LogManager.getLogger(GameEditServlet.class);
     public static final String PARAM_GAME_ID = "id";

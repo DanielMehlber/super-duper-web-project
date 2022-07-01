@@ -25,6 +25,7 @@ import java.util.List;
  */
 @WebServlet("/newsfeed/fetch")
 public class NewsfeedServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
     private final Logger log = LogManager.getLogger(NewsfeedServlet.class);
 
