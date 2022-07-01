@@ -19,7 +19,6 @@
 	<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
-	<noscript>Javascript deactivated!</noscript>
 	<script src="js/teams.js" defer></script>
 	<script src="js/addNewTeam.js" defer></script>
 	<%@include file="fragments/sidebar.jspf" %>
